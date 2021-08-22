@@ -17,25 +17,25 @@ const Navbar = () => {
                 <ul className="navbar">
                     <li className="navbar-logo">
                         <span>{"[ "}</span>
-                        <Link to="/">SCHOOL_OF_CODE</Link>
+                        <Link to="/" className="navbar-links">SCHOOL_OF_CODE</Link>
                         <span>{" ]"}</span>
                     </li>
                     <li className="navbar-logo">
                         <span>{"{ "}</span>
-                        <Link to="/">Home</Link>
+                        <Link to="/" className="navbar-links">Home</Link>
                         <span>{" }"}</span>
                     </li>
                     <li className="navbar-logo">
-                        <Link to="/showcase">Showcase</Link>
+                        <Link to="/showcase" className="navbar-links">Showcase</Link>
                     </li>
                     <li className="navbar-logo">
-                        <Link to="/profiles">Profiles</Link>
+                        <Link to="/profiles" className="navbar-links">Profiles</Link>
                     </li>
                     <li className="navbar-logo">
-                        <Link to="/journey">Journey</Link>
+                        <Link to="/journey" className="navbar-links">Journey</Link>
                     </li>
                     <li className="navbar-logo">
-                        <Link to="/user">
+                        <Link to="/user" className="navbar-links">
                             <BiUserCircle />  
                         </Link>
                     </li>

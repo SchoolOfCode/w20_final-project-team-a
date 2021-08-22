@@ -45,5 +45,16 @@
         font-size: 1.6rem;
     }
 
+     /*Creating the hamburger bar*/
+     .navbar-toggle .bar{
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: #fff;
+    }
 
+    .navbar-logo{
+        width: 100%;
+    }
 }
