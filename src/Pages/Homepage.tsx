@@ -5,12 +5,16 @@ import '../Styling/ProjectDisplay.css'
 const Homepage = () => {
     return (
         <div className="wrapper">
-            <p className="arrow-left"> {"<"} </p>
-            <p className="main-image"> Main image </p>
-            <p className="arrow-right"> {">"} </p>
+            <p className="circuit1">circuit image</p>
+            <p className="arrow-left"> {"<"} </p> {/*onClick increase image display index by 1/*/}
+            <p className="circuit2">circuit image</p>
+            <p className="main-image"> Main image </p> {/*need to access array of images, display index=0 as default/*/}
+            <p className="arrow-right"> {">"} </p> {/*onClick decrease image display index by 1/*/}
+            <p className="banner1"></p>  {/*will this be an image?/*/}
             <p className="description"> Project description</p>
-            <p className="tech"> Built using </p>
-            <p className="banner"> Featured Project </p>
+            <p className="tech"> Built using </p> {/*needs list with tech images here/*/}
+            <p className="heading"> Featured Project </p>
+            <p className="banner2"></p> {/*will this be an image?/*/}
             <p className="title"> Project Title</p>
             <p className="contributors"> Contributors </p>
             
