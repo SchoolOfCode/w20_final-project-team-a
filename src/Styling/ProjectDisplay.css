@@ -4,7 +4,7 @@ body {
 }
 
 body {
-    color: black
+    color: white
 }
 
 .wrapper {
@@ -39,7 +39,7 @@ body {
     grid-row-end: 4;
     grid-column-start: 2;
     grid-column-end: 2;
-    background-color: lavender;
+    /* background-color: lavender; */
     margin-bottom: 2vh;
 }
 
@@ -64,7 +64,7 @@ margin-bottom: 2vh;
     grid-row-end: 4;
     grid-column-start: 6;
     grid-column-end: 6;
-    background-color: lavender;
+    /* background-color: lavender; */
     margin-top:2vh;
     }
 .banner1 {
@@ -82,7 +82,7 @@ margin-bottom: 2vh;
     grid-row-end: 4;
     grid-column-start: 7;
     grid-column-end: 9;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     margin-top: .5vh;
     margin-bottom: 2vh;
     text-align: right;
@@ -97,7 +97,7 @@ margin-bottom: 2vh;
     grid-row-end: 9;
     grid-column-start: 8;
     grid-column-end: 8;
-    background-color: lightseagreen;
+    /* background-color: lightseagreen; */
     text-align: right;
     font-size: 3vh
 }
@@ -110,7 +110,7 @@ margin-bottom: 2vh;
     grid-row-end: 6;
     grid-column-start: 1;
     grid-column-end: 4;
-    background-color: magenta;
+    /* background-color: magenta; */
     text-align: right;
     margin-bottom: .5vh;
     font-size: 4.5vh;
@@ -141,7 +141,7 @@ grid-row-start: 8;
 grid-row-end: 8;
 grid-column-start: 1;
 grid-column-end: 4;
-background-color: limegreen;
+/* background-color: limegreen; */
 margin-top: 2vh;
 margin-bottom: 2vh;
 text-align: right;
@@ -156,7 +156,7 @@ font-size: 3.5vh
     grid-row-end: 9;
     grid-column-start: 1;
     grid-column-end: 4;
-    background-color: maroon;
+    /* background-color: maroon; */
     text-align: right;
     font-size: 3vh
 }
