@@ -1,10 +1,7 @@
-.navbar-container{
-
-}
 .navbar{
     display: flex;
     list-style-type: none;
-    justify-content: space-evenly;
+    justify-content: space-between;
     color: white;
     background-color: black;
 }
@@ -16,3 +13,6 @@
     color: palegoldenrod;
 }
 
+.navbar-logo{
+    
+}

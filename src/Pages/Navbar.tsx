@@ -8,6 +8,11 @@ const Navbar = () => {
         <div className="navbar-container">
             <nav>
                 <ul className="navbar">
+                    <li className="navbar-logo">
+                        <span>{"[ "}</span>
+                        <Link to="/">SCHOOL_OF_CODE</Link>
+                        <span>{" ]"}</span>
+                    </li>
                     <li>
                         <span>{"{ "}</span>
                         <Link to="/">Home</Link>
