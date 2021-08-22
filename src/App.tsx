@@ -8,7 +8,7 @@ import Profiles from './Pages/Profiles';
 import Showcase from './Pages/Showcase';
 import Submit from './Pages/Submit';
 import Userprofile from './Pages/UserProfile';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 function App() {

@@ -6,28 +6,35 @@ import '../Styling/navbar.css'
 const Navbar = () => {
     return (
         <div className="navbar-container">
-            <nav>
+            <nav className="navbar-nav">
+
+            <div className="navbar-toggle" id="mobile-menu">
+                <span className="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
+            </div>
+
                 <ul className="navbar">
                     <li className="navbar-logo">
                         <span>{"[ "}</span>
                         <Link to="/">SCHOOL_OF_CODE</Link>
                         <span>{" ]"}</span>
                     </li>
-                    <li>
+                    <li className="navbar-logo">
                         <span>{"{ "}</span>
                         <Link to="/">Home</Link>
                         <span>{" }"}</span>
                     </li>
-                    <li>
+                    <li className="navbar-logo">
                         <Link to="/showcase">Showcase</Link>
                     </li>
-                    <li>
+                    <li className="navbar-logo">
                         <Link to="/profiles">Profiles</Link>
                     </li>
-                    <li>
+                    <li className="navbar-logo">
                         <Link to="/journey">Journey</Link>
                     </li>
-                    <li>
+                    <li className="navbar-logo">
                         <Link to="/user">
                             <BiUserCircle />  
                         </Link>
