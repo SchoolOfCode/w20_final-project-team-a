@@ -8,14 +8,14 @@ import Profiles from './Pages/Profiles';
 import Showcase from './Pages/Showcase';
 import Submit from './Pages/Submit';
 import Userprofile from './Pages/UserProfile';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 
 function App() {
   return (
     <Router>
       <Navbar />
-
+      
       <Route exact path = "/" component={Homepage} />
       <Route exact path = "/showcase" component={Showcase} />
       <Route exact path = "/profiles" component={Profiles} />
