@@ -57,4 +57,23 @@
     .navbar-logo{
         width: 100%;
     }
+
+    .navbar-links{
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    #mobile-menu{
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%, 20%);
+    }
+
+    .navbar-toggle .bar{
+        display: block;
+        cursor: pointer;
+    }
 }
