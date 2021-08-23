@@ -1,24 +1,18 @@
-import React, {useCallback, useState} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import {BiUserCircle} from 'react-icons/bi'
 import '../Styling/navbar.css'
 
 const Navbar = () => {
 
-    const [isOn, toggleIsOn] = useToggle();
+   const [active, setActive] = useState(false);
+
     return (
         <nav className="navbar-nav">
-<div className="navbar-container">
-            
-
-            <button onClick={toggleIsOn}>{isOn ? 'is-active' : 'isNotActive'} className="navbar-toggle" id="mobile-menu" >
-                <span className="bar"></span>
-                <span className="bar"></span>
-                <span className="bar"></span>
-            </button>
-
+            <div className="navbar-container">
+        
                 <ul className="navbar">
-                    <li className="navbar-logo">
+                    <li className="navbar-title">
                         <span>{"[ "}</span>
                         <Link to="/" className="navbar-links">SCHOOL_OF_CODE</Link>
                         <span>{" ]"}</span>
@@ -48,13 +42,6 @@ const Navbar = () => {
         </nav>
         
     )
-}
-
-const useToggle = (initialState = false) =>{
-    const [state,setState] = useState(initialState);
-    const toggle = useCallback(()=> setState(state => !state), []);
-
-    return [state, toggle]
 }
 
 export default Navbar
