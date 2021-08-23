@@ -4,8 +4,8 @@ import './App.css';
 import Homepage from './Pages/Homepage';
 import Journey from './Pages/Journey';
 import Navbar from './Pages/Navbar';
-import Profiles from './Pages/Profiles';
-import Showcase from './Pages/Showcase';
+import Profiles from './Pages/BootcamperProfiles';
+import Showcase from './Pages/ProjectsShowcase';
 import Submit from './Pages/Submit';
 import Userprofile from './Pages/UserProfile';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
