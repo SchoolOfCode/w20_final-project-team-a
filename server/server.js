@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import path from "path";
-import { __dirname } from "./serverConfig.js";
+// import path from "path";
+// import { __dirname } from "./serverConfig.js";
 
 import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
@@ -18,7 +18,7 @@ import { userRouter } from "./routes/users.js";
 // import { projectRouter } from "./routes/projects.js";
 
 const app = express();
-const env = dotenv.config();
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 //DB Config
@@ -26,13 +26,14 @@ const db = MongoDB.MongoURI;
 
 // Connect to Mongo
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then(() => console.log("CONNECTED!"))
   .catch((err) => console.log(err));
 
 //Midlewares
 //make uploads folder available
 app.use("/uploads", express.static("uploads"));
+
 //CORS
 app.use(
   cors({
@@ -48,7 +49,7 @@ app.use(express.json());
 // Express Session Middleware
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET, //cookie-secret
     resave: true,
     saveUninitialized: true,
   })

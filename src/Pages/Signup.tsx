@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 const Signup = () => {
 
@@ -7,30 +8,55 @@ const Signup = () => {
     const [displayName, setDisplayName] = useState ("");
     const [password, setPassword] = useState ("");
     const [password2, setPassword2] = useState ("");
-    const [errorMessage, setErrorMessage] = useState ("");
+    const [sucess, setSucess] = useState(false);
+    const [failure, setFailure] = useState(false);
+    const [failureMsg, setFailureMsg] = useState([]);
 
-    function handleSubmit (e:any) {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
         e.preventDefault();
         axios({
-            method:"post",
+            method:"POST",
             url:"http://localhost:5000/api/users/signup",
-            data: {
-                email:email,
-                displayName:displayName,
-                password:password,
-                password2:password2
+            data: {email, displayName, password, password2},
+        }).then(
+            response => {
+                console.log(response)
+                if (response.data.sucess) {
+                    setSucess(true)
+                    setFailure(false)
+                }
+                if (response.status !== 200) {
+                    setFailureMsg(response.data.errors)
+                    console.log(response.data.errors)
+                    setFailure(true)
+                }
             },
-        })
+            err =>{
+                console.log(err)
+                setFailure(true)
+            }
+        )
     }
 
     return (
         <div>
-            <h1>sign up page</h1>
+            <h1>Sign Up</h1>
+            {sucess &&
+            <div style={{backgroundColor:"lightgreen", color:"black"}}> 
+                <p>Your account has been sucessfully registered. Click <a href="/login">here</a> to login</p>
+            </div>}
+            {failure &&
             <div style={{backgroundColor:"red", color:"white"}}> 
-                <h3>
-                 {errorMessage}
-                </h3>
+                <p>An error occurred. Please try again</p>
+                <ul>
+                {failureMsg && failureMsg.map((err,i)=>{
+                    console.log(err)
+                    return <li key={i}>{err}</li>
+                })}
+                </ul>
             </div>
+            }
+
             <form>
                 <p>
                 <label htmlFor="email">email address</label>

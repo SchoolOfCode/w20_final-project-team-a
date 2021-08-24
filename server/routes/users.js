@@ -34,7 +34,7 @@ userRouter.post("/signup", (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.status(500).send("signup");
+    res.status(400).send(errors);
   } else {
     //validation passed
     User.findOne({ email: email })
@@ -44,7 +44,7 @@ userRouter.post("/signup", (req, res) => {
         if (user) {
           //user exists already
           errors.push({ msg: "Email is already registered!" });
-          res.status(500).send("signup");
+          res.status(400).send(errors);
         } else {
           //create a user, encrypt the password
           const newUser = new User({
@@ -72,8 +72,8 @@ userRouter.post("/signup", (req, res) => {
               newUser
                 .save()
                 .then((user) => {
-                  res.status(200).send("You are now registered and can login");
-                  // res.redirect('/users/login')
+                  res.status(200).send({msg: "You are now registered and can login", sucess:true});
+                  
                 })
                 .catch((err) => console.error(err));
             });
@@ -84,19 +84,15 @@ userRouter.post("/signup", (req, res) => {
   }
 });
 
-// //Handle Login
-// //use the local strategy -first argument to passport.authenticate
-// userRouter.post('/login',(req,res,next)=>{
-//     passport.authenticate('local', {
-//         successRedirect: '/dashboard',
-//         failure: '/users/login',
-//         failureFlash: true
-//     })(req,res,next)
-// })
+//Handle Login
+//use the local strategy -first argument to passport.authenticate
+userRouter.post('/login',passport.authenticate('local'),(req,res)=>{
+    res.status(200).send({msg:"Sucessfully logged in!", sucess:true})
+})
 
-// //Handle logout
-// userRouter.get('/logout', (req,res)=>{
-//     req.logout();
-//     req.flash('sucess_msg', 'You are logged out!');
-//     res.redirect('/users/login');
-// })
+//Handle logout
+userRouter.get('/logout', (req,res)=>{
+    req.logout();
+    req.flash('sucess_msg', 'You are logged out!');
+    res.redirect('/users/login');
+})

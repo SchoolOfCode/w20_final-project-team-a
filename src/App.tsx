@@ -9,7 +9,9 @@ import Showcase from './Pages/Showcase';
 import Signup from './Pages/Signup';
 import Submit from './Pages/Submit';
 import Userprofile from './Pages/UserProfile';
+import Login from './Pages/Login';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Dashboard from './Pages/Dashboard';
 
 
 function App() {
@@ -19,11 +21,11 @@ function App() {
       
       <Route exact path = "/" component={Homepage} />
       <Route exact path = "/showcase" component={Showcase} />
-      {/* <Route exact path = "/signup" component={Signup} /> */}
       <Route exact path = "/profiles" component={Profiles} />
       <Route exact path = "/journey" component={Journey} />
       <Route exact path = "/user" component={Signup} />
-         {/* {changed to go to signup page} */}
+      <Route exact path = "/login" component={Login} />
+      <Route exact path = "/dashboard" component={Dashboard} />
     </Router>
   );
 }
