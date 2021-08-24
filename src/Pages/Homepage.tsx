@@ -5,7 +5,7 @@ import '../Styling/ProjectDisplay.css'
 const Homepage = () => {
     return (
         <div className="wrapper">
-            <p className="circuit1">circuit image</p>
+            <p className="circuit1">circuit image 1</p>
             <p className="arrow-left"> {"<"} </p> {/*onClick increase image display index by 1/*/}
             <p className="circuit2">circuit image</p>
             <p className="main-image"> Main image </p> {/*need to access array of images, display index=0 as default/*/}
