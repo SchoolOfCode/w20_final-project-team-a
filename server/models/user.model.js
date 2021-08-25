@@ -46,8 +46,9 @@ const user = new mongoose.Schema({
   ],
   projects: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      // type: mongoose.Schema.Types.ObjectId,
+      type: String,
+      // ref: "Project"
     },
   ],
 });

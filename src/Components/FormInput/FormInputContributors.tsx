@@ -45,6 +45,7 @@ const FormInputContributors : React.FC<Props> = ({
                     type={type}
                     placeholder={placeholder}
                     name={name}
+                    required={true}
                     onBlur={(e) => setContributor(e.target.value)}
                 ></input>
                 <button onClick={(e)=>addContributorEmail(e)}>+</button>
