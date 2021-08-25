@@ -4,9 +4,11 @@ import './App.css';
 import Homepage from './Pages/Homepage';
 import Journey from './Pages/Journey';
 import Navbar from './Pages/Navbar';
-import Profiles from './Pages/Profiles';
-import Showcase from './Pages/Showcase';
+
+import Profiles from './Pages/BootcamperProfiles';
+import Showcase from './Pages/ProjectsShowcase';
 import Signup from './Pages/Signup';
+
 import Submit from './Pages/Submit';
 import Userprofile from './Pages/UserProfile';
 import Login from './Pages/Login';
