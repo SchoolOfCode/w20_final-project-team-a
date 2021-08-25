@@ -1,35 +1,62 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
     const [email, setEmail] = useState ("");
     const [password, setPassword] = useState ("");
-    const [errorMessage, setErrorMessage] = useState ("");
+    const [success, setSuccess] = useState(false);
+    const [failure, setFailure] = useState(false);
+    const [failureMsg, setFailureMsg] = useState("");
+    const history = useHistory ();
+    const [submit, setSubmit] = useState(false);
 
     function handleLogin (e:any) {
         e.preventDefault();
-        axios({
-            method:"post",
-            url:"http://localhost:5000/api/users/login",
-            data: {
-                email:email,
-                password:password,
-            },
-        }).then(res=> {
-            if (res.data.sucess) window.location.href="/dashboard"
-        })
-        .catch(err => console.log(err))
+        setSubmit(true)
     }
-
+        
+        useEffect(() => {
+            if(submit===true) {
+                axios({
+                    method:"post",
+                    url:"http://localhost:5000/api/users/login",
+                    data: {
+                        email:email,
+                        password:password,
+                    },
+                    }).then(
+                    (response) => {
+                        console.log(response.data, response)
+                        if (response.data.displayName) {
+                            setSuccess(true)
+                            setFailure(false)
+                            setSubmit(false)
+                        }
+                        else {
+                            setFailureMsg(response.data.message)
+                            setFailure(true)
+                            setSubmit(false)
+                        }
+                    }
+                    )
+                    .catch(
+                        (err) => {
+                            console.error(err)
+                        }
+                        )
+                }
+        })
+            
     return (
         <div>
             <h1>Login</h1>
+            {failure &&
             <div style={{backgroundColor:"red", color:"white"}}> 
-                <h3>
-                 {errorMessage}
-                </h3>
+                <p>{failureMsg}</p>
             </div>
+            }
             <form>
                 <p>
                 <label htmlFor="email">email address</label>
@@ -50,8 +77,15 @@ const Login = () => {
                     onBlur={(e)=>setPassword(e.target.value)}
                     ></input>
                 </p>
-                <button type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
+                <p>Not registered? Click <a href="/user" title="Click to register">here</a> to register</p>
+                <button disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
             </form>
+            {success &&
+            // <Route exact path="/dashboard">
+            //     <Redirect to="/dashboard" />
+            // </Route>
+            history.push('/dashboard')
+            }
         </div>
     )
 }

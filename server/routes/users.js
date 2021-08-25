@@ -88,8 +88,23 @@ userRouter.post("/signup", (req, res) => {
 
 //Handle Login
 //use the local strategy -first argument to passport.authenticate
-userRouter.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).send({ msg: "Successfully logged in!", success: true });
+// userRouter.post("/login", passport.authenticate("local", {failureMsg: "authentication failed"}), (req, res, done) => {
+//   console.log(failureMsg);
+//   res.status(200).send({ msg: "Successfully logged in!", success: true });
+// });
+
+// //Handle Login
+// //use the local strategy -first argument to passport.authenticate
+userRouter.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(200).send(info);
+    }
+    return res.status(200).send(user);
+  })(req, res, next);
 });
 
 //Handle logout
