@@ -34,7 +34,7 @@ userRouter.post("/signup", (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.status(400).send(errors);
+    res.status(200).send({ msg: errors, success: false });
   } else {
     //validation passed
     User.findOne({ email: email })
@@ -44,7 +44,7 @@ userRouter.post("/signup", (req, res) => {
         if (user) {
           //user exists already
           errors.push({ msg: "Email is already registered!" });
-          res.status(400).send(errors);
+          res.status(200).send({ msg: errors, success: false });
         } else {
           //create a user, encrypt the password
           const newUser = new User({
@@ -72,8 +72,10 @@ userRouter.post("/signup", (req, res) => {
               newUser
                 .save()
                 .then((user) => {
-                  res.status(200).send({msg: "You are now registered and can login", sucess:true});
-                  
+                  res.status(200).send({
+                    msg: "You are now registered and can login",
+                    success: true,
+                  });
                 })
                 .catch((err) => console.error(err));
             });
@@ -86,13 +88,13 @@ userRouter.post("/signup", (req, res) => {
 
 //Handle Login
 //use the local strategy -first argument to passport.authenticate
-userRouter.post('/login',passport.authenticate('local'),(req,res)=>{
-    res.status(200).send({msg:"Sucessfully logged in!", sucess:true})
-})
+userRouter.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).send({ msg: "Successfully logged in!", success: true });
+});
 
 //Handle logout
-userRouter.get('/logout', (req,res)=>{
-    req.logout();
-    req.flash('sucess_msg', 'You are logged out!');
-    res.redirect('/users/login');
-})
+userRouter.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "You are logged out!");
+  res.redirect("/users/login");
+});
