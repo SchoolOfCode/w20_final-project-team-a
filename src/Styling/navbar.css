@@ -4,6 +4,7 @@
     justify-content: space-between;
     color: white;
     background-color: black;
+    font-size: 30px;
 }
 .navbar > li > a{
     text-decoration: none;
@@ -13,6 +14,29 @@
     color: palegoldenrod;
 }
 
-.navbar-logo{
-    
+@media screen and (max-width: 960px){
+    .navbar-container{
+        display: flex;
+        align-items: center;
+        height: 80px;
+        z-index: 0;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0;
+    }
+    .navbar{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: auto;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        font-size: 30px;
+    }
+
+    .navbar-title{
+       display: none;
+}
 }
