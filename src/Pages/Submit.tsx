@@ -26,20 +26,26 @@ const [failureMsg, setFailureMsg] = useState([{msg:""}]);
 
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     e.preventDefault();
-    axios({
-        method:"POST",
-        url:API_URL+"projects/submit",
-        data: {
-            projectName, 
-            weekNumber, 
-            contributors, 
-            problemStatement,
-            additionalInformation, 
-            githubUrl,
-            appImage, 
-            appDeploymentUrl
-        },
-    }).then(
+    const formData = new FormData()
+    formData.append('appImage',appImage!)
+    formData.append("projectName", projectName!)
+    formData.append("weekNumber",weekNumber!)
+    // formData.append("contributors",contributors!)
+    formData.append("problemStatement",problemStatement!)
+    formData.append("additionalInformation",additionalInformation!)
+    formData.append("githubUrl",githubUrl!)
+    formData.append("appDeploymentUrl",appDeploymentUrl!)
+    // formData.append("techUsed",techUsed)
+    // formData.append("additionalAppData",additionalAppData)
+
+
+    const config = {
+        headers:{
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+    axios.post(API_URL+"projects/submit",formData, config)
+        .then(
         (response) => {
             if (response.data.success) {
                 setSuccess(true)
