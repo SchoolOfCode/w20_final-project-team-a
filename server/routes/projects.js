@@ -50,11 +50,10 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
     appDeploymentUrl,
     // additionalAppData,
   } = req.body;
-  console.log(contributors)
+
   const URL = req.protocol + "://" + req.get('host')
   const appDeploymentImage = URL +'uploads/' + req.file.filename;
-  const contributorsArray = JSON.parse(contributors)
-  console.log(contributorsArray)
+
   Project.findOne({ githubUrl: githubUrl })
     .then((project) => {
       if (project) {
@@ -67,7 +66,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
         const newProject = new Project({
           projectName,
           weekNumber,
-          contributorsArray,
+          contributors,
           problemStatement,
           additionalInformation,
           githubUrl,
@@ -77,7 +76,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
           // additionalAppData,
         });
 
-        // contributorsArray.map((email) => {
+        // contributors.map((email) => {
         //   console.log(email);
         //   User.findOneAndUpdate(
         //     { email: email },

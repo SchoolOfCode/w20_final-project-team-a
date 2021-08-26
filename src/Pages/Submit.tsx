@@ -32,7 +32,8 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     formData.append('appImage',appImage!)
     formData.append("projectName", projectName!)
     formData.append("weekNumber",weekNumber!)
-    formData.append("contributors",JSON.stringify(contributors))
+    contributors.forEach(contributor =>
+        formData.append("contributors",contributor))
     formData.append("problemStatement",problemStatement!)
     formData.append("additionalInformation",additionalInformation!)
     formData.append("githubUrl",githubUrl!)
