@@ -19,10 +19,11 @@ const fileFilter = (req, file, cb) => {
   // cb(null,false) // equals ignore the file without erroring
   //cb(null,true) //stores the file
 
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/jpg" ||file.mimetype === "image/gif" ) {
     cb(null, true);
   } else {
     cb(null, false);
+    return cb(new Error('Only .png, .jpg, .jpeg and .gif formats are allowed!'));
   }
 };
 
@@ -42,8 +43,10 @@ projectRouter.get("/all", async (req, res) => {
   res.status(200).send(allProjects);
 });
 
-projectRouter.post("/submit", upload.single("appImage"), (req, res) => {
-  console.log(req.file);
+projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
+  
+  const URL = req.protocol + "://" + req.get('host')
+  console.log(req.file)
   const {
     projectName,
     weekNumber,
@@ -56,7 +59,8 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res) => {
     // additionalAppData,
   } = req.body;
 
-  const appDeploymentImage = req.file.path;
+  const appDeploymentImage = URL+ '/uploads/' + req.file.filename;
+  // const appDeploymentImage = URL+ req.file.filename;
   console.log(req.body);
 
   Project.findOne({ githubUrl: githubUrl })

@@ -29,7 +29,16 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     axios({
         method:"POST",
         url:API_URL+"projects/submit",
-        data: {projectName, weekNumber, contributors, problemStatement,additionalInformation, githubUrl, appDeploymentUrl},
+        data: {
+            projectName, 
+            weekNumber, 
+            contributors, 
+            problemStatement,
+            additionalInformation, 
+            githubUrl,
+            appImage, 
+            appDeploymentUrl
+        },
     }).then(
         (response) => {
             if (response.data.success) {
