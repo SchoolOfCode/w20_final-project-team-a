@@ -5,7 +5,7 @@ import Projects from '../Components/FormInput/Projects'
 const Showcase = () => {
     return (
         <div className="wrapper">
-
+            <Projects/>
             
         </div>
     )
