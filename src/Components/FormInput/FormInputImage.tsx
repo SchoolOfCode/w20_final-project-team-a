@@ -19,26 +19,26 @@ const FormInputImage : React.FC<Props> = ({
     setValue,
     state}) => {
 
-const [currentFile, setCurrentFile] = useState();
+// const [currentFile, setCurrentFile] = useState();
 const [preview, setPreview] = useState();
 
 const addImageHandler = (e: any) => {
     if (!e.target.files || e.target.files.length === 0) {
-        setCurrentFile(undefined)
+        setValue(undefined)
         return
     }
-    setCurrentFile(e.target.files[0])
+    setValue(e.target.files[0])
 }
 
 useEffect( () => {
-    if (!currentFile) {
+    if (!state) {
         setPreview(undefined);
         return
     }
-    const imageURL:any = URL.createObjectURL(currentFile)
+    const imageURL:any = URL.createObjectURL(state)
     setPreview(imageURL);
     return () => URL.revokeObjectURL(imageURL)
-},[currentFile]
+},[state]
 )
     return (
         <div>
@@ -50,7 +50,7 @@ useEffect( () => {
                     onChange={(e) => addImageHandler(e)}
                     accept="image/*"        
                 ></input>
-                { currentFile &&
+                { state &&
                 <img src={preview} alt="user upload" />
                 } 
                 {/* <img src={soclogo} alt="user upload" />*/}

@@ -56,7 +56,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res) => {
     // additionalAppData,
   } = req.body;
 
-  // const appDeploymentImage = req.file.path
+  const appDeploymentImage = req.file.path;
   console.log(req.body);
 
   Project.findOne({ githubUrl: githubUrl })
@@ -76,7 +76,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res) => {
           additionalInformation,
           githubUrl,
           // techUsed,
-          // appDeploymentImage,
+          appDeploymentImage,
           appDeploymentUrl,
           // additionalAppData,
         });

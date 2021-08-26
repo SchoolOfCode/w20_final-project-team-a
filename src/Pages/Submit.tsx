@@ -14,7 +14,7 @@ const [problemStatement, setProblemStatement] = useState();
 const [additionalInformation, setAdditionalInformation] = useState();
 const [githubUrl, setGithubUrl] = useState();
 const [techUsed, setTechUsed] = useState([]);
-const [appDeploymentImage, setAppDeploymentImage] = useState();
+const [appImage, setAppImage] = useState();
 const [appDeploymentUrl, setAppDeploymentUrl] = useState();
 const [additionalAppData, setAdditionalAppData] = useState([]);
 const [success, setSuccess] = useState(false);
@@ -110,11 +110,11 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                 />
 {/* techUsed */}
                 <FormInputImage 
-                    labelFor="appDeploymentImage"
+                    labelFor="appImage"
                     labelText="Deployed Project Image: "
-                    name="appDeploymentImage"
-                    setValue={setAppDeploymentImage}
-                    state={appDeploymentImage}
+                    name="appImage"
+                    setValue={setAppImage}
+                    state={appImage}
                 />
                 <FormInput 
                     labelFor="appDeploymentUrl"
