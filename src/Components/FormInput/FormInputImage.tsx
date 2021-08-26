@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-// import soclogo from "C://Users//Becks//Documents//school-of-code//w20_final-project-team-a//src//soc-logo.png"
+import React, { useState, useEffect, useRef } from 'react';
 
-// interface HTMLInputEvent extends Event {
-//     target: HTMLInputElement & EventTarget
-// }
 type Props = {
     labelFor:string, 
     labelText:string, 
     name:string,
+    className:string,
+    imageClassName: string
     setValue:(val:any)=> void,
     state:any
 }
@@ -16,32 +14,35 @@ const FormInputImage : React.FC<Props> = ({
     labelFor, 
     labelText, 
     name,
+    className,
+    imageClassName,
     setValue,
-    state}) => {
+    state
+    }) => {
 
-// const [currentFile, setCurrentFile] = useState();
-const [preview, setPreview] = useState();
+    const [preview, setPreview] = useState<string>();
 
-const addImageHandler = (e: any) => {
-    if (!e.target.files || e.target.files.length === 0) {
-        setValue(undefined)
-        return
+    const addImageHandler = (e: any) => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setValue(undefined);
+            return;
+        }
+        setValue(e.target.files[0]);
+        console.log(e.target.files)
     }
-    setValue(e.target.files[0])
-}
 
-useEffect( () => {
-    if (!state) {
-        setPreview(undefined);
-        return
-    }
-    const imageURL:any = URL.createObjectURL(state)
-    setPreview(imageURL);
-    return () => URL.revokeObjectURL(imageURL)
-},[state]
-)
+    useEffect( () => {
+        if (!state) {
+            setPreview(undefined);
+            return;
+        }
+        const imageURL:any = URL.createObjectURL(state)
+        setPreview(imageURL);
+        return () => URL.revokeObjectURL(imageURL);
+    },[state]
+    )
     return (
-        <div>
+        <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
                 <input 
                     type="file"
@@ -51,9 +52,8 @@ useEffect( () => {
                     accept="image/*"        
                 ></input>
                 { state &&
-                <img src={preview} alt="user upload" />
+                <img src={preview} alt="user upload" className={imageClassName}/>
                 } 
-                {/* <img src={soclogo} alt="user upload" />*/}
         </div>
     )
 }

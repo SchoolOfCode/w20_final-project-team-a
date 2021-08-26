@@ -60,10 +60,6 @@ const project = new mongoose.Schema({
       },
     },
   ],
-  date: {
-    type: Date,
-    default: Date.now,
-  },
   featured: {
     type: Boolean,
     default: false,
@@ -72,7 +68,11 @@ const project = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-});
+},{ timestamps: { 
+  createdAt: 'created_at',
+  updatedAt: 'updated_at' 
+  }}
+);
 
 export const Project = mongoose.model("Project", project);
 

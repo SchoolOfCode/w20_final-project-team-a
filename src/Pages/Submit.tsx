@@ -4,6 +4,7 @@ import FormInput from '../Components/FormInput/FormInput';
 import FormInputContributors from '../Components/FormInput/FormInputContributors';
 import FormInputMultiText from '../Components/FormInput/FormInputMultiText';
 import FormInputImage from '../Components/FormInput/FormInputImage';
+import { API_URL } from '../config.js';
 
 const Submit: React.FC = () => {
 
@@ -27,7 +28,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     e.preventDefault();
     axios({
         method:"POST",
-        url:"http://localhost:5000/api/projects/submit",
+        url:API_URL+"projects/submit",
         data: {projectName, weekNumber, contributors, problemStatement,additionalInformation, githubUrl, appDeploymentUrl},
     }).then(
         (response) => {
@@ -113,6 +114,8 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                     labelFor="appImage"
                     labelText="Deployed Project Image: "
                     name="appImage"
+                    className="form-input"
+                    imageClassName="form-input-image"
                     setValue={setAppImage}
                     state={appImage}
                 />
