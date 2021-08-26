@@ -3,6 +3,7 @@ import axios from 'axios';
 import FormInput from '../Components/FormInput/FormInput';
 import FormInputContributors from '../Components/FormInput/FormInputContributors';
 import FormInputMultiText from '../Components/FormInput/FormInputMultiText';
+import FormInputImage from '../Components/FormInput/FormInputImage';
 
 const Submit: React.FC = () => {
 
@@ -108,8 +109,13 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                     setValue={setGithubUrl}
                 />
 {/* techUsed */}
-{/* appDeploymentImage */}
-
+                <FormInputImage 
+                    labelFor="appDeploymentImage"
+                    labelText="Deployed Project Image: "
+                    name="appDeploymentImage"
+                    setValue={setAppDeploymentImage}
+                    state={appDeploymentImage}
+                />
                 <FormInput 
                     labelFor="appDeploymentUrl"
                     labelText="Deployed Project URL: "
