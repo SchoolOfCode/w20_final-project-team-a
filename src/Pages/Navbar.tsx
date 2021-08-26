@@ -36,7 +36,6 @@ const Navbar = () => {
                             <BiUserCircle />  
                         </Link>
                     </li>
-
                 </ul>
         </div>
         </nav>

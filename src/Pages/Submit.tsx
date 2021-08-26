@@ -4,7 +4,9 @@ import FormInput from '../Components/FormInput/FormInput';
 import FormInputContributors from '../Components/FormInput/FormInputContributors';
 import FormInputMultiText from '../Components/FormInput/FormInputMultiText';
 import FormInputImage from '../Components/FormInput/FormInputImage';
+import FormInputTech from '../Components/FormInput/FormInputTech';
 import { API_URL } from '../config.js';
+import {techStack} from "../Components/techStack/techStack.js"
 import "../Styling/ProjectSubmit.css"
 
 const Submit: React.FC = () => {
@@ -15,7 +17,9 @@ const [contributors, setContributors] = useState <string[]>([]);
 const [problemStatement, setProblemStatement] = useState();
 const [additionalInformation, setAdditionalInformation] = useState();
 const [githubUrl, setGithubUrl] = useState();
-const [techUsed, setTechUsed] = useState([]);
+const [techUsed, setTechUsed] = useState([
+    new Array(Object.keys(techStack).length).fill(false)
+]);
 const [appImage, setAppImage] = useState();
 const [appDeploymentUrl, setAppDeploymentUrl] = useState();
 const [additionalAppData, setAdditionalAppData] = useState([]);
@@ -38,7 +42,8 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     formData.append("additionalInformation",additionalInformation!)
     formData.append("githubUrl",githubUrl!)
     formData.append("appDeploymentUrl",appDeploymentUrl!)
-    // formData.append("techUsed",techUsed)
+    // techUsed.forEach(tech=>
+    //     formData.append("techUsed",tech))
     // formData.append("additionalAppData",additionalAppData)
 
     axios.post(API_URL+"projects/submit", formData)
@@ -121,7 +126,13 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                     name="githubUrl"
                     setValue={setGithubUrl}
                 />
-{/* techUsed */}
+                <FormInputTech 
+                    labelFor="techUsed"
+                    labelText="Technologies Used: "
+                    name="techUsed"
+                    setTechUsed={setTechUsed}  
+                    techUsed={techUsed}     
+                />
                 <FormInputImage 
                     labelFor="appImage"
                     labelText="Deployed Project Image: "

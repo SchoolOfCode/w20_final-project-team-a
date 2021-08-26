@@ -46,7 +46,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
     problemStatement,
     additionalInformation,
     githubUrl,
-    // techUsed,
+    techUsed,
     appDeploymentUrl,
     // additionalAppData,
   } = req.body;
@@ -70,7 +70,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
           problemStatement,
           additionalInformation,
           githubUrl,
-          // techUsed,
+          techUsed,
           appDeploymentImage,
           appDeploymentUrl,
           // additionalAppData,

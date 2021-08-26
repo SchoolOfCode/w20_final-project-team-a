@@ -1,33 +1,30 @@
 import React, {useState} from 'react'
+import {techStack} from "../techStack/techStack"
 
 type Props = {
     labelFor:string, 
     labelText:string, 
-    type:string, 
-    placeholder:string, 
-    name:string, 
-    setValue:(val:any)=> void}
+    name:string,
+    techUsed:any[], 
+    setTechUsed:(val:any[])=> void}
 
-const FormInput : React.FC<Props> = ({
+const FormInputTech : React.FC<Props> = ({
     labelFor, 
     labelText, 
-    type, 
-    placeholder, 
     name, 
-    setValue}) => {  
+    setTechUsed}) => {  
 
     return (
         <div>
+            <ul>
                 <label htmlFor={labelFor}>{labelText}</label>
-                <input 
-                    type={type}
-                    placeholder={placeholder}
-                    name={name}
-                    required={true}
-                    onBlur={(e)=>setValue(e.target.value)}
-                ></input>
+            </ul>
         </div>
     )
 }
 
-export default FormInput
+const ImageCheckbox = () =>{
+
+}
+
+export default FormInputTech

@@ -12,6 +12,7 @@ const Login = () => {
     const [failureMsg, setFailureMsg] = useState("");
     const history = useHistory ();
     const [submit, setSubmit] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     function handleLogin (e:any) {
         e.preventDefault();
@@ -34,11 +35,13 @@ const Login = () => {
                             setSuccess(true)
                             setFailure(false)
                             setSubmit(false)
+                            // setIsLoggedIn(true)
                         }
                         else {
                             setFailureMsg(response.data.message)
                             setFailure(true)
                             setSubmit(false)
+                            // setIsLoggedIn(false)
                         }
                     }
                     )
@@ -51,6 +54,12 @@ const Login = () => {
         })
             
     return (
+        // isLoggedIn?
+        // <div>
+        //     <h1>Logout</h1>
+        //     <button>Logout</button>
+        // </div>
+        // :
         <div>
             <h1>Login</h1>
             {failure &&
@@ -88,6 +97,7 @@ const Login = () => {
             history.push('/dashboard')
             }
         </div>
+        
     )
 }
 

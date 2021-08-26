@@ -9,9 +9,6 @@ import { passportStrategy } from "./configs/passport.js";
 import cors from "cors";
 import cookieParser from "cookie-parser"; //no longher need cookie-parser with express-session
 
-//Routes
-// gets appropriate route file
-// import { indexRouter } from "./routes/index.js";
 import { userRouter } from "./routes/users.js";
 import { projectRouter } from "./routes/projects.js";
 import { authRouter } from "./routes/auth.js";
@@ -50,6 +47,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie:{
+      maxAge: 86400
+    }
   })
 );
 
@@ -62,7 +62,6 @@ app.use(passport.session());
 
 //passport config
 passportStrategy(passport);
-
 
 //Routes
 app.use('/api/auth', authRouter)
