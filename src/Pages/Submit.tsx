@@ -5,6 +5,7 @@ import FormInputContributors from '../Components/FormInput/FormInputContributors
 import FormInputMultiText from '../Components/FormInput/FormInputMultiText';
 import FormInputImage from '../Components/FormInput/FormInputImage';
 import { API_URL } from '../config.js';
+import "../Styling/ProjectSubmit.css"
 
 const Submit: React.FC = () => {
 
@@ -26,11 +27,12 @@ const [failureMsg, setFailureMsg] = useState([{msg:""}]);
 
 const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     e.preventDefault();
+
     const formData = new FormData()
     formData.append('appImage',appImage!)
     formData.append("projectName", projectName!)
     formData.append("weekNumber",weekNumber!)
-    // formData.append("contributors",contributors!)
+    formData.append("contributors",JSON.stringify(contributors))
     formData.append("problemStatement",problemStatement!)
     formData.append("additionalInformation",additionalInformation!)
     formData.append("githubUrl",githubUrl!)
@@ -38,13 +40,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
     // formData.append("techUsed",techUsed)
     // formData.append("additionalAppData",additionalAppData)
 
-
-    const config = {
-        headers:{
-            'Content-Type': 'multipart/form-data'
-        }
-    }
-    axios.post(API_URL+"projects/submit",formData, config)
+    axios.post(API_URL+"projects/submit", formData)
         .then(
         (response) => {
             if (response.data.success) {
@@ -76,7 +72,7 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                 <p>{failureMsg}</p>
             </div>
             }            
-            <form>
+            <form encType="multipart/form-data">
                 <FormInput 
                     labelFor="projectName"
                     labelText="Project Name: "

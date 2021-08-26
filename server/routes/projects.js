@@ -4,25 +4,19 @@ import { User } from "../models/user.model.js";
 import multer from "multer";
 
 const storage = multer.diskStorage({
-  //these will be executed when a file is recieved
-  //destinatiopn property
   destination: (req, file, cb) => {
-    cb(null, "./uploads/"); //first param is error
+    cb(null, "./uploads/");
   },
-  //filename
   filename: (req, file, cb) => {
     cb(null, new Date().toISOString() + file.originalname);
   },
 });
 
 const fileFilter = (req, file, cb) => {
-  // cb(null,false) // equals ignore the file without erroring
-  //cb(null,true) //stores the file
-
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/jpg" ||file.mimetype === "image/gif" ) {
-    cb(null, true);
+    cb(null, true);//stores the file
   } else {
-    cb(null, false);
+    cb(null, false);// equals ignore the file without erroring
     return cb(new Error('Only .png, .jpg, .jpeg and .gif formats are allowed!'));
   }
 };
@@ -33,20 +27,18 @@ const upload = multer({
     fileSize: 1024 * 1024 * 5, //files up to 5mb
   },
   fileFilter: fileFilter,
-}); //initialise multer to store files here
-//using our lcoal strategy
+});
+
 
 export const projectRouter = express.Router();
 
-projectRouter.get("/all", async (req, res) => {
-  const allProjects = await Project.find({});
-  res.status(200).send(allProjects);
-});
+// projectRouter.get("/all", async (req, res) => {
+//   const allProjects = await Project.find({});
+//   res.status(200).send(allProjects);
+// });
 
 projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
   
-  const URL = req.protocol + "://" + req.get('host')
-  console.log(req.file)
   const {
     projectName,
     weekNumber,
@@ -58,11 +50,11 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
     appDeploymentUrl,
     // additionalAppData,
   } = req.body;
-
-  const appDeploymentImage = URL+ '/uploads/' + req.file.filename;
-  // const appDeploymentImage = URL+ req.file.filename;
-  console.log(req.body);
-
+  console.log(contributors)
+  const URL = req.protocol + "://" + req.get('host')
+  const appDeploymentImage = URL +'uploads/' + req.file.filename;
+  const contributorsArray = JSON.parse(contributors)
+  console.log(contributorsArray)
   Project.findOne({ githubUrl: githubUrl })
     .then((project) => {
       if (project) {
@@ -75,7 +67,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
         const newProject = new Project({
           projectName,
           weekNumber,
-          contributors,
+          contributorsArray,
           problemStatement,
           additionalInformation,
           githubUrl,
@@ -85,7 +77,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
           // additionalAppData,
         });
 
-        // contributors.map((email) => {
+        // contributorsArray.map((email) => {
         //   console.log(email);
         //   User.findOneAndUpdate(
         //     { email: email },
@@ -104,12 +96,13 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
           .then((project) => {
             res
               .status(200)
-              .send({ msg: "Project submitted sucessfully", success: true });
+              .send({ msg: "Project submitted sucessfully", success: true, project })
           })
           .catch((err) =>
             res
               .status(200)
-              .send({ msg: "Project not submitted", success: false })
+              .send({ msg: "Project not submitted", success: false, err})
+
           );
       }
     })
