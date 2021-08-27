@@ -6,7 +6,7 @@ import FormInputMultiText from '../Components/FormInput/FormInputMultiText';
 import FormInputImage from '../Components/FormInput/FormInputImage';
 import FormInputTech from '../Components/FormInput/FormInputTech';
 import { API_URL } from '../config.js';
-import {techStack} from "../Components/techStack/techStack.js"
+import {builtUsingIcons} from "../Components/techStack/techStack.js"
 import "../Styling/ProjectSubmit.css"
 
 const Submit: React.FC = () => {
@@ -17,9 +17,7 @@ const [contributors, setContributors] = useState <string[]>([]);
 const [problemStatement, setProblemStatement] = useState();
 const [additionalInformation, setAdditionalInformation] = useState();
 const [githubUrl, setGithubUrl] = useState();
-const [techUsed, setTechUsed] = useState([
-    new Array(Object.keys(techStack).length).fill(false)
-]);
+const [builtUsing, setBuiltUsing] = useState (builtUsingIcons);
 const [appImage, setAppImage] = useState();
 const [appDeploymentUrl, setAppDeploymentUrl] = useState();
 const [additionalAppData, setAdditionalAppData] = useState([]);
@@ -127,11 +125,11 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
                     setValue={setGithubUrl}
                 />
                 <FormInputTech 
-                    labelFor="techUsed"
+                    labelFor="builtUsing"
                     labelText="Technologies Used: "
-                    name="techUsed"
-                    setTechUsed={setTechUsed}  
-                    techUsed={techUsed}     
+                    name="builtUsing"
+                    setBuiltUsing={setBuiltUsing}  
+                    builtUsing={builtUsing}     
                 />
                 <FormInputImage 
                     labelFor="appImage"
