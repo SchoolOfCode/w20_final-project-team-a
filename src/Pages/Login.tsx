@@ -1,6 +1,7 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const Login = () => {
 
@@ -11,6 +12,7 @@ const Login = () => {
     const [failureMsg, setFailureMsg] = useState("");
     const history = useHistory ();
     const [submit, setSubmit] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     function handleLogin (e:any) {
         e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
             if(submit===true) {
                 axios({
                     method:"post",
-                    url:"http://localhost:5000/api/users/login",
+                    url:API_URL+"users/login",
                     data: {
                         email:email,
                         password:password,
@@ -33,11 +35,13 @@ const Login = () => {
                             setSuccess(true)
                             setFailure(false)
                             setSubmit(false)
+                            // setIsLoggedIn(true)
                         }
                         else {
                             setFailureMsg(response.data.message)
                             setFailure(true)
                             setSubmit(false)
+                            // setIsLoggedIn(false)
                         }
                     }
                     )
@@ -50,6 +54,12 @@ const Login = () => {
         })
             
     return (
+        // isLoggedIn?
+        // <div>
+        //     <h1>Logout</h1>
+        //     <button>Logout</button>
+        // </div>
+        // :
         <div>
             <h1>Login</h1>
             {failure &&
@@ -65,7 +75,7 @@ const Login = () => {
                     placeholder="lewis@lewis.ninja"
                     name="email"
                     id="email"
-                    onBlur={(e)=>setEmail(e.target.value)}
+                    onChange={(e)=>setEmail(e.target.value)}
                 ></input>
                 </p>
                 <p>
@@ -74,10 +84,10 @@ const Login = () => {
                     type="password"
                     name="password"
                     id="password"
-                    onBlur={(e)=>setPassword(e.target.value)}
+                    onChange={(e)=>setPassword(e.target.value)}
                     ></input>
                 </p>
-                <p>Not registered? Click <a href="/user" title="Click to register">here</a> to register</p>
+                <p>Not registered? Click <a href="/signup" title="Click to register">here</a> to register</p>
                 <button disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
             </form>
             {success &&
@@ -87,6 +97,7 @@ const Login = () => {
             history.push('/dashboard')
             }
         </div>
+        
     )
 }
 
