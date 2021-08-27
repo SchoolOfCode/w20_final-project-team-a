@@ -20,7 +20,9 @@ const Submit: React.FC = () => {
     const [builtUsing, setBuiltUsing] = useState (builtUsingIcons);
     const [appImage, setAppImage] = useState();
     const [appDeploymentUrl, setAppDeploymentUrl] = useState();
-    const [additionalAppData, setAdditionalAppData] = useState([]);
+    const [additionalAppImage1, setAdditionalAppImage1] = useState();
+    const [additionalAppImage2, setAdditionalAppImage2] = useState();
+    const [additionalAppImage3, setAdditionalAppImage3] = useState();        
     const [success, setSuccess] = useState(false);
     const [failure, setFailure] = useState(false);
     const [failureMsg, setFailureMsg] = useState([{msg:""}]);
@@ -36,10 +38,11 @@ const Submit: React.FC = () => {
             }
             
             const selectedBuiltUsing = selectedBuiltUsingFilter.filter(item=>item.used===true)
-            
+            const appImagesArray = [appImage, additionalAppImage1, additionalAppImage2, additionalAppImage3]
+
 
             const formData = new FormData()
-            formData.append('appImage',appImage!)
+            // formData.append('appImage',appImage!)
             formData.append("projectName", projectName!)
             formData.append("weekNumber",weekNumber!)
             contributors.forEach(contributor =>
@@ -50,7 +53,11 @@ const Submit: React.FC = () => {
             formData.append("appDeploymentUrl",appDeploymentUrl!)
             selectedBuiltUsing.forEach(tech=>
                 formData.append("techUsed",tech.name))
-            // formData.append("additionalAppData",additionalAppData)
+            // formData.append("additionalAppImage1",additionalAppImage1!)
+            // formData.append("additionalAppImage2",additionalAppImage2!)            
+            // formData.append("additionalAppImage3",additionalAppImage3!)
+            appImagesArray.forEach(image => 
+                formData.append("appImages", image!))
 
             axios.post(API_URL+"projects/submit", formData)
                 .then(
@@ -152,10 +159,37 @@ const Submit: React.FC = () => {
                     labelFor="appDeploymentUrl"
                     labelText="Deployed Project URL: "
                     type="url"
-                    placeholder="www.myproject.com"
+                    placeholder="myproject.ninja"
                     name="appDeploymentUrl"
                     setValue={setAppDeploymentUrl}
-                />   
+                />                
+                <FormInputImage 
+                    labelFor="additionalAppImage1"
+                    labelText="Additional Project image 1: "
+                    name="additionalAppImage1"
+                    className="form-input"
+                    imageClassName="form-input-image"
+                    setValue={setAdditionalAppImage1}
+                    state={additionalAppImage1}
+                /> 
+                <FormInputImage 
+                    labelFor="additionalAppImage2"
+                    labelText="Additional Project image 2: "
+                    name="additionalAppImage2"
+                    className="form-input"
+                    imageClassName="form-input-image"
+                    setValue={setAdditionalAppImage2}
+                    state={additionalAppImage2}
+                />
+                <FormInputImage 
+                    labelFor="additionalAppImage3"
+                    labelText="Additional Project image 3: "
+                    name="additionalAppImage3"
+                    className="form-input"
+                    imageClassName="form-input-image"
+                    setValue={setAdditionalAppImage3}
+                    state={additionalAppImage3}
+                />                                 
 {/* additionalAppData */}                                                                                           
             <button type="submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
             </form> 

@@ -1,77 +1,75 @@
 import mongoose from "mongoose";
 
-const project = new mongoose.Schema({
-  projectName: {
-    type: String,
-    required: true,
-  },
-  weekNumber: {
-    type: Number,
-    required: true,
-  },
-  contributors: [
-    {
+const project = new mongoose.Schema(
+  {
+    projectName: {
       type: String,
       required: true,
     },
-  ],
-  users: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    weekNumber: {
+      type: Number,
+      required: true,
     },
-  ],
-  problemStatement: {
-    type: String,
-    required: true,
-  },
-  additionalInformation: {
-    type: String,
-    required: true,
-  },
-  githubUrl: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  techUsed: [
-    {
+    contributors: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    problemStatement: {
+      type: String,
+      required: true,
+    },
+    additionalInformation: {
+      type: String,
+      required: true,
+    },
+    githubUrl: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    techUsed: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    appDeploymentImage: {
       type: String,
       required: false,
     },
-  ],
-  appDeploymentImage: {
-    type: String,
-    required: false,
-  },
-  appDeploymentUrl: {
-    type: String,
-    required: true,
-  },
-  additionalAppData: [
-    {
-      additionalUrls: {
-        type: String,
-        required: false,
-      },
-      additionalImages: {
-        type: String,
-        required: false,
-      },
+    appDeploymentUrl: {
+      type: String,
+      required: true,
     },
-  ],
-  featured: {
-    type: Boolean,
-    default: false,
+    additionaAppImageURLs: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    featured: {
+      type: Boolean,
+      default: false,
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
-  approved: {
-    type: Boolean,
-    default: false,
-  },
-},{ timestamps: { 
-  createdAt: 'created_at',
-  updatedAt: 'updated_at' 
-  }}
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
 );
 
 export const Project = mongoose.model("Project", project);
