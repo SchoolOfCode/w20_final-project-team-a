@@ -13,19 +13,19 @@ import Sass from "./icons/Sass.png";
 import Bootstrap from "./icons/Bootstrap.png";
 
 export const builtUsingIcons = {
-  HTML: { name: "HTML", image: HTML, used: false },
-  CSS: { name: "CSS", image: CSS, used: false },
-  Javascript: { name: "Javascript", image: Javascript, used: false },
-  Typescript: { name: "Typescript", image: Typescript, used: false },
-  React: { name: "React", image: React, used: false },
-  ReactNative: { name: "ReactNative", image: ReactNative, used: false },
-  Nodejs: { name: "Nodejs", image: Nodejs, used: false },
-  Expressjs: { name: "Expressjs", image: Expressjs, used: false },
-  MongoDB: { name: "MongoDB", image: MongoDB, used: false },
-  PostgreSQL: { name: "PostgreSQL", image: PostgreSQL, used: false },
-  Tailwind: { name: "Tailwind", image: Tailwind, used: false },
-  Sass: { name: "Sass", image: Sass, used: false },
-  Bootstrap: { name: "Bootstrap", image: Bootstrap, used: false },
+  HTML: { name: "HTML", used: false, image: HTML },
+  CSS: { name: "CSS", used: false, image: CSS },
+  Javascript: { name: "Javascript", used: false, image: Javascript },
+  Typescript: { name: "Typescript", used: false, image: Typescript },
+  React: { name: "React", used: false, image: React },
+  ReactNative: { name: "ReactNative", used: false, image: ReactNative },
+  Nodejs: { name: "Nodejs", used: false, image: Nodejs },
+  Expressjs: { name: "Expressjs", used: false, image: Expressjs },
+  MongoDB: { name: "MongoDB", used: false, image: MongoDB },
+  PostgreSQL: { name: "PostgreSQL", used: false, image: PostgreSQL },
+  Tailwind: { name: "Tailwind", used: false, image: Tailwind },
+  Sass: { name: "Sass", used: false, image: Sass },
+  Bootstrap: { name: "Bootstrap", used: false, image: Bootstrap },
 };
 
 // export const tools ={

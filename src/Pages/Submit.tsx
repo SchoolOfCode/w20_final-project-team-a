@@ -7,7 +7,7 @@ import FormInputImage from '../Components/FormInput/FormInputImage';
 import FormInputTech from '../Components/FormInput/FormInputTech';
 import { API_URL } from '../config.js';
 import {builtUsingIcons} from "../Components/techStack/techStack.js"
-import "../Styling/ProjectSubmit.css"
+
 
 const Submit: React.FC = () => {
 
