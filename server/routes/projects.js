@@ -60,7 +60,6 @@ projectRouter.post(
       appDeploymentUrl,
     } = req.body;
 
-    console.log(req.files);
     const URL = req.protocol + "://" + req.get("host");
     const appDeploymentImage = URL + "/uploads/" + req.files[0].filename;
     const additionaAppImageURLs = [];

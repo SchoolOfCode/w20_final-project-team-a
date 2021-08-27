@@ -58,3 +58,9 @@ input[type="checkbox"][id^="cb"] {
   box-shadow: 0 0 5px gold;
   z-index: -1;
 }
+
+.form-input-image {
+  height: 10vw;
+  width: 10vw;
+  object-fit: cover;
+}
