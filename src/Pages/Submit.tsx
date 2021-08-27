@@ -11,58 +11,66 @@ import {builtUsingIcons} from "../Components/techStack/techStack.js"
 
 const Submit: React.FC = () => {
 
-const [projectName, setProjectName] = useState();
-const [weekNumber, setWeekNumber] = useState();
-const [contributors, setContributors] = useState <string[]>([]);
-const [problemStatement, setProblemStatement] = useState();
-const [additionalInformation, setAdditionalInformation] = useState();
-const [githubUrl, setGithubUrl] = useState();
-const [builtUsing, setBuiltUsing] = useState (builtUsingIcons);
-const [appImage, setAppImage] = useState();
-const [appDeploymentUrl, setAppDeploymentUrl] = useState();
-const [additionalAppData, setAdditionalAppData] = useState([]);
-const [success, setSuccess] = useState(false);
-const [failure, setFailure] = useState(false);
-const [failureMsg, setFailureMsg] = useState([{msg:""}]);
+    const [projectName, setProjectName] = useState();
+    const [weekNumber, setWeekNumber] = useState();
+    const [contributors, setContributors] = useState <string[]>([]);
+    const [problemStatement, setProblemStatement] = useState();
+    const [additionalInformation, setAdditionalInformation] = useState();
+    const [githubUrl, setGithubUrl] = useState();
+    const [builtUsing, setBuiltUsing] = useState (builtUsingIcons);
+    const [appImage, setAppImage] = useState();
+    const [appDeploymentUrl, setAppDeploymentUrl] = useState();
+    const [additionalAppData, setAdditionalAppData] = useState([]);
+    const [success, setSuccess] = useState(false);
+    const [failure, setFailure] = useState(false);
+    const [failureMsg, setFailureMsg] = useState([{msg:""}]);
 
 // const Test: React.FC = () => {}
 
-const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
-    e.preventDefault();
+        const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
+            e.preventDefault();
 
-    const formData = new FormData()
-    formData.append('appImage',appImage!)
-    formData.append("projectName", projectName!)
-    formData.append("weekNumber",weekNumber!)
-    contributors.forEach(contributor =>
-        formData.append("contributors",contributor))
-    formData.append("problemStatement",problemStatement!)
-    formData.append("additionalInformation",additionalInformation!)
-    formData.append("githubUrl",githubUrl!)
-    formData.append("appDeploymentUrl",appDeploymentUrl!)
-    // techUsed.forEach(tech=>
-    //     formData.append("techUsed",tech))
-    // formData.append("additionalAppData",additionalAppData)
+            const selectedBuiltUsingFilter = [];
+            for (const value of Object.values(builtUsing)) {
+                selectedBuiltUsingFilter.push(value)
+            }
+            
+            const selectedBuiltUsing = selectedBuiltUsingFilter.filter(item=>item.used===true)
+            
 
-    axios.post(API_URL+"projects/submit", formData)
-        .then(
-        (response) => {
-            if (response.data.success) {
-                setSuccess(true)
-                setFailure(false)
-            }
-            else {
-            setFailureMsg(response.data.msg)
-            setFailure(true)
-            }
+            const formData = new FormData()
+            formData.append('appImage',appImage!)
+            formData.append("projectName", projectName!)
+            formData.append("weekNumber",weekNumber!)
+            contributors.forEach(contributor =>
+                formData.append("contributors",contributor))
+            formData.append("problemStatement",problemStatement!)
+            formData.append("additionalInformation",additionalInformation!)
+            formData.append("githubUrl",githubUrl!)
+            formData.append("appDeploymentUrl",appDeploymentUrl!)
+            selectedBuiltUsing.forEach(tech=>
+                formData.append("techUsed",tech.name))
+            // formData.append("additionalAppData",additionalAppData)
+
+            axios.post(API_URL+"projects/submit", formData)
+                .then(
+                (response) => {
+                    if (response.data.success) {
+                        setSuccess(true)
+                        setFailure(false)
+                    }
+                    else {
+                    setFailureMsg(response.data.msg)
+                    setFailure(true)
+                    }
+                }
+                )
+                .catch(
+                    (err) => {
+                        console.error(err)
+                    }
+                )
         }
-        )
-        .catch(
-            (err) => {
-                console.error(err)
-            }
-        )
-}
 
     return (
         <div>
