@@ -1,30 +1,35 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 
 import '../Styling/ProjectsShowcase.css'
-import Projects from '../Components/FormInput/Projects'
+import Projects from '../Components/Projects'
 
 import axios from 'axios'
 import { API_URL } from '../config'
 
 
-const Showcase = () => {
+const Showcase =  () => {
 
-  const data:any = []
+  const [data, setData] = useState([{}])
 
-  axios.get(API_URL+"projects/all") 
-  .then(
-      (response) => {
-          response.data.forEach((project: any) => data.push(project))
+  useEffect(()=>{
+      const getData = async() =>{
+          axios.get(API_URL+"projects/all") 
+          .then(
+              (response) => {
+                  response.data.forEach((project:any) => setData([...data,project]))
+                    console.log(response.data)
+                }
+              )
       }
-
-  )
-  console.log(data)
+      getData()
+  }, [])
+  
       return (
-          <div className="wrapper">
-              <Projects/>
-              <Projects/>
-
-          </div>
+        <>
+            <div>
+                {data.map((project) => <Projects data={project} />)}
+            </div>
+        </>
       )
 }
 

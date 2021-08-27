@@ -1,21 +1,23 @@
 import express from "express";
 import dotenv from "dotenv";
-
+//Database
 import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
+// Authentication
 import session from "express-session"; //stores user data in cookies
 import passport from "passport"; //to handle authentication
 import { passportStrategy } from "./configs/passport.js";
-import cors from "cors";
 import cookieParser from "cookie-parser"; //no longher need cookie-parser with express-session
 
+import cors from "cors";
+//Routes
 import { userRouter } from "./routes/users.js";
 import { projectRouter } from "./routes/projects.js";
 import { authRouter } from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //DB Config
 const db = MongoDB.MongoURI;
@@ -27,8 +29,9 @@ mongoose
   .catch((err) => console.log(err));
 
 //Midlewares
-//make uploads folder available
+//make uploads folder available publically/to react
 app.use("/uploads", express.static("uploads"));
+
 //CORS
 app.use(
   cors({

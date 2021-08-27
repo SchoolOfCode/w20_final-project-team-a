@@ -43,7 +43,7 @@ const user = new mongoose.Schema({
     enum: ["admin", "user"],
     default: "user",
     required: true
-  },
+  },https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_background-size5
   projects: [
     {
       type: mongoose.Schema.Types.ObjectId,
