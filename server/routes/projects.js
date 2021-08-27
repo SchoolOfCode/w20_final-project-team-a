@@ -45,6 +45,25 @@ projectRouter.get("/all", async (req, res) => {
   res.status(200).send(allProjects);
 });
 
+projectRouter.get("/update/:id", async(req,res) => {
+  const projID =req.params.id.replace(":","")
+  const proj = await Project.findById(projID)
+  const contributors = await proj.contributors
+  contributors.forEach(async(email)=>{
+    const user = await User.findOne({email:email})
+    if (user) {
+      user.projects.push(projID)
+      user.save()
+      proj.users.push(user._id)
+      proj.save()
+    }
+  })
+  res.status(200).send({
+    msg: "Sucessfully linked Projects and Users",
+    success: true,
+  })
+})
+
 projectRouter.post(
   "/submit",
   upload.array("appImages", 4),
@@ -89,37 +108,13 @@ projectRouter.post(
             additionaAppImageURLs,
           });
 
-          // contributors.forEach((email) => {
-          //   console.log(email);
-          //   User
-          //     .findOne({ email: email })
-          //     .populate('projects')
-          //     .exec((err,project)=>{
-          //       console.log("populated user with ", project)
-          //     })
-          //     .save()
-          // });
-          // contributors.map((email) => {
-          //   console.log(email);
-          //   User.findOneAndUpdate(
-          //     { email: email },
-          //     { $push: { projects: githubUrl } },
-          //     (err, success) => {
-          //       if (err) console.log(err);
-          //       else console.log(success);
-          //     }
-          //   );
-          //   newProject.users.push(email);
-          //   return console.log("we hate typescript");
-          // });
-
           newProject
             .save()
             .then((project) => {
               res.status(200).send({
                 msg: "Project submitted sucessfully",
                 success: true,
-                project,
+                project: project._id,
               });
             })
             .catch((err) =>
