@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from 'mongoose'
 import { Project } from "../models/project.model.js";
 import { User } from "../models/user.model.js";
 import multer from "multer";
@@ -46,7 +47,7 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
     problemStatement,
     additionalInformation,
     githubUrl,
-    techUsed,
+    // techUsed,
     appDeploymentUrl,
     // additionalAppData,
   } = req.body;
@@ -70,12 +71,23 @@ projectRouter.post("/submit", upload.single("appImage"), (req, res, next) => {
           problemStatement,
           additionalInformation,
           githubUrl,
-          techUsed,
+          // techUsed,
           appDeploymentImage,
           appDeploymentUrl,
           // additionalAppData,
         });
 
+
+        // contributors.forEach((email) => {
+        //   console.log(email);
+        //   User
+        //     .findOne({ email: email })
+        //     .populate('projects')
+        //     .exec((err,project)=>{
+        //       console.log("populated user with ", project)
+        //     })
+        //     .save()
+        // });
         // contributors.map((email) => {
         //   console.log(email);
         //   User.findOneAndUpdate(
