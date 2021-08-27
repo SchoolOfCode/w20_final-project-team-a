@@ -38,19 +38,22 @@ const user = new mongoose.Schema({
     type: String,
     required: false,
   },
-  roles: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Role",
-    },
-  ],
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+    required: true
+  },
   projects: [
     {
-      // type: mongoose.Schema.Types.ObjectId,
-      type: String,
-      // ref: "Project"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project"
     },
   ],
-});
+},{ timestamps: { 
+  createdAt: 'created_at',
+  updatedAt: 'updated_at' 
+  }}
+);
 
 export const User = mongoose.model("User", user);

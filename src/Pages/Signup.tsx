@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router';
+import { API_URL } from '../config';
 
 const Signup = () => {
 
@@ -16,7 +16,7 @@ const Signup = () => {
         e.preventDefault();
         axios({
             method:"POST",
-            url:"http://localhost:5000/api/users/signup",
+            url:API_URL+"users/signup",
             data: {email, displayName, password, password2},
         }).then(
             (response) => {

@@ -32,11 +32,10 @@ const Navbar = () => {
                         <Link to="/journey" className="navbar-links">Journey</Link>
                     </li>
                     <li className="navbar-logo">
-                        <Link to="/user" className="navbar-links">
+                        <Link to="/login" className="navbar-links">
                             <BiUserCircle />  
                         </Link>
                     </li>
-
                 </ul>
         </div>
         </nav>

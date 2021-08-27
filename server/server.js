@@ -1,25 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
-import path from "path";
-import { __dirname } from "./serverConfig.js";
 
 import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
-import flash from "connect-flash"; //allows dynamic display of messages
 import session from "express-session"; //stores user data in cookies
 import passport from "passport"; //to handle authentication
 import { passportStrategy } from "./configs/passport.js";
 import cors from "cors";
 import cookieParser from "cookie-parser"; //no longher need cookie-parser with express-session
 
-//Routes
-// gets appropriate route file
-// import { indexRouter } from "./routes/index.js";
 import { userRouter } from "./routes/users.js";
 import { projectRouter } from "./routes/projects.js";
+import { authRouter } from "./routes/auth.js";
 
 const app = express();
-const env = dotenv.config();
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 //DB Config
@@ -27,7 +22,7 @@ const db = MongoDB.MongoURI;
 
 // Connect to Mongo
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true,  })
   .then(() => console.log("CONNECTED!"))
   .catch((err) => console.log(err));
 
@@ -52,6 +47,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie:{
+      maxAge: 86400
+    }
   })
 );
 
@@ -65,20 +63,8 @@ app.use(passport.session());
 //passport config
 passportStrategy(passport);
 
-//Connect flash middleware - gives access to request.flash
-app.use(flash());
-
-//Global variables
-//allows storage of messages in the session
-app.use((req, res, next) => {
-  res.locals.sucess_msg = req.flash("sucess_msg");
-  res.locals.error_msg = req.flash("error_msg");
-  res.locals.error = req.flash("error");
-  next();
-});
-
 //Routes
-// app.use('/', indexRouter)
+app.use('/api/auth', authRouter)
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);
 
