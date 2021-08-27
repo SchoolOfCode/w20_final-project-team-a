@@ -6,6 +6,7 @@ const Showcase = () => {
     return (
         <div className="wrapper">
             <Projects/>
+            <Projects/>
             
         </div>
     )
