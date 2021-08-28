@@ -112,7 +112,7 @@ const Submit: React.FC = () => {
             <img src={HorizontalLine} alt="styling line" className="submit-messages-line" />
             
             <section className = "submit-form-container">
-                <form encType="multipart/form-data">
+                <form encType="multipart/form-data" className = "submit-form-form">
                     <FormInput 
                         labelFor="projectName"
                         labelText="Project Name: "
@@ -138,15 +138,6 @@ const Submit: React.FC = () => {
                         name="additionalInformation"
                         setValue={setAdditionalInformation}
                     />
-                    <FormInputContributors 
-                        labelFor="contributors"
-                        labelText="Contributors: "
-                        type="text"
-                        placeholder="Contributors"
-                        name="contributors"
-                        setContributors={setContributors}  
-                        contributors={contributors}                  
-                    /> 
                     <FormInput 
                         labelFor="githubUrl"
                         labelText="GitHub URL: "
@@ -156,6 +147,25 @@ const Submit: React.FC = () => {
                         name="githubUrl"
                         setValue={setGithubUrl}
                     />
+                    <FormInput 
+                        labelFor="weekNumber"
+                        labelText="Week Number: "
+                        placeholder=""
+                        className="weekNumber-input"
+                        type="number"
+                        name="weekNumber"
+                        setValue={setWeekNumber}
+                    />   
+                    <FormInputContributors 
+                        labelFor="contributors"
+                        labelText="Contributors: "
+                        type="text"
+                        placeholder="Contributors"
+                        className="contributors-input"
+                        name="contributors"
+                        setContributors={setContributors}  
+                        contributors={contributors}                  
+                    /> 
                     <FormInputTech 
                         labelFor="builtUsing"
                         labelText="Technologies Used: "
@@ -168,11 +178,12 @@ const Submit: React.FC = () => {
                         labelFor="appImage"
                         labelText="Deployed Project Image: "
                         name="appImage"
-                        className="form-input"
-                        imageClassName="form-input-image"
+                        className="appImage-input"
+                        imageClassName="appImage-input-image"
                         setValue={setAppImage}
                         state={appImage}
                     />
+             
                     <FormInput 
                         labelFor="appDeploymentUrl"
                         labelText="Deployed Project URL: "
@@ -182,21 +193,12 @@ const Submit: React.FC = () => {
                         name="appDeploymentUrl"
                         setValue={setAppDeploymentUrl}
                     />
-                    <FormInput 
-                        labelFor="weekNumber"
-                        labelText="Week Number: "
-                        placeholder=""
-                        className="weekNumber-input"
-                        type="number"
-                        name="weekNumber"
-                        setValue={setWeekNumber}
-                    />                
                     <FormInputImage 
                         labelFor="additionalAppImage1"
                         labelText="Additional Project image 1: "
                         name="additionalAppImage1"
-                        className="form-input"
-                        imageClassName="form-input-image"
+                        className="additionalAppImage1-input"
+                        imageClassName="additionalAppImage1-input-image"
                         setValue={setAdditionalAppImage1}
                         state={additionalAppImage1}
                     /> 
@@ -204,8 +206,8 @@ const Submit: React.FC = () => {
                         labelFor="additionalAppImage2"
                         labelText="Additional Project image 2: "
                         name="additionalAppImage2"
-                        className="form-input"
-                        imageClassName="form-input-image"
+                        className="additionalAppImage2-input"
+                        imageClassName="additionalAppImage2-input-image"
                         setValue={setAdditionalAppImage2}
                         state={additionalAppImage2}
                     />
@@ -213,12 +215,12 @@ const Submit: React.FC = () => {
                         labelFor="additionalAppImage3"
                         labelText="Additional Project image 3: "
                         name="additionalAppImage3"
-                        className="form-input"
-                        imageClassName="form-input-image"
+                        className="additionalAppImage3-input"
+                        imageClassName="additionalAppImage3-input-image"
                         setValue={setAdditionalAppImage3}
                         state={additionalAppImage3}
                     />                                                                                                                         
-                <button type="submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
+                <button type="submit" className="button project-submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
                 </form>
             </section>
         </div>

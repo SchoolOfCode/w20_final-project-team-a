@@ -1,4 +1,4 @@
-import React, {SetStateAction, useState} from 'react'
+import React, {useState} from 'react'
 import isEmail from 'validator/lib/isEmail'
 
 // const FormInputContributors: React.FC = () => {}
@@ -8,6 +8,7 @@ type Props = {
     labelText:string, 
     type:string, 
     placeholder:string, 
+    className:string
     name:string, 
     contributors:string[],
     setContributors:(val:string[])=> void}
@@ -16,7 +17,8 @@ const FormInputContributors : React.FC<Props> = ({
     labelFor, 
     labelText, 
     type, 
-    placeholder, 
+    placeholder,
+    className, 
     name, 
     contributors,
     setContributors}) => {
@@ -39,7 +41,7 @@ const FormInputContributors : React.FC<Props> = ({
     }
 
     return (
-        <div>
+        <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
                 <input 
                     type={type}

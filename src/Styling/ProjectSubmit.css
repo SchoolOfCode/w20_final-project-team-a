@@ -61,11 +61,37 @@
 
 /* -----------Submit - Form Container--------------------------- */
 .submit-form-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  max-height: 100vh;
   grid-column: 2;
   margin-left: 10px;
+}
+.submit-form-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+/* -----------Submit - Form Column 1--------------------------- */
+
+.projectName-input,
+.problemStatement-input,
+.additionalInformation-input,
+.weekNumber-input, 
+.contributors-input,
+.githubUrl-input{
+  grid-column: 1;
+}
+
+/* -----------Submit - Form Column 2--------------------------- */
+
+.appImage-input,
+.additionalAppImage1-input,
+.additionalAppImage2-input,
+.additionalAppImage3-input{
+  grid-column: 2;
+}
+
+/* -----------Submit - Form Column 3--------------------------- */
+.builtUsing-input{
+  grid-row: 1/6;
+  grid-column: 3;
 }
 
 
