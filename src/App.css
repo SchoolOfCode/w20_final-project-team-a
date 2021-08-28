@@ -1,9 +1,12 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-html{
+html {
   background-color: #000818;
-  color: white
+  color: white;
+  background-image: url("/src/Components/Backgrounds/Admin.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
