@@ -26,7 +26,7 @@ const Showcase =  () => {
   
       return (
         <>
-            <div>
+            <div className="projects-showcase-div">
                 {data.map((project) => <Projects data={project} />)}
             </div>
         </>

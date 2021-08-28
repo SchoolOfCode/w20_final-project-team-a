@@ -10,6 +10,7 @@ const Projects: React.FC<Props> = ({data}) => {
     console.log(data.appDeploymentImage)
 
     return (
+    <>
         <div className="wrapper">
             
             <header className="showcase-header">
@@ -20,6 +21,7 @@ const Projects: React.FC<Props> = ({data}) => {
             <img src={data.appDeploymentImage} alt="Project" className="main-image"/>
             <span className="project-date">12/05/2000</span>
         </div>
+    </>
     )
 }
 

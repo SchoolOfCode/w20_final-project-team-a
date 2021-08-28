@@ -32,6 +32,10 @@ function App() {
 
       <Route exact path = "/dashboard" component={Dashboard} />
       <Route exact path = "/submit" component={Submit} />
+
+      <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+      </style> 
     </Router>
   );
 }
