@@ -22,7 +22,10 @@ const Submit: React.FC = () => {
     const [appDeploymentUrl, setAppDeploymentUrl] = useState();
     const [additionalAppImage1, setAdditionalAppImage1] = useState();
     const [additionalAppImage2, setAdditionalAppImage2] = useState();
-    const [additionalAppImage3, setAdditionalAppImage3] = useState();        
+    const [additionalAppImage3, setAdditionalAppImage3] = useState();   
+    
+    const [projID, setProjID] = useState("");
+
     const [success, setSuccess] = useState(false);
     const [failure, setFailure] = useState(false);
     const [failureMsg, setFailureMsg] = useState([{msg:""}]);
@@ -65,18 +68,24 @@ const Submit: React.FC = () => {
                     if (response.data.success) {
                         setSuccess(true)
                         setFailure(false)
+                        setProjID(response.data.project)
                     }
                     else {
                     setFailureMsg(response.data.msg)
                     setFailure(true)
                     }
-                }
-                )
+                })
+                .then(()=>{
+                    axios.get(API_URL+"projects/update/:"+projID)
+                    .then(res => console.log(res))
+                    .catch(err=>console.error(err))
+                })
                 .catch(
                     (err) => {
                         console.error(err)
                     }
                 )
+
         }
 
     return (
