@@ -2,23 +2,21 @@
 
 .submit-page-container{
   display: grid;
-  grid-template-columns: 1fr 4fr;
 }
 
 
 /* -----------Submit - Header--------------------------- */
 
 .submit-header{
-  position: fixed;
   font-family: 'Poppins', sans-serif;
-
+  width: 10vw;
+  grid-row: span;
 }
 
 .submit-header-line{
   position: fixed;
   bottom:0;
   left:10vw;
-  z-index: -100;
 }
 
 .submit-header-text{
@@ -30,15 +28,45 @@
   font-size: 10vh;
 }
 
+/* -----------Submit - Form Messages--------------------------- */
 
+.submit-messages-line{
+  grid-column: 2;
+  grid-row: 2;
+}
 
+.submit-messages-container{
+  display: grid;
+  height: 10vw;
+  grid-column: 2;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 10px;
+}
+
+.submit-messages-text{
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+}
+
+.submit-messages-container-sucess{
+  background-color: rgba(152,251,152,0.8);
+  width: max-content;
+}
+.submit-messages-container-failure{
+  background-color: rgba(251, 152, 152, 0.8);
+  width: max-content;
+}
 
 /* -----------Submit - Form Container--------------------------- */
-
-
-
-
-
+.submit-form-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-height: 100vh;
+  grid-column: 2;
+  margin-left: 10px;
+}
 
 
 /* -----------checkboxes--------------------------- */

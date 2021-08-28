@@ -1,17 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import "../../Styling/ProjectSubmit.css"
 
 type Props = {
     labelFor:string, 
     labelText:string, 
     name:string,
-    builtUsing:any, 
+    builtUsing:any,
+    className:string, 
     setBuiltUsing:(val:any)=> void}
 
 const FormInputTech : React.FC<Props> = ({
     labelFor, 
     labelText, 
-    name, 
+    name,
+    className, 
     builtUsing,
     setBuiltUsing}) => {  
 
@@ -46,7 +48,7 @@ const FormInputTech : React.FC<Props> = ({
             
     // console.log(builtUsingIconsArray)
     return (
-        <div>
+        <div className={className}>
             <label htmlFor={labelFor}>{labelText}</label>
                 <ul>
                     {builtUsingIconsArray.map((icon, i) => {

@@ -9,6 +9,7 @@ import { API_URL } from '../config.js';
 import {builtUsingIcons} from "../Components/techStack/techStack.js"
 //Style elements
 import Line from "../Components/BackgroundsPlus/Line.png"
+import HorizontalLine from "../Components/BackgroundsPlus/Viewed Profile Up Left.png"
 
 const Submit: React.FC = () => {
 
@@ -97,32 +98,45 @@ const Submit: React.FC = () => {
             </header>
             <section className = "submit-messages-container">
                 {success &&
-                <div style={{backgroundColor:"lightgreen", color:"black"}}> 
-                    <p>Your project has been uploaded. </p>
-                </div>}
+                    <div className = "submit-messages-container-sucess">
+                        <h3 className = "submit-messages-text">Your project has been uploaded </h3>
+                    </div>
+                }
                 {failure &&
-                <div style={{backgroundColor:"red", color:"white"}}> 
-                    <p>{failureMsg}</p>
-                </div>
+                    <div className = "submit-messages-container-failure">
+                        <h3 className = "submit-messages-text">{failureMsg}</h3>
+                    </div>
                 }
             </section>            
+            
+            <img src={HorizontalLine} alt="styling line" className="submit-messages-line" />
+            
             <section className = "submit-form-container">
                 <form encType="multipart/form-data">
                     <FormInput 
                         labelFor="projectName"
                         labelText="Project Name: "
                         type="text"
+                        className="projectName-input"
                         placeholder="My Project"
                         name="projectName"
                         setValue={setProjectName}
                     />
-                    <FormInput 
-                        labelFor="weekNumber"
-                        labelText="Week Number: "
-                        placeholder=""
-                        type="number"
-                        name="weekNumber"
-                        setValue={setWeekNumber}
+                    <FormInputMultiText 
+                        labelFor="problemStatement"
+                        labelText="Problem Statement: "
+                        placeholder="max 140 characters"
+                        className="problemStatement-input"
+                        name="problemStatement"
+                        setValue={setProblemStatement}
+                    />   
+                    <FormInputMultiText
+                        labelFor="additionalInformation"
+                        labelText="Additional Information: "
+                        placeholder="max 140 characters"
+                        className="additionalInformation-input"
+                        name="additionalInformation"
+                        setValue={setAdditionalInformation}
                     />
                     <FormInputContributors 
                         labelFor="contributors"
@@ -133,24 +147,11 @@ const Submit: React.FC = () => {
                         setContributors={setContributors}  
                         contributors={contributors}                  
                     /> 
-                    <FormInputMultiText 
-                        labelFor="problemStatement"
-                        labelText="Problem Statement: "
-                        placeholder="max 140 characters"
-                        name="problemStatement"
-                        setValue={setProblemStatement}
-                    />   
-                    <FormInputMultiText
-                        labelFor="additionalInformation"
-                        labelText="Additional Information: "
-                        placeholder="max 140 characters"
-                        name="additionalInformation"
-                        setValue={setAdditionalInformation}
-                    />
                     <FormInput 
                         labelFor="githubUrl"
                         labelText="GitHub URL: "
                         type="text"
+                        className="githubUrl-input"
                         placeholder="github.com/myproject"
                         name="githubUrl"
                         setValue={setGithubUrl}
@@ -159,6 +160,7 @@ const Submit: React.FC = () => {
                         labelFor="builtUsing"
                         labelText="Technologies Used: "
                         name="builtUsing"
+                        className="builtUsing-input"
                         setBuiltUsing={setBuiltUsing}  
                         builtUsing={builtUsing}     
                     />
@@ -175,9 +177,19 @@ const Submit: React.FC = () => {
                         labelFor="appDeploymentUrl"
                         labelText="Deployed Project URL: "
                         type="url"
+                        className="appDeploymentUrl-input"
                         placeholder="myproject.ninja"
                         name="appDeploymentUrl"
                         setValue={setAppDeploymentUrl}
+                    />
+                    <FormInput 
+                        labelFor="weekNumber"
+                        labelText="Week Number: "
+                        placeholder=""
+                        className="weekNumber-input"
+                        type="number"
+                        name="weekNumber"
+                        setValue={setWeekNumber}
                     />                
                     <FormInputImage 
                         labelFor="additionalAppImage1"
