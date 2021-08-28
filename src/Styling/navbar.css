@@ -5,6 +5,7 @@
     color: white;
     background-color: black;
     font-size: 30px;
+    z-index: 10;
 }
 .navbar > li > a{
     text-decoration: none;

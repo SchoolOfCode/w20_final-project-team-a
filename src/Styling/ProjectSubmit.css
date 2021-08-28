@@ -1,3 +1,48 @@
+/* -----------Submit - Page Container--------------------------- */
+
+.submit-page-container{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+
+/* -----------Submit - Header--------------------------- */
+
+.submit-header{
+  position: fixed;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.submit-header-line{
+  position: fixed;
+  bottom:0;
+  left:10vw;
+  z-index: -100;
+}
+
+.submit-header-text{
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  position: fixed;
+  bottom:-10vh;
+  left:0;
+  font-size: 10vh;
+}
+
+
+
+
+/* -----------Submit - Form Container--------------------------- */
+
+
+
+
+
+
+
+/* -----------checkboxes--------------------------- */
+
 ul {
   list-style-type: none;
   display: flex;

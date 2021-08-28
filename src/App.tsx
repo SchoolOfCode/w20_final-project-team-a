@@ -21,7 +21,9 @@ function App() {
   return (
     <Router>
       <Navbar />
-      
+      <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+      </style> 
       <Route exact path = "/" component={Homepage} />
       <Route exact path = "/showcase" component={ProjectsShowcase} />
       <Route exact path = "/profiles" component={ProfilesShowcase} />
