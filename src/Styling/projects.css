@@ -1,0 +1,29 @@
+/*--------Styling the header*/
+.showcase-header{
+    position: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+
+.showcase-header-text{
+    font-size: 15vh;
+    position: fixed;
+    left: 15vh;
+    bottom: -15vh;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+}
+
+.wrapper{
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-gap: 20px;
+
+}
+
+.main-image{
+    max-height: 200px;
+    max-width: 400px;
+}
+
+
