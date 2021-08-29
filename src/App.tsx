@@ -16,6 +16,10 @@ import Login from './Pages/Login';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Dashboard from './Pages/Dashboard';
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+</style> 
+
 
 function App() {
   return (
