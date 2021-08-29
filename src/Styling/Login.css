@@ -1,78 +1,104 @@
-body {
-  margin: 0;
-  padding: 0;
-  color: white;
-}
-
-html {
-  background-color: #000818;
-  color: white;
-  /* background-image: "../Components/BackgroundsPlus/User Signup BG.png";
-      background-repeat: no-repeat;
-      background-size: cover; */
-}
-/* 
-    .frame {
-      display: grid;
-      height: 90vh;
-      grid-template-columns: 1fr 4fr;
-    } */
-.signup-wrapper {
+.signup-page-container {
   display: grid;
-  height: 90vh;
-  grid-gap: 2vh;
-  grid-template-columns: 1fr 0.07fr 0.6fr 2fr 0.6fr;
-  grid-template-rows: 0.3fr 0.1fr 0.5fr 1fr 0.8fr;
+  max-height: 90vw;
 }
 
-.pinhead {
-  grid-row: 2;
-  grid-column: 3;
-  height: 200px;
-  /* display: block;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 2vh; */
+.signup-header {
+  font-family: "Poppins", sans-serif;
+  width: 10vw;
+  grid-row: span;
 }
 
-.title {
+.signup-header-line {
+  position: fixed;
+  bottom: 0;
+  left: 10vw;
+  width: 1%;
+  max-height: 94vh;
+}
+
+.signup-header-text {
   transform: rotate(-90deg);
   transform-origin: top left;
-  /* position: fixed; */
+  position: fixed;
   bottom: 0;
-  left: 5vw;
-  grid-column: 1;
-  grid-row: 4 / span 2;
-  /* grid-row-start: 3;
-      grid-row-end: 7;
-      grid-column-start: 1;
-      grid-column-end: 1; */
-  background-color: red;
-  margin-bottom: 2vh;
+  left: 0;
+  font-size: 10vh;
 }
 
-.form-input {
-  grid-row: 4;
-  grid-column: 4;
-  margin-top: 2vh;
-  border-radius: 15%;
-}
-.line {
-  grid-row: 1/5;
-  grid-column: 2;
-  /* background-color: #ffde59; */
-}
+/* --- signup: form container --- */
 
-.sidebar {
-  grid-row: 2;
+.signup-form-container {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 1.4fr 0.6fr;
+  grid-template-rows: 0.1fr 0.4fr 0.2fr 0.4fr 0.1fr;
+}
+/* --- signup: images --- */
+
+.signup-sidebar-image {
+  width: 33%;
+  top: 10vw;
+  left: 10vw;
+  height: auto;
+  position: fixed;
+}
+.signup-page-image {
+  width: 100%;
   grid-column: 3;
-  align-content: left;
+  grid-row: 1 / span 3;
 }
-button {
+/* --- signup - form input --- */
+.signup-form-input {
+  display: grid;
+  grid-column: 2 / span 3;
+  grid-row: 4 / span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: last baseline;
+  align-items: center;
+}
+
+/* --- signup: Already registered link --- */
+
+.signup-registered-link {
+  font-size: 2vh;
+  grid-column: 3;
+  grid-row: 5;
+  padding-top: 2vh;
+}
+
+/* --- signup: submit --- */
+
+.signup-submit {
+  padding-top: 1vh;
+}
+
+.signup-submit-button {
   background-color: #ffde59;
-  margin-top: 2vh;
-  padding: 0.8vh;
-  text-align: center;
-  font-size: 1.5vh;
+  width: 120%;
+  height: 3.8vh;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+
+/* --- signup: messages --- */
+
+.signup-messages-container {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.signup-messages-container-success {
+  background-color: rgba(152, 251, 152, 0.8);
+  /* width: max-content; */
+}
+.signup-messages-container-failure {
+  background-color: rgba(251, 152, 152, 0.8);
+  /* width: max-content; */
+}
+
+.signup-messages-text {
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
 }
