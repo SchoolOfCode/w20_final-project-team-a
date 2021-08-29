@@ -84,21 +84,30 @@
 /* --- signup: messages --- */
 
 .signup-messages-container {
+  display: grid;
   grid-column: 3;
   grid-row: 3;
+  /* align-items: cente?r; */
+  /* justify-content: center; */
 }
-
+.signup-message-header {
+  padding-bottom: 2vh;
+  text-decoration: underline;
+}
 .signup-messages-container-success {
+  padding-bottom: 2vh;
   background-color: rgba(152, 251, 152, 0.8);
   /* width: max-content; */
 }
 .signup-messages-container-failure {
+  padding: 1.2vh;
   background-color: rgba(251, 152, 152, 0.8);
-  /* width: max-content; */
+  border-color: white;
+  border-radius: 8px;
 }
 
 .signup-messages-text {
-  color: black;
+  color: white;
   font-family: "Poppins", sans-serif;
   font-size: 1em;
 }

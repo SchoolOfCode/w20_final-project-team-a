@@ -112,12 +112,12 @@ const Signup = () => {
                 </div>}
                 {failure &&
                 <div className = "signup-messages-container-failure" style={{backgroundColor:"red", color:"white"}}> 
-                    {/* <p>An error occurred. Please try again</p> */}
-                    <ul>
+                    <p className="signup-message-header" >The following error(s) occurred:</p>
+                    {/* <ul> */}
                     {failureMsg && failureMsg.map((errorMsg,i)=>{
-                        return <li className="signup-messages-text" key={i}><p>{errorMsg.msg}</p></li>
+                        return <ul><li className="signup-messages-text" key={i}>- {errorMsg.msg}</li></ul>
                     })}
-                    </ul>
+                    {/* </ul> */}
                 </div>
                 }
             </section>
