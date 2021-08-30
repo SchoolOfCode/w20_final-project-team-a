@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
 // Authentication
 import session from "express-session"; //stores user data in cookies
+import MongoStore from "connect-mongo";
 import passport from "passport"; //to handle authentication
 import { passportStrategy } from "./configs/passport.js";
-import cookieParser from "cookie-parser"; //no longher need cookie-parser with express-session
 
 import cors from "cors";
 //Routes
@@ -47,17 +47,13 @@ app.use(express.json());
 // Express Session Middleware
 app.use(
   session({
+    store: MongoStore.create({mongoUrl:MongoDB.MongoURI}),
     secret: process.env.SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
-    cookie:{
-      maxAge: 86400
-    }
   })
 );
 
-//cookie parser
-app.use(cookieParser(process.env.SESSION_SECRET));
 
 //Passport Middleware
 app.use(passport.initialize());

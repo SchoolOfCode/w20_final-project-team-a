@@ -103,13 +103,15 @@ userRouter.post("/login", (req, res, next) => {
     if (!user) {
       return res.status(200).send(info);
     }
-    return res.status(200).send(user);
+    req.logIn(user, (err)=>{
+      if (err) return res.status(400).send(err)
+      return res.status(200).send({msg:`Logging in as ${user.displayName}`, sucess:true});
+      }
+    )
   })(req, res, next);
 });
 
 //Handle logout
 userRouter.get("/logout", (req, res) => {
   req.logout();
-  req.flash("success_msg", "You are logged out!");
-  res.redirect("/users/login");
 });

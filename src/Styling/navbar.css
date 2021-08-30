@@ -1,7 +1,4 @@
 .navbar{
-    position: fixed;
-    top:0;
-    left:0;
     display: flex;
     list-style-type: none;
     justify-content: space-between;
@@ -16,7 +13,7 @@
 .navbar > li > span{
     color: palegoldenrod;
 }
-/* 
+
 @media screen and (max-width: 960px){
     .navbar-container{
         display: flex;
@@ -42,4 +39,4 @@
     .navbar-title{
        display: none;
 }
-} */
+}

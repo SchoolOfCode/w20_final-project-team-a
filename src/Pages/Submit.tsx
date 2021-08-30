@@ -10,8 +10,16 @@ import {builtUsingIcons} from "../Components/techStack/techStack.js"
 //Style elements
 import Line from "../Components/BackgroundsPlus/Line.png"
 import HorizontalLine from "../Components/BackgroundsPlus/Viewed Profile Up Left.png"
+import { useHistory } from 'react-router-dom';
 
-const Submit: React.FC = () => {
+type Props = {
+    loginStatus:boolean,
+}
+
+const Submit : React.FC<Props> = ({loginStatus}) =>{
+
+    const history = useHistory()
+    if (loginStatus === false) history.push("/login")
 
     const [projectName, setProjectName] = useState();
     const [weekNumber, setWeekNumber] = useState();
@@ -58,9 +66,6 @@ const Submit: React.FC = () => {
             formData.append("appDeploymentUrl",appDeploymentUrl!)
             selectedBuiltUsing.forEach(tech=>
                 formData.append("techUsed",tech.name))
-            // formData.append("additionalAppImage1",additionalAppImage1!)
-            // formData.append("additionalAppImage2",additionalAppImage2!)            
-            // formData.append("additionalAppImage3",additionalAppImage3!)
             appImagesArray.forEach(image => 
                 formData.append("appImages", image!))
 
