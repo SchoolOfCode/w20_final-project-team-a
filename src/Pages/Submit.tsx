@@ -166,14 +166,14 @@ const Submit: React.FC = () => {
                         setContributors={setContributors}  
                         contributors={contributors}                  
                     /> 
-                    <FormInputTech 
-                        labelFor="builtUsing"
-                        labelText="Technologies Used: "
-                        name="builtUsing"
-                        className="builtUsing-input"
-                        setBuiltUsing={setBuiltUsing}  
-                        builtUsing={builtUsing}     
-                    />
+                        <FormInputTech 
+                            labelFor="builtUsing"
+                            labelText="Technologies Used: "
+                            name="builtUsing"
+                            className="builtUsing-input"
+                            setBuiltUsing={setBuiltUsing}  
+                            builtUsing={builtUsing}     
+                        />
                     <FormInputImage 
                         labelFor="appImage"
                         labelText="Deployed Project Image: "
@@ -183,7 +183,6 @@ const Submit: React.FC = () => {
                         setValue={setAppImage}
                         state={appImage}
                     />
-             
                     <FormInput 
                         labelFor="appDeploymentUrl"
                         labelText="Deployed Project URL: "
@@ -220,8 +219,8 @@ const Submit: React.FC = () => {
                         setValue={setAdditionalAppImage3}
                         state={additionalAppImage3}
                     />                                                                                                                         
-                <button type="submit" className="button project-submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
                 </form>
+            <button type="submit" className="button project-submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
             </section>
         </div>
     )

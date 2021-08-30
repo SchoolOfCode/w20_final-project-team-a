@@ -1,7 +1,12 @@
 /* -----------Submit - Page Container--------------------------- */
 
 .submit-page-container{
-  display: grid;
+  font-family: 'Poppins',sans-serif;
+  position: absolute;
+  right:0;
+  top: 1.5em;
+  left: 0;
+  bottom: 0;
 }
 
 
@@ -10,63 +15,77 @@
 .submit-header{
   font-family: 'Poppins', sans-serif;
   width: 10vw;
-  grid-row: span;
 }
 
 .submit-header-line{
   position: fixed;
   bottom:0;
-  left:10vw;
+  top: 1.9em;
+  left:7em;
+
 }
 
 .submit-header-text{
   transform: rotate(-90deg);
   transform-origin: top left;
   position: fixed;
-  bottom:-10vh;
-  left:0;
-  font-size: 10vh;
+  bottom:-1em;
+  left:0.25em;
+  font-size: calc(3em + 1vw);
 }
 
 /* -----------Submit - Form Messages--------------------------- */
 
-.submit-messages-line{
-  grid-column: 2;
-  grid-row: 2;
-}
-
 .submit-messages-container{
-  display: grid;
-  height: 10vw;
-  grid-column: 2;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-left: 10px;
+  position: fixed;
+  top: 0em;
+  left: 8em;
+  display: flex;
+  height: 4.5em;
+
 }
 
 .submit-messages-text{
   color: black;
   font-family: 'Poppins', sans-serif;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .submit-messages-container-sucess{
-  background-color: rgba(152,251,152,0.8);
+  background-color: rgba(251, 249, 152, 0.8);
   width: max-content;
+  align-self: flex-end;
 }
 .submit-messages-container-failure{
   background-color: rgba(251, 152, 152, 0.8);
   width: max-content;
+  align-self: flex-end;
 }
 
+.submit-messages-line{
+  position: fixed;
+  top: 5em;
+  left: 6.9em;
+  height: 2em;
+}
 /* -----------Submit - Form Container--------------------------- */
 .submit-form-container{
-  grid-column: 2;
-  margin-left: 10px;
+  margin-left: 9em;
+  margin-top: 6em;
+  height: 80vh;
 }
 .submit-form-form{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 80vh;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+}
+.submit-form-form label{
+  text-transform: uppercase;
+}
+.submit-form-form label, input{
+  display: block;
 }
 /* -----------Submit - Form Column 1--------------------------- */
 
@@ -76,7 +95,7 @@
 .weekNumber-input, 
 .contributors-input,
 .githubUrl-input{
-  grid-column: 1;
+
 }
 
 /* -----------Submit - Form Column 2--------------------------- */
@@ -85,22 +104,35 @@
 .additionalAppImage1-input,
 .additionalAppImage2-input,
 .additionalAppImage3-input{
-  grid-column: 2;
+
 }
 
 /* -----------Submit - Form Column 3--------------------------- */
-.builtUsing-input{
-  grid-row: 1/6;
-  grid-column: 3;
-}
 
+.builtUsing-input{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+
+}
+.builtUsing-input-title{
+  grid-column: 1/3;
+  grid-row: 1;
+}
+.builtUsing-input-1{
+  grid-column: 1;
+}
+.builtUsing-input-2{
+  grid-column: 2/3;
+}
 
 /* -----------checkboxes--------------------------- */
 
 ul {
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 
 input[type="checkbox"][id^="cb"] {
@@ -135,8 +167,8 @@ input[type="checkbox"][id^="cb"] {
 }
 
 .tech-used img {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
