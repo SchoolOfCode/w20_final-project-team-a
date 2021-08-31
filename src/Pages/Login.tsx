@@ -38,7 +38,6 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
                             setSuccess(true)
                             setFailure(false)
                             setSubmit(false)
-                            setLoginStatus(true)
                         }
                         else {
                             setFailureMsg(response.data.message)
@@ -61,8 +60,23 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
         setSuccess(false)
         setFailure(false)
         setSubmit(false)
-        axios.get(API_URL+"/users/logout")
+        axios.get(API_URL+"users/logout")
     }
+    const [timer, setTimer] = useState(3);
+
+    useEffect(()=>{
+        if (success === true && timer <= 0) {
+            setLoginStatus(true);
+            history.push('/dashboard');
+            return;
+        };
+        if (success){
+            const loginRedirectTimer = setInterval(()=>{
+                setTimer(timer - 1)
+            },1000);
+            return () => clearInterval(loginRedirectTimer);
+        }
+    },[success, history, timer, setLoginStatus])
 
     return (loginStatus?
         <div>
@@ -77,6 +91,11 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
                         <p>{failureMsg}</p>
                     </div>
                 }
+                {success && 
+                    <div style={{backgroundColor:"palegreen", color:"black"}}> 
+                        <p>Logging you in, in {timer} seconds</p>
+                    </div>
+            }
             <form>
                 <p>
                 <label htmlFor="email">email address</label>
@@ -100,12 +119,6 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
                 <p>Not registered? Click <a href="/signup" title="Click to register">here</a> to register</p>
                 <button disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
             </form>
-            {success && 1}
-            {/* // // <Route exact path="/dashboard">
-            // //     <Redirect to="/dashboard" />
-            // // </Route>
-            // history.push('/dashboard')
-            // } */}
         </div>
     )
     

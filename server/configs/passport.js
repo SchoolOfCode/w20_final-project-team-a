@@ -50,8 +50,15 @@ export const passportStrategy = (passport) => {
     //req.user
     //deserialize user is called when a request is sent with a session cookie
     //containing the serialized user id
+    console.log("deserailize time",id)
     User.findById(id, (err, user) => {
-      done(err, user);
+      if(err) {
+        console.log("error:",err)
+        return done(err)
+      } else {
+        console.log(id,user)
+        done(null,user);
+      }
     });
   });
 };

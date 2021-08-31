@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {BiUserCircle} from 'react-icons/bi'
 import '../Styling/navbar.css'
@@ -9,7 +9,7 @@ type NavbarProps = {
 
 const Navbar : React.FC<NavbarProps> = ({loginStatus}) =>{
 
-   const [active, setActive] = useState(false);
+//    const [active, setActive] = React.useState(false);
 
     return (
         <nav className="navbar-nav">

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
 // Authentication
-import session from "express-session"; //stores user data in cookies
+import session, { MemoryStore } from "express-session"; //stores user data in cookies
 import MongoStore from "connect-mongo";
 import passport from "passport"; //to handle authentication
 import { passportStrategy } from "./configs/passport.js";
@@ -47,10 +47,16 @@ app.use(express.json());
 // Express Session Middleware
 app.use(
   session({
-    store: MongoStore.create({mongoUrl:MongoDB.MongoURI}),
+    store: MongoStore.create({
+      mongoUrl:MongoDB.MongoURI,
+      ttl: 1000*24*60 //1hour
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie:{
+      maxAge:1000*60*60*24
+    }
   })
 );
 
@@ -63,7 +69,8 @@ app.use(passport.session());
 passportStrategy(passport);
 
 //Routes
-app.use('/api/auth', authRouter)
+
+app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);
 

@@ -104,8 +104,8 @@ userRouter.post("/login", (req, res, next) => {
       return res.status(200).send(info);
     }
     req.logIn(user, (err)=>{
-      if (err) return res.status(400).send(err)
-      return res.status(200).send({msg:`Logging in as ${user.displayName}`, sucess:true});
+      if (err) return next(err);
+      return res.status(200).send({msg:`Logging in as ${user.displayName}`, sucess:true, role: user.role});
       }
     )
   })(req, res, next);
@@ -114,4 +114,5 @@ userRouter.post("/login", (req, res, next) => {
 //Handle logout
 userRouter.get("/logout", (req, res) => {
   req.logout();
+  res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });
