@@ -5,14 +5,6 @@ import bcrypt from "bcryptjs";
 
 export const userRouter = express.Router();
 
-// userRouter.get('/login', (req,res)=>{
-//     res.send('login')
-// })
-
-// userRouter.get('/signup', (req,res)=>{
-//     res.send('signup')
-// })
-
 //Handle Signup
 userRouter.post("/signup", (req, res) => {
   const { email, displayName, password, password2 } = req.body;
@@ -86,17 +78,8 @@ userRouter.post("/signup", (req, res) => {
   }
 });
 
-//Handle Login
-//use the local strategy -first argument to passport.authenticate
-// userRouter.post("/login", passport.authenticate("local", {failureMsg: "authentication failed"}), (req, res, done) => {
-//   console.log(failureMsg);
-//   res.status(200).send({ msg: "Successfully logged in!", success: true });
-// });
-
-// //Handle Login
-// //use the local strategy -first argument to passport.authenticate
 userRouter.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("local", {session: true}, (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -105,7 +88,14 @@ userRouter.post("/login", (req, res, next) => {
     }
     req.logIn(user, (err)=>{
       if (err) return next(err);
-      return res.status(200).send({msg:`Logging in as ${user.displayName}`, sucess:true, role: user.role});
+      req.session.email = user.email;
+      req.session.userid = user._id
+      return res.status(200).send({
+        msg:`Logging in as ${user.displayName}`, 
+        sucess:true, 
+        role: user.role,
+        id:user._id
+      });
       }
     )
   })(req, res, next);
@@ -114,5 +104,6 @@ userRouter.post("/login", (req, res, next) => {
 //Handle logout
 userRouter.get("/logout", (req, res) => {
   req.logout();
+  req.session.destroy()
   res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });

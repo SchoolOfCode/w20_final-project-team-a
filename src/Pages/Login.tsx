@@ -24,13 +24,14 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
     }
         useEffect(() => {
             if(submit===true) {
-                axios({
-                    method:"post",
-                    url:API_URL+"users/login",
-                    data: {
+                axios.post(API_URL+"users/login",{
                         email:email,
                         password:password,
+                    },{
+                        headers:{
+                        'Content-Type': 'application/json'
                     },
+                    withCredentials: true
                     }).then(
                     (response) => {
                         console.log(response.data, response)

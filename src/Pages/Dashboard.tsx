@@ -14,11 +14,13 @@ const Dashboard : React.FC<DashboardProps> = ({loginStatus}) =>{
         if (loginStatus === false){
             history.push("/login")
         } else{
-            axios.get(API_URL+"auth/check", {headers:{'Authorization':'Basic'}})
+            axios.get(API_URL+"auth/check", {
+                withCredentials: true
+            })
             .then(res => {
                 console.log(res)
             }
-            )
+            ).catch(err => console.log(err))
         }
     }
 

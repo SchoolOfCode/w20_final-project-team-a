@@ -1,13 +1,11 @@
-import passportLocal from "passport-local";
+import passport from 'passport'
+import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from "bcryptjs";
 
 //Load user model
 import { User } from "../models/user.model.js";
 
-const LocalStrategy = passportLocal.Strategy;
-
-export const passportStrategy = (passport) => {
-  passport.use(
+passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       //Match user
       User.findOne({ email: email })
@@ -50,7 +48,6 @@ export const passportStrategy = (passport) => {
     //req.user
     //deserialize user is called when a request is sent with a session cookie
     //containing the serialized user id
-    console.log("deserailize time",id)
     User.findById(id, (err, user) => {
       if(err) {
         console.log("error:",err)
@@ -61,4 +58,5 @@ export const passportStrategy = (passport) => {
       }
     });
   });
-};
+
+export default passport;
