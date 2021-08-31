@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 
 import '../Styling/ProjectsShowcase.css'
-import Projects from '../Components/Projects'
+import Users from '../Components/Users'
 
 import axios from 'axios'
 import { API_URL } from '../config'
@@ -27,7 +27,7 @@ const ProfilesShowcase = () => {
     return (
         <>
             <div>
-                {data.map((user) => <Projects data={user} />)}
+                {data.map((user) => <Users data={user} />)}
             </div>
         </>
     )

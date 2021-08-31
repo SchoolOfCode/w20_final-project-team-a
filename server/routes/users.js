@@ -113,3 +113,10 @@ userRouter.get("/logout", (req, res) => {
   req.flash("success_msg", "You are logged out!");
   res.redirect("/users/login");
 });
+
+//Get user data
+
+userRouter.get("/all", async (req, res) => {
+  const allUsers = await User.find({});
+  res.status(200).send(allUsers);
+});
