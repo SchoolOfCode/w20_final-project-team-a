@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { API_URL } from '../config';
-import '../Styling/Login.css'
+import '../Styling/Signup.css'
 import pinhead from '../Components/BackgroundsPlus/User Signup PinHead.png'
 import sidebar from '../Components/BackgroundsPlus/ShowcaseUpLeft.png'
 import line from '../Components/BackgroundsPlus/Line.png'
@@ -43,20 +43,19 @@ const Signup = () => {
     }
 
     return (
-        <div>
-            <div className="signup-page-container">
-                <header className="signup-header">
-            <h1 className="signup-header-text">Sign Up</h1>
-            <img className="signup-header-line" src={line} alt="sidebar"/>
+    <div>
+        <div className="signup-page-container">
+            <header className="signup-header">
+                <h1 className="signup-header-text">Sign Up</h1>
+                <img className="signup-header-line" src={line} alt="sidebar"/>
             </header>
-
-            <section className="signup-form-container">     
+        <section className="signup-form-container">     
             <section className="signup-sidebar-image">
                 <img src={sidebar} alt="dividing line" className="signup-sidebar-image" />
             </section >       
-            <section className="signup-page-image"  >
+        <section className="signup-page-image"  >
                 <img  src={pinhead} alt="head" className="signup-page-image"/>
-            </section>
+        </section>
             <form className="signup-form-input">
                 <section  >
                 <label htmlFor="email">email address</label>
@@ -113,11 +112,9 @@ const Signup = () => {
                 {failure &&
                 <div className = "signup-messages-container-failure" style={{backgroundColor:"red", color:"white"}}> 
                     <p className="signup-message-header" >The following error(s) occurred:</p>
-                    {/* <ul> */}
                     {failureMsg && failureMsg.map((errorMsg,i)=>{
                         return <ul><li className="signup-messages-text" key={i}>- {errorMsg.msg}</li></ul>
                     })}
-                    {/* </ul> */}
                 </div>
                 }
             </section>

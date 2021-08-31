@@ -1,15 +1,15 @@
-.login-page-container {
+.signup-page-container {
   display: grid;
   max-height: 90vw;
 }
 
-.login-header {
+.signup-header {
   font-family: "Poppins", sans-serif;
   width: 10vw;
   grid-row: span;
 }
 
-.login-header-line {
+.signup-header-line {
   position: fixed;
   bottom: 0;
   left: 10vw;
@@ -17,7 +17,7 @@
   max-height: 94vh;
 }
 
-.login-header-text {
+.signup-header-text {
   transform: rotate(-90deg);
   transform-origin: top left;
   position: fixed;
@@ -26,29 +26,29 @@
   font-size: 10vh;
 }
 
-/* --- login: form container --- */
+/* --- signup: form container --- */
 
-.login-form-container {
+.signup-form-container {
   display: grid;
   grid-template-columns: 0.4fr 0.6fr 1.4fr 0.6fr;
   grid-template-rows: 0.1fr 0.4fr 0.2fr 0.4fr 0.1fr;
 }
-/* --- login: images --- */
+/* --- signup: images --- */
 
-.login-sidebar-image {
+.signup-sidebar-image {
   width: 28%;
   top: 10vw;
   left: 10vw;
   height: auto;
   position: fixed;
 }
-.login-page-image {
+.signup-page-image {
   width: 100%;
   grid-column: 3;
   grid-row: 1 / span 3;
 }
-/* --- login - form input --- */
-.login-form-input {
+/* --- signup - form input --- */
+.signup-form-input {
   display: grid;
   grid-column: 2 / span 3;
   grid-row: 4 / span 2;
@@ -58,22 +58,22 @@
   align-items: center;
 }
 
-/* --- login: Already registered link --- */
+/* --- signup: Already registered link --- */
 
-.login-register-link {
+.signup-registered-link {
   font-size: 2vh;
   grid-column: 3;
   grid-row: 5;
   padding-top: 2vh;
 }
 
-/* --- login: submit --- */
+/* --- signup: submit --- */
 
-.login-submit {
+.signup-submit {
   padding-top: 1vh;
 }
 
-.login-submit-button {
+.signup-submit-button {
   background-color: #ffde59;
   width: 120%;
   height: 3.8vh;
@@ -81,26 +81,34 @@
   vertical-align: middle;
 }
 
-/* --- login: messages --- */
+/* --- signup: messages --- */
 
-.login-messages-container {
+.signup-messages-container {
   grid-column: 3;
   grid-row: 3;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login-message-header {
+.signup-message-header {
   padding-bottom: 2vh;
   text-decoration: underline;
 }
-.login-messages-container-failure {
+.signup-messages-container-success {
+  padding-bottom: 2vh;
+  background-color: rgba(152, 251, 152, 0.8);
+  border-color: black;
+  border-radius: 8px;
+  /* width: max-content; */
+}
+.signup-messages-container-failure {
   padding: 2vh;
   background-color: rgba(251, 152, 152, 0.8);
   border-color: white;
   border-radius: 8px;
 }
-.login-messages-text {
+
+.signup-messages-text {
   color: white;
   font-family: "Poppins", sans-serif;
   font-size: 1em;
