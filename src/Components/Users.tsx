@@ -7,17 +7,12 @@ type Props = {
 
 const Users: React.FC<Props> = ({data}) => {
 
-    console.log(data)
-
     return (
         <div className="wrapper">
-            <span className="project-name">{data.displayName}</span>        
-            {/* <img src={data.appDeploymentImage} alt="Project" className="main-image"/> */}
-            <span className="project-date">12/05/2000</span>
-            <span> {data.email}</span>
-            <span> {data.githubUrl}</span>
-            <span> {data.linkIn}</span>
-            <span> {data.photo}</span>
+            <span> {data.displayName}</span>
+            <img src={data.photo} alt="bootcamper pic"/>
+            <span> {data.cohort}</span>
+            <span> {data.statement}</span>
             
         </div>
     )

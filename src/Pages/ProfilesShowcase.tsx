@@ -16,8 +16,15 @@ const ProfilesShowcase = () => {
         axios.get(API_URL+"users/all") 
         .then(
             (response) => {
-                response.data.forEach((user:any) => setData([...data,user]))
-                console.log(response.data)
+                // response.data.forEach((user:any) => setData([...data,user]))
+                // console.log(response.data, "data = ",data)
+                let userDataArray = [];
+                for (let i=0; i<response.data.length; i++) {
+                    userDataArray.push(response.data[i]);
+                    console.log("response.data[i]", response.data[i])
+                    setData([...userDataArray, userDataArray])
+                    console.log(userDataArray);
+                }
                 }
         )
         }
