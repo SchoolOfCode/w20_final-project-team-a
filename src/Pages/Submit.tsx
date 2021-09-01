@@ -171,22 +171,13 @@ const Submit : React.FC<Props> = ({loginStatus}) =>{
                         setContributors={setContributors}  
                         contributors={contributors}                  
                     /> 
-                        <FormInputTech 
-                            labelFor="builtUsing"
-                            labelText="Technologies Used: "
-                            name="builtUsing"
-                            className="builtUsing-input"
-                            setBuiltUsing={setBuiltUsing}  
-                            builtUsing={builtUsing}     
-                        />
-                    <FormInputImage 
-                        labelFor="appImage"
-                        labelText="Deployed Project Image: "
-                        name="appImage"
-                        className="appImage-input"
-                        imageClassName="appImage-input-image"
-                        setValue={setAppImage}
-                        state={appImage}
+                    <FormInputTech 
+                        labelFor="builtUsing"
+                        labelText="Technologies Used: "
+                        name="builtUsing"
+                        className="builtUsing-input"
+                        setBuiltUsing={setBuiltUsing}  
+                        builtUsing={builtUsing}     
                     />
                     <FormInput 
                         labelFor="appDeploymentUrl"
@@ -196,6 +187,15 @@ const Submit : React.FC<Props> = ({loginStatus}) =>{
                         placeholder="myproject.ninja"
                         name="appDeploymentUrl"
                         setValue={setAppDeploymentUrl}
+                    />
+                    <FormInputImage 
+                        labelFor="appImage"
+                        labelText="Deployed Project Image: "
+                        name="appImage"
+                        className="appImage-input"
+                        imageClassName="appImage-input-image"
+                        setValue={setAppImage}
+                        state={appImage}
                     />
                     <FormInputImage 
                         labelFor="additionalAppImage1"

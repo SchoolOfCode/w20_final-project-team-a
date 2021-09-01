@@ -50,13 +50,19 @@ const FormInputContributors : React.FC<Props> = ({
                     required={true}
                     onBlur={(e) => setContributor(e.target.value)}
                 ></input>
-                <button onClick={(e)=>addContributorEmail(e)}>+</button>
+                <button 
+                    onClick={(e)=>addContributorEmail(e)}
+                    className="contributor-button add"
+                >+</button>
                 <ul>
                     {contributors[0] && 
                     contributors.map ((item,i) => {
                         return (
-                        <li key={i}>Contributor {i+1}: {item}
-                            <button onClick={(e)=>removeContributorEmail(e,i)}>-{i}</button>
+                        <li key={i}>{item}
+                            <button 
+                                onClick={(e)=>removeContributorEmail(e,i)}
+                                className="contributor-button remove"
+                            >-</button>
                         </li>
                         )
                     })}
