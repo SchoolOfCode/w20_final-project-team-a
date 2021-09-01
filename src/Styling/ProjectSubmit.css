@@ -1,4 +1,4 @@
-/* -----------Submit - Page Container--------------------------- */
+/* -----------Submit - Page Container & Page Globals--------------------------- */
 
 .submit-page-container{
   font-family: 'Poppins',sans-serif;
@@ -9,7 +9,25 @@
   bottom: 0;
 }
 
-
+.submit-page-container input{
+  height: 1.6em;
+}
+.submit-page-container button{
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: 1px solid #ffde59;
+  padding: 0 5px;
+  margin-left: 5px;
+  font-stretch: ultra-expanded;
+  font-size: 1.2em;
+  width: 25px;
+  cursor: pointer;
+  /* height: 1.2em; */
+}
+.submit-page-container button:hover{
+  background-color: #ffde59;
+  color: black;
+}
 /* -----------Submit - Header--------------------------- */
 
 .submit-header{
@@ -79,6 +97,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 75vh;
+  justify-content: space-around;
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
 .submit-form-form label{
@@ -89,40 +108,65 @@
 }
 /* -----------Submit - Form Column Details--------------------------- */
 
-.projectName-input,
-.problemStatement-input,
-.additionalInformation-input,
-.weekNumber-input, 
-.contributors-input,
-.githubUrl-input{
-
+.projectName-input input,
+.problemStatement-input textarea,
+.additionalInformation-input textarea,
+.weekNumber-input input, 
+.contributors-input input,
+.githubUrl-input input,
+.appDeploymentUrl-input input{
+  width: 20vw;
 }
 
-.contributor-button{
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  border: 1px solid #ffde59;
-  padding: 0 5px;
-  margin-left: 5px;
+
+.contributors-input ul{
+  flex-direction: column;
+  width:max-content;
+  padding-top: 0.5em;
 }
-.add{
+.contributors-input li{
+  padding-top: 0.5em;
+  align-self: flex-end;
+}
+.contributors-input .add,input{
   display: inline;
 }
 
-/* -----------Submit - Form Column Images--------------------------- */
 
+
+
+/* -----------Submit - Form Column Images--------------------------- */
+/* input[type="file"] {
+  display: none;
+} */
+.fileInput-button{
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: 1px solid #ffde59;
+  cursor: pointer;
+  width: 8vw;
+  text-align: center ;
+  align-self: center;
+}
+.fileInput-button:hover{
+  background-color: #ffde59;
+  color: black;
+}
 .appImage-input,
 .additionalAppImage1-input,
 .additionalAppImage2-input,
 .additionalAppImage3-input{
-
+  display: inline;
+  /* display: flex;
+  flex-direction: column ; */
 }
 .appImage-input-image,
 .additionalAppImage1-input-image,
 .additionalAppImage2-input-image,
 .additionalAppImage3-input-image{
-  width: 10vw;
+  max-width: 7vw;
   object-fit: cover;
+  display: block;
 }
 
 /* -----------Submit - Form Column Tech Used--------------------------- */
@@ -153,14 +197,14 @@
 
 /* -----------checkboxes--------------------------- */
 
-ul {
+.submit-page-container ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-input[type="checkbox"][id^="cb"] {
+.submit-page-container input[type="checkbox"][id^="cb"] {
   display: none;
 }
 
@@ -192,10 +236,11 @@ input[type="checkbox"][id^="cb"] {
 }
 
 .tech-used img {
-  height: 50px;
-  width: 50px;
+  height: 4em;
+  width: 4em;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
+  filter:  invert(1) grayscale(1);
 }
 
 :checked + .tech-used {
@@ -213,10 +258,21 @@ input[type="checkbox"][id^="cb"] {
   transform: scale(0.9);
   box-shadow: 0 0 5px #ffde59;
   z-index: -1;
+  filter:  invert(0) grayscale(0);
 }
 
 .form-input-image {
   height: 10vw;
   width: 10vw;
   object-fit: cover;
+}
+
+/* ----------------- Submit Button -------*/
+.submit-page-container .project-submit{
+
+  width: 5em;
+  height: 1.7em;
+  position: absolute;
+  bottom: 3vh;
+  left: calc(50vw - 2.5em);
 }

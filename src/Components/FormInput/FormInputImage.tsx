@@ -44,13 +44,16 @@ const FormInputImage : React.FC<Props> = ({
     return (
         <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
-                <input 
-                    type="file"
-                    name={name}
-                    required={true}
-                    onChange={(e) => addImageHandler(e)}
-                    accept="image/*"        
-                ></input>
+                {/* <label htmlFor="fileInput" className="fileInput-button">Upload */}
+                    <input
+                        id="fileInput"
+                        type="file"
+                        name={name}
+                        required={true}
+                        onChange={(e) => addImageHandler(e)}
+                        accept="image/*"        
+                    ></input>
+                {/* </label> */}
                 { state &&
                 <img src={preview} alt="user upload" className={imageClassName}/>
                 } 
