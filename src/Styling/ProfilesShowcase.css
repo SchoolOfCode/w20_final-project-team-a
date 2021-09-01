@@ -1,8 +1,8 @@
 .profiles-showcase-page-container {
   display: grid;
-  max-height: 90vw;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  height: 90vw;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 0.2fr 1fr;
 }
 
 .profiles-showcase-header {
@@ -29,9 +29,8 @@
 }
 
 .profiles.showcase-display {
-  display: grid;
+  /* display: grid; */
   grid-column: 2;
-  grid-row: 2;
 }
 
 .profiles-showcase-sidebar-image {
@@ -43,9 +42,16 @@
 }
 
 .profiles-showcase-display-items {
-  /* display: grid; */
+  grid-column: 2;
+  grid-row: 2;
   display: flex;
   flex-direction: row;
-  justify-content: last baseline;
-  align-items: center;
+  flex-wrap: wrap;
+  /* justify-content: last baseline; */
+  /* align-items: center; */
+}
+
+.profiles-showcase-image {
+  width: 15vh;
+  height: auto;
 }

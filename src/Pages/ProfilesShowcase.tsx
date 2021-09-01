@@ -45,12 +45,12 @@ const ProfilesShowcase = () => {
                     <h1 className="profiles-showcase-header-text">Login</h1>
                     <img className="profiles-showcase-header-line" src={line} alt="sidebar"/>
                 </header>
-            </section>
             <section className="profiles-showcase-display">
                 <  img src={sidebar} alt="dividing line" className="profiles-showcase-sidebar-image"/>
             </section>
             <section className="profiles-showcase-display-items">           
                 {data.map((user) => <Users data={user}  />)}
+            </section>
             </section>
             </div>
         </>

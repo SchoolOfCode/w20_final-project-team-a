@@ -1,6 +1,6 @@
 .login-page-container {
   display: grid;
-  max-height: 90vw;
+  height: 90vw;
 }
 
 .login-header {
