@@ -104,6 +104,6 @@ userRouter.post("/login", (req, res, next) => {
 //Handle logout
 userRouter.get("/logout", (req, res) => {
   req.logout();
-  req.session.destroy()
+  req.session.destroy();
   res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });
