@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { API_URL } from '../config';
+import '../Styling/Login.css'
+import pinhead from '../Components/BackgroundsPlus/User Signup PinHead.png'
+import sidebar from '../Components/BackgroundsPlus/ShowcaseUpLeft.png'
+import line from '../Components/BackgroundsPlus/Line.png'
 
 type Props = {
     loginStatus:boolean,
@@ -55,7 +59,7 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
                         )
                 }
         })
-    const handleLogout = (e:any) =>{
+  const handleLogout = (e:any) =>{
         e.preventDefault()
         setLoginStatus(false)
         setSuccess(false)
@@ -78,49 +82,72 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
             return () => clearInterval(loginRedirectTimer);
         }
     },[success, history, timer, setLoginStatus])
-
-    return (loginStatus?
+            
+return (loginStatus?
         <div>
             <h1>Logout</h1>
             <button type="submit" onClick={(e)=>handleLogout(e)}>Logout</button>
         </div>
         :
-        <div>
-            <h1>Login</h1>
-                {failure &&
-                    <div style={{backgroundColor:"red", color:"white"}}> 
-                        <p>{failureMsg}</p>
-                    </div>
-                }
-                {success && 
-                    <div style={{backgroundColor:"palegreen", color:"black"}}> 
-                        <p>Logging you in, in {timer} seconds</p>
-                    </div>
-            }
-            <form>
-                <p>
+    <div>
+        <div className="login-page-container">
+            <header className="login-header">
+                <h1 className="login-header-text">Login</h1>
+                <img className="login-header-line" src={line} alt="sidebar"/>
+            </header>
+        <section className="login-form-container">
+            <section className="login-sidebar-image">
+                <img src={sidebar} alt="diving line" className="signup-sidebar-image"/>
+            </section>
+            <section className="login-page-image">
+                <img  src={pinhead} alt="head" className="login-page-image"/>
+            </section>
+            <form className="login-form-input">
+                <section>
                 <label htmlFor="email">email address</label>
-                <input 
+                <p><input 
                     type="email"
                     placeholder="lewis@lewis.ninja"
                     name="email"
                     id="email"
                     onChange={(e)=>setEmail(e.target.value)}
-                ></input>
-                </p>
-                <p>
+                ></input></p>
+                </section>
+                <section>
                 <label htmlFor="password">password</label>
-                <input                    
+                <p><input                    
                     type="password"
                     name="password"
                     id="password"
                     onChange={(e)=>setPassword(e.target.value)}
-                    ></input>
-                </p>
-                <p>Not registered? Click <a href="/signup" title="Click to register">here</a> to register</p>
-                <button disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
+                    ></input></p>
+                </section>
+                <section className="login-register-link">
+                    Not registered? Click <a href="/signup" title="Click to register">here</a> to register
+                </section>
+                <section className="login-submit">
+                <button className="login-submit-button" disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
+                </section>
             </form>
+
+            <section className = "login-messages-container">
+
+            {success &&
+                    <div style={{backgroundColor:"palegreen", color:"black"}}> 
+                        <p>Logging you in, in {timer} seconds</p>
+                    </div>
+            }
+            {failure &&
+            <div className="login-messages-container-failure" style={{backgroundColor:"red", color:"white"}}> 
+                <p className="login-messages-text">{failureMsg}</p>
+            </div>
+            }
+            </section>
+        </section>
         </div>
+    </div>
+       
+
     )
     
 }

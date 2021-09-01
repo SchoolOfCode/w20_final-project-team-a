@@ -107,3 +107,10 @@ userRouter.get("/logout", (req, res) => {
   req.session.destroy();
   res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });
+
+//Get user data
+
+userRouter.get("/all", async (req, res) => {
+  const allUsers = await User.find({});
+  res.status(200).send(allUsers);
+});
