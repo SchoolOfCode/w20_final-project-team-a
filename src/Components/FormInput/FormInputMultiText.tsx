@@ -1,21 +1,23 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 type Props = {
     labelFor:string, 
     labelText:string, 
     placeholder:string, 
-    name:string, 
+    className:string, 
+    name:string,
     setValue:(val:any)=> void}
 
 const FormInputMultiText : React.FC<Props> = ({
     labelFor, 
     labelText, 
     placeholder, 
-    name, 
+    className, 
+    name,
     setValue}) => {  
 
     return (
-        <div>
+        <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
                 <textarea
                     placeholder={placeholder}

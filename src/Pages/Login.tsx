@@ -7,7 +7,12 @@ import pinhead from '../Components/BackgroundsPlus/User Signup PinHead.png'
 import sidebar from '../Components/BackgroundsPlus/ShowcaseUpLeft.png'
 import line from '../Components/BackgroundsPlus/Line.png'
 
-const Login = () => {
+type Props = {
+    loginStatus:boolean,
+    setLoginStatus:(val:boolean)=> void
+}
+
+const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
 
     const [email, setEmail] = useState ("");
     const [password, setPassword] = useState ("");
@@ -16,36 +21,34 @@ const Login = () => {
     const [failureMsg, setFailureMsg] = useState("");
     const history = useHistory ();
     const [submit, setSubmit] = useState(false);
-    // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     function handleLogin (e:any) {
         e.preventDefault();
         setSubmit(true)
     }
-        
         useEffect(() => {
             if(submit===true) {
-                axios({
-                    method:"post",
-                    url:API_URL+"users/login",
-                    data: {
+                axios.post(API_URL+"users/login",{
                         email:email,
                         password:password,
+                    },{
+                        headers:{
+                        'Content-Type': 'application/json'
                     },
+                    withCredentials: true
                     }).then(
                     (response) => {
                         console.log(response.data, response)
-                        if (response.data.displayName) {
+                        if (response.data.sucess) {
                             setSuccess(true)
                             setFailure(false)
                             setSubmit(false)
-                            // setIsLoggedIn(true)
                         }
                         else {
                             setFailureMsg(response.data.message)
                             setFailure(true)
                             setSubmit(false)
-                            // setIsLoggedIn(false)
+                            setLoginStatus(false)
                         }
                     }
                     )
@@ -56,14 +59,36 @@ const Login = () => {
                         )
                 }
         })
+  const handleLogout = (e:any) =>{
+        e.preventDefault()
+        setLoginStatus(false)
+        setSuccess(false)
+        setFailure(false)
+        setSubmit(false)
+        axios.get(API_URL+"users/logout")
+    }
+    const [timer, setTimer] = useState(3);
+
+    useEffect(()=>{
+        if (success === true && timer <= 0) {
+            setLoginStatus(true);
+            history.push('/dashboard');
+            return;
+        };
+        if (success){
+            const loginRedirectTimer = setInterval(()=>{
+                setTimer(timer - 1)
+            },1000);
+            return () => clearInterval(loginRedirectTimer);
+        }
+    },[success, history, timer, setLoginStatus])
             
-    return (
-        // isLoggedIn?
-        // <div>
-        //     <h1>Logout</h1>
-        //     <button>Logout</button>
-        // </div>
-        // :
+return (loginStatus?
+        <div>
+            <h1>Logout</h1>
+            <button type="submit" onClick={(e)=>handleLogout(e)}>Logout</button>
+        </div>
+        :
     <div>
         <div className="login-page-container">
             <header className="login-header">
@@ -104,13 +129,13 @@ const Login = () => {
                 <button className="login-submit-button" disabled={!email || !password ? true : false} type="submit" onClick={(e)=>handleLogin(e)}>Login</button>
                 </section>
             </form>
+
             <section className = "login-messages-container">
 
             {success &&
-            // <Route exact path="/dashboard">
-            //     <Redirect to="/dashboard" />
-            // </Route>
-            history.push('/dashboard')
+                    <div style={{backgroundColor:"palegreen", color:"black"}}> 
+                        <p>Logging you in, in {timer} seconds</p>
+                    </div>
             }
             {failure &&
             <div className="login-messages-container-failure" style={{backgroundColor:"red", color:"white"}}> 
@@ -121,8 +146,10 @@ const Login = () => {
         </section>
         </div>
     </div>
-        
+       
+
     )
+    
 }
 
 export default Login

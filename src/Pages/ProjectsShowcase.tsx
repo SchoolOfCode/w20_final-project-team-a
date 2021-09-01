@@ -28,8 +28,10 @@ const Showcase =  () => {
       return (
         <>
             <div>
-                {data.map((project) => <Projects data={project} />)}
-            </div>
+
+            {data.map((project, i) => <Projects key={i} data={project} />)}
+               
+           </div>
         </>
       )
 }

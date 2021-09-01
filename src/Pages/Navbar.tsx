@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {BiUserCircle} from 'react-icons/bi'
 import '../Styling/navbar.css'
 
-const Navbar = () => {
+type NavbarProps = {
+    loginStatus: boolean;
+}
 
-   const [active, setActive] = useState(false);
+const Navbar : React.FC<NavbarProps> = ({loginStatus}) =>{
+
+//    const [active, setActive] = React.useState(false);
 
     return (
         <nav className="navbar-nav">
@@ -31,11 +35,22 @@ const Navbar = () => {
                     <li className="navbar-logo">
                         <Link to="/journey" className="navbar-links">Journey</Link>
                     </li>
+                    {loginStatus &&
+                    <>
+                    <li className="navbar-logo">
+                        <Link to="/submit" className="navbar-links">Submit</Link>
+                    </li>
+                    <li className="navbar-logo">
+                        <Link to="/dashboard" className="navbar-links">Dashboard</Link>
+                    </li>
+                    </>
+}
                     <li className="navbar-logo">
                         <Link to="/login" className="navbar-links">
                             <BiUserCircle />  
                         </Link>
                     </li>
+                    
                 </ul>
         </div>
         </nav>

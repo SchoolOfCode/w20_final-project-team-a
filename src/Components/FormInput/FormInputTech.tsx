@@ -1,17 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import "../../Styling/ProjectSubmit.css"
 
 type Props = {
     labelFor:string, 
     labelText:string, 
     name:string,
-    builtUsing:any, 
+    builtUsing:any,
+    className:string, 
     setBuiltUsing:(val:any)=> void}
 
 const FormInputTech : React.FC<Props> = ({
     labelFor, 
     labelText, 
-    name, 
+    name,
+    className, 
     builtUsing,
     setBuiltUsing}) => {  
 
@@ -19,35 +21,33 @@ const FormInputTech : React.FC<Props> = ({
         const handleIconClick = (key:any) => {
             builtUsing[key].used=!builtUsing[key].used
             setBuiltUsing(builtUsing);
-            // setSelectedStatus(
-            // selectedStatus === "unselected-tech" ? "selected-tech" : "unselected-tech")
-            }
-            
-            // console.log(builtUsing["HTML"].image)
-            const builtUsingIconsArray = []
-            for (const key of Object.keys(builtUsing)){
-            // const [selectedStatus, setSelectedStatus] = useState("unselected-tech")
-            builtUsingIconsArray.push(
-            <li>
-            <input 
-                type="checkbox" 
-                id={builtUsing[key].name}
-                style={{display:"none"}}/>     
-                <label htmlFor={builtUsing[key].name} className="tech-used">  
-                <img 
-                src={builtUsing[key].image} 
-                alt = {builtUsing[key].name}
-                onClick = {() => handleIconClick(key) }
-                />
-                </label> 
-            </li>
-            )
         }
-            
-    // console.log(builtUsingIconsArray)
+
+        let i = 0;
+        const builtUsingIconsArray = []
+
+        for (const key of Object.keys(builtUsing)){
+            builtUsingIconsArray.push(
+                <li className={i%2===0?`${className}-${1}`:`${className}-${2}`}>
+                <input 
+                    type="checkbox" 
+                    id={builtUsing[key].name}
+                    style={{display:"none"}}/>     
+                    <label htmlFor={builtUsing[key].name} className="tech-used">  
+                    <img 
+                    src={builtUsing[key].image} 
+                    alt = {builtUsing[key].name}
+                    onClick = {() => handleIconClick(key) }
+                    />
+                    </label> 
+                </li>
+            )
+            i++;
+        }
+
     return (
-        <div>
-            <label htmlFor={labelFor}>{labelText}</label>
+        <div className={className}>
+            <label htmlFor={labelFor}className="builtUsing-input-title">{labelText}</label>
                 <ul>
                     {builtUsingIconsArray.map((icon, i) => {
                         return icon
@@ -56,13 +56,7 @@ const FormInputTech : React.FC<Props> = ({
                 </ul>
         </div>
     )
-            }
+}
 
-// const ImageCheckbox = ({builtUsingImage}) =>{
-//     return (
-//     <img src={builtUsingImage} alt="built using"/>
-
-//     )
-// }
 
 export default FormInputTech
