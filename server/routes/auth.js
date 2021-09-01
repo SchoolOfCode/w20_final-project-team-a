@@ -1,20 +1,15 @@
 import express from "express";
-import passport from "passport";
-import { User } from "../models/user.model.js";
 
 
 export const authRouter = express.Router();
 
-//use the local strategy -first argument to passport.authenticate
 authRouter.get("/check", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(200).send(info);
-    }
-    return res.status(200).send(user);
-  })(req, res, next);
+  console.log(req.session)
+  if (req.session.email){
+    console.log("Authenticated!")
+    res.status(200).send({msg:"logged In", success: true})
+  } else{
+    res.status(401).send({msg:"Not logged In", success: false})
+  }
 });
 

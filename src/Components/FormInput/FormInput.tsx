@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 type Props = {
     labelFor:string, 
     labelText:string, 
     type:string, 
-    placeholder:string, 
+    placeholder:string,
+    className: string, 
     name:string, 
     setValue:(val:any)=> void}
 
@@ -12,12 +13,13 @@ const FormInput : React.FC<Props> = ({
     labelFor, 
     labelText, 
     type, 
-    placeholder, 
+    placeholder,
+    className,
     name, 
     setValue}) => {  
 
     return (
-        <div>
+        <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
                 <input 
                     type={type}

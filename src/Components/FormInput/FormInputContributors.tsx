@@ -1,4 +1,4 @@
-import React, {SetStateAction, useState} from 'react'
+import React, {useState} from 'react'
 import isEmail from 'validator/lib/isEmail'
 
 // const FormInputContributors: React.FC = () => {}
@@ -8,6 +8,7 @@ type Props = {
     labelText:string, 
     type:string, 
     placeholder:string, 
+    className:string
     name:string, 
     contributors:string[],
     setContributors:(val:string[])=> void}
@@ -16,7 +17,8 @@ const FormInputContributors : React.FC<Props> = ({
     labelFor, 
     labelText, 
     type, 
-    placeholder, 
+    placeholder,
+    className, 
     name, 
     contributors,
     setContributors}) => {
@@ -39,7 +41,7 @@ const FormInputContributors : React.FC<Props> = ({
     }
 
     return (
-        <div>
+        <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
                 <input 
                     type={type}
@@ -48,13 +50,19 @@ const FormInputContributors : React.FC<Props> = ({
                     required={true}
                     onBlur={(e) => setContributor(e.target.value)}
                 ></input>
-                <button onClick={(e)=>addContributorEmail(e)}>+</button>
+                <button 
+                    onClick={(e)=>addContributorEmail(e)}
+                    className="contributor-button add"
+                >+</button>
                 <ul>
                     {contributors[0] && 
                     contributors.map ((item,i) => {
                         return (
-                        <li key={i}>Contributor {i+1}: {item}
-                            <button onClick={(e)=>removeContributorEmail(e,i)}>-{i}</button>
+                        <li key={i}>{item}
+                            <button 
+                                onClick={(e)=>removeContributorEmail(e,i)}
+                                className="contributor-button remove"
+                            >-</button>
                         </li>
                         )
                     })}
