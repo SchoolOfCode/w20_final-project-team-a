@@ -55,3 +55,13 @@
   width: 15vh;
   height: auto;
 }
+
+.profiles-showcase-cohort-text {
+  text-transform: rotate(-90deg);
+  transform-origin: top left;
+  color: hotpink;
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  /* font-size: 10vh; */
+}

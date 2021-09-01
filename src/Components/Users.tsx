@@ -11,9 +11,9 @@ console.log(data)
         <div 
         // className="profiles-showcase-display-items"
         >
-            <p> {data.displayName}</p>
+            <span className="profiles-showcase-cohort-text"> cohort {data.cohort}</span>
             <img src={data.photo} alt="bootcamper pic" className="profiles-showcase-image"/>
-            <p> {data.cohort}</p>
+            <span> {data.displayName}</span>
             <p> {data.statement}</p>
             <p> {data.email}</p>
             

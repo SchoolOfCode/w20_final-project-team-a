@@ -18,19 +18,9 @@ const ProfilesShowcase = () => {
         const getData = async() =>{
         axios.get(API_URL+"users/all") 
         .then(
-            (response) => {
-                // response.data.forEach((user:any) => setData([...data,user]))
-                // console.log(response.data, "data = ",data)
-                // let userDataArray = [];
-                // for (let i=0; i<response.data.length; i++) {
-                //     userDataArray.push(response.data[i]);
-                //     console.log("response.data[i]", response.data[i])
-                //     setData([...userDataArray, userDataArray])
-                //     console.log(userDataArray);
-                // }
-                setData(response.data)
-                
-            }
+                (response) => {
+                    setData(response.data)
+                }
             )
             console.log(data)
         }
@@ -42,7 +32,7 @@ const ProfilesShowcase = () => {
             <div>
             <section className="profiles-showcase-page-container">
                 <header className="profiles-showcase-header">
-                    <h1 className="profiles-showcase-header-text">Login</h1>
+                    <h1 className="profiles-showcase-header-text">Bootcampers</h1>
                     <img className="profiles-showcase-header-line" src={line} alt="sidebar"/>
                 </header>
             <section className="profiles-showcase-display">
