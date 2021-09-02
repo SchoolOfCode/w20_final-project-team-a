@@ -23,7 +23,7 @@
 
 .project-showcase-header-line{
     position: fixed;
-    max-height: 94vh;
+    max-height: 95vh;
     bottom: 0;
     left: 10vw;
     width: 1%;
@@ -61,14 +61,18 @@
 /*Project component styling start*/
 
 .project-showcase-image{
-    width: 15%;
-    height: auto;
+    height: 200px;
+    width: 350px;
+    
 }
 
 .project-showcase-title-text{
-    transform-origin: top left;
     color: yellow;
 
+}
+
+.project-showcase-date{
+    display: none;
 }
 /*Project component styling end*/
 

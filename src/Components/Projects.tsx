@@ -14,7 +14,7 @@ const Projects: React.FC<Props> = ({data}) => {
         <div>
             <span className="project-showcase-title-text">{data.projectName}</span>        
             <img src={data.appDeploymentImage} alt="Project" className="project-showcase-image"/>
-            <span className="project-date">12/05/2000</span>
+            <span className="project-showcase-date">12/05/2000</span>
         </div>
     </>
     )
