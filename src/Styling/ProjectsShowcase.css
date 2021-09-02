@@ -1,4 +1,4 @@
-.projects-showcase-div{
+.project-showcase-container{
     display: grid;
-    grid-template-columns: 5fr 5fr;
+    height: 90vw;
 }
