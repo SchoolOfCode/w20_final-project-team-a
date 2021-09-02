@@ -1,0 +1,67 @@
+.profiles-showcase-page-container {
+  display: grid;
+  height: 90vw;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 0.2fr 1fr;
+}
+
+.profiles-showcase-header {
+  font-family: "Poppins", sans-serif;
+  width: 10vw;
+  grid-row: span;
+}
+
+.profiles-showcase-header-line {
+  position: fixed;
+  bottom: 0;
+  left: 10vw;
+  width: 1%;
+  max-height: 94vh;
+}
+
+.profiles-showcase-header-text {
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 10vh;
+}
+
+.profiles.showcase-display {
+  /* display: grid; */
+  grid-column: 2;
+}
+
+.profiles-showcase-sidebar-image {
+  width: 28%;
+  top: 10vw;
+  left: 10vw;
+  height: auto;
+  position: fixed;
+}
+
+.profiles-showcase-display-items {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: last baseline; */
+  /* align-items: center; */
+}
+
+.profiles-showcase-image {
+  width: 15vh;
+  height: auto;
+}
+
+.profiles-showcase-cohort-text {
+  text-transform: rotate(-90deg);
+  transform-origin: top left;
+  color: hotpink;
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  /* font-size: 10vh; */
+}

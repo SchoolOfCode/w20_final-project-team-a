@@ -7,9 +7,19 @@ import FormInputImage from '../Components/FormInput/FormInputImage';
 import FormInputTech from '../Components/FormInput/FormInputTech';
 import { API_URL } from '../config.js';
 import {builtUsingIcons} from "../Components/techStack/techStack.js"
+//Style elements
+import Line from "../Components/BackgroundsPlus/Line.png"
+import HorizontalLine from "../Components/BackgroundsPlus/Viewed Profile Up Left.png"
+import { useHistory } from 'react-router-dom';
 
+type Props = {
+    loginStatus:boolean,
+}
 
-const Submit: React.FC = () => {
+const Submit : React.FC<Props> = ({loginStatus}) =>{
+
+    const history = useHistory()
+    if (loginStatus === false) history.push("/login")
 
     const [projectName, setProjectName] = useState();
     const [weekNumber, setWeekNumber] = useState();
@@ -56,9 +66,6 @@ const Submit: React.FC = () => {
             formData.append("appDeploymentUrl",appDeploymentUrl!)
             selectedBuiltUsing.forEach(tech=>
                 formData.append("techUsed",tech.name))
-            // formData.append("additionalAppImage1",additionalAppImage1!)
-            // formData.append("additionalAppImage2",additionalAppImage2!)            
-            // formData.append("additionalAppImage3",additionalAppImage3!)
             appImagesArray.forEach(image => 
                 formData.append("appImages", image!))
 
@@ -89,119 +96,137 @@ const Submit: React.FC = () => {
         }
 
     return (
-        <div>
-            <h1>Add a project to the showcase</h1>
-            {success &&
-            <div style={{backgroundColor:"lightgreen", color:"black"}}> 
-                <p>Your project has been uploaded. </p>
-            </div>}
-            {failure &&
-            <div style={{backgroundColor:"red", color:"white"}}> 
-                <p>{failureMsg}</p>
-            </div>
-            }            
-            <form encType="multipart/form-data">
-                <FormInput 
-                    labelFor="projectName"
-                    labelText="Project Name: "
-                    type="text"
-                    placeholder="My Project"
-                    name="projectName"
-                    setValue={setProjectName}
-                />
-                <FormInput 
-                    labelFor="weekNumber"
-                    labelText="Week Number: "
-                    placeholder=""
-                    type="number"
-                    name="weekNumber"
-                    setValue={setWeekNumber}
-                />
-                <FormInputContributors 
-                    labelFor="contributors"
-                    labelText="Contributors: "
-                    type="text"
-                    placeholder="Contributors"
-                    name="contributors"
-                    setContributors={setContributors}  
-                    contributors={contributors}                  
-                /> 
-                <FormInputMultiText 
-                    labelFor="problemStatement"
-                    labelText="Problem Statement: "
-                    placeholder="max 140 characters"
-                    name="problemStatement"
-                    setValue={setProblemStatement}
-                />   
-                <FormInputMultiText
-                    labelFor="additionalInformation"
-                    labelText="Additional Information: "
-                    placeholder="max 140 characters"
-                    name="additionalInformation"
-                    setValue={setAdditionalInformation}
-                />
-                <FormInput 
-                    labelFor="githubUrl"
-                    labelText="GitHub URL: "
-                    type="text"
-                    placeholder="github.com/myproject"
-                    name="githubUrl"
-                    setValue={setGithubUrl}
-                />
-                <FormInputTech 
-                    labelFor="builtUsing"
-                    labelText="Technologies Used: "
-                    name="builtUsing"
-                    setBuiltUsing={setBuiltUsing}  
-                    builtUsing={builtUsing}     
-                />
-                <FormInputImage 
-                    labelFor="appImage"
-                    labelText="Deployed Project Image: "
-                    name="appImage"
-                    className="form-input"
-                    imageClassName="form-input-image"
-                    setValue={setAppImage}
-                    state={appImage}
-                />
-                <FormInput 
-                    labelFor="appDeploymentUrl"
-                    labelText="Deployed Project URL: "
-                    type="url"
-                    placeholder="myproject.ninja"
-                    name="appDeploymentUrl"
-                    setValue={setAppDeploymentUrl}
-                />                
-                <FormInputImage 
-                    labelFor="additionalAppImage1"
-                    labelText="Additional Project image 1: "
-                    name="additionalAppImage1"
-                    className="form-input"
-                    imageClassName="form-input-image"
-                    setValue={setAdditionalAppImage1}
-                    state={additionalAppImage1}
-                /> 
-                <FormInputImage 
-                    labelFor="additionalAppImage2"
-                    labelText="Additional Project image 2: "
-                    name="additionalAppImage2"
-                    className="form-input"
-                    imageClassName="form-input-image"
-                    setValue={setAdditionalAppImage2}
-                    state={additionalAppImage2}
-                />
-                <FormInputImage 
-                    labelFor="additionalAppImage3"
-                    labelText="Additional Project image 3: "
-                    name="additionalAppImage3"
-                    className="form-input"
-                    imageClassName="form-input-image"
-                    setValue={setAdditionalAppImage3}
-                    state={additionalAppImage3}
-                />                                 
-{/* additionalAppData */}                                                                                           
-            <button type="submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
-            </form> 
+        <div className = "submit-page-container">
+            <header className="submit-header">
+                <h1 className="submit-header-text">Add Project</h1>
+                <img src={Line} alt="styling line" className="submit-header-line"/>
+            </header>
+            <section className = "submit-messages-container">
+                {success &&
+                    <div className = "submit-messages-container-sucess">
+                        <h3 className = "submit-messages-text">Your project has been uploaded </h3>
+                    </div>
+                }
+                {failure &&
+                    <div className = "submit-messages-container-failure">
+                        <h3 className = "submit-messages-text">{failureMsg}</h3>
+                    </div>
+                }
+            </section>            
+            
+            <img src={HorizontalLine} alt="styling line" className="submit-messages-line" />
+            
+            <section className = "submit-form-container">
+                <form encType="multipart/form-data" className = "submit-form-form">
+                    <FormInput 
+                        labelFor="projectName"
+                        labelText="Project Name: "
+                        type="text"
+                        className="projectName-input"
+                        placeholder="My Project"
+                        name="projectName"
+                        setValue={setProjectName}
+                    />
+                    <FormInputMultiText 
+                        labelFor="problemStatement"
+                        labelText="Problem Statement: "
+                        placeholder="max 140 characters"
+                        className="problemStatement-input"
+                        name="problemStatement"
+                        setValue={setProblemStatement}
+                    />   
+                    <FormInputMultiText
+                        labelFor="additionalInformation"
+                        labelText="Additional Information: "
+                        placeholder="max 140 characters"
+                        className="additionalInformation-input"
+                        name="additionalInformation"
+                        setValue={setAdditionalInformation}
+                    />
+                    <FormInput 
+                        labelFor="githubUrl"
+                        labelText="GitHub URL: "
+                        type="text"
+                        className="githubUrl-input"
+                        placeholder="github.com/myproject"
+                        name="githubUrl"
+                        setValue={setGithubUrl}
+                    />
+                    <FormInput 
+                        labelFor="weekNumber"
+                        labelText="Week Number: "
+                        placeholder=""
+                        className="weekNumber-input"
+                        type="number"
+                        name="weekNumber"
+                        setValue={setWeekNumber}
+                    />   
+                    <FormInputContributors 
+                        labelFor="contributors"
+                        labelText="Contributors: "
+                        type="text"
+                        placeholder="Contributors"
+                        className="contributors-input"
+                        name="contributors"
+                        setContributors={setContributors}  
+                        contributors={contributors}                  
+                    /> 
+                    <FormInputTech 
+                        labelFor="builtUsing"
+                        labelText="Technologies Used: "
+                        name="builtUsing"
+                        className="builtUsing-input"
+                        setBuiltUsing={setBuiltUsing}  
+                        builtUsing={builtUsing}     
+                    />
+                    <FormInput 
+                        labelFor="appDeploymentUrl"
+                        labelText="Deployed Project URL: "
+                        type="url"
+                        className="appDeploymentUrl-input"
+                        placeholder="myproject.ninja"
+                        name="appDeploymentUrl"
+                        setValue={setAppDeploymentUrl}
+                    />
+                    <FormInputImage 
+                        labelFor="appImage"
+                        labelText="Deployed Project Image: "
+                        name="appImage"
+                        className="appImage-input"
+                        imageClassName="appImage-input-image"
+                        setValue={setAppImage}
+                        state={appImage}
+                    />
+                    <FormInputImage 
+                        labelFor="additionalAppImage1"
+                        labelText="Additional Project image 1: "
+                        name="additionalAppImage1"
+                        className="additionalAppImage1-input"
+                        imageClassName="additionalAppImage1-input-image"
+                        setValue={setAdditionalAppImage1}
+                        state={additionalAppImage1}
+                    /> 
+                    <FormInputImage 
+                        labelFor="additionalAppImage2"
+                        labelText="Additional Project image 2: "
+                        name="additionalAppImage2"
+                        className="additionalAppImage2-input"
+                        imageClassName="additionalAppImage2-input-image"
+                        setValue={setAdditionalAppImage2}
+                        state={additionalAppImage2}
+                    />
+                    <FormInputImage 
+                        labelFor="additionalAppImage3"
+                        labelText="Additional Project image 3: "
+                        name="additionalAppImage3"
+                        className="additionalAppImage3-input"
+                        imageClassName="additionalAppImage3-input-image"
+                        setValue={setAdditionalAppImage3}
+                        state={additionalAppImage3}
+                    />                                                                                                                         
+                </form>
+            <button type="submit" className="button project-submit" onClick={(e)=>handleSubmit(e)}>Submit</button>            
+            </section>
         </div>
     )
 }

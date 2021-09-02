@@ -16,8 +16,9 @@ const Showcase =  () => {
           axios.get(API_URL+"projects/all") 
           .then(
               (response) => {
-                  response.data.forEach((project:any) => setData([...data,project]))
-                    console.log(response.data)
+                //   response.data.forEach((project:any) => setData([...data,project]))
+                //     console.log(response.data)
+                setData(response.data)
                 }
               )
       }
@@ -26,9 +27,13 @@ const Showcase =  () => {
   
       return (
         <>
+
             <div className="projects-showcase-div">
-                {data.map((project) => <Projects data={project} />)}
-            </div>
+
+            {data.map((project, i) => <Projects key={i} data={project} />)}
+               
+           </div>
+
         </>
       )
 }
