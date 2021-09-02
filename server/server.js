@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from 'path'
+import {__dirname} from './configs/dirname.js'
 //Database
 import mongoose from "mongoose";
 import { MongoDB } from "./configs/keys.js";
@@ -28,17 +30,11 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
 // db.connection.on('connected',()=> console.log("Connected to the DB") )
 
 //Midlewares
-//make uploads folder available publically/to react
-app.use("/uploads", express.static("uploads"));
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+
 //CORS
 app.use(
   cors({
-    origin: "http://localhost:3000", //or hosted location of the react app
+    origin: process.env.HOST, //or hosted location of the react app
     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
     credentials: true,
   })
@@ -69,9 +65,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
+//make uploads folder available publically/to react
+app.use("/uploads", express.static("uploads"));
+
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);
+
+
+if (process.env.NODE_ENV === 'production'){
+  //set static react folder
+  app.use(express.static('/build'))
+  app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
