@@ -27,11 +27,13 @@ const Showcase =  () => {
   
       return (
         <>
-            <div>
+
+            <div className="projects-showcase-div">
 
             {data.map((project, i) => <Projects key={i} data={project} />)}
                
            </div>
+
         </>
       )
 }

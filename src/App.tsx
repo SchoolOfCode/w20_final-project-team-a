@@ -38,6 +38,7 @@ function App() {
       <Route exact path = "/journey" component={Journey} />
       <Route exact path = "/signup" component={Signup} />
 
+
       {/* Authentication routes */}
       <Route exact path = "/login">
           <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
@@ -50,6 +51,7 @@ function App() {
       <Route exact path = "/submit" >
         <Submit loginStatus={loginStatus} />
       </Route>
+
     </Router>
   );
 }
