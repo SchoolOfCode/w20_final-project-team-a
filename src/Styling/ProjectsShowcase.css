@@ -33,6 +33,16 @@
 
 /*Display sidebar section start*/
 
+.project-showcase-display{
+    grid-column: 2;
+}
 
+.project-showcase-display-line{
+    width: 28%;
+    top: 10vw;
+    left: 10vw;
+    height: auto;
+    position: fixed;
+}
 
 /*Display sidebar section end*/
