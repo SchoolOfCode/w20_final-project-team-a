@@ -1,4 +1,38 @@
+/*Header section start*/
 .project-showcase-container{
     display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-rows: 0.2fr 1fr;
     height: 90vw;
 }
+
+.project-showcase-header{
+    font-family: "Poppins", sans-serif;
+    width: 10vw;
+    grid-row: span;
+}
+
+.project-showcase-header-text{
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 12vh;
+}
+
+.project-showcase-header-line{
+    position: fixed;
+    max-height: 94vh;
+    bottom: 0;
+    left: 10vw;
+    width: 1%;
+
+}
+/*Header section end */
+
+/*Display sidebar section start*/
+
+
+
+/*Display sidebar section end*/
