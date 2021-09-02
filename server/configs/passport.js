@@ -50,10 +50,10 @@ passport.use(
     //containing the serialized user id
     User.findById(id, (err, user) => {
       if(err) {
-        console.log("error:",err)
+        console.error(err)
         return done(err)
       } else {
-        console.log(id,user)
+        // console.log(id,user)
         done(null,user);
       }
     });

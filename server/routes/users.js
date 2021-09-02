@@ -88,13 +88,15 @@ userRouter.post("/login", (req, res, next) => {
     }
     req.logIn(user, (err)=>{
       if (err) return next(err);
-      req.session.email = user.email;
-      req.session.userid = user._id
+      // req.session.email = user.email;
+      // req.session.displayName = user.displayName;
+      // req.session.role = user.role;
+      // req.session.isAuth = true;
       return res.status(200).send({
         msg:`Logging in as ${user.displayName}`, 
         sucess:true, 
-        role: user.role,
-        id:user._id
+        // role: user.role,
+        // id:user._id
       });
       }
     )
