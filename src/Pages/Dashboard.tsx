@@ -1,17 +1,52 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import { API_URL } from '../config'
+import AdminBoard from '../Components/AdminBoard/AdminBoard'
+import EditProfile from '../Components/EditProfile/EditProfile'
 
 type DashboardProps = {
     loginStatus: boolean
 }
+
+export interface User{
+    _id: string,
+    email: string,
+    displayName: string,
+    cohort?: string,
+    githubUrl?: string,
+    photo?: string,
+    statement?: string,
+    linkedin?: string,
+    twitter?: string,
+    youtube?: string,
+    personalWebsite?: string,
+    role: string,
+    projects?: string[],
+}
+
 const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
 
-    const history = useHistory()
-    const [displayName,setDisplayName] = useState("");
+    const initialUser = {
+        _id:"",
+        email: "",
+        displayName: "",
+        cohort: "",
+        githubUrl: "",
+        photo: "",
+        statement: "",
+        linkedin: "",
+        twitter: "",
+        youtube: "",
+        personalWebsite: "",
+        role: "",
+        projects: [""],
+    }
 
-    //check if user is logged in
+    const history = useHistory()
+    const [user,setUser] = useState(initialUser);
+    const [role, setRole] = useState("user")
+
     useEffect(()=>{
         if (loginStatus === false){
             history.push("/login")
@@ -20,17 +55,17 @@ const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
                 withCredentials: true
             })
             .then(res => {
-                setDisplayName(res.data.user.displayName)
+                setUser(res.data.user)
+                setRole(res.data.user.role)
             }
             ).catch(err => console.log(err))
         }
     },[])
 
-    return (
-        <div>
-            <h1>Welcome {displayName}</h1>
-
-        </div>
+    return (role==="admin"?
+    <AdminBoard user={user}/>
+    :
+    <EditProfile user={user} />
     )
 }
 

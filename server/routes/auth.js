@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "../models/user.model.js";
+import { Project } from "../models/project.model.js";
 
 export const authRouter = express.Router();
 
@@ -13,3 +14,12 @@ authRouter.get("/check", (req, res, next) => {
   }
 });
 
+authRouter.get("/admin/list", (req, res, next) => {
+  if (req.isAuthenticated()){
+    Project.find({}).populate({path:"users", model:"User"})
+    .then(projects=> res.status(200).send({msg:"Projects retrieved and populated", success: true, projects:projects}))
+    .catch(err=>res.status(401).send({msg:err, success: false}))
+  } else{
+    res.status(401).send({msg:"Please Login First", success: false})
+  }
+});
