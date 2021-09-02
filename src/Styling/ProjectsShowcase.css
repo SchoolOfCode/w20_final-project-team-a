@@ -1,9 +1,9 @@
 /*Header section start*/
 .project-showcase-container{
     display: grid;
+    height: 90vw;
     grid-template-columns: 0.2fr 1fr;
     grid-template-rows: 0.2fr 1fr;
-    height: 90vw;
 }
 
 .project-showcase-header{
@@ -46,3 +46,18 @@
 }
 
 /*Display sidebar section end*/
+
+/*Display showcase objects start*/
+
+.project-showcase-display-objects{
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/*Display showcase objects end*/
+
+/*Project component styling start*/
+/*Project component styling end*/
+
