@@ -26,9 +26,19 @@ authRouter.get("/admin/list", (req, res, next) => {
 
 authRouter.put("/admin/update", (req, res, next) => {
   if (req.isAuthenticated()){
-    Project.find({}).populate({path:"users", model:"User"})
-    .then(projects=> res.status(200).send({msg:"Projects retrieved and populated", success: true, projects:projects}))
-    .catch(err=>res.status(401).send({msg:err, success: false}))
+    const projectList = req.body;
+    const errors = [];
+
+    projectList.forEach(project=>{
+      Project.findByIdAndUpdate(project._id, {"$set": {approved:project.approved,featured:project.featured}})
+      .catch(err=>errors.push(err))
+    })
+
+    if (errors.length === 0){
+      res.status(200).send({msg:"All Projects Updated Successfully", success: true})
+    } else{
+      res.status(401).send({msg:errors, success: false})
+    }
   } else{
     res.status(401).send({msg:"Please Login First", success: false})
   }

@@ -44,14 +44,17 @@ const AdminProjectDisplay = () => {
     ]
 
     const handleSave = () =>{
-        // axios.get(API_URL+"auth/admin/list", {
-        //     withCredentials: true
-        // })
-        // .then(res => {
-        //     setAllProjects(res.data.projects)
-        //     console.log(res.data.projects)
-        // })
-        // .catch(err => console.log(err))
+        axios({
+            url: API_URL+"auth/admin/update",
+            method:'put',
+            data: allProjects
+        })
+        .then(res => {
+            setRefresh(!refresh)
+        })
+        .catch(err => console.log(err))
+
+
         const forDeletionIDs = allProjects
             .filter((project:any) => project.remove===true )
             .map((project:any) => project._id)
