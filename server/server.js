@@ -35,7 +35,7 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
 app.use(
   cors({
     origin: process.env.HOST, //or hosted location of the react app
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
     credentials: true,
   })
 );

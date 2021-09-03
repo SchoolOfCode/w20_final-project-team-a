@@ -7,17 +7,18 @@ import { v4 as uuidv4 } from 'uuid';
 const AdminProjectDisplay = () => {
 
     const [allProjects, setAllProjects] = useState([]);
-    
+    const [refresh,setRefresh] = useState(false);
+    axios.defaults.withCredentials = true;
+
     useEffect(()=>{
         axios.get(API_URL+"auth/admin/list", {
             withCredentials: true
         })
         .then(res => {
             setAllProjects(res.data.projects)
-            console.log(res.data.projects)
         })
         .catch(err => console.log(err))
-    },[])
+    },[refresh])
 
     const projectsArray:any[] = [
     <div className="admin-page-projects-list-item">
@@ -41,6 +42,32 @@ const AdminProjectDisplay = () => {
         </span>
     </div>
     ]
+
+    const handleSave = () =>{
+        // axios.get(API_URL+"auth/admin/list", {
+        //     withCredentials: true
+        // })
+        // .then(res => {
+        //     setAllProjects(res.data.projects)
+        //     console.log(res.data.projects)
+        // })
+        // .catch(err => console.log(err))
+        const forDeletionIDs = allProjects
+            .filter((project:any) => project.remove===true )
+            .map((project:any) => project._id)
+
+        if (forDeletionIDs.length > 0){
+            axios({
+                url: API_URL+"auth/admin/delete",
+                method:'delete',
+                data:forDeletionIDs,
+            })
+            .then(res => {
+                setRefresh(!refresh)
+            })
+            .catch(err => console.log(err))
+        }
+    }
 
     allProjects.forEach((project:any,i:number) =>{
         projectsArray.push(
@@ -79,6 +106,7 @@ const AdminProjectDisplay = () => {
             <button 
                 type="button" 
                 className="admin-page-button"
+                onClick={handleSave}
             >Save Changes</button>
         </section>
     )
