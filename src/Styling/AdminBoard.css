@@ -61,15 +61,34 @@
     position: relative;
     left: 10vw;
     top: 20vh;
+    width: 80vw;
 }
 
-.admin-page-projects-list{
-    list-style-type: none;
+.admin-page-projects-list-item{
     display: grid;
-    grid-template-columns: 2fr 2fr 0.5fr 0.5fr;
-
+    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr;
 }
-
+.admin-page-projects-list-item:first-child{
+    text-align: center;
+    font-size: 1.5em;
+}
+.admin-page-projects-list-1{
+    grid-column: 1;
+}
+.admin-page-projects-list-2{
+    grid-column: 2;
+}
+.admin-page-projects-list-3{
+    grid-column: 3;
+}
+.admin-page-projects-list-4{
+    grid-column: 4;
+    justify-self: center;
+}
+.admin-page-projects-list-5{
+    grid-column: 5;
+    justify-self: center;
+}
 
 /* -----------Admin - Project List--------------------------- */
 
