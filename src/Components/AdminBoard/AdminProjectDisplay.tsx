@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { API_URL } from '../../config'
 import { Approved, Featured, Remove } from './AdminOptions';
+import { v4 as uuidv4 } from 'uuid';
 
 const AdminProjectDisplay = () => {
 
@@ -43,7 +44,7 @@ const AdminProjectDisplay = () => {
 
     allProjects.forEach((project:any,i:number) =>{
         projectsArray.push(
-            <div className="admin-page-projects-list-item">
+            <div className="admin-page-projects-list-item" key={uuidv4()}>
                 <div className="admin-page-projects-list-1">
                     <span>
                         {project.projectName}
@@ -65,9 +66,9 @@ const AdminProjectDisplay = () => {
                 <span className="admin-page-projects-list-3">
                     {project.contributors.join(", ")}
                 </span>
-                <Approved projects={allProjects} setProjects={setAllProjects} i={i}/>
-                <Featured projects={allProjects} setProjects={setAllProjects} i={i}/>
-                <Remove projects={allProjects} setProjects={setAllProjects} i={i}/>
+                <Approved projects={allProjects} setProjects={setAllProjects} i={i} key={uuidv4()}/>
+                <Featured projects={allProjects} setProjects={setAllProjects} i={i} key={uuidv4()}/>
+                <Remove projects={allProjects} setProjects={setAllProjects} i={i} key={uuidv4()}/>
             </div>
         )
     })

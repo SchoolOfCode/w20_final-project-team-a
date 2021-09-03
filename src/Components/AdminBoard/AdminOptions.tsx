@@ -12,10 +12,12 @@ type Props={
 
 export const Approved = ({projects, setProjects,i}:Props) => {
 
-    const [approved, setApproved] = useState(projects[i].approved)
-    
     const handleClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>)=>{
-        setApproved(!approved)
+        const updatedProjects = [...projects]
+        updatedProjects[i] = {
+            ...updatedProjects[i], approved: !updatedProjects[i].approved
+        }
+        setProjects(updatedProjects)
     }
 
     return (
@@ -29,15 +31,25 @@ export const Approved = ({projects, setProjects,i}:Props) => {
                 htmlFor={`approve-${i}`}
                 onClick={(e)=> handleClick(e)}
                 >
-                {approved? 
+                {projects[i].approved? 
                     <CheckedIcon className="admin-checked-icon"/>: 
-                    <UncheckedIcon className="admin-unchecked-icon"/>}
+                    <UncheckedIcon className="admin-unchecked-icon"/>
+                }
             </label>
         </div>
     )
 }
 
 export const Featured = ({projects, setProjects,i}:Props) => {
+
+    const handleClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>)=>{
+        const updatedProjects = [...projects]
+        updatedProjects[i] = {
+            ...updatedProjects[i], featured: !updatedProjects[i].featured
+        }
+        setProjects(updatedProjects)
+    }
+
     return (
         <div className="admin-page-projects-list-5" >
             <input 
@@ -45,12 +57,29 @@ export const Featured = ({projects, setProjects,i}:Props) => {
                 defaultChecked={projects[i].featured} 
                 id={`feature-${i}`}
             />
-            <label htmlFor={`feature-${i}`}></label>
+            <label 
+                htmlFor={`feature-${i}`}
+                onClick={(e)=> handleClick(e)}
+                >
+                {projects[i].featured? 
+                    <CheckedIcon className="admin-checked-icon"/>: 
+                    <UncheckedIcon className="admin-unchecked-icon"/>
+                }
+            </label>
         </div>
     )
 }
 
 export const Remove = ({projects, setProjects,i}:Props) => {
+
+    const handleClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>)=>{
+        const updatedProjects = [...projects]
+        updatedProjects[i] = {
+            ...updatedProjects[i], remove: !updatedProjects[i].remove
+        }
+        setProjects(updatedProjects)
+    }
+
     return (
         <div className="admin-page-projects-list-6">
             <input 
@@ -58,7 +87,15 @@ export const Remove = ({projects, setProjects,i}:Props) => {
                 defaultChecked={false} 
                 id={`remove-${i}`}
                 />
-            <label htmlFor={`remove-${i}`}></label>
+            <label 
+                htmlFor={`remove-${i}`}
+                onClick={(e)=> handleClick(e)}
+                >
+                {projects[i].remove? 
+                    <RemoveIcon className="admin-remove-checked-icon"/>: 
+                    <RemoveIcon className="admin-remove-unchecked-icon"/>
+                }
+            </label>
         </div>
     )
 }
