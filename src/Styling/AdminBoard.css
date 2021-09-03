@@ -16,26 +16,8 @@
     transition: 500ms all ease-in-out 50ms;
     backface-visibility: hidden;
 }
-.admin-page-container input, textarea{
-    min-height: 1.6em;
-    margin-top: 10px;
-}
-.admin-page-container button{
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
-    border: 1px solid #ffde59;
-    padding: 0 5px;
-    margin-left: 5px;
-    font-stretch: ultra-expanded;
-    font-size: 1.2em;
-    width: 25px;
-    cursor: pointer;
-    /* height: 1.2em; */
-}
-.admin-page-container button:hover{
-    background-color: #ffde59;
-    color: black;
-}
+
+
 /* -----------Admin - Header--------------------------- */
 
 .admin-page-header{
@@ -67,6 +49,8 @@
 /* -----------Admin - Project List--------------------------- */
 
 .admin-page-projects{
+    display: grid;
+    row-gap: 2em;
     position: relative;
     left: 10vw;
     top: 20vh;
@@ -132,6 +116,7 @@
     align-self: center;
 }
 
+
 .admin-page-projects-list-6{
     grid-column: 6;
     justify-self: center;
@@ -153,4 +138,26 @@
 
 .admin-remove-checked-icon{
     filter: invert(37%) sepia(56%) saturate(6133%) hue-rotate(345deg) brightness(95%) contrast(106%);
+}
+
+/* Button Styling */
+
+.admin-page-button{
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 1px solid #ffde59;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-left: 5px;
+    font-stretch: ultra-expanded;
+    font-size: 1.2em;
+    width: 10em;
+    height: 2em;
+    cursor: pointer;
+    margin-top: 5em;
+    justify-self: center;
+}
+.admin-page-button:hover{
+    background-color: #ffde59;
+    color: black;
 }

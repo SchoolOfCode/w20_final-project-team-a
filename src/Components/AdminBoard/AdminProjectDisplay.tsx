@@ -76,6 +76,10 @@ const AdminProjectDisplay = () => {
     return (
         <section className="admin-page-projects">
             {projectsArray}
+            <button 
+                type="button" 
+                className="admin-page-button"
+            >Save Changes</button>
         </section>
     )
 }
