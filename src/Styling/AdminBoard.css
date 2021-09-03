@@ -6,7 +6,16 @@
     left: 0;
     bottom: 0;
 }
+/* Page global styles here */
+.admin-page-container input[type="checkbox"]{
+    display: none;
+  }
 
+.admin-page-container *::before,
+.admin-page-container *::after{
+    transition: 500ms all ease-in-out 50ms;
+    backface-visibility: hidden;
+}
 .admin-page-container input, textarea{
     min-height: 1.6em;
     margin-top: 10px;
@@ -37,7 +46,7 @@
 .admin-header-line{
     position: fixed;
     bottom:0;
-    top: 1.9em;
+    top: 0;
     left:7em;
 }
 
@@ -51,7 +60,7 @@
 }
 
 .admin-horizontal-line{
-    position: fixed;
+    position: absolute;
     top: 15vh;
     left:6.5em;
 }
@@ -66,7 +75,7 @@
 
 .admin-page-projects-list-item{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr 0.5fr;
 }
 .admin-page-projects-list-item:first-child{
     text-align: center;
@@ -74,24 +83,60 @@
 }
 .admin-page-projects-list-1{
     grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
 }
+
+/* ------ preview image -------------*/
+
+.admin-page-projects-preview img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+.admin-page-projects-preview img:hover{
+    opacity: 0.8;
+}
+:checked + .admin-page-projects-preview img{
+    border: 1px solid #ffde59;
+    width: 250px;
+    height: 250px;
+}
+
+
 .admin-page-projects-list-2{
     grid-column: 2;
+    justify-self: center;
+    align-self: center;
 }
 .admin-page-projects-list-3{
     grid-column: 3;
+    justify-self: center;
+    text-align: center;
+    align-self: center;
 }
 .admin-page-projects-list-4{
     grid-column: 4;
     justify-self: center;
+    align-self: center;
 }
 .admin-page-projects-list-5{
     grid-column: 5;
     justify-self: center;
+    align-self: center;
 }
 
-/* -----------Admin - Project List--------------------------- */
+.admin-page-projects-list-6{
+    grid-column: 6;
+    justify-self: center;
+    align-self: center;
+}
 
+/* -----------Admin - Checkbox Styling/Animations------------------- */
 
-
-/* -----------Admin - Project List--------------------------- */

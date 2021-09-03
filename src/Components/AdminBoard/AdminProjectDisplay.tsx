@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import { Approved, Featured, Remove } from './AdminOptions';
 
 const AdminProjectDisplay = () => {
 
     const [allProjects, setAllProjects] = useState([]);
-
+    
     useEffect(()=>{
         axios.get(API_URL+"auth/admin/list", {
             withCredentials: true
         })
         .then(res => {
             setAllProjects(res.data.projects)
+            console.log(res.data.projects)
         })
         .catch(err => console.log(err))
     },[])
@@ -22,10 +24,10 @@ const AdminProjectDisplay = () => {
             Project Name
         </span>
         <span className="admin-page-projects-list-2">
-            Preview
+            GitHub URL
         </span>
         <span className="admin-page-projects-list-3">
-            GitHub URL
+            Contributors
         </span>
         <span className="admin-page-projects-list-4">
             Approved
@@ -33,25 +35,39 @@ const AdminProjectDisplay = () => {
         <span className="admin-page-projects-list-5">
             Featured
         </span>
+        <span className="admin-page-projects-list-6">
+            Remove
+        </span>
     </div>
     ]
 
     allProjects.forEach((project:any,i:number) =>{
         projectsArray.push(
             <div className="admin-page-projects-list-item">
-                <span className="admin-page-projects-list-1">
-                    {project.projectName}
-                </span>
-                <span className="admin-page-projects-list-3">
+                <div className="admin-page-projects-list-1">
+                    <span>
+                        {project.projectName}
+                    </span>
+                    <input type="checkbox" id={`admin-preview-image-control-${i}`}/>
+                    <label 
+                        htmlFor={`admin-preview-image-control-${i}`} 
+                        className="admin-page-projects-preview"
+                        >
+                        <img 
+                            src={project.appDeploymentImage} 
+                            alt="Preview of the application"
+                            />
+                    </label>
+                </div>
+                <span className="admin-page-projects-list-2">
                     {project.githubUrl}
                 </span>
-                {/* {project.contributors.map((person:string, i:number)=>
-                    <span key={i} className="admin-page-projects-list-3">
-                        {person}
-                    </span>
-                )} */}
-                <input type="checkbox" defaultChecked={project.approved} className="admin-page-projects-list-4"/>
-                <input type="checkbox" defaultChecked={project.featured} className="admin-page-projects-list-5"/>
+                <span className="admin-page-projects-list-3">
+                    {project.contributors.join(", ")}
+                </span>
+                <Approved projects={allProjects} setProjects={setAllProjects} i={i}/>
+                <Featured projects={allProjects} setProjects={setAllProjects} i={i}/>
+                <Remove projects={allProjects} setProjects={setAllProjects} i={i}/>
             </div>
         )
     })
