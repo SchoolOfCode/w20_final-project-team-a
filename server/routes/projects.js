@@ -41,7 +41,8 @@ const upload = multer({
 export const projectRouter = express.Router();
 
 projectRouter.get("/all", async (req, res) => {
-  const allProjects = await Project.find({}).populate({path:"users", model:"User"});
+  const allProjects = await Project.find({})
+  // .populate({path:"users", model:"User"}); //add this line to convert the user IDs to users
   res.status(200).send(allProjects);
 });
 

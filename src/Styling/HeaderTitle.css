@@ -1,0 +1,20 @@
+.page-header{
+    font-family: 'Poppins', sans-serif;
+    width: 10vw;
+}
+
+.page-header-line{
+    position: fixed;
+    bottom:0;
+    top: 0;
+    left:7em;
+}
+
+.page-header-text{
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    position: fixed;
+    bottom:-1em;
+    left:0.25em;
+    font-size: calc(3em + 1vw);
+}

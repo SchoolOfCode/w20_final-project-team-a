@@ -19,8 +19,8 @@
 
 
 /* -----------Admin - Header--------------------------- */
-
-.admin-page-header{
+/* Moved to component Vertical Header -> Header */
+/* .admin-page-header{
     font-family: 'Poppins', sans-serif;
     width: 10vw;
 }
@@ -40,7 +40,7 @@
     left:0.25em;
     font-size: calc(3em + 1vw);
 }
-
+ */
 .admin-horizontal-line{
     position: absolute;
     top: 15vh;

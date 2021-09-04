@@ -53,3 +53,25 @@ authRouter.delete("/admin/delete", (req, res, next) => {
     res.status(401).send({msg:"Please Login First", success: false})
   }
 });
+
+//User Dashboard Auth Routes
+
+authRouter.get("/user/update/find", async(req,res) => {
+  if (req.isAuthenticated()){
+    // User.findById({_id:req.body})
+    // .then(()=> res.status(200).send({msg:"Projects Removed", success: true}))
+    // .catch(err=>res.status(401).send({msg:err, success: false}))
+  } else{
+    res.status(401).send({msg:"Please Login First", success: false})
+  }
+})
+
+authRouter.put("/user/update/update", async(req,res) => {
+  if (req.isAuthenticated()){
+    // User.findById({_id:req.body})
+    // .then(()=> res.status(200).send({msg:"Projects Removed", success: true}))
+    // .catch(err=>res.status(401).send({msg:err, success: false}))
+  } else{
+    res.status(401).send({msg:"Please Login First", success: false})
+  }
+})
