@@ -17,11 +17,13 @@
     width: 80vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 
 .edit-page-picture{
     grid-column: 1;
-    grid-row: 1/6;
+    grid-row: 1/7;
     justify-self: center;
     display: grid;
     grid-template-columns: 2em 1fr;
@@ -78,4 +80,57 @@
 .edit-page-button:hover{
     background-color: #ffde59;
     color: black;
+}
+
+/* Input Forms */
+
+.edit-page-container div[class*="edit-form"]{
+    display: block;
+    text-transform: uppercase;
+}
+
+.edit-form-displayName-input,
+.edit-form-githubUrl-input,
+.edit-form-linkedin-input,
+.edit-form-twitter-input,
+.edit-form-youtube-input,
+.edit-form-personal-input{
+    grid-column: 2;
+}
+
+.edit-form-cohort-input{
+    grid-column: 3;
+    grid-row: 1/2;
+    justify-self: start;
+}
+.edit-form-cohort-input input{
+    width: 4vw;
+}
+
+.edit-form-location-input{
+    grid-column: 3;
+    grid-row: 1/2;
+    justify-self:center;
+}
+
+.edit-form-location-input input{
+    width: 12vw;
+}
+
+.edit-form-statement-input{
+    grid-column: 3;
+    grid-row: 2/4;
+    justify-self:start;
+    align-self: center;
+
+}
+.edit-form-statement-input textarea{
+    display: block;
+    width: 19.5vw;
+}
+
+.edit-form-image-input{
+    grid-column: 3;
+    grid-row: 4;
+    justify-self:start;
 }

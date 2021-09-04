@@ -91,13 +91,13 @@
 .submit-form-container{
   margin-left: 9em;
   margin-top: 6em;
-  height: 75vh;
+  /* height: 75vh; */
 }
 .submit-form-form{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 75vh;
+  height: 80vh;
   justify-content: space-around;
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
@@ -129,9 +129,29 @@
   padding-top: 0.5em;
   align-self: flex-end;
 }
-.contributors-input .add,input{
-  display: inline;
+
+.contributors-input{
+  display: grid;
+  width: 20vw;
 }
+.contributors-input label{
+  grid-row: 1;
+}
+.contributors-input input{
+  grid-column: 1;
+  grid-row: 2;
+  width: 17vw;
+}
+.add{
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  justify-content: end;
+}
+
+/* .contributors-input .add + input{
+  display: inline-block;
+} */
 
 
 

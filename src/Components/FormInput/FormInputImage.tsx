@@ -28,7 +28,6 @@ const FormInputImage : React.FC<Props> = ({
             return;
         }
         setValue(e.target.files[0]);
-        console.log(e.target.files)
     }
 
     useEffect( () => {

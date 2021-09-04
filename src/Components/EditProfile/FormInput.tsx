@@ -1,0 +1,44 @@
+import React from 'react'
+
+type Props = {
+    labelFor:string, 
+    labelText:string, 
+    type:string, 
+    placeholder:string,
+    className: string, 
+    name:string,
+    required?:boolean,
+    user:any, 
+    setUserDetails:(val:any)=> void}
+
+const FormInput : React.FC<Props> = ({
+    labelFor, 
+    labelText, 
+    type, 
+    placeholder,
+    className,
+    name,
+    required=true,
+    user, 
+    setUserDetails}) => {  
+
+    const handleChange = (e: string) => {
+        const updatedUser = {...user, [name]:e}
+        setUserDetails(updatedUser)
+    }
+
+    return (
+        <div className={className}>
+                <label htmlFor={labelFor}>{labelText}</label>
+                <input 
+                    type={type}
+                    placeholder={placeholder}
+                    name={name}
+                    required={required}
+                    onChange={(e)=>handleChange(e.target.value)}
+                ></input>
+        </div>
+    )
+}
+
+export default FormInput

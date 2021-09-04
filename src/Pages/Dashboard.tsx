@@ -22,6 +22,7 @@ export interface User{
     twitter?: string,
     youtube?: string,
     personalWebsite?: string,
+    location?:string,
     role: string,
     projects?: string[],
 }
@@ -40,6 +41,7 @@ const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
         twitter: "",
         youtube: "",
         personalWebsite: "",
+        location: "",
         role: "",
         projects: [""],
     }
