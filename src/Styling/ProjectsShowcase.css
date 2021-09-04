@@ -38,13 +38,20 @@
 }
 
 .project-showcase-display-line{
-    width: 28%;
-    top: 10vw;
+    position: fixed;
+    bottom: 0;
     left: 10vw;
+    width: 1%;
+    max-height: 94vh;
+}
+
+.project-showcase-sidebar-line{
+    width: 35%;
+    top: 10vw;
+    left: 23vh;
     height: auto;
     position: fixed;
 }
-
 /*Display sidebar section end*/
 
 /*Display showcase objects start*/
