@@ -20,18 +20,23 @@ const Projects: React.FC<Props> = ({data}) => {
             <span className="project-showcase-title-text">{data.projectName}</span>        
             
             <div className="project-showcase-overlay-container">
-            <img
-            onMouseOver={()=>setIsShown(true)}
-            onMouseLeave={()=>setIsShown(false)} 
-            src={data.appDeploymentImage}
-            alt="Project"
-            className="project-showcase-image"
-            />
-            {isShown && (
+                <img
+                onMouseOver={()=>setIsShown(true)}
+                onMouseLeave={()=>setIsShown(false)} 
+                src={data.appDeploymentImage}
+                alt="Project"
+                className="project-showcase-image"
+                />
+                {isShown && (
+                
                 <div className="project-showcase-overlay">
-                    {data.projectName}
+                   <div className="project-showcase-overlay-text"> 
+                    <p>{data.problemStatement}</p>
+                    <p>Built Using:</p>
+                    <p>{data.techUsed}</p>
+                   </div>
                 </div>
-            )}
+                )}
             </div>
           
 

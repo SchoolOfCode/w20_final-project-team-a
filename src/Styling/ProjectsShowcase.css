@@ -55,6 +55,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    column-gap: 20px;
 }
 /*Display showcase objects end*/
 
@@ -68,6 +69,8 @@
 
 .project-showcase-title-text{
     color: yellow;
+    font-family: "Poppins", sans-serif;
+    font-size: large;
 
 }
 
@@ -76,7 +79,7 @@
 }
 /*Project component styling end*/
 
-/* Trying to sort the image overlay*/
+/* Project image-text overlay styling start*/
 
 .project-showcase-overlay-container{
     position: relative;
@@ -95,3 +98,15 @@
     transition: .5 ease;
     background-color: palegoldenrod;
 }
+
+.project-showcase-overlay-text{
+    color: black;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    width: 350px;
+    word-wrap: break-word;
+}
+
+/* Project image-text overlay styling end*/
