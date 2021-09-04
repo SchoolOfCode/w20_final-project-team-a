@@ -26,7 +26,7 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
   useNewUrlParser: true, 
   useUnifiedTopology: true, 
   useCreateIndex:true,
-  useFindAndModify: true
+  useFindAndModify: false
 })
 // db.connection.on('connected',()=> console.log("Connected to the DB") )
 
