@@ -18,18 +18,24 @@ const Projects: React.FC<Props> = ({data}) => {
     <>
         <div>
             <span className="project-showcase-title-text">{data.projectName}</span>        
+            
+            <div className="project-showcase-overlay-container">
             <img
-            onMouseEnter={()=>setIsShown(true)} 
-            onMouseLeave={()=>setIsShown(false)}
+            onMouseOver={()=>setIsShown(true)}
+            onMouseLeave={()=>setIsShown(false)} 
             src={data.appDeploymentImage}
             alt="Project"
             className="project-showcase-image"
             />
             {isShown && (
-                <div>
+                <div className="project-showcase-overlay">
                     {data.projectName}
                 </div>
             )}
+            </div>
+          
+
+
             <span className="project-showcase-date">12/05/2000</span>
         </div>
     </>
