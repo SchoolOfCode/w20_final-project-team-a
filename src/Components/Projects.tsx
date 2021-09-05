@@ -7,7 +7,6 @@ type Props = {
 
 const Projects: React.FC<Props> = ({data}) => {
 
-    console.log(data.appDeploymentImage)
 
     return (
         <div className="wrapper">

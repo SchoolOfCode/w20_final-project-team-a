@@ -6,7 +6,6 @@ type Props = {
 }
 
 const Users: React.FC<Props> = ({data}) => {
-console.log(data)
     return (
         <div 
         // className="profiles-showcase-display-items"

@@ -22,7 +22,7 @@ const ProfilesShowcase = () => {
                     setData(response.data)
                 }
             )
-            console.log(data)
+            // console.log(data)
         }
     getData()
     }, [])
