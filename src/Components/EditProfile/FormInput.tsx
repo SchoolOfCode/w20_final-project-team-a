@@ -8,6 +8,7 @@ type Props = {
     className: string, 
     name:string,
     required?:boolean,
+    defaultValue?:string,
     user:any, 
     setUserDetails:(val:any)=> void}
 
@@ -19,18 +20,20 @@ const FormInput : React.FC<Props> = ({
     className,
     name,
     required=true,
+    defaultValue="",
     user, 
     setUserDetails}) => {  
 
     const handleChange = (e: string) => {
-        const updatedUser = {...user, [name]:e}
+        const updatedUser = {...user, [labelFor]:e}
         setUserDetails(updatedUser)
     }
 
     return (
         <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
-                <input 
+                <input
+                    defaultValue={defaultValue}
                     type={type}
                     placeholder={placeholder}
                     name={name}

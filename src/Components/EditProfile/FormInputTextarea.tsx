@@ -25,7 +25,7 @@ const FormInputTextarea : React.FC<Props> = ({
     setUserDetails}) => {  
 
     const handleChange = (e: string) => {
-        const updatedUser = {...user, [name]:e}
+        const updatedUser = {...user, [labelFor]:e}
         setUserDetails(updatedUser)
     }
 
@@ -40,7 +40,7 @@ const FormInputTextarea : React.FC<Props> = ({
                     rows={rows}
                     cols={cols}
                     onChange={(e)=>handleChange(e.target.value)}
-                ></textarea>
+                >{placeholder}</textarea>
         </div>
     )
 }

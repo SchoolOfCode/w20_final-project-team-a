@@ -1,10 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link, useHistory } from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
 import { API_URL } from '../config'
 import AdminBoard from '../Components/AdminBoard/AdminBoard'
 import EditProfile from '../Components/EditProfile/EditProfile'
-import { getSuggestedQuery } from '@testing-library/react'
 
 type DashboardProps = {
     loginStatus: boolean
@@ -67,6 +66,7 @@ const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
         }
     }
 
+    
     useEffect(()=>{
         getUser()
     },[])
