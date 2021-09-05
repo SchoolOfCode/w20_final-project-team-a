@@ -111,22 +111,18 @@ authRouter.put("/user/update",upload.array("newProfilePhoto", 1), async(req,res)
         if (req.files.length > 0){
           photo = URL + "/uploads/profiles/" + req.files[0].filename;
         }
-        // const newProfilePhotoURL = 
-        // if (newProfilePhotoURL !== photo){
-        //    newProfilePhotoURL
-        // }
         User.findByIdAndUpdate(_id, 
           {"$set": {
-            displayName:displayName,
-            photo:photo,
-            githubUrl:githubUrl,
-            linkedin:linkedin,
-            twitter:twitter,
-            youtube:youtube,
-            personalWebsite:personalWebsite,
-            cohort:cohort,
-            location:location,
-            statement:statement,
+            displayName,
+            photo,
+            githubUrl,
+            linkedin,
+            twitter,
+            youtube,
+            personalWebsite,
+            cohort,
+            location,
+            statement,
           }},
           {upsert: true,
           new:true}

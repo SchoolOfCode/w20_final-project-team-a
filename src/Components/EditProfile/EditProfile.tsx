@@ -21,6 +21,7 @@ const EditProfile :React.FC<ProfileProps> = ({
 
     const [userDetails, setUserDetails] = useState(user);
     const [newImage, setNewImage] = useState();
+    const [updatedSuccessfully, setupdatedSuccessfully] = useState(false)
     const form = useRef(null);
     const history = useHistory();
 
@@ -36,18 +37,18 @@ const EditProfile :React.FC<ProfileProps> = ({
         e.preventDefault();
         // const formData = new FormData(form.current!)
         const formData = new FormData()
-        formData.append('newProfilePhoto',newImage || "")
+        formData.append('newProfilePhoto',newImage!)
         formData.append('_id', user._id)
         formData.append('displayName', userDetails.displayName)
-        formData.append('photo',user.photo || "")
-        formData.append('githubUrl',userDetails.githubUrl || "")
-        formData.append('linkedin',userDetails.linkedin || "")
-        formData.append('twitter',userDetails.twitter || "")
-        formData.append('youtube',userDetails.youtube || "")
-        formData.append('personalWebsite',userDetails.personalWebsite || "")
-        formData.append('cohort',userDetails.cohort || "")
-        formData.append('location',userDetails.location || "")
-        formData.append('statement',userDetails.statement || "")
+        formData.append('photo',user.photo || "http://localhost:5000/uploads/profiles/defaultProfilePhoto.png")
+        formData.append('githubUrl',userDetails.githubUrl || user.githubUrl || "")
+        formData.append('linkedin',userDetails.linkedin || user.linkedin || "")
+        formData.append('twitter',userDetails.twitter || user.twitter || "")
+        formData.append('youtube',userDetails.youtube || user.youtube || "")
+        formData.append('personalWebsite',userDetails.personalWebsite || user.personalWebsite || "")
+        formData.append('cohort',userDetails.cohort || user.cohort || "")
+        formData.append('location',userDetails.location || user.location || "")
+        formData.append('statement',userDetails.statement || user.statement || "")
 
 
         axios({
@@ -57,7 +58,7 @@ const EditProfile :React.FC<ProfileProps> = ({
         })
         .then(res => {
             if (res.data.success){
-                history.push("/dashboard")
+                setupdatedSuccessfully(true)
             }
         })
         .catch(err => console.log(err))
@@ -142,6 +143,7 @@ const EditProfile :React.FC<ProfileProps> = ({
                     className="edit-form-statement-input"
                     name="userDetails[statement]" required={true} 
                     maxlength={140} rows={5} cols={4}
+                    defaultValue={user.statement || "I <3 TypeScript" }
                     user={userDetails} setUserDetails={setUserDetails}
                 />
                 <div className="edit-form-image-input">
@@ -156,6 +158,7 @@ const EditProfile :React.FC<ProfileProps> = ({
                 </div>
                 <input type="submit" className="edit-page-button" name="Save Changes"/>
             </form>
+            {updatedSuccessfully && history.push("/profiles")}
         </div>
     )
 }

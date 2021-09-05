@@ -4,6 +4,8 @@ import {useHistory } from 'react-router-dom'
 import { API_URL } from '../config'
 import AdminBoard from '../Components/AdminBoard/AdminBoard'
 import EditProfile from '../Components/EditProfile/EditProfile'
+import {ReactComponent as LoadingIcon} from '../Components/Dashboard/loading_spinner_2.svg'
+import '../Styling/Dashboard.css'
 
 type DashboardProps = {
     loginStatus: boolean
@@ -48,9 +50,11 @@ const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
     const history = useHistory()
     const [user,setUser] = useState(initialUser);
     const [role, setRole] = useState("user")
+    const [loading, setLoading] = useState(false)
 
     const getUser = async()=>{
         try{
+            setLoading(true)
             if (loginStatus === false){
                 history.push("/login")
             } else{
@@ -66,15 +70,25 @@ const Dashboard :React.FC<DashboardProps> = ({loginStatus}) =>{
         }
     }
 
-    
+
     useEffect(()=>{
         getUser()
+        const timer = setTimeout(() => {
+            setLoading(false)
+        }, 1250);
+        return () => clearTimeout(timer);
     },[])
 
-    return (role==="admin"?
-    <AdminBoard user={user}/>
-    :
-    <EditProfile user={user} />
+    return (loading?
+        <div>
+            <LoadingIcon className="dashboard-loading-icon"/>
+            <h1 className="dashboard-loading-text">Loading</h1>
+        </div>
+        :(role==="admin"?
+            <AdminBoard user={user}/>
+            :
+            <EditProfile user={user} />
+        )
     )
 }
 

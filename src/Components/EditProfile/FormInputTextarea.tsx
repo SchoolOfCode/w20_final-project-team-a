@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 type Props = {
     labelFor:string, 
@@ -10,6 +10,7 @@ type Props = {
     maxlength:number,
     rows:number,
     cols:number,
+    defaultValue:string,
     user:any, 
     setUserDetails:(val:any)=> void}
 
@@ -21,18 +22,23 @@ const FormInputTextarea : React.FC<Props> = ({
     name,
     required=true,
     maxlength,rows,cols,
+    defaultValue,
     user, 
     setUserDetails}) => {  
 
+    const [formValue, setFormValue] = useState(placeholder)
+
     const handleChange = (e: string) => {
-        const updatedUser = {...user, [labelFor]:e}
+        setFormValue(e)
+        const updatedUser = {...user, [labelFor]:formValue}
         setUserDetails(updatedUser)
     }
 
     return (
         <div className={className}>
                 <label htmlFor={labelFor}>{labelText}</label>
-                <textarea 
+                <textarea
+                    defaultValue={defaultValue}
                     placeholder={placeholder}
                     name={name}
                     required={required}
@@ -40,7 +46,7 @@ const FormInputTextarea : React.FC<Props> = ({
                     rows={rows}
                     cols={cols}
                     onChange={(e)=>handleChange(e.target.value)}
-                >{placeholder}</textarea>
+                ></textarea>
         </div>
     )
 }

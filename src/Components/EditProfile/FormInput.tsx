@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 type Props = {
     labelFor:string, 
@@ -24,8 +24,12 @@ const FormInput : React.FC<Props> = ({
     user, 
     setUserDetails}) => {  
 
+    const [formValue, setFormValue] = useState(placeholder)
+
+
     const handleChange = (e: string) => {
-        const updatedUser = {...user, [labelFor]:e}
+        setFormValue(e)
+        const updatedUser = {...user, [labelFor]:formValue}
         setUserDetails(updatedUser)
     }
 

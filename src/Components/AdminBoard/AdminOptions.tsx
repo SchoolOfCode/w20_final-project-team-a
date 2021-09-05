@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {ReactComponent as RemoveIcon} from './remove.svg'
 import {ReactComponent as CheckedIcon} from './checked.svg'
 import {ReactComponent as UncheckedIcon} from './unchecked.svg'
