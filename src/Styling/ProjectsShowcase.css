@@ -1,0 +1,121 @@
+/*Header section start*/
+.project-showcase-container{
+    display: grid;
+    height: 90vw;
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-rows: 0.2fr 1fr;
+}
+
+.project-showcase-header{
+    font-family: "Poppins", sans-serif;
+    width: 10vw;
+    grid-row: span;
+}
+
+.project-showcase-header-text{
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 12vh;
+}
+
+.project-showcase-header-line{
+    position: fixed;
+    max-height: 95vh;
+    bottom: 0;
+    left: 10vw;
+    width: 1%;
+
+}
+/*Header section end */
+
+/*Display sidebar section start*/
+
+.project-showcase-display{
+    grid-column: 2;
+}
+
+.project-showcase-display-line{
+    position: fixed;
+    bottom: 0;
+    left: 10vw;
+    width: 1%;
+    max-height: 94vh;
+}
+
+.project-showcase-sidebar-line{
+    width: 35%;
+    top: 10vw;
+    left: 23vh;
+    height: auto;
+    position: fixed;
+}
+/*Display sidebar section end*/
+
+/*Display showcase objects start*/
+
+.project-showcase-display-objects{
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 20px;
+}
+/*Display showcase objects end*/
+
+/*Project component styling start*/
+
+.project-showcase-image{
+    height: 200px;
+    width: 350px;
+    
+}
+
+.project-showcase-title-text{
+    color: yellow;
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+
+}
+
+.project-showcase-date{
+    display: none;
+}
+/*Project component styling end*/
+
+/* Project image-text overlay styling start*/
+
+.project-showcase-overlay-container{
+    position: relative;
+    width: 50%;
+}
+
+.project-showcase-overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    width: 350px;
+    opacity: 0.75;
+    transition: .5 ease;
+    background-color: palegoldenrod;
+}
+
+.project-showcase-overlay-text{
+    color: black;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    width: 350px;
+    word-wrap: break-word;
+}
+
+
+
+/* Project image-text overlay styling end*/
