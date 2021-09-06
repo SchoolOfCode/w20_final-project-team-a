@@ -46,6 +46,7 @@ projectRouter.get("/all", async (req, res) => {
   res.status(200).send(allProjects);
 });
 
+
 projectRouter.get("/update/:id", async(req,res) => {
   const projID =req.params.id.replace(":","")
   const proj = await Project.findById(projID)

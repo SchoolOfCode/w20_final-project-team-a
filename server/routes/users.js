@@ -116,3 +116,23 @@ userRouter.get("/all", async (req, res) => {
   const allUsers = await User.find({});
   res.status(200).send(allUsers);
 });
+
+
+userRouter.get("/individual/:id", async(req,res) => {
+  const userID =req.params.id.replace(":","")
+  const user = await User.findById(userID)
+                      .populate({path:"projects", model:"Project"})
+  if (user) {
+    res.status(200).send({
+      msg: user,
+      success: true,
+    })
+    } else{
+      res.status(400).send({
+        msg: "Unable to find any projects associated with that user",
+        success: false,
+      })
+    }
+  
+
+})
