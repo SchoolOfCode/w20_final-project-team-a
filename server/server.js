@@ -73,7 +73,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);
 
-
 if (process.env.NODE_ENV === 'production'){
   //set static react folder
   app.use(express.static('/build'))
@@ -81,6 +80,7 @@ if (process.env.NODE_ENV === 'production'){
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
   })
 }
+
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
