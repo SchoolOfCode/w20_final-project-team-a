@@ -58,11 +58,12 @@
 
 .project-showcase-display-objects{
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 20px;
+    padding-top: 150px;
 }
 /*Display showcase objects end*/
 
@@ -71,7 +72,7 @@
 .project-showcase-image{
     height: 200px;
     width: 350px;
-    
+    object-fit:cover;
 }
 
 .project-showcase-title-text{
