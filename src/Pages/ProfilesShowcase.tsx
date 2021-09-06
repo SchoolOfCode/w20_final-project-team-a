@@ -30,7 +30,7 @@ const ProfilesShowcase = () => {
     return (
         <>
             <div>
-            <section className="profiles-showcase-page-container">
+            <section className="profiles-showcase-container">
                 <header className="profiles-showcase-header">
                     <h1 className="profiles-showcase-header-text">Bootcampers</h1>
                     <img className="profiles-showcase-header-line" src={line} alt="sidebar"/>
@@ -38,7 +38,9 @@ const ProfilesShowcase = () => {
             <section className="profiles-showcase-display">
                 <  img src={sidebar} alt="dividing line" className="profiles-showcase-sidebar-image"/>
             </section>
-            <section className="profiles-showcase-display-items">           
+            <section 
+            className="profiles-showcase-display-items"
+            >
                 {data.map((user) => <Users data={user}  />)}
             </section>
             </section>
