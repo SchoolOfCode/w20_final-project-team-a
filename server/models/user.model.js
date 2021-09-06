@@ -43,7 +43,11 @@ const user = new mongoose.Schema(
       type: String,
       required: false,
     },
-    personalwebsite: {
+    personalWebsite: {
+      type: String,
+      required: false,
+    },
+    location: {
       type: String,
       required: false,
     },

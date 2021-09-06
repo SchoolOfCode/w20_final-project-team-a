@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react'
-
 import '../Styling/ProjectsShowcase.css'
 import Users from '../Components/Users'
 
@@ -22,7 +21,7 @@ const ProfilesShowcase = () => {
                     setData(response.data)
                 }
             )
-            console.log(data)
+            // console.log(data)
         }
     getData()
     }, [])

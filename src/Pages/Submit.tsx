@@ -84,7 +84,7 @@ const Submit : React.FC<Props> = ({loginStatus}) =>{
                 })
                 .then(()=>{
                     axios.get(API_URL+"projects/update/:"+projID)
-                    .then(res => console.log(res))
+                    // .then(res => console.log(res))
                     .catch(err=>console.error(err))
                 })
                 .catch(

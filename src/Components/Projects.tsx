@@ -10,7 +10,6 @@ type Props = {
 
 const Projects: React.FC<Props> = ({data}) => {
 
-    console.log(data.appDeploymentImage)
 
     const [isShown, setIsShown] = useState(false)
     

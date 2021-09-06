@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import '../Styling/ProfilesShowcase.css'
 
 type Props = {
@@ -6,9 +7,9 @@ type Props = {
 }
 
 const Users: React.FC<Props> = ({data}) => {
-console.log(data)
 
 const [visibleImage, setVisibleImage] = useState(true);
+
     return (
         <div 
         // className="profiles-showcase-overlay-container"
@@ -32,11 +33,25 @@ const [visibleImage, setVisibleImage] = useState(true);
         <div
             onMouseLeave={()=>setVisibleImage(true)}
         >
+
+        {/* <span className="profiles-showcase-cohort-text"> cohort {data.cohort}</span>
+            <Link to={{ pathname: '/bootcamper_profile', state: data}}>
+                <img src={data.photo} alt="bootcamper pic" className="profiles-showcase-image"/>
+            </Link>
+            <span> {data.displayName}</span>
+            <p> {data.statement}</p>
+            <p> {data.email}</p>
+           */}
+            
+
         <p className="profiles-showcase-name-text"> {data.displayName}</p>
         <span className="profiles-showcase-cohort-text"> cohort {data.cohort}</span>
         <span className="profiles-showcase-overlay-container">
 
                <span className="profiles-showcase-overlay-text"> {data.email}</span>
+              <Link to={{ pathname: '/bootcamper_profile', state: data}}>
+                <img src={data.photo} alt="bootcamper pic" className="profiles-showcase-image"/>
+            </Link>
                {/* <img src={data.photo} 
                        alt="bootcamper pic" 
                        className="profiles-showcase-image"
@@ -47,6 +62,7 @@ const [visibleImage, setVisibleImage] = useState(true);
         </div>
         
         }
+
         </div>
     )
 }

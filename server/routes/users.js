@@ -88,13 +88,15 @@ userRouter.post("/login", (req, res, next) => {
     }
     req.logIn(user, (err)=>{
       if (err) return next(err);
-      req.session.email = user.email;
-      req.session.userid = user._id
+      // req.session.email = user.email;
+      // req.session.displayName = user.displayName;
+      // req.session.role = user.role;
+      // req.session.isAuth = true;
       return res.status(200).send({
         msg:`Logging in as ${user.displayName}`, 
         sucess:true, 
-        role: user.role,
-        id:user._id
+        // role: user.role,
+        // id:user._id
       });
       }
     )
@@ -114,3 +116,23 @@ userRouter.get("/all", async (req, res) => {
   const allUsers = await User.find({});
   res.status(200).send(allUsers);
 });
+
+
+userRouter.get("/individual/:id", async(req,res) => {
+  const userID =req.params.id.replace(":","")
+  const user = await User.findById(userID)
+                      .populate({path:"projects", model:"Project"})
+  if (user) {
+    res.status(200).send({
+      msg: user,
+      success: true,
+    })
+    } else{
+      res.status(400).send({
+        msg: "Unable to find any projects associated with that user",
+        success: false,
+      })
+    }
+  
+
+})

@@ -1,0 +1,87 @@
+/* .individual-profile-page {
+
+} */
+
+.individual-profile-container{
+    position: absolute;
+    left: 7.2em;
+    top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+}
+
+.individual-profile-line-1{
+    grid-row: 1;
+    padding-top: 10vh;
+}
+.individual-profile-name{
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: center;
+    font-size: 2em;
+    padding-top: 0.5em;
+}
+
+.individual-profile-statement{
+    grid-row: 3;
+    grid-column: 1;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+.individual-profile-socials{
+    grid-row: 4;
+    grid-column: 1;
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.social-icons{
+    filter: invert(1) grayscale(1) brightness(2);
+}
+.social-icons:hover{
+    opacity: 0.7;
+}
+
+.individual-profile-photo{
+    grid-column: 3;
+    grid-row: 2/5;
+    max-width: 30vw;
+    max-height: 30vw;
+}
+
+.individual-profile-projects-title{
+    grid-row: 7;
+    grid-column: 1;
+    font-size: 2em;
+    align-self: flex-end;
+    padding-bottom: 0.5em;
+    justify-self: center;
+}
+
+.individual-profile-line-2{
+    grid-row: 7;
+    grid-column: 1;
+    padding-top: 10vh;
+}
+
+.individual-profile-projects-container{
+    grid-row: 8;
+    grid-column: 1/4;
+    padding-top: 2em;
+}
+
+.individual-profile-projects{
+    display: flex;
+    flex-flow: row wrap;
+    height: max-content;
+    justify-content: space-evenly;
+}
+
+.individual-profile-projects img{
+    max-width: 20vw;
+    max-height: 30vw;
+}

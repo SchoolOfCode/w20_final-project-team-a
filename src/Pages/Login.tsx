@@ -38,7 +38,7 @@ const Login : React.FC<Props> = ({loginStatus,setLoginStatus}) => {
                     withCredentials: true
                     }).then(
                     (response) => {
-                        console.log(response.data, response)
+                        // console.log(response.data, response)
                         if (response.data.sucess) {
                             setSuccess(true)
                             setFailure(false)

@@ -26,7 +26,7 @@ const FormInput : React.FC<Props> = ({
                     placeholder={placeholder}
                     name={name}
                     required={true}
-                    onBlur={(e)=>setValue(e.target.value)}
+                    onChange={(e)=>setValue(e.target.value)}
                 ></input>
         </div>
     )

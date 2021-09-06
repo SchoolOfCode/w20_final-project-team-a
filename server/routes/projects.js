@@ -7,10 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/");
+    cb(null, "./uploads/projects/");
   },
   filename: (req, file, cb) => {
-    cb(null, uuidv4() + "_" + file.originalname);
+    cb(null, uuidv4().slice(0,12) + "_" + file.originalname);
   },
 });
 
@@ -41,9 +41,11 @@ const upload = multer({
 export const projectRouter = express.Router();
 
 projectRouter.get("/all", async (req, res) => {
-  const allProjects = await Project.find({});
+  const allProjects = await Project.find({})
+  // .populate({path:"users", model:"User"}); //add this line to convert the user IDs to users
   res.status(200).send(allProjects);
 });
+
 
 projectRouter.get("/update/:id", async(req,res) => {
   const projID =req.params.id.replace(":","")
@@ -80,10 +82,10 @@ projectRouter.post(
     } = req.body;
 
     const URL = req.protocol + "://" + req.get("host");
-    const appDeploymentImage = URL + "/uploads/" + req.files[0].filename;
+    const appDeploymentImage = URL + "/uploads/projects/" + req.files[0].filename;
     const additionaAppImageURLs = [];
     for (let i = 1; i < req.files.length; i++) {
-      additionaAppImageURLs.push(URL + "/uploads/" + req.files[i].filename);
+      additionaAppImageURLs.push(URL + "/uploads/projects/" + req.files[i].filename);
     }
 
     Project.findOne({ githubUrl: githubUrl })
