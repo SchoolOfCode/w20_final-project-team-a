@@ -1,25 +1,47 @@
-import React from 'react'
-import '../Styling/projects.css'
+import React, {useState} from 'react'
+import '../Styling/ProjectsShowcase.css'
 
 type Props = {
     data:any,
 }
 
+
+
+
 const Projects: React.FC<Props> = ({data}) => {
 
     console.log(data.appDeploymentImage)
 
+    const [isShown, setIsShown] = useState(false)
+    
     return (
     <>
-        <div className="wrapper">
+        <div>
+            <span className="project-showcase-title-text">{data.projectName}</span>        
             
-            <header className="showcase-header">
-                <h1 className="showcase-header-text">Showcase</h1>
-            </header>
+            <div className="project-showcase-overlay-container">
+                <img
+                onMouseOver={()=>setIsShown(true)}
+                onMouseLeave={()=>setIsShown(false)} 
+                src={data.appDeploymentImage}
+                alt="Project"
+                className="project-showcase-image"
+                />
+                {isShown && (
+                
+                <div className="project-showcase-overlay">
+                   <div className="project-showcase-overlay-text"> 
+                    <p>{data.problemStatement}</p>
+                    <p>Built Using:</p>
+                    <p>{data.techUsed}</p>
+                   </div>
+                </div>
+                )}
+            </div>
+          
 
-            <span className="project-name">{data.projectName}</span>        
-            <img src={data.appDeploymentImage} alt="Project" className="main-image"/>
-            <span className="project-date">12/05/2000</span>
+
+            <span className="project-showcase-date">12/05/2000</span>
         </div>
     </>
     )

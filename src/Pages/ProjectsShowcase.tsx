@@ -6,6 +6,8 @@ import Projects from '../Components/Projects'
 import axios from 'axios'
 import { API_URL } from '../config'
 
+import sidebar from '../Components/BackgroundsPlus/ShowcaseUpLeft.png'
+import line from '../Components/BackgroundsPlus/Line.png'
 
 const Showcase =  () => {
 
@@ -27,11 +29,23 @@ const Showcase =  () => {
   
       return (
         <>
+          <div>
+            <section className="project-showcase-container">
 
-            <div className="projects-showcase-div">
+              <header className="project-showcase-header">
+                <h1 className="project-showcase-header-text">Showcase</h1>
+                <img className="project-showcase-header-line" src={line} alt="Bar on the side" />
+              </header>
 
-            {data.map((project, i) => <Projects key={i} data={project} />)}
-               
+              <section className="project-showcase-display">
+                <img className="project-showcase-sidebar-line" src={sidebar} alt="seperating line" />
+              </section>
+
+              <section className="project-showcase-display-objects">
+                {data.map((project, i) => <Projects key={i} data={project} />)}
+              </section>
+
+            </section>               
            </div>
 
         </>
