@@ -1,0 +1,18 @@
+.horizontal-line-container{
+    display: flex;
+}
+
+.horizontal-line-container .horizontal-line{
+    height: 8px;
+    width: 25vw;
+    background-color: #ffde59;
+    align-self: flex-end;
+}
+.horizontal-line-container .circle{
+    background: #ffde59;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    justify-self: end;
+    transform: translateY(5px) translateX(-5px);
+}
