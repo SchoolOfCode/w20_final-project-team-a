@@ -1,9 +1,13 @@
 import React from 'react'
+import Header from '../Components/VerticalHeader/Header'
 
-const BootcamperProfile = () => {
+const BootcamperProfile = (data:any) => {
+    const user = data.location.state
+    console.log(user)
     return (
-        <div>
-            
+        <div className="individual-profile-page">
+            <Header title={`Bootcamp${(user.cohort)?" "+user.cohort:"er"}`} />
+
         </div>
     )
 }
