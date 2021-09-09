@@ -12,11 +12,19 @@ export const NavbarLink : React.FC<NavbarLinkProps> = ({page, selected}) => {
 
   return (
   <>
-  <span className={!selected?"link-brackets-hidden":"link-brackets-visible"}>{`{ `}</span>
-    <Link to={`/${page}`}>
+    <span 
+      className={!selected?"link-brackets-hidden":"link-brackets-visible nav-bar-no-pointer"}
+      >
+        {`{ `}
+    </span>
+    <Link to={`/${page}`} className={!selected?"":"nav-bar-no-pointer"}>
         {title}
     </Link>
-  <span className={!selected?"link-brackets-hidden":"link-brackets-visible"}>{` }`}</span>
+    <span 
+    className={!selected?"link-brackets-hidden":"link-brackets-visible nav-bar-no-pointer"}
+    >
+      {` }`}
+    </span>
   </>
   )
 };

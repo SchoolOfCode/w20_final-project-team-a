@@ -40,6 +40,9 @@
     color: #ffde59;
     font-weight: bold;
 }
+.nav-bar-no-pointer{
+    pointer-events: none;
+}
 
 .link-brackets-hidden{
     color: rgba(0,0,0,0);

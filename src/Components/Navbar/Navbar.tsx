@@ -59,43 +59,7 @@ const Navbar : React.FC<NavbarProps> = ({loginStatus}) =>{
                         </div>
                     </>
                 }
-
-
-            {/* <span>{"[ "}</span>
-                <   Link to="/" className="navbar-links">SCHOOL_OF_CODE</Link>
-                <span>{" ]"}</span> */}
-            {/* <li className="navbar-logo">
-                <span>{"{ "}</span>
-                    <Link to="/" className="navbar-links">Home</Link>
-                <span>{" }"}</span>
-            </li>
-            <li className="navbar-logo">
-                <span>{"{ "}</span>
-                    <Link to="/showcase" className="navbar-links">Showcase</Link>
-                <span>{" }"}</span>
-            </li>
-            <li className="navbar-logo">
-                <Link to="/profiles" className="navbar-links">Profiles</Link>
-            </li>
-
-            {loginStatus &&
-            <>
-            <li className="navbar-logo">
-                <Link to="/submit" className="navbar-links">Submit</Link>
-            </li>
-            <li className="navbar-logo">
-                <Link to="/dashboard" className="navbar-links">Dashboard</Link>
-            </li>
-            </>
-}
-            <li className="navbar-logo">
-                <Link to="/login" className="navbar-links">
-                    <BiUserCircle className="navbar-user-icon"/>  
-                </Link>
-            </li>
-            
-            </ul> */}
-        </nav>
+            </nav>
         <div className="navbar-user">
             <Link to="/login">
                 {loginStatus?
