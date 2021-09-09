@@ -1,13 +1,37 @@
-// Colours
+// Variables:
 
 $background-color: #000818;
 $circuit-yellow: #ffde59;
 $white: #ffffff;
 $black: #000000;
 
+// Variables:Fonts
+$large-header: calc(3em + 1vw);
+
 // Mixins:
 
-// Mixins Images
+// Mixins:Text
+
+@mixin page-header-text() {
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  position: fixed;
+  bottom: -1em;
+  left: 0.25em;
+  font-size: $large-header;
+}
+
+// Mixins Interactive:
+
+@mixin arrow() {
+  font-weight: 900;
+  font-size: 60px;
+  grid-row: 4 / 4;
+  color: $circuit-yellow;
+  margin-top: 2vh;
+}
+
+// Mixins:Images
 
 @mixin main-project-image() {
   grid-row-start: 2;
@@ -18,7 +42,7 @@ $black: #000000;
   max-width: 70vw;
 }
 
-// Mixins Circuit Containers
+// Mixins:Circuit-Containers
 
 @mixin circuit-container-right() {
   grid-row: 2;

@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styling/ProjectDisplay.scss";
 import featuredImg from "../Components/Backgrounds/EagerBsqO.png";
-import "../Styling/HorizontalLine.scss";
+import HorizontalCircuit from "../Components/HorizontalCircuit";
 
 const Homepage = () => {
   return (
@@ -16,18 +16,12 @@ const Homepage = () => {
       {/*need to access array of images, display index=0 as default/*/}
       <p className="arrow-right"> {">"} </p>{" "}
       {/*onClick decrease image display index by 1/*/}
-      <section className="circuit-container circuit-right">
-        <div className="circuit-line"></div>
-        <div className="circuit-end"></div>
-      </section>
+      <HorizontalCircuit className="circuit-right" />
       <p className="description"> Project description</p>
       <p className="tech"> Built using </p>{" "}
       {/*needs list with tech images here/*/}
       <p className="heading"> Featured Project </p>
-      <section className="circuit-container circuit-left-bottom">
-        <div className="circuit-line"></div>
-        <div className="circuit-end"></div>
-      </section>
+      <HorizontalCircuit className="circuit-left-bottom" />
       <p className="title"> Project Title</p>
       <p className="contributors"> Contributors </p>
       {/* 
