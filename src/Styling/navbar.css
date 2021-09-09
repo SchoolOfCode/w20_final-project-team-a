@@ -1,19 +1,84 @@
-.navbar{
-    display: flex;
-    list-style-type: none;
-    justify-content: space-between;
-    color: white;
-    background-color: black;
+.navbar-container{
+    display: grid;
+    grid-template-areas: "logo links links links user";
     font-size: 1.5em;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    align-content: center;
+    align-items: center;
 }
-.navbar > li > a{
+
+.navbar-container a{
     text-decoration: none;
     color: white;
 }
-.navbar > li > span{
-    color: palegoldenrod;
+
+.navbar-logo{
+    grid-area: logo;
+    width: max-content;
+    padding-left: 1em;
 }
 
+.navbar-logo a:hover{
+    color: #ffde59;
+}
+
+/* .logo-brackets-visible {
+    color: #ffde59;
+    margin: 0 5px;
+    font-weight: bold;
+} */
+
+.navbar-links{
+    grid-area: links;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.navbar-item:hover span{
+    color: #ffde59;
+    font-weight: bold;
+}
+.nav-bar-no-pointer{
+    pointer-events: none;
+}
+
+.link-brackets-hidden{
+    color: rgba(0,0,0,0);
+    font-weight: bold;
+}
+.link-brackets-visible{
+    color: #ffde59;
+    font-weight: bold;
+}
+
+.navbar-user{
+    grid-area: user;
+    justify-self: end;
+    align-self: center;
+    margin-right: 1em;
+    margin-top: 0.4em;
+}
+
+.navbar-user-icon-login{
+    max-height: 1.5em;
+    filter: invert(1);
+}
+.navbar-user-icon-login:hover{
+    filter: invert(89%) sepia(84%) saturate(7479%) hue-rotate(315deg) brightness(109%) contrast(104%);
+}
+
+.navbar-user-icon-logout{
+    max-height: 1.5em;
+    filter: invert(1);
+}
+
+.navbar-user-icon-logout:hover{
+    filter: invert(89%) sepia(84%) saturate(7479%) hue-rotate(315deg) brightness(109%) contrast(104%);
+}
+
+/* 
 @media screen and (max-width: 960px){
     .navbar-container{
         display: flex;
@@ -39,4 +104,4 @@
     .navbar-title{
        display: none;
 }
-}
+} */

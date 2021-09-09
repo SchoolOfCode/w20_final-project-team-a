@@ -49,21 +49,29 @@ projectRouter.get("/all", async (req, res) => {
 
 projectRouter.get("/update/:id", async(req,res) => {
   const projID =req.params.id.replace(":","")
-  const proj = await Project.findById(projID)
-  const contributors = await proj.contributors
-  contributors.forEach(async(email)=>{
-    const user = await User.findOne({email:email})
-    if (user) {
-      user.projects.push(projID)
-      user.save()
-      proj.users.push(user._id)
-      proj.save()
+  if (mongoose.isValidObjectId(projID)) {
+    const proj = await Project.findById(projID)
+    const contributors = await proj.contributors
+
+    for (const contributor of contributors){
+      const user = await User.findOne({email:contributor})
+      if (user) {
+        await user.projects.push(projID)
+        await user.save()
+        await proj.users.push(user._id)
+        await proj.save()
+      }
     }
-  })
-  res.status(200).send({
-    msg: "Sucessfully linked Projects and Users",
-    success: true,
-  })
+    res.status(200).send({
+      msg: "Sucessfully linked Projects and Users",
+      success: true,
+    })
+  } else{
+    res.status(400).send({
+      msg: "Error: Invalid ObjectID",
+      success: false,
+    })
+  }
 })
 
 projectRouter.post(
