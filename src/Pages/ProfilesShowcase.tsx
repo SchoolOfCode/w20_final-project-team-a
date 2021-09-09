@@ -34,11 +34,11 @@ const ProfilesShowcase = () => {
                     <h1 className="profiles-showcase-header-text">Bootcampers</h1>
                     <img className="profiles-showcase-header-line" src={line} alt="sidebar"/>
                 </header>
-            <section className="profiles-showcase-display">
+            {/* <section className="profiles-showcase-display">
                 <  img src={sidebar} alt="dividing line" className="profiles-showcase-sidebar-image"/>
-            </section>
+            </section> */}
             <section 
-            className="profiles-showcase-display-items"
+            className="profiles-showcase-wrapper"
             >
                 {data.map((user) => <Users data={user}  />)}
             </section>
