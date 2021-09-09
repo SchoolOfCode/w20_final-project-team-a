@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./01-Showcase/Showcase.scss";
 import Users from "../Components/Users";
-
-import sidebar from "../Components/BackgroundsPlus/ShowcaseUpLeft.png";
 import LeftVerticalTitle from "../Components/LeftVerticalTitle/LeftVerticalTitle";
 import axios from "axios";
 import { API_URL } from "../config";
@@ -24,15 +22,8 @@ const ProfilesShowcase = () => {
     <>
       <div>
         <section className="profiles-showcase-container">
-          <LeftVerticalTitle title="Profiles"></LeftVerticalTitle>
-          <section className="profiles-showcase-display">
-            <img
-              src={sidebar}
-              alt="dividing line"
-              className="profiles-showcase-sidebar-image"
-            />
-          </section>
-          <section className="profiles-showcase-display-items">
+          <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
+          <section className="profiles-showcase-wrapper">
             {data.map((user) => (
               <Users data={user} />
             ))}
