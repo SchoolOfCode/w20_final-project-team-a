@@ -113,7 +113,7 @@ userRouter.get("/logout", (req, res) => {
 //Get user data
 
 userRouter.get("/all", async (req, res) => {
-  const allUsers = await User.find({});
+  const allUsers = await User.find({ role: "user"});
   res.status(200).send(allUsers);
 });
 
