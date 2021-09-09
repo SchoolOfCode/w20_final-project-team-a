@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import UserIconLogin from "../../Components/SVGIcons/PNG/user_login.png";
 import UserIconLogout from "../../Components/SVGIcons/PNG/user_logout.png";
 
-import "../../Styling/Navbar.scss";
+import "./Navbar.scss";
 import { NavbarLink } from "./NavbarLink";
 import Logo from "./Logo";
 
@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus }) => {
           <NavbarLink page="showcase" selected={page === "showcase"} />
         </div>
         <div className="navbar-item">
-          <NavbarLink page="profiles" selected={page === "profiles"} />
+          <NavbarLink page="profiles" selected={page === "bootcampers"} />
         </div>
         {loginStatus && (
           <>

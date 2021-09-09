@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-@import "../Variables.scss";
+@import "../../Variables.scss";
 
 .circuit-line {
   @include circuit-container-left;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Styling/ProjectsShowcase.scss";
+import "../Pages/01-Showcase/Showcase.scss";
 
 type Props = {
   data: any;

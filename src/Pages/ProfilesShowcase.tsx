@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../Styling/ProjectsShowcase.scss";
+import "./01-Showcase/Showcase.scss";
 import Users from "../Components/Users";
 
 import sidebar from "../Components/BackgroundsPlus/ShowcaseUpLeft.png";
