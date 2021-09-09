@@ -1,24 +1,36 @@
-import React from 'react'
-import '../Styling/ProjectDisplay.css'
-
+import React from "react";
+import "../Styling/ProjectDisplay.scss";
+import featuredImg from "../Components/Backgrounds/EagerBsqO.png";
+import "../Styling/HorizontalLine.scss";
 
 const Homepage = () => {
-    return (
-        <div className="wrapper">
-            <p className="circuit1">circuit image 1</p>
-            <p className="arrow-left"> {"<"} </p> {/*onClick increase image display index by 1/*/}
-            <p className="circuit2">circuit image</p>
-            <p className="main-image"> Main image </p> {/*need to access array of images, display index=0 as default/*/}
-            <p className="arrow-right"> {">"} </p> {/*onClick decrease image display index by 1/*/}
-            <p className="banner1"></p>  {/*will this be an image?/*/}
-            <p className="description"> Project description</p>
-            <p className="tech"> Built using </p> {/*needs list with tech images here/*/}
-            <p className="heading"> Featured Project </p>
-            <p className="banner2"></p> {/*will this be an image?/*/}
-            <p className="title"> Project Title</p>
-            <p className="contributors"> Contributors </p>
-            
-            {/* 
+  return (
+    <div className="wrapper">
+      <p className="arrow-left"> {"<"} </p>{" "}
+      {/*onClick increase image display index by 1/*/}
+      <img
+        className="featured-project-image"
+        src={featuredImg}
+        alt="featured-img"
+      ></img>
+      {/*need to access array of images, display index=0 as default/*/}
+      <p className="arrow-right"> {">"} </p>{" "}
+      {/*onClick decrease image display index by 1/*/}
+      <section className="circuit-container circuit-right">
+        <div className="circuit-line"></div>
+        <div className="circuit-end"></div>
+      </section>
+      <p className="description"> Project description</p>
+      <p className="tech"> Built using </p>{" "}
+      {/*needs list with tech images here/*/}
+      <p className="heading"> Featured Project </p>
+      <section className="circuit-container circuit-left-bottom">
+        <div className="circuit-line"></div>
+        <div className="circuit-end"></div>
+      </section>
+      <p className="title"> Project Title</p>
+      <p className="contributors"> Contributors </p>
+      {/* 
             background with circuits
             grid of 3 columns 1fr 3fr 1fr
                     3 rows
@@ -33,8 +45,8 @@ const Homepage = () => {
 
             
             */}
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Homepage
+export default Homepage;
