@@ -11,7 +11,7 @@ const Users: React.FC<Props> = ({data}) => {
 const [showOverlay, setShowOverlay] = useState(false);
 
     return (
-    // <Link to={{ pathname: '/bootcamper_profile', state: data}}>
+    <Link to={{ pathname: '/bootcamper_profile', state: data}}>
         <article className="profiles-showcase-display-items">
             <h2 className="profiles-showcase-name-text">{data.displayName}</h2>
             <img 
@@ -31,7 +31,7 @@ const [showOverlay, setShowOverlay] = useState(false);
                 </div>
             </div>        
         </article>
-        // </Link>
+       </Link>
 
     )
 }

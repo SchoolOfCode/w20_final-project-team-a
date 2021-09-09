@@ -38,6 +38,11 @@
   row-gap: 1em;
 }
 
+.profiles-showcase-wrapper a {
+  color: white;
+  text-decoration: none";
+}
+
 .profiles-showcase-sidebar-image {
   width: 28%;
   top: 10vw;
