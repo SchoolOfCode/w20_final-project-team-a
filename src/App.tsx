@@ -26,8 +26,13 @@ function App() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
       </style> 
-      <Navbar loginStatus={loginStatus}/>
 
+      <Route path = "/:page">
+        <Navbar loginStatus={loginStatus} />
+      </Route>
+      <Route exact path = "/">
+        <Navbar loginStatus={loginStatus} />
+      </Route>
       <Route exact path = "/" component={Homepage} />
       <Route exact path = "/home" component={Homepage} />
       <Route exact path = "/showcase" component={ProjectsShowcase} />

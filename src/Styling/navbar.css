@@ -1,29 +1,55 @@
-.nav-bar-container{
+.navbar-container{
     display: grid;
     grid-template-areas: "logo links links links user";
     font-size: 1.5em;
-    /* background-color: rgba(0,0,0,0.5);
-    width: 100vw; */
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
     align-content: center;
     align-items: center;
 }
 
-.nav-bar-container a{
+.navbar-container a{
     text-decoration: none;
     color: white;
 }
 
-.nav-bar-logo{
+.navbar-logo{
     grid-area: logo;
     width: max-content;
+    padding-left: 1em;
 }
+
+.navbar-logo a:hover{
+    color: #ffde59;
+}
+
+/* .logo-brackets-visible {
+    color: #ffde59;
+    margin: 0 5px;
+    font-weight: bold;
+} */
 
 .navbar-links{
     grid-area: links;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly
+    justify-content: space-between;
 }
+
+.navbar-item:hover span{
+    color: #ffde59;
+    font-weight: bold;
+}
+
+.link-brackets-hidden{
+    color: rgba(0,0,0,0);
+    font-weight: bold;
+}
+.link-brackets-visible{
+    color: #ffde59;
+    font-weight: bold;
+}
+
 .navbar-user{
     grid-area: user;
     justify-self: end;
