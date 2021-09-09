@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styling/HorizontalCircuit.scss";
+import "./HorizontalCircuit.scss";
 
 const HorizontalCircuit = ({ className }: any) => {
   return (

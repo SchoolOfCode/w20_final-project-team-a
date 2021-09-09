@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./App.scss";
-import Navbar from './Components/Navbar/Navbar';
-import Homepage from "./Pages/Homepage";
+import Navbar from "./Components/Navbar/Navbar";
+import Homepage from "./Pages/00-Homepage/Homepage";
 
-import ProjectsShowcase from "./Pages/ProjectsShowcase";
-import Journey from "./Pages/Journey";
+import ProjectsShowcase from "./Pages/01-Showcase/Showcase";
 
 import ProfilesShowcase from "./Pages/ProfilesShowcase";
 import BootcamperProfile from "./Pages/BootcamperProfile";
@@ -20,25 +19,24 @@ function App() {
   const [loginStatus, setLoginStatus] = useState(false);
 
   return (
-    
     <Router>
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-      </style> 
+        @import
+        url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+      </style>
 
-      <Route path = "/:page">
+      <Route path="/:page">
         <Navbar loginStatus={loginStatus} />
       </Route>
-      <Route exact path = "/">
+      <Route exact path="/">
         <Navbar loginStatus={loginStatus} />
       </Route>
-      <Route exact path = "/" component={Homepage} />
-      <Route exact path = "/home" component={Homepage} />
-      <Route exact path = "/showcase" component={ProjectsShowcase} />
-      <Route exact path = "/profiles" component={ProfilesShowcase} />
-      <Route exact path = "/bootcamper_profile" component={BootcamperProfile} />
-      <Route exact path = "/signup" component={Signup} />
-
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/home" component={Homepage} />
+      <Route exact path="/showcase" component={ProjectsShowcase} />
+      <Route exact path="/profiles" component={ProfilesShowcase} />
+      <Route exact path="/bootcamper_profile" component={BootcamperProfile} />
+      <Route exact path="/signup" component={Signup} />
 
       {/* Authentication routes */}
       <Route exact path="/login">
