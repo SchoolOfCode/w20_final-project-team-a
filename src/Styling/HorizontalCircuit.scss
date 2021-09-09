@@ -1,18 +1,20 @@
-.horizontal-line-container{
-    display: flex;
-}
+@import "../Variables.scss";
 
-.horizontal-line-container .horizontal-line{
+.circuit-container {
+  display: flex;
+
+  .circuit-line {
     height: 8px;
     width: 25vw;
-    background-color: #ffde59;
+    background-color: $circuit-yellow;
     align-self: flex-end;
-}
-.horizontal-line-container .circle{
-    background: #ffde59;
+  }
+  .circuit-end {
+    background: $circuit-yellow;
     border-radius: 50%;
     width: 20px;
     height: 20px;
     justify-self: end;
     transform: translateY(5px) translateX(-5px);
+  }
 }
