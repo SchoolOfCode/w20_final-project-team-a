@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styling/ProjectDisplay.scss";
 import featuredImg from "../Components/Backgrounds/EagerBsqO.png";
-import HorizontalCircuit from "../Components/HorizontalCircuit";
+import HorizontalCircuit from "../Components/HorizontalCircuit/HorizontalCircuit";
 
 const Homepage = () => {
   return (

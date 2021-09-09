@@ -1,4 +1,4 @@
-@import "../Variables.scss";
+@import "../../Variables.scss";
 
 .circuit-container {
   display: flex;
@@ -15,6 +15,6 @@
     width: 20px;
     height: 20px;
     justify-self: end;
-    transform: translateY(5px) trannslateX(-5px);
+    transform: translateY(5px) translateX(-5px);
   }
 }

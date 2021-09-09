@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import HorizontalCircuit from "../Components/HorizontalCircuit";
-import Header from "../Components/VerticalHeader/Header";
+import HorizontalCircuit from "../Components/HorizontalCircuit/HorizontalCircuit";
+import LeftVerticalTitle from "../Components/LeftVerticalTitle/LeftVerticalTitle";
 import "../Styling/IndividualProfile.css";
 import SocialLinks from "../Components/SocialLinks";
 import { API_URL } from "../config";
@@ -33,7 +33,9 @@ const BootcamperProfile = (data: any) => {
 
   return (
     <div className="individual-profile-page">
-      <Header title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`} />
+      <LeftVerticalTitle
+        title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
+      />
       <section className="individual-profile-container">
         <HorizontalCircuit className="individual-profile-line-1" />
         <h2 className="individual-profile-name">{user.displayName}</h2>
