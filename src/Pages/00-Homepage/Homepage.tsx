@@ -1,11 +1,16 @@
 import React from "react";
 import "./Homepage.scss";
 import featuredImg from "./77b1a6d5-d93_my_space_2.jpg";
+import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
+import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 const Homepage = () => {
   return (
     <div className="wrapper">
+      {/* <img className="circuitT" src={circuit} alt="circuit-board"/> */}
+      <img className="circuitT" src={circuitT} alt="circuit-board"/>
+      <img className="circuitB" src={circuitB} alt="circuit-board"/>
       <p className="arrow-left"> {"<"} </p>{" "}
       {/*onClick increase image display index by 1/*/}
       <img

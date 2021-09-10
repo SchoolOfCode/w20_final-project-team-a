@@ -14,29 +14,33 @@ body {
   position: relative;
   display: grid;
   height: 90vh;
-  grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 3fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
+  grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 1.6fr 1.2fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
   grid-template-rows: 1fr 0.2fr 1fr 1fr 1fr 2fr 1fr 0.2fr 1fr 1fr;
   grid-template-areas:
-    ".      .        .       circuitT circuitT .     .        .      .     .     .     ."
-    ".      .        .       circuitT circuitT .     .        .      lineR lineR lineR lineR"
-    ".      .        .       .        image    image image    .      .     desc  desc  ."
-    ".      .        .       .        image    image image    .      .     .     tech  ."
-    ".      .        .       larrow   image    image image    rarrow .     .     tech  ."
-    ".      .        .       .        image    image image    .      .     .     tech  ."
-    ".      heading  heading heading  heading  .     circuitB .      .     .     tech  ."
-    "lineL  lineL    lineL   lineL    lineL    lineL circuitB .      .     .     tech  ."
-    ".      title    title   title    title    .     circuitB .      .     .     tech  ."
-    ".      users    users   users    users    .     circuitB .      .     .     .     .";
+    ".      .        .       circuitT circuitT .     .        .        .        .     .     .     ."
+    ".      .        .       circuitT circuitT .     .        .        .        lineR lineR lineR lineR"
+    ".      .        .       .        image    image image    image    .        .     desc  desc  ."
+    ".      .        .       .        image    image image    image    .        .     .     tech  ."
+    ".      .        .       larrow   image    image image    image    rarrow   .     .     tech  ."
+    ".      .        .       .        image    image image    image    .        .     .     tech  ."
+    ".      heading  heading heading  heading  .     .        circuitB circuitB .     .     tech  ."
+    "lineL  lineL    lineL   lineL    lineL    lineL .        circuitB circuitB .     .     tech  ."
+    ".      title    title   title    title    .     .        circuitB circuitB .     .     tech  ."
+    ".      users    users   users    users    .     .        circuitB circuitB .     .     .     .";
 }
 
 // MSC:
 //refactored styling
 
-.circuitT {
-  grid-area: circuitT;
-  background-color: lightgray;
-  margin-bottom: 2vh;
-}
+// .circuitT {
+//   // grid-area: circuitT;
+//   background-color: grey;
+//   grid-column: 4/6;
+//   grid-row: 1/4;
+//   width: 100%;
+//   max-width: 100%;
+//   object-fit: cover;
+// }
 
 .arrow-left {
   grid-area: larrow;
@@ -114,8 +118,19 @@ body {
   font-size: 1vw;
 }
 
+.circuitT {
+  // grid-area: circuitB;
+  grid-column: 4/7;
+  grid-row: 1/5;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
 .circuitB {
-  grid-area: circuitB;
-  background-color: lightgray;
-  margin-bottom: 2vh;
+  // grid-area: circuitB;
+  grid-column: 8/10;
+  grid-row: 6/10;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
