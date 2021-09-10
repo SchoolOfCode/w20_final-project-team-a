@@ -1,103 +1,81 @@
 @import "../../Variables.scss";
 
 .circuit-container {
-  position: fixed;
+  position: relative;
   top: 175px;
+  max-width: 30vw;
   left: 175px;
   @include circuit-container-left;
 
 }
 
-.showcase-container {
-  width: calc(100% - 200px);
-  height: calc(100% - 200px);
-
-  // display: grid;
-  // grid-template-columns: 0.2fr 1fr;
-  // grid-template-rows: 0.2fr 1fr;
-
-  padding-top: 200px;
-  padding-left: 15vw;
-
+.showcase-page-container{
+  position: relative;
+  // left: calc(50% - 300px);
+  left: calc(10vw + 5vw);
+  top: 200px;
+  height: calc(100vh - 300px);
+  width: 75vw;
   overflow: auto;
+  -ms-overflow-style: none; /* IE*/
+  scrollbar-width: none; /* Firefox */
+}
+.showcase-page-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
-
-.project-showcase-container {
-
-  // height: calc(100% - 200px);
-  // overflow-x: hidden; /* Hide horizontal scrollbar */
-
-
+.showcase-items-container {
+  width: calc(100% - 250px);
+  display: grid;
+  grid-template-columns: repeat( 2, 35vw );
+  gap: 5vw;
 }
 
-/*Header section end */
-
-/*Display sidebar section start*/
-
-.project-showcase-display {
-  grid-column: 2;
-}
-
-.project-showcase-display-line {
-  position: fixed;
-  bottom: 0;
-  left: 10vw;
-  width: 1%;
-  max-height: 94vh;
-}
-
-.project-showcase-sidebar-line {
-  width: 35%;
-  top: 10vw;
-  left: 23vh;
-  height: auto;
-  position: absolute;
-  border-right: 10px solid hotpink;
-}
 /*Display sidebar section end*/
-
-/*Display showcase objects start*/
-
-.project-showcase-display-objects {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  padding-top: 150px;
-}
-/*Display showcase objects end*/
 
 /*Project component styling start*/
 
-.project-showcase-image {
-  height: 200px;
-  width: 350px;
-  object-fit: cover;
-  box-shadow: 0px 0px 10px yellow;
+.showcase-item{
+  display: grid;
+  grid-template-columns: 2em 35vw;
 }
 
-.project-showcase-title-text {
+.showcase-image {
+  height: 30vw;
+  width: 35vw;
+  object-fit: cover;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.showcase-title-text {
   color: white;
   font-family: "Poppins", sans-serif;
   font-size: large;
+  grid-column: 2/3;
+  grid-row: 1;
 }
 
-.project-showcase-date {
-  display: none;
+.showcase-date {
+  grid-column: 1;
+  grid-row: 1/3;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 /*Project component styling end*/
 
 /* Project image-text overlay styling start*/
 
-.project-showcase-overlay-container {
+.showcase-overlay-container {
   position: relative;
-  width: 50%;
-}
 
-.project-showcase-overlay {
+
+}
+// .showcase-overlay-container:hover{
+//   box-shadow: 0px 0px 10px $circuit-yellow;
+// }
+
+.showcase-overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -105,13 +83,13 @@
   right: 0;
   height: 200px;
   width: 350px;
-  opacity: 0.75;
+  opacity: 0.9;
   transition: 0.5 ease;
-  background-color: yellow;
+  background-color: rgb(226, 226, 36);
 }
 
-.project-showcase-overlay-text {
-  color: black;
+.showcase-overlay-text {
+  color: $black;
   font-family: "Poppins", sans-serif;
   text-align: center;
   font-weight: bolder;
@@ -120,4 +98,7 @@
   word-wrap: break-word;
 }
 
+.showcase-overlay-text p{
+  color: black;
+}
 /* Project image-text overlay styling end*/

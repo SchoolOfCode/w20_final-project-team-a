@@ -23,15 +23,15 @@ const Showcase = () => {
 
   return (
     <>
-    <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
-    <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
-    <div className="showcase-container">
-      <section className="project-showcase-container">
-          {data.map((project, i) => (
-            <Projects key={i} data={project} />
-          ))}
-      </section>
-    </div>
+      <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
+      <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
+    <div className="showcase-page-container">
+      <div className="showcase-items-container">
+            {data.map((project, i) => (
+              <Projects key={i} data={project} />
+            ))}
+      </div>
+  </div>
   </>
   );
 };
