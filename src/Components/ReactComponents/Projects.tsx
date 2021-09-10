@@ -22,9 +22,9 @@ const Projects: React.FC<Props> = ({ data }) => {
           {isShown && (
             <div className="showcase-overlay">
               <div className="showcase-overlay-text">
-                <p>{data.problemStatement}</p>
-                <p>Built Using:</p>
-                <p>{data.techUsed}</p>
+                <p className="showcase-overlay-text-statement">{data.problemStatement}</p>
+                <p className="showcase-overlay-text-icons-title">Built Using:</p>
+                <p className="showcase-overlay-text-icons-icons">{data.techUsed}</p>
               </div>
             </div>
           )}

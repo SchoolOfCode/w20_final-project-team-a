@@ -51,7 +51,7 @@
 .showcase-title-text {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-size: large;
+  font-size: calc(1em + 0.5vw);
   grid-column: 2/3;
   grid-row: 1;
 }
@@ -59,6 +59,8 @@
 .showcase-date {
   grid-column: 1;
   grid-row: 1/3;
+  font-size: calc(1em + 0.5vw);
+  padding-top: 0.3em;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
@@ -81,11 +83,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 200px;
-  width: 350px;
-  opacity: 0.9;
+  height: 30vw;
+  width: 35vw;
+  opacity: 0.92;
   transition: 0.5 ease;
-  background-color: rgb(226, 226, 36);
+  background-color: $circuit-yellow;
+
 }
 
 .showcase-overlay-text {
@@ -93,12 +96,23 @@
   font-family: "Poppins", sans-serif;
   text-align: center;
   font-weight: bolder;
-  font-size: large;
-  width: 350px;
-  word-wrap: break-word;
+  width: 35vw;
+  height: 30vw;
+
 }
+.showcase-overlay-text-statement{
+  padding-top: 5vh;
+}
+.showcase-overlay-text-icons-title{
+  padding-top: 5vh;
+}
+.showcase-overlay-text-icons-icons {
+  // padding-top: 5vh;
+}
+
 
 .showcase-overlay-text p{
   color: black;
+  font-size: calc(1em + 0.5vw);
 }
 /* Project image-text overlay styling end*/
