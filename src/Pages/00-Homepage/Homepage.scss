@@ -14,19 +14,19 @@ body {
   position: relative;
   display: grid;
   height: 90vh;
-  grid-template-columns: 1fr 0.8fr 0.2fr 0.8fr 3fr 0.2fr 1fr 0.8fr;
+  grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 3fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
   grid-template-rows: 1fr 0.2fr 1fr 1fr 1fr 2fr 1fr 0.2fr 1fr 1fr;
   grid-template-areas:
-    ".        .       circuitT circuitT .        .      .     ."
-    ".        .       circuitT circuitT .        .      lineR lineR"
-    ".        .       .        image    image    .      desc  desc"
-    ".        .       .        image    image    .      .     tech"
-    ".        .       larrow   image    image    rarrow .     tech"
-    ".        .       .        image    image    .      .     tech"
-    "heading  heading heading  heading  circuitB .      .     tech"
-    "lineL    lineL   lineL    lineL    circuitB .      .     tech"
-    "title    title   title    title    circuitB .      .     tech"
-    "users    users   users    users    circuitB .      .     .";
+    ".      .        .       circuitT circuitT .     .        .      .     .     .     ."
+    ".      .        .       circuitT circuitT .     .        .      lineR lineR lineR lineR"
+    ".      .        .       .        image    image image    .      .     desc  desc  ."
+    ".      .        .       .        image    image image    .      .     .     tech  ."
+    ".      .        .       larrow   image    image image    rarrow .     .     tech  ."
+    ".      .        .       .        image    image image    .      .     .     tech  ."
+    ".      heading  heading heading  heading  .     circuitB .      .     .     tech  ."
+    "lineL  lineL    lineL   lineL    lineL    lineL circuitB .      .     .     tech  ."
+    ".      title    title   title    title    .     circuitB .      .     .     tech  ."
+    ".      users    users   users    users    .     circuitB .      .     .     .     .";
 }
 
 // MSC:
@@ -41,23 +41,25 @@ body {
 .arrow-left {
   grid-area: larrow;
   font-weight: 900;
-  font-size: 60px;
+  font-size: 3.5vw;
   color: $circuit-yellow;
-  margin-top: 2vh;
+  text-align: left;
+  // margin-top: 0.8vh;
 }
 
 .featured-project-image {
   grid-area: image;
-  height: 60vh;
-  width: 55vw;
+  width: 100%;
+  max-height: 100%;
   object-fit: cover;
 }
 .arrow-right {
   grid-area: rarrow;
   font-weight: 900;
-  font-size: 60px;
+  font-size: 3.5vw;
   color: $circuit-yellow;
-  margin-top: 2vh;
+  // margin-top: 0.8vh;
+  text-align: right;
 }
 
 .line-right {
@@ -79,35 +81,37 @@ body {
   grid-area: desc;
   margin-top: 0.5vh;
   margin-bottom: 2vh;
-  text-align: right;
-  font-size: 3vh;
+  text-align: justify;
+  font-size: 1.2vw;
 }
 
 .tech {
   grid-area: tech;
   text-align: right;
-  font-size: 3vh;
+  font-size: 1.4vw;
 }
 
 .heading {
   grid-area: heading;
   text-align: right;
-  margin-bottom: 0.5vh;
-  font-size: 4.5vh;
+  // margin-bottom: 0.5vh;
+  font-size: 2vw;
+  font-weight: 900;
+  align-self: end;
 }
 
 .title {
   grid-area: title;
   margin-top: 2vh;
   margin-bottom: 2vh;
-  text-align: right;
-  font-size: 3.5vh;
+  text-align: left;
+  font-size: 1.2vw;
 }
 
 .contributors {
   grid-area: users;
-  text-align: right;
-  font-size: 3vh;
+  text-align: left;
+  font-size: 1vw;
 }
 
 .circuitB {
