@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import "./Showcase.scss";
-import Projects from "../../Components/Projects";
+import Projects from "../../Components/ReactComponents/Projects";
 
 import axios from "axios";
 import { API_URL } from "../../config";
 
-import LeftVerticalTitle from "../../Components/LeftVerticalTitle/LeftVerticalTitle";
-import HorizontalCircuit from "../../Components/HorizontalCircuit/HorizontalCircuit";
+import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
+import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 const Showcase = () => {
   const [data, setData] = useState([{}]);

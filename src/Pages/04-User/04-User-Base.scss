@@ -1,0 +1,101 @@
+@import "../../Variables.scss";
+
+.user-page-container {
+  display: grid;
+  max-height: 90vw;
+}
+
+.user-header {
+  font-family: "Poppins", sans-serif;
+  width: 10vw;
+  grid-row: span;
+}
+
+.user-header-line {
+  position: fixed;
+  bottom: 0;
+  left: 10vw;
+  width: 1%;
+  max-height: 94vh;
+}
+
+.user-header-text {
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 10vh;
+}
+
+/* --- Login/Signup: Form Container --- */
+
+.user-form-container {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 1.4fr 0.6fr;
+  grid-template-rows: 0.1fr 0.4fr 0.2fr 0.4fr 0.1fr;
+}
+
+/* --- Login/Signup: Images --- */
+
+.user-sidebar-image {
+  width: 28%;
+  top: 10vw;
+  left: 10vw;
+  height: auto;
+  position: fixed;
+}
+.user-page-image {
+  width: 95%;
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  justify-self: center;
+}
+
+/* --- Login/Signup: Form Input --- */
+
+.user-form-input {
+  grid-column: 2 / span 3;
+  grid-row: 4 / span 2;
+  row-gap: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: last baseline;
+  align-items: center;
+  text-align: center;
+
+  input {
+    width: 15vw;
+    height: 2.5em;
+    font-size: 1em;
+    text-align: center;
+  }
+  label {
+    text-transform: uppercase;
+    font-size: 1.2em;
+  }
+}
+
+/* --- Login/Signup: Already Registered Link --- */
+
+.user-registered-link {
+  font-size: 1.5em;
+  grid-column: 3;
+  grid-row: 5;
+  padding-top: 2vh;
+}
+
+/* --- Login/Signup: Submit --- */
+
+.user-submit {
+  padding-top: 2vh;
+}
+
+.user-submit-button {
+  color: $black;
+  background-color: $circuit-yellow;
+  width: 120%;
+  height: 3.8vh;
+  border-radius: 8px;
+  vertical-align: middle;
+}
