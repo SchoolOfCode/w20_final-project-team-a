@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {builtUsing} from '../VisualAssets/techStack/techIcons'
 
 type Props = {
   data: any;
@@ -6,6 +7,11 @@ type Props = {
 
 const Projects: React.FC<Props> = ({ data }) => {
   const [isShown, setIsShown] = useState(false);
+
+  const date = new Date(data.created_at)
+  const day= date.getDate();
+  const month = date.getMonth()+1;
+  const year = date.getFullYear();
 
   return (
       <div className="showcase-item">
@@ -24,13 +30,27 @@ const Projects: React.FC<Props> = ({ data }) => {
               <div className="showcase-overlay-text">
                 <p className="showcase-overlay-text-statement">{data.problemStatement}</p>
                 <p className="showcase-overlay-text-icons-title">Built Using:</p>
-                <p className="showcase-overlay-text-icons-icons">{data.techUsed}</p>
+                <ul className="showcase-overlay-text-icons-icons">
+                {data.techUsed.map((tech:string,i:number) => {
+                  return (
+                  <li key={i}>
+                    <img 
+                    src={builtUsing[tech]} 
+                    alt="icon"
+                    className="showcase-tech-icon"
+                    />
+                  </li>
+                  )
+                })}
+                </ul>
               </div>
             </div>
           )}
         </div>
 
-        <span className="showcase-date">12/05/2000</span>
+        <span className="showcase-date">
+          {`${day}/${month}/${year}`}
+        </span>
       </div>
   );
 };

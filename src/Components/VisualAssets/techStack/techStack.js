@@ -27,6 +27,21 @@ export const builtUsingIcons = {
   Sass: { name: "Sass", used: false, image: Sass },
   Bootstrap: { name: "Bootstrap", used: false, image: Bootstrap },
 };
+export const builtUsing = {
+  "HTML": HTML,
+  "CSS": CSS ,
+  "Javascript": Javascript,
+  "Typescript": Typescript,
+  "React": React,
+  "ReactNative":ReactNative,
+  "Nodejs": Nodejs,
+  "Expressjs": Expressjs,
+  "MongoDB": MongoDB,
+  "PostgreSQL": PostgreSQL,
+  "Tailwind": Tailwind,
+  "Sass": Sass ,
+  "Bootstrap": Bootstrap
+};
 
 // export const tools ={
 //     Figma,

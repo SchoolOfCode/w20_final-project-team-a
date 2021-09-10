@@ -40,6 +40,14 @@
   grid-template-columns: 2em 35vw;
 }
 
+.showcase-title-text {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: calc(1em + 0.5vw);
+  grid-column: 2/3;
+  grid-row: 1;
+  width: max-content;
+}
 .showcase-image {
   height: 30vw;
   width: 35vw;
@@ -48,13 +56,6 @@
   grid-row: 2;
 }
 
-.showcase-title-text {
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: calc(1em + 0.5vw);
-  grid-column: 2/3;
-  grid-row: 1;
-}
 
 .showcase-date {
   grid-column: 1;
@@ -102,12 +103,27 @@
 }
 .showcase-overlay-text-statement{
   padding-top: 5vh;
+  text-align: justify center;
+  margin: 0 2vw;
 }
 .showcase-overlay-text-icons-title{
-  padding-top: 5vh;
+  position: absolute;
+  left: 37%;
+  bottom: 7vw;
 }
 .showcase-overlay-text-icons-icons {
-  // padding-top: 5vh;
+  position: absolute;
+  bottom: 0;
+  list-style-type: none;
+  width: 30vw;
+}
+.showcase-overlay-text-icons-icons li{
+  display: inline;
+}
+
+.showcase-tech-icon{
+  width: 5vw;
+  max-height: 5vw;
 }
 
 
