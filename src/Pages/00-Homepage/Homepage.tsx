@@ -1,7 +1,7 @@
 import React from "react";
 import "./Homepage.scss";
-import featuredImg from "../../Components/Backgrounds/JohnProdmanPoster.png";
-import HorizontalCircuit from "../../Components/HorizontalCircuit/HorizontalCircuit";
+import featuredImg from "./62e756a4-4e6_Darth_Dwight.jpg";
+import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 const Homepage = () => {
   return (
