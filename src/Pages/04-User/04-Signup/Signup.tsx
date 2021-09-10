@@ -50,7 +50,7 @@ const Signup = () => {
               <p>
                 <input
                   type="email"
-                  placeholder="lewis@lewis.ninja"
+                  placeholder="your@email.here"
                   name="email"
                   id="email"
                   onBlur={(e) => setEmail(e.target.value)}
@@ -62,7 +62,7 @@ const Signup = () => {
               <p>
                 <input
                   type="text"
-                  placeholder="lewis"
+                  placeholder="password"
                   name="displayName"
                   id="displayName"
                   onBlur={(e) => setDisplayName(e.target.value)}
@@ -112,21 +112,15 @@ const Signup = () => {
           </form>
           <section className="signup-messages-container">
             {success && (
-              <div
-                className="signup-messages-container-success"
-                style={{ backgroundColor: "lightgreen", color: "black" }}
-              >
-                <h3 className="signup-messages-text">
+              <div className="signup-messages-container-success">
+                <h3 className="signup-messages-text-success">
                   Your account has been sucessfully registered. Click{" "}
                   <a href="/login">here</a> to login
                 </h3>
               </div>
             )}
             {failure && (
-              <div
-                className="signup-messages-container-failure"
-                style={{ backgroundColor: "red", color: "white" }}
-              >
+              <div className="signup-messages-container-failure">
                 <p className="signup-message-header">
                   The following error(s) occurred:
                 </p>
@@ -134,8 +128,8 @@ const Signup = () => {
                   failureMsg.map((errorMsg, i) => {
                     return (
                       <ul>
-                        <li className="signup-messages-text" key={i}>
-                          - {errorMsg.msg}
+                        <li className="signup-messages-text-failure" key={i}>
+                          {errorMsg.msg}
                         </li>
                       </ul>
                     );
