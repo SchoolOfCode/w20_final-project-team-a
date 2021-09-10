@@ -10,6 +10,8 @@ body {
 }
 
 .wrapper {
+  top: 80px;
+  position: relative;
   display: grid;
   height: 90vh;
   grid-template-columns: 1fr 0.8fr 0.2fr 0.8fr 3fr 0.2fr 1fr 0.8fr;
@@ -46,8 +48,9 @@ body {
 
 .featured-project-image {
   grid-area: image;
-  height: 30vh;
-  width: 30vw;
+  height: 60vh;
+  width: 55vw;
+  object-fit: cover;
 }
 .arrow-right {
   grid-area: rarrow;
@@ -59,6 +62,17 @@ body {
 
 .line-right {
   grid-area: lineR;
+  transform: scaleX(-1);
+
+  .circuit-line {
+    width: 25vw;
+  }
+}
+.line-left {
+  grid-area: lineL;
+  .circuit-line {
+    width: 35vw;
+  }
 }
 
 .description {
@@ -80,10 +94,6 @@ body {
   text-align: right;
   margin-bottom: 0.5vh;
   font-size: 4.5vh;
-}
-
-.line-left {
-  grid-area: lineL;
 }
 
 .title {
