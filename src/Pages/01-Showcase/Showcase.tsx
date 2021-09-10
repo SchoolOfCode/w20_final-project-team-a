@@ -15,8 +15,6 @@ const Showcase = () => {
   useEffect(() => {
     const getData = async () => {
       axios.get(API_URL + "projects/all").then((response) => {
-        //   response.data.forEach((project:any) => setData([...data,project]))
-        //     console.log(response.data)
         setData(response.data);
       });
     };
@@ -25,22 +23,16 @@ const Showcase = () => {
 
   return (
     <>
-      <div className="showcase-container">
-        <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
-
-        <section className="project-showcase-container">
-          <section className="project-showcase-display">
-            <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
-          </section>
-
-          <section className="project-showcase-display-objects">
-            {data.map((project, i) => (
-              <Projects key={i} data={project} />
-            ))}
-          </section>
-        </section>
-      </div>
-    </>
+    <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
+    <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
+    <div className="showcase-container">
+      <section className="project-showcase-container">
+          {data.map((project, i) => (
+            <Projects key={i} data={project} />
+          ))}
+      </section>
+    </div>
+  </>
   );
 };
 

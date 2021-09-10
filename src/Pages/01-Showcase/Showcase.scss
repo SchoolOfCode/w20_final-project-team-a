@@ -1,21 +1,34 @@
 @import "../../Variables.scss";
 
-.circuit-line {
+.circuit-container {
+  position: fixed;
+  top: 175px;
+  left: 175px;
   @include circuit-container-left;
+
 }
 
 .showcase-container {
-  width: 100vw;
-  height: 90vh;
+  width: calc(100% - 200px);
+  height: calc(100% - 200px);
+
+  // display: grid;
+  // grid-template-columns: 0.2fr 1fr;
+  // grid-template-rows: 0.2fr 1fr;
+
+  padding-top: 200px;
+  padding-left: 15vw;
+
+  overflow: auto;
 }
-/*Header section start*/
+
+
 .project-showcase-container {
-  margin-top: 50px;
-  margin-left: 15vw;
-  display: grid;
-  height: 90vw;
-  grid-template-columns: 0.2fr 1fr;
-  grid-template-rows: 0.2fr 1fr;
+
+  // height: calc(100% - 200px);
+  // overflow-x: hidden; /* Hide horizontal scrollbar */
+
+
 }
 
 /*Header section end */

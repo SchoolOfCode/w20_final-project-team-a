@@ -9,7 +9,6 @@ const Projects: React.FC<Props> = ({ data }) => {
   const [isShown, setIsShown] = useState(false);
 
   return (
-    <>
       <div>
         <span className="project-showcase-title-text">{data.projectName}</span>
 
@@ -34,7 +33,6 @@ const Projects: React.FC<Props> = ({ data }) => {
 
         <span className="project-showcase-date">12/05/2000</span>
       </div>
-    </>
   );
 };
 
