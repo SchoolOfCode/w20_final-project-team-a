@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../../Pages/01-Showcase/Showcase.scss";
+import {builtUsing} from '../VisualAssets/techStack/techIcons'
+import {Link} from 'react-router-dom'
 
 type Props = {
   data: any;
@@ -8,33 +9,50 @@ type Props = {
 const Projects: React.FC<Props> = ({ data }) => {
   const [isShown, setIsShown] = useState(false);
 
-  return (
-    <>
-      <div>
-        <span className="project-showcase-title-text">{data.projectName}</span>
+  const date = new Date(data.created_at)
+  const day= date.getDate();
+  const month = date.getMonth()+1;
+  const year = date.getFullYear();
 
-        <div className="project-showcase-overlay-container">
-          <img
+  return (
+    <Link to={{ pathname: "/bootcamper_profile", state: data }} className="showcase-item">
+        <span className="showcase-title-text">{data.projectName}</span>
+        <div className="showcase-overlay-container"
             onMouseOver={() => setIsShown(true)}
             onMouseLeave={() => setIsShown(false)}
+        >
+          <img
             src={data.appDeploymentImage}
             alt="Project"
-            className="project-showcase-image"
+            className="showcase-image"
           />
-          {isShown && (
-            <div className="project-showcase-overlay">
-              <div className="project-showcase-overlay-text">
-                <p>{data.problemStatement}</p>
-                <p>Built Using:</p>
-                <p>{data.techUsed}</p>
+          {isShown && 
+            <div className="showcase-overlay">
+              <div className="showcase-overlay-text">
+                <p className="showcase-overlay-text-statement">{data.problemStatement}</p>
+                <p className="showcase-overlay-text-icons-title">Built Using:</p>
+                <ul className="showcase-overlay-text-icons-icons">
+                {data.techUsed.map((tech:string,i:number) => {
+                  return (
+                  <li key={i}>
+                    <img 
+                    src={builtUsing[tech]} 
+                    alt="icon"
+                    className="showcase-tech-icon"
+                    />
+                  </li>
+                  )
+                })}
+                </ul>
               </div>
             </div>
-          )}
+          }
         </div>
 
-        <span className="project-showcase-date">12/05/2000</span>
-      </div>
-    </>
+        <span className="showcase-date">
+          {`${day}/${month}/${year}`}
+        </span>
+    </Link>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../01-Showcase/Showcase.scss";
 import "./Bootcampers.scss";
 import Users from "../../Components/ReactComponents/Users";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
+import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 import axios from "axios";
 import { API_URL } from "../../config";
 
@@ -21,16 +21,15 @@ const ProfilesShowcase = () => {
 
   return (
     <>
-      <div>
-        <section className="profiles-showcase-container">
-          <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
-          <section className="profiles-showcase-wrapper">
-            {data.map((user) => (
-              <Users data={user} />
-            ))}
-          </section>
+    <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
+    <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
+      <section className="bootcampers-showcase-container">
+        <section className="bootcampers-items-container">
+          {data.map((user,i) => (
+            <Users data={user} key={i} />
+          ))}
         </section>
-      </div>
+      </section>
     </>
   );
 };

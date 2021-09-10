@@ -6,36 +6,32 @@ type Props = {
 };
 
 const Users: React.FC<Props> = ({ data }) => {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [isShown, setIsShown] = useState(false);
 
   return (
-    <Link to={{ pathname: "/bootcamper_profile", state: data }}>
-      <article className="profiles-showcase-display-items">
-        <h2 className="profiles-showcase-name-text">{data.displayName}</h2>
-        <img
-          src={data.photo}
-          onMouseOver={() => setShowOverlay(true)}
-          onMouseLeave={() => setShowOverlay(false)}
-          alt="bootcamper pic"
-          className="profiles-showcase-image"
-        />
-        <h3 className="profiles-showcase-cohort-text"> cohort {data.cohort}</h3>
-        <div className="profiles-showcase-overlay-container">
-          <div
-            className={
-              showOverlay
-                ? "profiles-showcase-overlay"
-                : "profiles-showcase-overlay-hide"
-            }
-          >
-            <div className="profiles-showcase-overlay-text">
-              <span> {data.statement}</span>
-              <span> {data.email}</span>
+      <Link to={{ pathname: "/bootcamper_profile", state: data }} className="bootcamper-item">
+        <h2 className="bootcamper-title-text">{data.displayName}</h2>
+        <h3 className="bootcamper-cohort-text"> cohort {data.cohort}</h3>
+        <div className="bootcamper-overlay-container"
+            onMouseOver={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
+        >
+          <img
+            src={data.photo}
+            alt="bootcamper person"
+            className="bootcamper-image"
+          />
+          {isShown && 
+            <div className="bootcamper-overlay">
+              <div className="bootcamper-overlay-text">
+                <p className="bootcamper-overlay-text-statement"> {data.statement}</p>
+                {/* <p className="bootcamper-overlay-email"> {data.email}</p> */}
+                <p className="bootcamper-overlay-help">Click to see my profile & projects</p>
+              </div>
             </div>
-          </div>
+          } 
         </div>
-      </article>
-    </Link>
+      </Link>
   );
 };
 
