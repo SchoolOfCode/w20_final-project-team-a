@@ -16,12 +16,12 @@ const Homepage = () => {
       {/*need to access array of images, display index=0 as default/*/}
       <p className="arrow-right"> {">"} </p>{" "}
       {/*onClick decrease image display index by 1/*/}
-      <HorizontalCircuit className="circuit-right" />
+      <HorizontalCircuit className="line-right" />
       <p className="description"> Project description</p>
       <p className="tech"> Built using </p>{" "}
       {/*needs list with tech images here/*/}
       <p className="heading"> Featured Project </p>
-      <HorizontalCircuit className="circuit-left-bottom" />
+      <HorizontalCircuit className="line-left" />
       <p className="title"> Project Title</p>
       <p className="contributors"> Contributors </p>
       {/* 
