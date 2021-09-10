@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {builtUsing} from '../VisualAssets/techStack/techIcons'
+import {Link} from 'react-router-dom'
 
 type Props = {
   data: any;
@@ -14,7 +15,7 @@ const Projects: React.FC<Props> = ({ data }) => {
   const year = date.getFullYear();
 
   return (
-      <div className="showcase-item">
+    <Link to={{ pathname: "/bootcamper_profile", state: data }} className="showcase-item">
         <span className="showcase-title-text">{data.projectName}</span>
         <div className="showcase-overlay-container"
             onMouseOver={() => setIsShown(true)}
@@ -51,7 +52,7 @@ const Projects: React.FC<Props> = ({ data }) => {
         <span className="showcase-date">
           {`${day}/${month}/${year}`}
         </span>
-      </div>
+    </Link>
   );
 };
 

@@ -6,6 +6,7 @@ import SocialLinks from "../../../Components/ReactComponents/SocialLinks";
 import { API_URL } from "../../../config";
 import axios from "axios";
 import Loading from "../../../Components/ReactComponents/Loading/Loading";
+import Projects from "../../../Components/ReactComponents/Projects";
 
 const BootcamperProfile = (data: any) => {
   const user = data.location.state;
@@ -36,8 +37,8 @@ const BootcamperProfile = (data: any) => {
       <LeftVerticalTitle
         title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
       />
+      <HorizontalCircuit className="individual-profile-line-1" />
       <section className="individual-profile-container">
-        <HorizontalCircuit className="individual-profile-line-1" />
         <h2 className="individual-profile-name">{user.displayName}</h2>
         <p className="individual-profile-statement">
           {user.statement || "Test"}
@@ -51,6 +52,7 @@ const BootcamperProfile = (data: any) => {
         />
 
         <h3 className="individual-profile-projects-title">My Projects</h3>
+        </section>
         <HorizontalCircuit className="individual-profile-line-2" />
 
         <section className="individual-profile-projects-container">
@@ -60,17 +62,11 @@ const BootcamperProfile = (data: any) => {
             <div className="individual-profile-projects">
               {userProjects.map((project, i) => {
                 return (
-                  <img
-                    src={project.appDeploymentImage}
-                    alt="projects"
-                    key={i}
-                    className={`individual-profile-projects-${i}`}
-                  />
+                  <Projects data={project} key={i}/>
                 );
               })}
             </div>
           )}
-        </section>
       </section>
     </div>
   );
