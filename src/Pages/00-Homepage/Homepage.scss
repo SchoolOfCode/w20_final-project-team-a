@@ -10,144 +10,127 @@ body {
 }
 
 .wrapper {
+  top: 80px;
+  position: relative;
   display: grid;
   height: 90vh;
-  /* grid-gap: 2vh; */
-  grid-template-columns: 1fr 0.1fr 1fr 1fr 1fr 0.1fr 1fr 0.6fr;
-  grid-template-rows: 1fr 0.07fr 1.4fr 0.5fr 2fr 0.8fr 0.07fr 1fr 1fr;
-  /* grid-template-areas: 
-    ".       arrow   image   image image arrow desc  desc"
-    ".       .       .       .     .     .     .     tech"
-    "heading heading heading .     .     .     .     ."
-    "title   title   title   .     .     .     .     ."
-    "users   users   users   .     .     .     .     ."; */
-}
-
-.circuit1 {
-  grid-row-start: 1;
-  grid-row-end: 4;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  background-color: lightgray;
-  margin-bottom: 2vh;
-}
-
-.main-image {
-  /* grid-row: 2;
-grid-column: 3; */
-  /* grid-area: image; */
-  grid-row-start: 2;
-  grid-row-end: 6;
-  grid-column-start: 3;
-  grid-column-end: 6;
-  background-color: khaki;
-  margin-bottom: 2vh;
-}
-
-.description {
-  /* grid-row: 2;
-    grid-column: 5; */
-  /* grid-area: desc; */
-  grid-row-start: 3;
-  grid-row-end: 4;
-  grid-column-start: 7;
-  grid-column-end: 9;
-  /* background-color: lightblue; */
-  margin-top: 0.5vh;
-  margin-bottom: 2vh;
-  text-align: right;
-  font-size: 3vh;
-}
-
-.tech {
-  /* grid-row: 3;
-    grid-column: 5; */
-  /* grid-area: tech; */
-  grid-row-start: 4;
-  grid-row-end: 9;
-  grid-column-start: 8;
-  grid-column-end: 8;
-  /* background-color: lightseagreen; */
-  text-align: right;
-  font-size: 3vh;
-}
-
-.heading {
-  /* grid-row: 4;
-    grid-column:1; */
-  /* grid-area: heading; */
-  grid-row-start: 6;
-  grid-row-end: 6;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  /* background-color: magenta; */
-  text-align: right;
-  margin-bottom: 0.5vh;
-  font-size: 4.5vh;
-}
-
-.circuit2 {
-  grid-row-start: 5;
-  grid-row-end: 10;
-  grid-column-start: 5;
-  grid-column-end: 7;
-  background-color: lightgray;
-  margin-top: 2vh;
-}
-
-.banner2 {
-  grid-row-start: 7;
-  grid-row-end: 7;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  background-color: yellow;
-}
-
-.title {
-  /* grid-row: 5;
-grid-column: 1; */
-  /* grid-area: title; */
-  grid-row-start: 8;
-  grid-row-end: 8;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  /* background-color: limegreen; */
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  text-align: right;
-  font-size: 3.5vh;
-}
-
-.contributors {
-  /* grid-row: 6;
-    grid-column: 1; */
-  /* grid-area: users; */
-  grid-row-start: 9;
-  grid-row-end: 9;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  /* background-color: maroon; */
-  text-align: right;
-  font-size: 3vh;
+  grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 1.6fr 1.2fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
+  grid-template-rows: 1fr 0.2fr 1fr 1fr 1fr 2fr 1fr 0.2fr 1fr 1fr;
+  grid-template-areas:
+    ".      .        .       circuitT circuitT .     .        .        .        .     .     .     ."
+    ".      .        .       circuitT circuitT .     .        .        .        lineR lineR lineR lineR"
+    ".      .        .       .        image    image image    image    .        .     desc  desc  ."
+    ".      .        .       .        image    image image    image    .        .     .     tech  ."
+    ".      .        .       larrow   image    image image    image    rarrow   .     .     tech  ."
+    ".      .        .       .        image    image image    image    .        .     .     tech  ."
+    ".      heading  heading heading  heading  .     .        circuitB circuitB .     .     tech  ."
+    "lineL  lineL    lineL   lineL    lineL    lineL .        circuitB circuitB .     .     tech  ."
+    ".      title    title   title    title    .     .        circuitB circuitB .     .     tech  ."
+    ".      users    users   users    users    .     .        circuitB circuitB .     .     .     .";
 }
 
 // MSC:
+//refactored styling
+
+// .circuitT {
+//   // grid-area: circuitT;
+//   background-color: grey;
+//   grid-column: 4/6;
+//   grid-row: 1/4;
+//   width: 100%;
+//   max-width: 100%;
+//   object-fit: cover;
+// }
 
 .arrow-left {
-  @include arrow;
-  grid-column: 2 / 2;
-}
-.arrow-right {
-  @include arrow;
-  grid-column: 7 / 7;
-}
-.featured-project-image {
-  @include main-project-image;
+  grid-area: larrow;
+  font-weight: 900;
+  font-size: 3.5vw;
+  color: $circuit-yellow;
+  text-align: left;
+  // margin-top: 0.8vh;
 }
 
-.circuit-left-bottom {
-  @include circuit-container-left-bottom;
+.featured-project-image {
+  grid-area: image;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
-.circuit-right {
-  @include circuit-container-right;
+.arrow-right {
+  grid-area: rarrow;
+  font-weight: 900;
+  font-size: 3.5vw;
+  color: $circuit-yellow;
+  // margin-top: 0.8vh;
+  text-align: right;
+}
+
+.line-right {
+  grid-area: lineR;
+  transform: scaleX(-1);
+
+  .circuit-line {
+    width: 25vw;
+  }
+}
+.line-left {
+  grid-area: lineL;
+  .circuit-line {
+    width: 35vw;
+  }
+}
+
+.description {
+  grid-area: desc;
+  margin-top: 0.5vh;
+  margin-bottom: 2vh;
+  text-align: justify;
+  font-size: 1.2vw;
+}
+
+.tech {
+  grid-area: tech;
+  text-align: right;
+  font-size: 1.4vw;
+}
+
+.heading {
+  grid-area: heading;
+  text-align: right;
+  // margin-bottom: 0.5vh;
+  font-size: 2vw;
+  font-weight: 900;
+  align-self: end;
+}
+
+.title {
+  grid-area: title;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  text-align: left;
+  font-size: 1.2vw;
+}
+
+.contributors {
+  grid-area: users;
+  text-align: left;
+  font-size: 1vw;
+}
+
+.circuitT {
+  // grid-area: circuitB;
+  grid-column: 4/7;
+  grid-row: 1/5;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.circuitB {
+  // grid-area: circuitB;
+  grid-column: 8/10;
+  grid-row: 6/10;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }

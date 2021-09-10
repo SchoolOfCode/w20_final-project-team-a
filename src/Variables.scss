@@ -23,24 +23,24 @@ $large-header: calc(3em + 1vw);
 
 // Mixins Interactive:
 
-@mixin arrow() {
-  font-weight: 900;
-  font-size: 60px;
-  grid-row: 4 / 4;
-  color: $circuit-yellow;
-  margin-top: 2vh;
-}
+// @mixin arrow() {
+//   font-weight: 900;
+//   font-size: 60px;
+//   grid-row: 4 / 4;
+//   color: $circuit-yellow;
+//   margin-top: 2vh;
+// }
 
 // Mixins:Images
 
-@mixin main-project-image() {
-  grid-row-start: 2;
-  grid-row-end: 6;
-  grid-column-start: 3;
-  grid-column-end: 6;
-  max-height: 70vh;
-  max-width: 70vw;
-}
+// @mixin main-project-image() {
+//   grid-row-start: 2;
+//   grid-row-end: 6;
+//   grid-column-start: 3;
+//   grid-column-end: 6;
+//   max-height: 70vh;
+//   max-width: 70vw;
+// }
 
 // Mixins:Circuit-Containers
 
