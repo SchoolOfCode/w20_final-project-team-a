@@ -25,16 +25,94 @@
 }
 
 .bootcampers-items-container {
-  width: calc(100% - 250px);
+  width: calc(100% - 150px);
   display: grid;
-  grid-template-columns: repeat( 3, 25vw );
+  grid-template-columns: repeat( 3, 20vw );
   gap: 3vw;
+}
+
+.bootcampers-items-container a{
+  text-decoration: none;
 }
 
 .bootcamper-item{
   display: grid;
-  grid-template-columns: 2em 35vw;
+  grid-template-columns: 2em 25vw;
 }
+
+.bootcamper-title-text {
+  color: white;
+  font-size: calc(1em + 0.5vw);
+  grid-column: 2/3;
+  grid-row: 1;
+  width: max-content;
+}
+
+.bootcamper-cohort-text {
+  grid-column: 1;
+  grid-row: 1/3;
+  font-size: calc(1em + 0.5vw);
+  padding-top: 0.3em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.bootcamper-image {
+  height: 20vw;
+  width: 18vw;
+  object-fit: cover;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.bootcamper-overlay-container {
+  position: relative;
+}
+// .showcase-overlay-container:hover{
+//   box-shadow: 0px 0px 10px $circuit-yellow;
+// }
+
+.bootcamper-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20vw;
+  width: 18vw;
+  opacity: 0.92;
+  transition: 0.5 ease;
+  background-color: $circuit-yellow;
+  
+}
+
+.bootcamper-overlay-text {
+  color: $black;
+  text-align: center;
+  font-weight: bolder;
+  height: 20vw;
+  width: 18vw;
+  
+}
+.bootcamper-overlay-text p{
+  color: black;
+  font-size: calc(1em + 0.5vw);
+}
+.bootcamper-overlay-text-statement{
+  padding-top: 5vh;
+  text-align: justify center;
+  margin: 0 2vw;
+}
+// .bootcamper-overlay-email{
+//   position: relative;
+//   bottom: 50%;
+//   text-align: center;
+// }
+.bootcamper-overlay-help{
+  position: absolute;
+  bottom: 1vw;
+}
+
 
 
 

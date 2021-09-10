@@ -25,7 +25,7 @@ const Projects: React.FC<Props> = ({ data }) => {
             alt="Project"
             className="showcase-image"
           />
-          {isShown && (
+          {isShown && 
             <div className="showcase-overlay">
               <div className="showcase-overlay-text">
                 <p className="showcase-overlay-text-statement">{data.problemStatement}</p>
@@ -45,7 +45,7 @@ const Projects: React.FC<Props> = ({ data }) => {
                 </ul>
               </div>
             </div>
-          )}
+          }
         </div>
 
         <span className="showcase-date">

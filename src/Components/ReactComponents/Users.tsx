@@ -6,36 +6,32 @@ type Props = {
 };
 
 const Users: React.FC<Props> = ({ data }) => {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [isShown, setIsShown] = useState(false);
 
   return (
-    <article className="bootcamper-item">
-        <Link to={{ pathname: "/bootcamper_profile", state: data }}>
-          <h2 className="profiles-showcase-name-text">{data.displayName}</h2>
+      <Link to={{ pathname: "/bootcamper_profile", state: data }} className="bootcamper-item">
+        <h2 className="bootcamper-title-text">{data.displayName}</h2>
+        <h3 className="bootcamper-cohort-text"> cohort {data.cohort}</h3>
+        <div className="bootcamper-overlay-container"
+            onMouseOver={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
+        >
           <img
             src={data.photo}
-            onMouseOver={() => setShowOverlay(true)}
-            onMouseLeave={() => setShowOverlay(false)}
-            alt="bootcamper pic"
-            className="profiles-showcase-image"
+            alt="bootcamper person"
+            className="bootcamper-image"
           />
-          <h3 className="profiles-showcase-cohort-text"> cohort {data.cohort}</h3>
-          <div className="profiles-showcase-overlay-container">
-            <div
-              className={
-                showOverlay
-                  ? "profiles-showcase-overlay"
-                  : "profiles-showcase-overlay-hide"
-              }
-            >
-              <div className="profiles-showcase-overlay-text">
-                <span> {data.statement}</span>
-                <span> {data.email}</span>
+          {isShown && 
+            <div className="bootcamper-overlay">
+              <div className="bootcamper-overlay-text">
+                <p className="bootcamper-overlay-text-statement"> {data.statement}</p>
+                {/* <p className="bootcamper-overlay-email"> {data.email}</p> */}
+                <p className="bootcamper-overlay-help">Click to see my profile & projects</p>
               </div>
             </div>
-          </div>
+          } 
+        </div>
       </Link>
-    </article>
   );
 };
 
