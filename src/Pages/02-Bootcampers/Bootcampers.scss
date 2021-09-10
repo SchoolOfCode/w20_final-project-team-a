@@ -5,8 +5,7 @@
   top: 175px;
   max-width: 30vw;
   left: 175px;
-  @include circuit-container-left;
-
+  // @include circuit-container-left;
 }
 
 .bootcampers-showcase-container {
@@ -27,15 +26,15 @@
 .bootcampers-items-container {
   width: calc(100% - 150px);
   display: grid;
-  grid-template-columns: repeat( 3, 20vw );
+  grid-template-columns: repeat(3, 20vw);
   gap: 3vw;
 }
 
-.bootcampers-items-container a{
+.bootcampers-items-container a {
   text-decoration: none;
 }
 
-.bootcamper-item{
+.bootcamper-item {
   display: grid;
   grid-template-columns: 2em 25vw;
 }
@@ -83,7 +82,6 @@
   opacity: 0.92;
   transition: 0.5 ease;
   background-color: $circuit-yellow;
-  
 }
 
 .bootcamper-overlay-text {
@@ -92,13 +90,12 @@
   font-weight: bolder;
   height: 20vw;
   width: 18vw;
-  
 }
-.bootcamper-overlay-text p{
+.bootcamper-overlay-text p {
   color: black;
   font-size: calc(1em + 0.5vw);
 }
-.bootcamper-overlay-text-statement{
+.bootcamper-overlay-text-statement {
   padding-top: 5vh;
   text-align: justify center;
   margin: 0 2vw;
@@ -108,21 +105,10 @@
 //   bottom: 50%;
 //   text-align: center;
 // }
-.bootcamper-overlay-help{
+.bootcamper-overlay-help {
   position: absolute;
   bottom: 1vw;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // .profiles-showcase-header {
 //   width: 10vw;
