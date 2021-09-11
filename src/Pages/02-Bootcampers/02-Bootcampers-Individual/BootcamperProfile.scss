@@ -3,39 +3,44 @@
 .individual-profile-container{
     position: absolute;
     left: 180px;
-    top: 50px;
+    top: calc(180px - 3em);
     display: grid;
     grid-template-columns: 1fr 0.5fr 1fr;
     width: calc(100% - 200px);
-    height: 50%;
+    height: 39%;
 }
 
 .individual-profile-name{
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1;
-    justify-self: center;
+    justify-self: flex-end;
     font-size: 2em;
     padding-top: 0.5em;
+    padding-right: 20%;
 }
 
 .individual-profile-statement{
-    grid-row: 3;
+    grid-row: 2/3;
+    // height: 20vh;
+    padding-left: 1em;
     grid-column: 1;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 2em;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: 300;
+    justify-self: center;
 }
 
 .individual-profile-socials{
-    grid-row: 4;
+    height: 12vw;
+    grid-row: 3;
     grid-column: 1;
-    padding-top: 50px;
     display: flex;
     justify-content: space-evenly;
+    align-self: flex-end;
 }
+
+
 .social-icons{
+    width: 50px;
     filter: invert(1) grayscale(1) brightness(2);
 }
 .social-icons:hover{
@@ -44,29 +49,31 @@
 
 .individual-profile-photo{
     grid-column: 3;
-    grid-row: 2/5;
-    max-width: 30vw;
-    max-height: 30vw;
+    grid-row: 1/4;
+    padding-top: 5em;
+    width: 70%;
+    justify-self: center;
 }
 
 .individual-profile-projects-title{
-    grid-row: 7;
+    grid-row: 3;
     grid-column: 1;
     font-size: 2em;
     align-self: flex-end;
-    padding-bottom: 0.5em;
-    justify-self: center;
+    justify-self: flex-end;
+    padding-right: 22%;
 }
 
 .individual-profile-line-1{
     position: absolute;
-    top: 10%;
+    top: 180px;
+    width: 95%;
 }
 .individual-profile-line-2{
     position: absolute;
-    top: 45%;
+    top: calc(180px - 3.2em + 38%);
+    width: 95%;
 }
-
 
 .individual-profile-projects-container{
     position: absolute;
@@ -86,6 +93,7 @@
 
 .individual-profile-projects{
     width: calc(100% - 250px);
+    padding-top: 50px;
     display: grid;
     grid-template-columns: repeat( 2, 35vw );
     gap: 5vw;
