@@ -32,6 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-start": "concurrently \"npm start\" \"cd server && npm run dev\"",
+    "dev-chill": "concurrently \"npm start\" \"cd server && npm run dev\"",
     "post-build": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "proxy": "http://localhost:5000/api",
