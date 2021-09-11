@@ -14,6 +14,8 @@ import Login from "./Pages/04-User/04-Login/Login";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard from "./Pages/06-Dashboard/Dashboard";
+import ShowcaseProfile from "./Pages/01-Showcase/showcase-individual/ShowcaseProfile";
+
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
@@ -34,6 +36,7 @@ function App() {
       <Route exact path="/" component={Homepage} />
       <Route exact path="/home" component={Homepage} />
       <Route exact path="/showcase" component={ProjectsShowcase} />
+      <Route exact path="/project_showcase" component={ShowcaseProfile}/>
       <Route exact path="/bootcampers" component={Bootcampers} />
       <Route exact path="/bootcamper_profile" component={BootcamperProfile} />
       <Route exact path="/signup" component={Signup} />

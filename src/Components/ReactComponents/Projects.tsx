@@ -15,7 +15,7 @@ const Projects: React.FC<Props> = ({ data }) => {
   const year = date.getFullYear();
 
   return (
-    <Link to={{ pathname: "/bootcamper_profile", state: data }} className="showcase-item">
+    <Link to={{ pathname: "/project_showcase", state: data }} className="showcase-item">
         <span className="showcase-title-text">{data.projectName}</span>
         <div className="showcase-overlay-container"
             onMouseOver={() => setIsShown(true)}
