@@ -85,7 +85,11 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
   return loginStatus ? (
     <div>
       <h1>Logout</h1>
-      <button type="submit" onClick={(e) => handleLogout(e)}>
+      <button
+        className="button-x"
+        type="submit"
+        onClick={(e) => handleLogout(e)}
+      >
         Logout
       </button>
     </div>
