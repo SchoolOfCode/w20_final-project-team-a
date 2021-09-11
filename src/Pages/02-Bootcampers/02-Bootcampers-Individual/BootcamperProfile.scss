@@ -78,7 +78,7 @@
 .individual-profile-projects-container{
     position: absolute;
     top: 50%;
-    left: 200px;
+    left: calc(200px + 5vw);
     height: 50%;
     display: grid;
     grid-template-columns: repeat( 2, 35vw );
