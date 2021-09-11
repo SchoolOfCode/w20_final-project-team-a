@@ -142,7 +142,7 @@ projectRouter.post(
   }
 );
 
-projectRouter.get("/", async (req, res) => {
+projectRouter.get("/featured", async (req, res) => {
   const featuredProject = await Project.findOne({ featured: true });
   res.status(200).send(featuredProject);
 });
