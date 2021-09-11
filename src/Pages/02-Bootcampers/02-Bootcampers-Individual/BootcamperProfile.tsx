@@ -34,17 +34,14 @@ const BootcamperProfile = (data: any) => {
     setLoading(false);
   }, []);
 
-  const techArrayIcons :any[] = [];
-  userProjects.forEach((project,i)=>{
+  const techIcons :any = new Set();
+  userProjects.forEach((project)=>{
     project.techUsed.forEach((tech:string) =>{
-      techArrayIcons.push(
-        <li key={i}>
-          <img src={builtUsing[tech]} alt="icon" />
-        </li>
+      techIcons.add(
+        tech
       )
     })
   })
-  const techIcons = [...new Set(techArrayIcons)]
 
 
   return (
@@ -62,7 +59,13 @@ const BootcamperProfile = (data: any) => {
 
         <section className="individual-tech-used">
           <ul>
-          {techIcons}
+          {[...techIcons].map((icon,i)=>{
+            return(
+              <li key={i}>
+                <img src={builtUsing[icon]} alt="icon" />
+              </li>
+            )
+          })}
           </ul>
         </section>
 
