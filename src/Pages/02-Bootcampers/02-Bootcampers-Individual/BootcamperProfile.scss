@@ -47,6 +47,17 @@
     opacity: 0.7;
 }
 
+.individual-tech-used{
+    grid-row: 1/4;
+    grid-column: 2;
+}
+.individual-tech-used ul{
+    list-style-type: none;
+}
+.individual-tech-used img{
+    width: 50px;
+}
+
 .individual-profile-photo{
     grid-column: 3;
     grid-row: 1/4;
@@ -78,7 +89,7 @@
 .individual-profile-projects-container{
     position: absolute;
     top: 50%;
-    left: 200px;
+    left: calc(200px + 5vw);
     height: 50%;
     display: grid;
     grid-template-columns: repeat( 2, 35vw );
