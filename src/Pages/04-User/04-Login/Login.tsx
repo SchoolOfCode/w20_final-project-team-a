@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../../config";
-import "./Login.scss";
 import "../04-User-Base.scss";
 import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
@@ -141,18 +140,17 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
             </section>
           </form>
 
-          <section className="login-messages-container">
+          <section className="user-messages-container">
             {success && (
-              <div style={{ backgroundColor: "palegreen", color: "black" }}>
-                <p>Logging you in, in {timer} seconds</p>
+              <div className="user-messages-container-success">
+                <p className="user-messages-text-success">
+                  Logging you in, in {timer} seconds
+                </p>
               </div>
             )}
             {failure && (
-              <div
-                className="login-messages-container-failure"
-                style={{ backgroundColor: "red", color: "white" }}
-              >
-                <p className="login-messages-text">{failureMsg}</p>
+              <div className="user-messages-container-failure">
+                <p className="user-messages-text-failure">{failureMsg}</p>
               </div>
             )}
           </section>

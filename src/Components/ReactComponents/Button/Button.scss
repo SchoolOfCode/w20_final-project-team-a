@@ -1,0 +1,19 @@
+.button-component {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: 1px solid #ffde59;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin-left: 5px;
+  font-stretch: ultra-expanded;
+  font-size: 1.2em;
+  width: 10em;
+  height: 2em;
+  cursor: pointer;
+  margin-top: 5em;
+  justify-self: center;
+}
+.button-component:hover {
+  background-color: #ffde59;
+  color: black;
+}

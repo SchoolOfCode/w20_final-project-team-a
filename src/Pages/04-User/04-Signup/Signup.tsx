@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../../config";
-import "./Signup.scss";
 import "../04-User-Base.scss";
 import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
@@ -110,25 +109,25 @@ const Signup = () => {
               </button>
             </section>
           </form>
-          <section className="signup-messages-container">
+          <section className="user-messages-container">
             {success && (
-              <div className="signup-messages-container-success">
-                <h3 className="signup-messages-text-success">
+              <div className="user-messages-container-success">
+                <h3 className="user-messages-text-success">
                   Your account has been sucessfully registered. Click{" "}
                   <a href="/login">here</a> to login
                 </h3>
               </div>
             )}
             {failure && (
-              <div className="signup-messages-container-failure">
-                <p className="signup-message-header">
+              <div className="user-messages-container-failure">
+                <p className="user-message-header">
                   The following error(s) occurred:
                 </p>
                 {failureMsg &&
                   failureMsg.map((errorMsg, i) => {
                     return (
                       <ul>
-                        <li className="signup-messages-text-failure" key={i}>
+                        <li className="user-messages-text-failure" key={i}>
                           {errorMsg.msg}
                         </li>
                       </ul>

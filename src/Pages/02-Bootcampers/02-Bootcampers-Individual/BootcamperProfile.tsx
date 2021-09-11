@@ -76,21 +76,19 @@ const BootcamperProfile = (data: any) => {
         />
 
         <h3 className="individual-profile-projects-title">My Projects</h3>
-        </section>
-        <HorizontalCircuit className="individual-profile-line-2" />
+      </section>
+      <HorizontalCircuit className="individual-profile-line-2" />
 
-        <section className="individual-profile-projects-container">
-          {loading ? (
-            <Loading />
-          ) : (
-            <div className="individual-profile-projects">
-              {userProjects.map((project, i) => {
-                return (
-                  <Projects data={project} key={i}/>
-                );
-              })}
-            </div>
-          )}
+      <section className="individual-profile-projects-container">
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="individual-profile-projects">
+            {userProjects.map((project, i) => {
+              return <Projects data={project} key={i} />;
+            })}
+          </div>
+        )}
       </section>
     </div>
   );
