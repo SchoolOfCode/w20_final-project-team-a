@@ -9,31 +9,52 @@ import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 const Homepage = (project: any) => {
-  
+  console.log ("what the actual fuck")
     const [featuredProject, setFeaturedProject] = useState<any>({});
     const [loading, setLoading] = useState(false);
-    const [imageGalleryArray, setImageGalleryArray] = useState (["image1", "image2"]);
-    console.log ("1imagearray", imageGalleryArray)
+    const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
+    const [imageGalleryIndex, setImageGalleryIndex] = useState(0);
     
     const getProjects = async () => {
       setLoading(true);
       try {
         const projectArray = await axios.get(
           API_URL + "projects/featured"
-        );
+          );
         setFeaturedProject(await projectArray.data);
+        setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
+        console.log (featuredProject);
+        console.log ("1imagearray", imageGalleryArray)
       } catch (err) {
       }
     };
     
-
     useEffect(() => {
       getProjects();
-      setImageGalleryArray (featuredProject.appDeploymentImage);
       setLoading(false);
     }, []);
     
+    // useEffect(() => {
+    //   setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
+    // }, [featuredProject]);
     
+    const increaseGalleryIndex = () => {
+      if (imageGalleryIndex>= imageGalleryArray.length-1) {
+        setImageGalleryIndex(0)
+      }
+      else{
+      setImageGalleryIndex(imageGalleryIndex +1)
+      }
+    }
+
+    const decreaseGalleryIndex = () => {
+      if (imageGalleryIndex < 1) {
+        setImageGalleryIndex(imageGalleryArray.length-1)
+      }
+      else{
+      setImageGalleryIndex(imageGalleryIndex -1)
+      }
+    }
 
   return (
     loading ? (
@@ -42,16 +63,18 @@ const Homepage = (project: any) => {
     <div className="wrapper">
       <img className="circuitT" src={circuitT} alt="circuit-board"/>
       <img className="circuitB" src={circuitB} alt="circuit-board"/>
-      <p className="arrow-left"> {"<"} </p>{" "}
+      <p className="arrow-left"
+      onClick={decreaseGalleryIndex}> {"<"} </p>{" "}
       {/*onClick increase image display index by 1/*/}
       <img
         className="featured-project-image"
         // src={featuredProject.appDeploymentImage}
-        src={imageGalleryArray[0]}
+        src={imageGalleryArray[imageGalleryIndex]}
         alt="featured-img"
       ></img>
       {/*need to access array of images, display index=0 as default/*/}
-      <p className="arrow-right"> {">"} </p>{" "}
+      <p className="arrow-right"
+      onClick={increaseGalleryIndex}> {">"} </p>{" "}
       {/*onClick decrease image display index by 1/*/}
       <HorizontalCircuit className="line-right" />
       <p className="description"> {featuredProject.additionalInformation} </p>
