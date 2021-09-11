@@ -2,18 +2,19 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../../config";
 import "./Homepage.scss";
-import featuredImg from "./77b1a6d5-d93_my_space_2.jpg";
 import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+import { builtUsing } from "../../Components/VisualAssets/techStack/techIcons";
 
 const Homepage = (project: any) => {
-  console.log ("what the actual fuck")
+
     const [featuredProject, setFeaturedProject] = useState<any>({});
     const [loading, setLoading] = useState(false);
     const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
     const [imageGalleryIndex, setImageGalleryIndex] = useState(0);
+    const [usersNames, setUsersNames] = useState<any>([])
     
     const getProjects = async () => {
       setLoading(true);
@@ -22,21 +23,25 @@ const Homepage = (project: any) => {
           API_URL + "projects/featured"
           );
         setFeaturedProject(await projectArray.data);
-        setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
-        console.log (featuredProject);
-        console.log ("1imagearray", imageGalleryArray)
+        const data = await projectArray.data
+        setImageGalleryArray([data.appDeploymentImage, ...data.additionaAppImageURLs]);
+        data.users.forEach((user:any)=>{
+          usersNames.push(user.displayName)
+    }) 
+
       } catch (err) {
+        console.error(err)
       }
     };
     
     useEffect(() => {
       getProjects();
-      setLoading(false);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1250);
+      return () => clearTimeout(timer);
     }, []);
     
-    // useEffect(() => {
-    //   setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
-    // }, [featuredProject]);
     
     const increaseGalleryIndex = () => {
       if (imageGalleryIndex>= imageGalleryArray.length-1) {
@@ -55,6 +60,8 @@ const Homepage = (project: any) => {
       setImageGalleryIndex(imageGalleryIndex -1)
       }
     }
+
+    
 
   return (
     loading ? (
@@ -78,12 +85,26 @@ const Homepage = (project: any) => {
       {/*onClick decrease image display index by 1/*/}
       <HorizontalCircuit className="line-right" />
       <p className="description"> {featuredProject.additionalInformation} </p>
-      <p className="tech"> Built using {featuredProject.techUsed}</p>
+      <p className="tech"> Built using 
+      {featuredProject.techUsed && featuredProject.techUsed.map((tech:string,i:number) => {
+                  return (
+                  <li key={i}>
+                    <img 
+                    src={builtUsing[tech]} 
+                    alt="icon"
+                    className="showcase-tech-icon"
+                    />
+                  </li>
+                  )
+                })}
+    </p>
       {/*needs list with tech images here/*/}
       <p className="heading"> {featuredProject.projectName} </p>
       <HorizontalCircuit className="line-left" />
       <p className="title"> {featuredProject.problemStatement}</p>
-      <p className="contributors"> {featuredProject.displayNames} </p>
+      {usersNames && 
+        <p className="contributors">Contributors: {usersNames.join(", ")} </p>
+      }
       {/* 
             background with circuits
             grid of 3 columns 1fr 3fr 1fr

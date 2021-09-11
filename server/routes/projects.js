@@ -143,6 +143,7 @@ projectRouter.post(
 );
 
 projectRouter.get("/featured", async (req, res) => {
-  const featuredProject = await Project.findOne({ featured: true });
+  const featuredProject = await Project.findOne({ featured: true })
+                                        .populate({path:"users", model:"User"})
   res.status(200).send(featuredProject);
 });
