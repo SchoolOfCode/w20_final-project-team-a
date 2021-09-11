@@ -47,6 +47,17 @@
     opacity: 0.7;
 }
 
+.individual-tech-used{
+    grid-row: 1/4;
+    grid-column: 2;
+}
+.individual-tech-used ul{
+    list-style-type: none;
+}
+.individual-tech-used img{
+    width: 50px;
+}
+
 .individual-profile-photo{
     grid-column: 3;
     grid-row: 1/4;
