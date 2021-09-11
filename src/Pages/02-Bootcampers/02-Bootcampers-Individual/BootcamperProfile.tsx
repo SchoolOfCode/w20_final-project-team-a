@@ -75,8 +75,8 @@ const BootcamperProfile = (data: any) => {
           alt="The user"
         />
 
-        <h3 className="individual-profile-projects-title">My Projects</h3>
       </section>
+      <h3 className="individual-profile-projects-title">My Projects</h3>
       <HorizontalCircuit className="individual-profile-line-2" />
 
       <section className="individual-profile-projects-container">

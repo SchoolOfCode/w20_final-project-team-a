@@ -2,14 +2,13 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../../config";
 import "./Homepage.scss";
-import featuredImg from "./77b1a6d5-d93_my_space_2.jpg";
 import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 const Homepage = (project: any) => {
-  console.log ("what the actual fuck")
+
     const [featuredProject, setFeaturedProject] = useState<any>({});
     const [loading, setLoading] = useState(false);
     const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
@@ -22,21 +21,22 @@ const Homepage = (project: any) => {
           API_URL + "projects/featured"
           );
         setFeaturedProject(await projectArray.data);
-        setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
-        console.log (featuredProject);
-        console.log ("1imagearray", imageGalleryArray)
+        const data = await projectArray.data
+        setImageGalleryArray([data.appDeploymentImage, ...data.additionaAppImageURLs]);
+
       } catch (err) {
+        console.error(err)
       }
     };
     
     useEffect(() => {
       getProjects();
-      setLoading(false);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1250);
+      return () => clearTimeout(timer);
     }, []);
     
-    // useEffect(() => {
-    //   setImageGalleryArray([featuredProject.appDeploymentImage, ...featuredProject.additionaAppImageURLs]);
-    // }, [featuredProject]);
     
     const increaseGalleryIndex = () => {
       if (imageGalleryIndex>= imageGalleryArray.length-1) {
