@@ -11,7 +11,7 @@
 .bootcampers-showcase-container {
   position: relative;
   // left: calc(50% - 300px);
-  left: calc(10vw + 5vw);
+  left: calc(180px + 5vw);
   top: 200px;
   height: calc(100vh - 300px);
   width: 75vw;
@@ -93,12 +93,13 @@
 }
 .bootcamper-overlay-text p {
   color: black;
-  font-size: calc(1em + 0.5vw);
+  // font-size: calc(1em + 0.5vw);
 }
 .bootcamper-overlay-text-statement {
-  padding-top: 5vh;
-  text-align: justify center;
-  margin: 0 2vw;
+  padding: 5px 5px;
+  text-align: center;
+  font-size: 100%;
+  margin: 0 auto;
 }
 // .bootcamper-overlay-email{
 //   position: relative;

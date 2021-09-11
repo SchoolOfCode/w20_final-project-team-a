@@ -24,9 +24,9 @@ const Users: React.FC<Props> = ({ data }) => {
           {isShown && 
             <div className="bootcamper-overlay">
               <div className="bootcamper-overlay-text">
-                <p className="bootcamper-overlay-text-statement"> {data.statement}</p>
+                <p className="bootcamper-overlay-text-statement">{data.statement? data.statement: "Click to see my profile & projects"}</p>
                 {/* <p className="bootcamper-overlay-email"> {data.email}</p> */}
-                <p className="bootcamper-overlay-help">Click to see my profile & projects</p>
+                {/* <p className="bootcamper-overlay-help">Click to see my profile & projects</p> */}
               </div>
             </div>
           } 
