@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
-import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
+import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 
 const Signup = () => {
