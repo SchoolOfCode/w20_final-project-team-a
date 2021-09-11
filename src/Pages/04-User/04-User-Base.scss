@@ -1,6 +1,10 @@
 @import "../../Variables.scss";
 
 .user-page-container {
+  background-image: url("../../Components/VisualAssets/BackgroundsPlus/UserSignupBG.png");
+}
+
+.user-page-container {
   display: grid;
   max-height: 90vw;
 }

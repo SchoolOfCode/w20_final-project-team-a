@@ -10,10 +10,10 @@ body {
 }
 
 .wrapper {
-  top: 80px;
+  // top: 55px;
   position: relative;
   display: grid;
-  height: 90vh;
+  height: 100vh;
   grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 1.6fr 1.2fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
   grid-template-rows: 1fr 0.2fr 1fr 1fr 1fr 2fr 1fr 0.2fr 1fr 1fr;
   grid-template-areas:

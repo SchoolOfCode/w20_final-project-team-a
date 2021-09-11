@@ -1,11 +1,11 @@
 @import "../../Variables.scss";
 
-.circuit-container {
-  position: relative;
-  top: 175px;
-  max-width: 30vw;
-  left: 175px;
-  // @include circuit-container-left;
+.bootcampers-page-container {
+  background-image: url("../../Components/VisualAssets/BackgroundsPlus/ProjectSubmitBG.png");
+}
+
+.circuit-line-left {
+  @include circuit-container-left;
 }
 
 .bootcampers-showcase-container {

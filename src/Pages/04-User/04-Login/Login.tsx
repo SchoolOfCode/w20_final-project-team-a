@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
-import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
+import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 
 type Props = {
