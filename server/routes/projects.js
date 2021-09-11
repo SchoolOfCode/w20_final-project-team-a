@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/projects/");
   },
   filename: (req, file, cb) => {
-    cb(null, uuidv4().slice(0,12) + "_" + file.originalname);
+    cb(null, uuidv4().slice(0, 12) + "_" + file.originalname);
   },
 });
 
@@ -41,38 +41,37 @@ const upload = multer({
 export const projectRouter = express.Router();
 
 projectRouter.get("/all", async (req, res) => {
-  const allProjects = await Project.find({})
+  const allProjects = await Project.find({});
   // .populate({path:"users", model:"User"}); //add this line to convert the user IDs to users
   res.status(200).send(allProjects);
 });
 
-
-projectRouter.get("/update/:id", async(req,res) => {
-  const projID =req.params.id.replace(":","")
+projectRouter.get("/update/:id", async (req, res) => {
+  const projID = req.params.id.replace(":", "");
   if (mongoose.isValidObjectId(projID)) {
-    const proj = await Project.findById(projID)
-    const contributors = await proj.contributors
+    const proj = await Project.findById(projID);
+    const contributors = await proj.contributors;
 
-    for (const contributor of contributors){
-      const user = await User.findOne({email:contributor})
+    for (const contributor of contributors) {
+      const user = await User.findOne({ email: contributor });
       if (user) {
-        await user.projects.push(projID)
-        await user.save()
-        await proj.users.push(user._id)
-        await proj.save()
+        await user.projects.push(projID);
+        await user.save();
+        await proj.users.push(user._id);
+        await proj.save();
       }
     }
     res.status(200).send({
       msg: "Sucessfully linked Projects and Users",
       success: true,
-    })
-  } else{
+    });
+  } else {
     res.status(400).send({
       msg: "Error: Invalid ObjectID",
       success: false,
-    })
+    });
   }
-})
+});
 
 projectRouter.post(
   "/submit",
@@ -90,10 +89,13 @@ projectRouter.post(
     } = req.body;
 
     const URL = req.protocol + "://" + req.get("host");
-    const appDeploymentImage = URL + "/uploads/projects/" + req.files[0].filename;
+    const appDeploymentImage =
+      URL + "/uploads/projects/" + req.files[0].filename;
     const additionaAppImageURLs = [];
     for (let i = 1; i < req.files.length; i++) {
-      additionaAppImageURLs.push(URL + "/uploads/projects/" + req.files[i].filename);
+      additionaAppImageURLs.push(
+        URL + "/uploads/projects/" + req.files[i].filename
+      );
     }
 
     Project.findOne({ githubUrl: githubUrl })
@@ -139,3 +141,8 @@ projectRouter.post(
       );
   }
 );
+
+projectRouter.get("/featured", async (req, res) => {
+  const featuredProject = await Project.findOne({ featured: true });
+  res.status(200).send(featuredProject);
+});
