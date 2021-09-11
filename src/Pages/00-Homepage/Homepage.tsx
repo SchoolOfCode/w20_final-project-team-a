@@ -6,6 +6,7 @@ import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+import { builtUsing } from "../../Components/VisualAssets/techStack/techIcons";
 
 const Homepage = (project: any) => {
 
@@ -13,6 +14,7 @@ const Homepage = (project: any) => {
     const [loading, setLoading] = useState(false);
     const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
     const [imageGalleryIndex, setImageGalleryIndex] = useState(0);
+    const [usersNames, setUsersNames] = useState<any>([])
     
     const getProjects = async () => {
       setLoading(true);
@@ -23,6 +25,9 @@ const Homepage = (project: any) => {
         setFeaturedProject(await projectArray.data);
         const data = await projectArray.data
         setImageGalleryArray([data.appDeploymentImage, ...data.additionaAppImageURLs]);
+        data.users.forEach((user:any)=>{
+          usersNames.push(user.displayName)
+    }) 
 
       } catch (err) {
         console.error(err)
@@ -56,6 +61,8 @@ const Homepage = (project: any) => {
       }
     }
 
+    
+
   return (
     loading ? (
       <Loading />
@@ -78,12 +85,26 @@ const Homepage = (project: any) => {
       {/*onClick decrease image display index by 1/*/}
       <HorizontalCircuit className="line-right" />
       <p className="description"> {featuredProject.additionalInformation} </p>
-      <p className="tech"> Built using {featuredProject.techUsed}</p>
+      <p className="tech"> Built using 
+      {featuredProject.techUsed && featuredProject.techUsed.map((tech:string,i:number) => {
+                  return (
+                  <li key={i}>
+                    <img 
+                    src={builtUsing[tech]} 
+                    alt="icon"
+                    className="showcase-tech-icon"
+                    />
+                  </li>
+                  )
+                })}
+    </p>
       {/*needs list with tech images here/*/}
       <p className="heading"> {featuredProject.projectName} </p>
       <HorizontalCircuit className="line-left" />
       <p className="title"> {featuredProject.problemStatement}</p>
-      <p className="contributors"> {featuredProject.displayNames} </p>
+      {usersNames && 
+        <p className="contributors">Contributors: {usersNames.join(", ")} </p>
+      }
       {/* 
             background with circuits
             grid of 3 columns 1fr 3fr 1fr
