@@ -1,11 +1,7 @@
 @import "../../Variables.scss";
 
-.circuit-container {
-  position: relative;
-  top: 175px;
-  max-width: 30vw;
-  left: 175px;
-  // @include circuit-container-left;
+.circuit-line-left {
+  @include circuit-container-left;
 }
 
 .showcase-page-container {
