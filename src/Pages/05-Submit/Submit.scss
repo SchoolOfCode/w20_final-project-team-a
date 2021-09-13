@@ -124,19 +124,10 @@
 }
 
 
-.contributors-input ul{
-  flex-direction: column;
-  width:max-content;
-  padding-top: 0.5em;
-}
-.contributors-input li{
-  padding-top: 0.5em;
-  align-self: flex-end;
-}
-
 .contributors-input{
   display: grid;
-  width: 20vw;
+  grid-template-columns: 1fr 30px;
+  width: calc(max-content + 150px);
 }
 .contributors-input label{
   grid-row: 1;
@@ -144,13 +135,34 @@
 .contributors-input input{
   grid-column: 1;
   grid-row: 2;
-  width: 17vw;
+  width: 15vw;
 }
 .add{
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 2;
   justify-self: end;
   justify-content: end;
+}
+.contributors-input ul{
+  grid-column: 1;
+  flex-direction: column;
+  width:max-content;
+  justify-self: flex-start;
+  // padding-top: 0.5em;
+}
+.contributors-input li{
+  padding-top: 0.5em;
+}
+
+.contributors-input button{
+  grid-column: 2;
+  font-size: 1em;
+  font-weight: bold;
+  justify-self: unset;
+  align-self: flex-end;
+}
+.contributors-input>ul>li>button{
+  margin-right: 1em;
 }
 
 /* .contributors-input .add + input{

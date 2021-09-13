@@ -20,24 +20,24 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   // const history = useHistory();
   // if (loginStatus === false) history.push("/login");
 
-  const [projectName, setProjectName] = useState();
-  const [weekNumber, setWeekNumber] = useState();
+  const [projectName, setProjectName] = useState<string>();
+  const [weekNumber, setWeekNumber] = useState<string>();
   const [contributors, setContributors] = useState<string[]>([]);
-  const [problemStatement, setProblemStatement] = useState();
-  const [additionalInformation, setAdditionalInformation] = useState();
-  const [githubUrl, setGithubUrl] = useState();
+  const [problemStatement, setProblemStatement] = useState<string>();
+  const [additionalInformation, setAdditionalInformation] = useState<string>();
+  const [githubUrl, setGithubUrl] = useState<string>();
   const [builtUsing, setBuiltUsing] = useState(builtUsingIcons);
   const [appImage, setAppImage] = useState();
-  const [appDeploymentUrl, setAppDeploymentUrl] = useState();
+  const [appDeploymentUrl, setAppDeploymentUrl] = useState<string>();
   const [additionalAppImage1, setAdditionalAppImage1] = useState();
   const [additionalAppImage2, setAdditionalAppImage2] = useState();
   const [additionalAppImage3, setAdditionalAppImage3] = useState();
 
-  const [projID, setProjID] = useState("");
+  const [projID, setProjID] = useState<string>("");
 
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
-  const [failureMsg, setFailureMsg] = useState("");
+  const [failureMsg, setFailureMsg] = useState<string>("");
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();

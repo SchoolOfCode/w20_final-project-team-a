@@ -59,11 +59,11 @@ const FormInputContributors : React.FC<Props> = ({
                     {contributors[0] && 
                     contributors.map ((item,i) => {
                         return (
-                        <li key={i}>{item}
+                        <li key={i}>
                             <button 
                                 onClick={(e)=>removeContributorEmail(e,i)}
                                 className="contributor-button remove"
-                            >-</button>
+                            >-</button>{item}
                         </li>
                         )
                     })}
