@@ -7,16 +7,16 @@ export const userRouter = express.Router();
 
 //Handle Signup
 userRouter.post("/signup", (req, res) => {
-  const { email, displayName, password, password2 } = req.body;
+  const { email, displayName, password, confirmPassword } = req.body.formData;
   let errors = [];
 
   //Check required fields
-  if (!email || !displayName || !password || !password2) {
+  if (!email || !displayName || !password || !confirmPassword) {
     errors.push({ msg: "Please complete all fields" });
   }
 
   //Check passwords match
-  if (password !== password2) {
+  if (password !== confirmPassword) {
     errors.push({ msg: "Passwords do not match" });
   }
 

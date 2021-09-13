@@ -4,22 +4,32 @@ import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
 import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {UserSignupValidationSchema} from "../../../Components/ReactComponents/Signup/UserSignupValidationSchema"
+
+type UserSignupForm = {
+  email: string,
+  displayName: string,
+  password: string,
+  confirmPassword: string,
+}
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState([{ msg: "" }]);
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const {register, handleSubmit, formState: {errors}} = useForm<UserSignupForm>({
+    resolver: yupResolver(UserSignupValidationSchema)
+  })
+
+  const onSubmit = (formData:UserSignupForm) => {
+    console.log(formData)
     axios({
       method: "POST",
       url: API_URL + "users/signup",
-      data: { email, displayName, password, password2 },
+      data: { formData },
     })
       .then((response) => {
         if (response.data.success) {
@@ -33,7 +43,8 @@ const Signup = () => {
       .catch((err) => {
         console.error(err);
       });
-  };
+
+  }
 
   return (
     <div>
@@ -43,54 +54,58 @@ const Signup = () => {
           <section className="user-page-image">
             <img src={pinhead} alt="head" className="user-page-image" />
           </section>
-          <form className="user-form-input">
+          <form className="user-form-input" onSubmit={handleSubmit(onSubmit)}>
             <section>
-              <label htmlFor="email">email address</label>
-              <p>
-                <input
-                  type="email"
-                  placeholder="your@email.here"
-                  name="email"
-                  id="email"
-                  onBlur={(e) => setEmail(e.target.value)}
-                ></input>
-              </p>
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                {...register('email')}
+                placeholder="your@email.here"
+                name="email"
+                id="email"
+                className={`user-signup ${errors.email?"invalid-input" : ""}`}
+                // onChange={(e) => setEmail(e.target.value)}
+              ></input>
+              <div className="invalid-input-message">{errors.email?.message}</div>
             </section>
             <section>
-              <label htmlFor="displayName">display name</label>
-              <p>
-                <input
-                  type="text"
-                  placeholder="password"
-                  name="displayName"
-                  id="displayName"
-                  onBlur={(e) => setDisplayName(e.target.value)}
-                ></input>
-              </p>
+              <label htmlFor="displayName">Display Name:</label>
+              <input
+                type="text"
+                {...register('displayName')}
+                placeholder="password"
+                name="displayName"
+                id="displayName"
+                className={`user-signup ${errors.displayName?"invalid-input" : ""}`}
+                // onBlur={(e) => setDisplayName(e.target.value)}
+              ></input>
+              <div className="invalid-input-message">{errors.displayName?.message}</div>
             </section>
             <section>
-              <label htmlFor="password">password</label>
-              <p>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                {...register('password')}
+                name="password"
+                id="password"
+                className={`user-signup ${errors.password?"invalid-input" : ""}`}
+                // onBlur={(e) => setPassword(e.target.value)}
+              ></input>
+              <div className="invalid-input-message">{errors.password?.message}</div>
+            </section>
+            <section>
+              <label htmlFor="password">Confirm Password:</label>
+              <div>
                 <input
                   type="password"
-                  // placeholder="enter password"
-                  name="password"
-                  id="password"
-                  onBlur={(e) => setPassword(e.target.value)}
+                  {...register('confirmPassword')}
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  className={`user-signup ${errors.confirmPassword?"invalid-input" : ""}`}
+                  // onBlur={(e) => setconfirmPassword(e.target.value)}
                 ></input>
-              </p>
-            </section>
-            <section>
-              <label htmlFor="password">confirm password</label>
-              <p>
-                <input
-                  type="password"
-                  // placeholder="re-enter password"
-                  name="password2"
-                  id="password2"
-                  onBlur={(e) => setPassword2(e.target.value)}
-                ></input>
-              </p>
+              </div>
+              <div className="invalid-input-message">{errors.confirmPassword?.message}</div>
             </section>
             <section className="user-registered-link">
               Already registered? Click{" "}
@@ -103,7 +118,6 @@ const Signup = () => {
               <button
                 type="submit"
                 className="user-submit-button"
-                onClick={(e) => handleSubmit(e)}
               >
                 Submit
               </button>

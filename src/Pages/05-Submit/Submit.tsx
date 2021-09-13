@@ -15,7 +15,7 @@ import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircui
 
 import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
 type Props = {
   loginStatus: boolean;
@@ -178,7 +178,6 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             className="projectName-input"
             placeholder="My Project"
             name="projectName"
-            register={register}
             setValue={setProjectName}
           />
           <FormInputMultiText
