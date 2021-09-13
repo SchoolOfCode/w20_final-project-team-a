@@ -42,6 +42,7 @@ const FormInputTech: React.FC<Props> = ({
             alt={builtUsing[key].name}
             onClick={() => handleIconClick(key)}
           />
+        <h6>{builtUsing[key].name}</h6>
         </label>
       </li>
     );

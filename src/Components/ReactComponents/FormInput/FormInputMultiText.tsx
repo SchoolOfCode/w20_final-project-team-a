@@ -4,17 +4,21 @@ type Props = {
     labelFor:string, 
     labelText:string, 
     placeholder:string, 
-    className:string, 
+    className:string,
+    maxLength?:number, 
     name:string,
-    setValue:(val:any)=> void}
+    setValue:(val:any)=> void,
+}
 
 const FormInputMultiText : React.FC<Props> = ({
     labelFor, 
     labelText, 
     placeholder, 
-    className, 
+    className,
+    maxLength=140,
     name,
-    setValue}) => {  
+    setValue,  
+    }) => {  
 
     return (
         <div className={className}>
@@ -23,6 +27,7 @@ const FormInputMultiText : React.FC<Props> = ({
                     placeholder={placeholder}
                     name={name}
                     required={true}
+                    maxLength={maxLength}
                     onBlur={(e)=>setValue(e.target.value)}
                 ></textarea>
         </div>

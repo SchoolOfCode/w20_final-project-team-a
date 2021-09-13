@@ -8,6 +8,7 @@ import FormInputImage from "../../Components/ReactComponents/FormInput/FormInput
 import FormInputTech from "../../Components/ReactComponents/FormInput/FormInputTech";
 import { API_URL } from "../../config.js";
 import { builtUsingIcons } from "../../Components/VisualAssets/techStack/techStack";
+import { builtUsingSVGObject } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useHistory } from "react-router-dom";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
@@ -26,12 +27,12 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   const [problemStatement, setProblemStatement] = useState<string>();
   const [additionalInformation, setAdditionalInformation] = useState<string>();
   const [githubUrl, setGithubUrl] = useState<string>();
-  const [builtUsing, setBuiltUsing] = useState(builtUsingIcons);
-  const [appImage, setAppImage] = useState();
+  const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
+  const [appImage, setAppImage] = useState<File>();
   const [appDeploymentUrl, setAppDeploymentUrl] = useState<string>();
-  const [additionalAppImage1, setAdditionalAppImage1] = useState();
-  const [additionalAppImage2, setAdditionalAppImage2] = useState();
-  const [additionalAppImage3, setAdditionalAppImage3] = useState();
+  const [additionalAppImage1, setAdditionalAppImage1] = useState<File>();
+  const [additionalAppImage2, setAdditionalAppImage2] = useState<File>();
+  const [additionalAppImage3, setAdditionalAppImage3] = useState<File>();
 
   const [projID, setProjID] = useState<string>("");
 

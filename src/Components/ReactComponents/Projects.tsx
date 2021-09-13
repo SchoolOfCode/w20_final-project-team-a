@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {builtUsing} from '../VisualAssets/techStack/techIcons'
+import { builtUsingSVG } from "../VisualAssets/SVGIcons/svgIcons";
 import {Link} from 'react-router-dom'
 
 type Props = {
@@ -36,7 +36,7 @@ const Projects: React.FC<Props> = ({ data }) => {
                   return (
                   <li key={i}>
                     <img 
-                    src={builtUsing[tech]} 
+                    src={builtUsingSVG[tech]} 
                     alt="icon"
                     className="showcase-tech-icon"
                     />

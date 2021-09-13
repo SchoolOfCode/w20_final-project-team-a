@@ -7,8 +7,7 @@ import { API_URL } from "../../../config";
 import axios from "axios";
 import Loading from "../../../Components/ReactComponents/Loading/Loading";
 import Projects from "../../../Components/ReactComponents/Projects";
-import { builtUsing } from "../../../Components/VisualAssets/techStack/techIcons";
-
+import { builtUsingSVG } from "../../../Components/VisualAssets/SVGIcons/svgIcons";
 
 const BootcamperProfile = (data: any) => {
   const user = data.location.state;
@@ -62,7 +61,7 @@ const BootcamperProfile = (data: any) => {
           {[...techIcons].map((icon,i)=>{
             return(
               <li key={i}>
-                <img src={builtUsing[icon]} alt="icon" />
+                <img src={builtUsingSVG[icon]} alt="icon" />
               </li>
             )
           })}
