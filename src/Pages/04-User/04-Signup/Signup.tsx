@@ -107,13 +107,6 @@ const Signup = () => {
               </a>{" "}
               to login
             </section>
-            <section className="user-submit">
-              <button type="submit" className="user-submit-button" >
-                Submit
-              </button>
-            </section>
-          </form>
-          <section className="user-messages-container">
             {success && (
               <div className="user-messages-container-success">
                 <h3 className="user-messages-text-success">
@@ -125,20 +118,28 @@ const Signup = () => {
             {failure && (
               <div className="user-messages-container-failure">
                 <p className="user-message-header">
-                  The following error(s) occurred:
+                  {`The following error${failureMsg.length > 1?"s":""} occurred:`}
                 </p>
                 {failureMsg &&
                   failureMsg.map((errorMsg, i) => {
                     return (
-                      <ul>
+                      <ol>
                         <li className="user-messages-text-failure" key={i}>
                           {errorMsg.msg}
                         </li>
-                      </ul>
+                      </ol>
                     );
                   })}
               </div>
             )}
+            <section className="user-submit">
+              <button type="submit" className="user-submit-button" >
+                Submit
+              </button>
+            </section>
+          </form>
+          <section className="user-messages-container">
+
           </section>
         </section>
       </div>

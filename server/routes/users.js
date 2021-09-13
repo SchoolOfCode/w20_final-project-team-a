@@ -35,7 +35,7 @@ userRouter.post("/signup", (req, res) => {
         //keep the old values to allow editing
         if (user) {
           //user exists already
-          errors.push({ msg: "Email is already registered!" });
+          errors.push({ msg: "That email is already registered!" });
           res.status(200).send({ msg: errors, success: false });
         } else {
           //create a user, encrypt the password
