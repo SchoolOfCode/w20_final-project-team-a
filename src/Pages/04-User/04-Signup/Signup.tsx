@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import {UserSignupValidationSchema} from "../../../Components/ReactComponents/Signup/UserSignupValidationSchema"
 import CircleCircuit from "../../../Components/VisualAssets/BackgroundsPlus/CircleCircuit.svg"
 import CircuitHead from "../../../Components/VisualAssets/BackgroundsPlus/CircuitHead.svg"
-import CircuitIncorrect from "../../../Components/VisualAssets/BackgroundsPlus/CircuitIncorrect.svg"
+import CircuitYellow from "../../../Components/VisualAssets/BackgroundsPlus/CircuitHeadYellow.svg"
 
 type UserSignupForm = {
   email: string,
@@ -56,7 +56,7 @@ const Signup = () => {
           <section className="user-image-container">
             <img src={CircleCircuit} alt="circle circuit design" className="user-image-circuit-cricle" />
             {!success && !failure &&
-              <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-head" />
+              <img src={CircuitYellow} alt="circuit head design" className="user-image-circuit-head" />
             }
             {!success && failure &&
               <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-incorrect" />
