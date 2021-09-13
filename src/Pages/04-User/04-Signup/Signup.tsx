@@ -16,8 +16,8 @@ type UserSignupForm = {
 }
 
 const Signup = () => {
-  const [success, setSuccess] = useState(false);
-  const [failure, setFailure] = useState(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [failure, setFailure] = useState<boolean>(false);
   const [failureMsg, setFailureMsg] = useState([{ msg: "" }]);
 
   const {register, handleSubmit, formState: {errors}} = useForm<UserSignupForm>({
@@ -25,7 +25,6 @@ const Signup = () => {
   })
 
   const onSubmit = (formData:UserSignupForm) => {
-    console.log(formData)
     axios({
       method: "POST",
       url: API_URL + "users/signup",
@@ -55,7 +54,7 @@ const Signup = () => {
             <img src={pinhead} alt="head" className="user-page-image" />
           </section>
           <form className="user-form-input" onSubmit={handleSubmit(onSubmit)}>
-            <section>
+            <section className="user-form-group">
               <label htmlFor="email">Email:</label>
               <input
                 type="email"
@@ -64,11 +63,10 @@ const Signup = () => {
                 name="email"
                 id="email"
                 className={`user-signup ${errors.email?"invalid-input" : ""}`}
-                // onChange={(e) => setEmail(e.target.value)}
               ></input>
               <div className="invalid-input-message">{errors.email?.message}</div>
             </section>
-            <section>
+            <section className="user-form-group">
               <label htmlFor="displayName">Display Name:</label>
               <input
                 type="text"
@@ -77,11 +75,10 @@ const Signup = () => {
                 name="displayName"
                 id="displayName"
                 className={`user-signup ${errors.displayName?"invalid-input" : ""}`}
-                // onBlur={(e) => setDisplayName(e.target.value)}
               ></input>
               <div className="invalid-input-message">{errors.displayName?.message}</div>
             </section>
-            <section>
+            <section className="user-form-group">
               <label htmlFor="password">Password:</label>
               <input
                 type="password"
@@ -89,22 +86,18 @@ const Signup = () => {
                 name="password"
                 id="password"
                 className={`user-signup ${errors.password?"invalid-input" : ""}`}
-                // onBlur={(e) => setPassword(e.target.value)}
               ></input>
               <div className="invalid-input-message">{errors.password?.message}</div>
             </section>
-            <section>
+            <section className="user-form-group">
               <label htmlFor="password">Confirm Password:</label>
-              <div>
-                <input
-                  type="password"
-                  {...register('confirmPassword')}
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  className={`user-signup ${errors.confirmPassword?"invalid-input" : ""}`}
-                  // onBlur={(e) => setconfirmPassword(e.target.value)}
-                ></input>
-              </div>
+              <input
+                type="password"
+                {...register('confirmPassword')}
+                name="confirmPassword"
+                id="confirmPassword"
+                className={`user-signup ${errors.confirmPassword?"invalid-input" : ""}`}
+              ></input>
               <div className="invalid-input-message">{errors.confirmPassword?.message}</div>
             </section>
             <section className="user-registered-link">
@@ -115,10 +108,7 @@ const Signup = () => {
               to login
             </section>
             <section className="user-submit">
-              <button
-                type="submit"
-                className="user-submit-button"
-              >
+              <button type="submit" className="user-submit-button" >
                 Submit
               </button>
             </section>
