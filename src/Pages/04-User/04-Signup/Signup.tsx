@@ -7,6 +7,9 @@ import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalT
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {UserSignupValidationSchema} from "../../../Components/ReactComponents/Signup/UserSignupValidationSchema"
+import CircleCircuit from "../../../Components/VisualAssets/BackgroundsPlus/CircleCircuit.svg"
+import CircuitHead from "../../../Components/VisualAssets/BackgroundsPlus/CircuitHead.svg"
+import CircuitIncorrect from "../../../Components/VisualAssets/BackgroundsPlus/CircuitIncorrect.svg"
 
 type UserSignupForm = {
   email: string,
@@ -50,8 +53,17 @@ const Signup = () => {
       <div className="user-page-container">
         <LeftVerticalTitle title="Sign Up"></LeftVerticalTitle>
         <section className="user-form-container">
-          <section className="user-page-image">
-            <img src={pinhead} alt="head" className="user-page-image" />
+          <section className="user-image-container">
+            <img src={CircleCircuit} alt="circle circuit design" className="user-image-circuit-cricle" />
+            {!success && !failure &&
+              <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-head" />
+            }
+            {!success && failure &&
+              <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-incorrect" />
+            }
+            {success && !failure &&
+              <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-success" />
+            }              
           </section>
           <form className="user-form-input" onSubmit={handleSubmit(onSubmit)}>
             <section className="user-form-group">

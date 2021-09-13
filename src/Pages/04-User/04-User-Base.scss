@@ -14,10 +14,36 @@
 
 /* --- Login/Signup: Images --- */
 
-.user-page-image {
-
-  max-height: 50vh;
+.user-image-container {
   align-self: center;
+  display: grid;
+  grid-template: "container";
+  place-items: center;
+  place-content: center;
+  overflow: hidden;
+  max-height: clamp(450px, 50vh, 600px);
+}
+.user-image-circuit-cricle{
+  grid-area: 1/1;
+  width: 40vw;
+}
+.user-image-circuit-head{
+  grid-area: 1/1;
+  width: 40vw;
+  z-index: 5;
+}
+.user-image-circuit-incorrect{
+  grid-area: 1/1;
+  width: 40vw;
+  z-index: 5;
+  filter: opacity(0.8) invert(20%) sepia(69%) saturate(6831%) hue-rotate(354deg) brightness(100%) contrast(102%);
+}
+.user-image-circuit-success{
+  grid-area: 1/1;
+  width: 40vw;
+  z-index: 5;
+  transform: scale(-1,1);
+  filter: opacity(0.9) invert(53%) sepia(68%) saturate(372%) hue-rotate(73deg) brightness(94%) contrast(96%);
 }
 
 /* --- Login/Signup: Form Input --- */
@@ -98,7 +124,7 @@
 
 .user-messages-container-success {
   padding: 2vh;
-  background-color: rgba(152, 251, 152, 0.8);
+  background-color: rgba(76, 175, 80, 0.9);
   border-radius: 8px;
   padding-left: 2em;
   padding-right: 2em;
@@ -109,7 +135,7 @@
 // }
 .user-messages-container-failure {
   padding: 2vh;
-  background-color: rgba(255, 0, 0, 0.7);
+  background-color: rgba(252, 22, 22, 0.9);
   border-radius: 8px;
   padding-left: 2em;
   padding-right: 2em;
