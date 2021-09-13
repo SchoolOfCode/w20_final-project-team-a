@@ -4,9 +4,8 @@
   font-family: 'Poppins',sans-serif;
   position: absolute;
   right:0;
-  top: 1.5em;
+  top: 2em;
   left: 0;
-  bottom: 0;
 }
 
 .submit-page-container input, textarea{
@@ -31,66 +30,70 @@
 }
 /* -----------Submit - Header--------------------------- */
 
-.submit-header{
-  font-family: 'Poppins', sans-serif;
-  width: 10vw;
-}
+// .submit-header{
+//   font-family: 'Poppins', sans-serif;
+//   width: 10vw;
+// }
 
-.submit-header-line{
-  position: fixed;
-  bottom:0;
-  top: 1.9em;
-  left:7em;
+// .submit-header-line{
+//   position: fixed;
+//   bottom:0;
+//   top: 1.9em;
+//   left:7em;
 
-}
+// }
 
-.submit-header-text{
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  position: fixed;
-  bottom:-1em;
-  left:0.25em;
-  font-size: calc(3em + 1vw);
-}
+// .submit-header-text{
+//   transform: rotate(-90deg);
+//   transform-origin: top left;
+//   position: fixed;
+//   bottom:-1em;
+//   left:0.25em;
+//   font-size: calc(3em + 1vw);
+// }
 
 /* -----------Submit - Form Messages--------------------------- */
 
 .submit-messages-container{
-  position: fixed;
-  top: 0em;
-  left: 8em;
+  position: absolute;
+  top: 2em;
+  left: 200px;
   display: flex;
-  height: 4.5em;
-
 }
 
 .submit-messages-text{
   color: black;
-  font-family: 'Poppins', sans-serif;
   font-size: 1em;
 }
 
 .submit-messages-container-sucess{
-  background-color: rgba(251, 249, 152, 0.8);
+  background-color: rgba(152, 251, 152, 0.8);
   width: max-content;
+  border-radius: 8px;
+  padding: 1em 2em;
   align-self: flex-end;
 }
 .submit-messages-container-failure{
-  background-color: rgba(251, 152, 152, 0.8);
+  background-color: rgba(255, 0, 0, 0.9);
   width: max-content;
   align-self: flex-end;
+  border-radius: 8px;
+  padding: 1em 2em;
+  
 }
 
-.submit-messages-line{
-  position: fixed;
-  top: 5em;
-  left: 6.9em;
-  height: 2em;
+.submit-horizontal-line{
+  position: absolute;
+  top: 100px;
+  left: 180px;
+  max-width: 300px;
+  width: 30vw;
 }
 /* -----------Submit - Form Container--------------------------- */
 .submit-form-container{
-  margin-left: 9em;
-  margin-top: 6em;
+    position: absolute;
+    left: calc(200px + 5vw);
+    top: 150px;
   /* height: 75vh; */
 }
 .submit-form-form{
@@ -98,13 +101,13 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 80vh;
-  justify-content: space-around;
+  row-gap: 2em;
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
 .submit-form-form label{
   text-transform: uppercase;
 }
-.submit-form-form label, input{
+.submit-form-form label, .submit-form-form input{
   display: block;
 }
 /* -----------Submit - Form Column Details--------------------------- */
@@ -116,7 +119,8 @@
 .contributors-input input,
 .githubUrl-input input,
 .appDeploymentUrl-input input{
-  width: 20vw;
+  width: 18vw;
+  max-width: 300px;
 }
 
 

@@ -8,17 +8,17 @@ import FormInputImage from "../../Components/ReactComponents/FormInput/FormInput
 import FormInputTech from "../../Components/ReactComponents/FormInput/FormInputTech";
 import { API_URL } from "../../config.js";
 import { builtUsingIcons } from "../../Components/VisualAssets/techStack/techStack";
-//Style elements
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useHistory } from "react-router-dom";
+import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 type Props = {
   loginStatus: boolean;
 };
 
 const Submit: React.FC<Props> = ({ loginStatus }) => {
-  const history = useHistory();
-  if (loginStatus === false) history.push("/login");
+  // const history = useHistory();
+  // if (loginStatus === false) history.push("/login");
 
   const [projectName, setProjectName] = useState();
   const [weekNumber, setWeekNumber] = useState();
@@ -37,9 +37,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
 
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
-  const [failureMsg, setFailureMsg] = useState([{ msg: "" }]);
-
-  // const Test: React.FC = () => {}
+  const [failureMsg, setFailureMsg] = useState("");
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -60,20 +58,19 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
     ];
 
     const formData = new FormData();
-    // formData.append('appImage',appImage!)
-    formData.append("projectName", projectName!);
-    formData.append("weekNumber", weekNumber!);
-    contributors.forEach((contributor) =>
-      formData.append("contributors", contributor)
-    );
-    formData.append("problemStatement", problemStatement!);
-    formData.append("additionalInformation", additionalInformation!);
-    formData.append("githubUrl", githubUrl!);
-    formData.append("appDeploymentUrl", appDeploymentUrl!);
-    selectedBuiltUsing.forEach((tech) =>
-      formData.append("techUsed", tech.name)
-    );
-    appImagesArray.forEach((image) => formData.append("appImages", image!));
+      formData.append("projectName", projectName!);
+      formData.append("weekNumber", weekNumber!);
+      contributors.forEach((contributor) =>
+        formData.append("contributors", contributor)
+      );
+      formData.append("problemStatement", problemStatement!);
+      formData.append("additionalInformation", additionalInformation!);
+      formData.append("githubUrl", githubUrl!);
+      formData.append("appDeploymentUrl", appDeploymentUrl!);
+      selectedBuiltUsing.forEach((tech) =>
+        formData.append("techUsed", tech.name)
+      );
+      appImagesArray.forEach((image) => formData.append("appImages", image!));
 
     axios
       .post(API_URL + "projects/submit", formData)
@@ -83,14 +80,13 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
           setFailure(false);
           setProjID(response.data.project);
         } else {
-          setFailureMsg(response.data.msg);
           setFailure(true);
+          setFailureMsg(response.data.msg);
         }
       })
       .then(() => {
         axios
           .get(API_URL + "projects/update/:" + projID)
-          // .then(res => console.log(res))
           .catch((err) => console.error(err));
       })
       .catch((err) => {
@@ -100,12 +96,14 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
 
   return (
     <div className="submit-page-container">
+
       <LeftVerticalTitle title="Submit"></LeftVerticalTitle>
+
       <section className="submit-messages-container">
         {success && (
           <div className="submit-messages-container-sucess">
             <h3 className="submit-messages-text">
-              Your project has been uploaded{" "}
+              Your project has been uploaded
             </h3>
           </div>
         )}
@@ -115,7 +113,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
           </div>
         )}
       </section>
-
+      <HorizontalCircuit className = "submit-horizontal-line"/>
       <section className="submit-form-container">
         <form encType="multipart/form-data" className="submit-form-form">
           <FormInput
