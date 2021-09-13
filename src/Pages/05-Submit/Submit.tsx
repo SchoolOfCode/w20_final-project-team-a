@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,  } from "react";
 import "./Submit.scss";
 import axios from "axios";
-import FormInput from "../../Components/ReactComponents/FormInput/FormInput";
-import FormInputContributors from "../../Components/ReactComponents/FormInput/FormInputContributors";
-import FormInputMultiText from "../../Components/ReactComponents/FormInput/FormInputMultiText";
-import FormInputImage from "../../Components/ReactComponents/FormInput/FormInputImage";
-import FormInputTech from "../../Components/ReactComponents/FormInput/FormInputTech";
+import Form from "../../Components/ReactComponents/SubmitFormInput/Form";
+import FormInput from "../../Components/ReactComponents/SubmitFormInput/FormInput";
+import FormInputContributors from "../../Components/ReactComponents/SubmitFormInput/FormInputContributors";
+import FormInputMultiText from "../../Components/ReactComponents/SubmitFormInput/FormInputMultiText";
+import FormInputImage from "../../Components/ReactComponents/SubmitFormInput/FormInputImage";
+import FormInputTech from "../../Components/ReactComponents/SubmitFormInput/FormInputTech";
 import { API_URL } from "../../config.js";
 import { builtUsingSVGObject } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useHistory } from "react-router-dom";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+
+import {useForm} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
 type Props = {
   loginStatus: boolean;
@@ -21,14 +26,14 @@ type SubmitFormValues = {
   weekNumber:string,
   contributors:string[],
   problemStatement: string,
-  additionalInformation: string,
+  additionalInformation?: string,
   githubUrl: string,
   builtUsing:any,
   appImage:File,
   appDeploymentUrl:string,
-  additionalAppImage1:File,
-  additionalAppImage2:File,
-  additionalAppImage3:File,
+  additionalAppImage1?:File,
+  additionalAppImage2?:File,
+  additionalAppImage3?:File,
 }
 
 const Submit: React.FC<Props> = ({ loginStatus }) => {
@@ -47,66 +52,102 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   const [additionalAppImage1, setAdditionalAppImage1] = useState<File>();
   const [additionalAppImage2, setAdditionalAppImage2] = useState<File>();
   const [additionalAppImage3, setAdditionalAppImage3] = useState<File>();
-  //Returned State
-  const [projID, setProjID] = useState<string>("");
-  const [success, setSuccess] = useState(false);
-  const [failure, setFailure] = useState(false);
-  const [failureMsg, setFailureMsg] = useState<string>("");
+  
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-
-    const selectedBuiltUsingFilter = [];
-    for (const value of Object.values(builtUsing)) {
-      selectedBuiltUsingFilter.push(value);
+  const { register, watch, handleSubmit } = useForm<SubmitFormValues>({
+    defaultValues:{
+      projectName:"",
+      weekNumber:"",
+      contributors:[""],
+      problemStatement: "",
+      additionalInformation: "",
+      githubUrl: "",
+      builtUsing: builtUsingSVGObject,
+      appImage: undefined,
+      appDeploymentUrl:"",
+      additionalAppImage1:undefined,
+      additionalAppImage2:undefined,
+      additionalAppImage3:undefined,
     }
+  })
+  
+  const onSubmit = handleSubmit(({
+    projectName,
+    weekNumber,
+    contributors,
+    problemStatement,
+    additionalInformation,
+    githubUrl,
+    builtUsing,
+    appImage,
+    appDeploymentUrl,
+    additionalAppImage1,
+    additionalAppImage2,
+    additionalAppImage3,
+  }) => {
+    console.log(projectName, weekNumber, contributors)
+  })
 
-    const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
-      (item) => item.used === true
-    );
-    const appImagesArray = [
-      appImage,
-      additionalAppImage1,
-      additionalAppImage2,
-      additionalAppImage3,
-    ];
+  //Returned State:any
+  // const [projID, setProjID] = useState<string>("");
+  // const [success, setSuccess] = useState(false);
+  // const [failure, setFailure] = useState(false);
+  // const [failureMsg, setFailureMsg] = useState<string>("");
 
-    const formData = new FormData();
-      formData.append("projectName", projectName!);
-      formData.append("weekNumber", weekNumber!);
-      contributors.forEach((contributor) =>
-        formData.append("contributors", contributor)
-      );
-      formData.append("problemStatement", problemStatement!);
-      formData.append("additionalInformation", additionalInformation!);
-      formData.append("githubUrl", githubUrl!);
-      formData.append("appDeploymentUrl", appDeploymentUrl!);
-      selectedBuiltUsing.forEach((tech) =>
-        formData.append("techUsed", tech.name)
-      );
-      appImagesArray.forEach((image) => formData.append("appImages", image!));
+  // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   e.preventDefault();
 
-    axios
-      .post(API_URL + "projects/submit", formData)
-      .then((response) => {
-        if (response.data.success) {
-          setSuccess(true);
-          setFailure(false);
-          setProjID(response.data.project);
-        } else {
-          setFailure(true);
-          setFailureMsg(response.data.msg);
-        }
-      })
-      .then(() => {
-        axios
-          .get(API_URL + "projects/update/:" + projID)
-          .catch((err) => console.error(err));
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  //   const selectedBuiltUsingFilter = [];
+  //   for (const value of Object.values(builtUsing)) {
+  //     selectedBuiltUsingFilter.push(value);
+  //   }
+
+  //   const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
+  //     (item) => item.used === true
+  //   );
+  //   const appImagesArray = [
+  //     appImage,
+  //     additionalAppImage1,
+  //     additionalAppImage2,
+  //     additionalAppImage3,
+  //   ];
+
+  //   const formData = new FormData();
+  //     formData.append("projectName", projectName!);
+  //     formData.append("weekNumber", weekNumber!);
+  //     contributors.forEach((contributor) =>
+  //       formData.append("contributors", contributor)
+  //     );
+  //     formData.append("problemStatement", problemStatement!);
+  //     formData.append("additionalInformation", additionalInformation!);
+  //     formData.append("githubUrl", githubUrl!);
+  //     formData.append("appDeploymentUrl", appDeploymentUrl!);
+  //     selectedBuiltUsing.forEach((tech) =>
+  //       formData.append("techUsed", tech.name)
+  //     );
+  //     appImagesArray.forEach((image) => formData.append("appImages", image!));
+
+  //   axios
+  //     .post(API_URL + "projects/submit", formData)
+  //     .then((response) => {
+  //       if (response.data.success) {
+  //         setSuccess(true);
+  //         setFailure(false);
+  //         setProjID(response.data.project);
+  //       } else {
+  //         setFailure(true);
+  //         setFailureMsg(response.data.msg);
+  //       }
+  //     })
+  //     .then(() => {
+  //       axios
+  //         .get(API_URL + "projects/update/:" + projID)
+  //         .catch((err) => console.error(err));
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
 
   return (
     <div className="submit-page-container">
@@ -114,7 +155,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
       <LeftVerticalTitle title="Submit"></LeftVerticalTitle>
 
       <section className="submit-messages-container">
-        {success && (
+        {/* {success && (
           <div className="submit-messages-container-sucess">
             <h3 className="submit-messages-text">
               Your project has been uploaded
@@ -125,11 +166,11 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
           <div className="submit-messages-container-failure">
             <h3 className="submit-messages-text">{failureMsg}</h3>
           </div>
-        )}
+        )} */}
       </section>
       <HorizontalCircuit className = "submit-horizontal-line"/>
       <section className="submit-form-container">
-        <form encType="multipart/form-data" className="submit-form-form">
+        <form encType="multipart/form-data" className="submit-form-form" onSubmit={onSubmit}>
           <FormInput
             labelFor="projectName"
             labelText="Project Name: "
@@ -137,6 +178,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             className="projectName-input"
             placeholder="My Project"
             name="projectName"
+            register={register}
             setValue={setProjectName}
           />
           <FormInputMultiText
@@ -236,14 +278,10 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             setValue={setAdditionalAppImage3}
             state={additionalAppImage3}
           />
+          <button type="submit" className="button project-submit">
+            Submit
+          </button>
         </form>
-        <button
-          type="submit"
-          className="button project-submit"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Submit
-        </button>
       </section>
     </div>
   );

@@ -1,12 +1,14 @@
 import React from 'react'
+import { ValidationRule, UseFormHandleSubmit} from 'react-hook-form';
 
-type Props = {
+interface Props extends Partial<Pick<UseFormMethods, "register" | "errors">>{
     labelFor:string, 
     labelText:string, 
     type:string, 
     placeholder:string,
     className: string, 
-    name:string, 
+    name:string,
+    register:any,
     setValue:(val:any)=> void}
 
 const FormInput : React.FC<Props> = ({
@@ -15,7 +17,8 @@ const FormInput : React.FC<Props> = ({
     type, 
     placeholder,
     className,
-    name, 
+    name,
+    register, 
     setValue}) => {  
 
     return (
