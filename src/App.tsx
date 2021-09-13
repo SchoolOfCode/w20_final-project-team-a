@@ -26,10 +26,10 @@ function App() {
       </style>
 
       <Route path="/:page">
-        <Navbar loginStatus={loginStatus} />
+        <Navbar loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
       </Route>
       <Route exact path="/">
-        <Navbar loginStatus={loginStatus} />
+        <Navbar loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
       </Route>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/home" component={Homepage} />
