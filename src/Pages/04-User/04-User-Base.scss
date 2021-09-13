@@ -23,6 +23,42 @@
   overflow: hidden;
   max-height: clamp(450px, 50vh, 600px);
 }
+
+.logging-in{
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  height: 80vh;
+  top: calc(5vh + 0.2vw);
+  left: 5vw;
+}
+.logging-in img:first-child{
+  position: fixed;
+  top: 50%;
+  left: calc(50% + 180px);
+  transform: translate(calc(-50% - 90px), -50%);
+  width: 80vw;
+  z-index: 10;
+}
+.logging-in-spinner{
+  position: fixed;
+  top: 50%;
+  left: calc(50% + 180px);
+  transform: translate(calc(-50% - 90px), -50%);
+  width: 25vw;
+  z-index: 10;
+}
+.logging-in-spinner-text{
+  text-align: center;
+  font-size: calc(2em + 0.2vw);
+  position: fixed;
+  top: calc(53% + 7vw);
+  left: calc(50% + 180px);
+  transform: translate(calc(-50% - 90px), -50%);
+  z-index: 11;
+}
+
+
 .user-image-circuit-cricle{
   grid-area: 1/1;
   width: 40vw;
@@ -84,6 +120,7 @@
 
 .user-registered-link {
   font-size: 1.5em;
+  padding-top: 0.5em;
 }
 
 /* --- Login/Signup: Submit --- */
@@ -96,7 +133,7 @@
   color: $black;
   background-color: $circuit-yellow;
   width: max-content;
-  padding: 10px 10px;
+  padding: 10px 20px;
   border-radius: 8px;
   vertical-align: middle;
   font-weight: bold;
