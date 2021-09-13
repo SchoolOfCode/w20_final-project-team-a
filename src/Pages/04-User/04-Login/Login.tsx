@@ -64,7 +64,9 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
     setSuccess(false);
     setFailure(false);
     setSubmit(false);
-    axios.get(API_URL + "users/logout");
+    axios.get(API_URL + "users/logout",{
+      withCredentials: true}
+    );
   };
   const [timer, setTimer] = useState(3);
 
