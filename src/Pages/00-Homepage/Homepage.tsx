@@ -6,7 +6,7 @@ import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
-import { builtUsing } from "../../Components/VisualAssets/techStack/techIcons";
+import { builtUsingSVG } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 
 const Homepage = (project: any) => {
 
@@ -90,7 +90,7 @@ const Homepage = (project: any) => {
                   return (
                   <li key={i}>
                     <img 
-                    src={builtUsing[tech]} 
+                    src={builtUsingSVG[tech]} 
                     alt="icon"
                     className="showcase-tech-icon"
                     />

@@ -7,7 +7,6 @@ import FormInputMultiText from "../../Components/ReactComponents/FormInput/FormI
 import FormInputImage from "../../Components/ReactComponents/FormInput/FormInputImage";
 import FormInputTech from "../../Components/ReactComponents/FormInput/FormInputTech";
 import { API_URL } from "../../config.js";
-import { builtUsingIcons } from "../../Components/VisualAssets/techStack/techStack";
 import { builtUsingSVGObject } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useHistory } from "react-router-dom";
@@ -16,6 +15,21 @@ import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircui
 type Props = {
   loginStatus: boolean;
 };
+
+type SubmitFormValues = {
+  projectName:string,
+  weekNumber:string,
+  contributors:string[],
+  problemStatement: string,
+  additionalInformation: string,
+  githubUrl: string,
+  builtUsing:any,
+  appImage:File,
+  appDeploymentUrl:string,
+  additionalAppImage1:File,
+  additionalAppImage2:File,
+  additionalAppImage3:File,
+}
 
 const Submit: React.FC<Props> = ({ loginStatus }) => {
   // const history = useHistory();
@@ -33,9 +47,8 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   const [additionalAppImage1, setAdditionalAppImage1] = useState<File>();
   const [additionalAppImage2, setAdditionalAppImage2] = useState<File>();
   const [additionalAppImage3, setAdditionalAppImage3] = useState<File>();
-
+  //Returned State
   const [projID, setProjID] = useState<string>("");
-
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState<string>("");
