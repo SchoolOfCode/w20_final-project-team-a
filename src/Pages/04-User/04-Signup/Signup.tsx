@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
-// import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

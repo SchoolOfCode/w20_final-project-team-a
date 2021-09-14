@@ -1,7 +1,10 @@
 /* -----------Submit - Page Container & Page Globals--------------------------- */
+.submit-page-container {
+  background-image: url("../../Components/VisualAssets/BackgroundsPlus/ProjectSubmitBG.png");
+}
 
-.submit-page-container{
-  font-family: 'Poppins',sans-serif;
+.submit-page-container {
+  font-family: "Poppins", sans-serif;
   position: absolute;
   right:0;
   top: 2em;
@@ -11,11 +14,12 @@
   color: white;
 }
 
-.submit-page-container input, textarea{
+.submit-page-container input,
+textarea {
   min-height: 1.6em;
   margin-top: 10px;
 }
-.submit-page-container button{
+.submit-page-container button {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: 1px solid #ffde59;
@@ -27,7 +31,7 @@
   cursor: pointer;
   /* height: 1.2em; */
 }
-.submit-page-container button:hover{
+.submit-page-container button:hover {
   background-color: #ffde59;
   color: black;
 }
@@ -41,49 +45,17 @@
   left: 180px;
   max-width: 300px;
   width: 30vw;
+
 }
-/* -----------Submit - Header--------------------------- */
-
-// .submit-header{
-//   font-family: 'Poppins', sans-serif;
-//   width: 10vw;
-// }
-
-// .submit-header-line{
-//   position: fixed;
-//   bottom:0;
-//   top: 1.9em;
-//   left:7em;
-
-// }
-
-// .submit-header-text{
-//   transform: rotate(-90deg);
-//   transform-origin: top left;
-//   position: fixed;
-//   bottom:-1em;
-//   left:0.25em;
-//   font-size: calc(3em + 1vw);
-// }
-/* ----------------- Submit Button -------*/
-.submit-page-container .project-submit{
-  width: max-content;
-  padding: 5px 10px;
-}
-
-/* -----------Submit - Form Messages--------------------------- */
 
 .submit-messages-container{
-  // position: absolute;
-  // top: 2em;
-  // left: 200px;
   align-items: center;
   margin-bottom: 8vh;
   display: flex;
   flex-direction: column;
 }
 
-.submit-messages-text{
+.submit-messages-text {
   color: black;
   font-size: 1em;
 }
@@ -92,11 +64,13 @@
   align-self: center;
   margin-bottom: 0.5em;
   background-color: rgba(152, 251, 152, 0.8);
+
   width: max-content;
   border-radius: 8px;
   padding: 1em 2em;
   align-self: flex-end;
 }
+
 .submit-messages-failure{
   align-self: center;
   margin-bottom: 0.5em;
@@ -104,18 +78,15 @@
   width: max-content;
   border-radius: 8px;
   padding: 1em 2em;
-  
 }
 
-
-/* -----------Submit - Form Container--------------------------- */
 .submit-form-container{
     position: absolute;
     left: calc(200px + 5vw);
     top: 150px;
-  /* height: 75vh; */
 }
-.submit-form-form{
+
+.submit-form-form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -123,7 +94,7 @@
   row-gap: 2em;
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
-.submit-form-form label{
+.submit-form-form label {
   text-transform: uppercase;
 }
 .submit-form-form label, .submit-form-form input{
@@ -134,28 +105,29 @@
 .projectName-input input,
 .problemStatement-input textarea,
 .additionalInformation-input textarea,
-.weekNumber-input input, 
+.weekNumber-input input,
 .contributors-input input,
 .githubUrl-input input,
+
 .appDeploymentUrl-input input{
   width: 18vw;
   max-width: 300px;
 }
-
 
 .contributors-input{
   display: grid;
   grid-template-columns: 1fr 30px;
   width: calc(max-content + 150px);
 }
-.contributors-input label{
+.contributors-input label {
   grid-row: 1;
 }
-.contributors-input input{
+.contributors-input input {
   grid-column: 1;
   grid-row: 2;
   width: 15vw;
 }
+
 .add{
   grid-column: 2;
   grid-row: 2;
@@ -185,35 +157,23 @@
   margin-right: 1em;
 }
 
-/* .contributors-input .add + input{
-  display: inline-block;
-} */
-
-
-
-
-/* -----------Submit - Form Column Images--------------------------- */
-/* input[type="file"] {
-  display: none;
-} */
-
 .fileInput-button{
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: 1px solid #ffde59;
   cursor: pointer;
   width: 8vw;
-  text-align: center ;
+  text-align: center;
   align-self: center;
 }
-.fileInput-button:hover{
+.fileInput-button:hover {
   background-color: #ffde59;
   color: black;
 }
 .appImage-input,
 .additionalAppImage1-input,
 .additionalAppImage2-input,
-.additionalAppImage3-input{
+.additionalAppImage3-input {
   display: inline;
   /* display: flex;
   flex-direction: column ; */
@@ -221,7 +181,7 @@
 .appImage-input-image,
 .additionalAppImage1-input-image,
 .additionalAppImage2-input-image,
-.additionalAppImage3-input-image{
+.additionalAppImage3-input-image {
   max-width: 7vw;
   max-height: 7vw;
   object-fit: cover;
@@ -230,7 +190,7 @@
 
 /* -----------Submit - Form Column Tech Used--------------------------- */
 
-.builtUsing-input{
+.builtUsing-input {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -239,7 +199,7 @@
   height: 60vh;
 
 }
-.builtUsing-input-title{
+.builtUsing-input-title {
   text-align: center;
 }
 .tech-error-message{
@@ -292,7 +252,7 @@
   width: 4em;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
-  filter:  invert(1) grayscale(1);
+  filter: invert(1) grayscale(1);
 }
 .tech-used h6{
   color: grey;

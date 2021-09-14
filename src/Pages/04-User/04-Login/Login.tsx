@@ -6,7 +6,7 @@ import "../04-User-Base.scss";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {UserLoginValidationSchema} from "../../../Components/ReactComponents/Signup/UserLoginValidationSchema"
-// import pinhead from "../../../Components/VisualAssets/BackgroundsPlus/User Signup PinHead.png";
+
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import Loading from "../../../Components/ReactComponents/Loading/Loading";
 import CircleCircuit from "../../../Components/VisualAssets/BackgroundsPlus/CircleCircuit.svg"

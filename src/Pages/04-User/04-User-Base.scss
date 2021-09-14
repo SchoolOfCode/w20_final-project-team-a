@@ -1,6 +1,8 @@
 @import "../../Variables.scss";
 
-/* --- Login/Signup: Form Container --- */
+.user-page-container {
+  background-image: url("../../Components/VisualAssets/BackgroundsPlus/UserSignupBG.png");
+}
 
 .user-form-container {
   position: absolute;
@@ -182,4 +184,27 @@
   border-radius: 8px;
   padding-left: 2em;
   padding-right: 2em;
+}
+
+.button-x {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: 1px solid #ffde59;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin-left: 5px;
+  font-stretch: ultra-expanded;
+  font-size: 1.2em;
+  width: 10em;
+  height: 2em;
+  cursor: pointer;
+  margin-top: 5em;
+  justify-self: center;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+.button-x:hover {
+  background-color: #ffde59;
+  color: black;
 }
