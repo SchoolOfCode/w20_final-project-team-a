@@ -23,12 +23,21 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
   const [userDetails, setUserDetails] = useState(user);
   const [formError, setformError] = useState<boolean[]>(new Array(10).fill(false));
   const [newImage, setNewImage] = useState();
+  const [failure, setFailure] = useState(false);
+  const [failureMsg, setFailureMsg] = useState<string>("");
 
   const form = useRef(null);
 
   const submit = async(e: any) => {
     e.preventDefault();
-
+    if (formError.some(item=>item)){
+      setFailure(true)
+      setFailureMsg("Please check all required fields have valid inputs")
+      return;
+    } else{
+      setFailure(false);
+      setFailureMsg("");
+    }
     const formData = new FormData();
     formData.append("newProfilePhoto", newImage!);
     formData.append("_id", user._id);
@@ -47,20 +56,23 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
     formData.append("cohort", userDetails.cohort || user.cohort || "");
     formData.append("location", userDetails.location || user.location || "");
     formData.append("statement", userDetails.statement || user.statement || "");
-
-    axios({
-      url: API_URL + "auth/user/update",
-      method: "put",
-      data: formData,
-    })
-      .then((res) => {
-        if (res.data.success) {
-          setupdatedSuccessfully(true);
-        }
+    
+    try{
+      const response = await axios({
+        url: API_URL + "auth/user/update",
+        method: "put",
+        data: formData,
       })
-      .catch((err) => console.log(err));
+      const data = await response.data
+      if (await data.success) {
+            setupdatedSuccessfully(true);
+      } else{
+        setFailureMsg(data.msg);
+      }
+    }catch(err){
+      console.error(err);
   };
-
+  }
   return (
     <div className="edit-page-container">
       <LeftVerticalTitle title="Edit Profile" />
@@ -213,14 +225,21 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
             labelFor="photo"
             labelText="Upload a profile pic: "
             name="photo"
-            className="photo-input"
+            className="edit-form-photo-input"
             setValue={setNewImage}
             state={newImage}
             index={9}
             formError={formError}
             setformError={setformError}
           />
+        <section className="edit-profile-messages-container">
+          {failure && (
+            <div className="edit-profile-messages-failure">
+              <h3 className="edit-profile-messages-text">{failureMsg}</h3>
+            </div>
+          )}
         <button className="edit-page-button">Save Changes</button>
+        </section>
       </form>
     </div>
   );

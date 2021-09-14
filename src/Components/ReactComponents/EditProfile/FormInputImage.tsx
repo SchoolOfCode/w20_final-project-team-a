@@ -78,7 +78,6 @@ const FormInputImage : React.FC<Props> = ({
                 accept="image/*"        
             ></input>
 
-
         </section>
     )
 }
