@@ -1,6 +1,6 @@
 import * as yup from 'yup';
-import { VALID_IMAGE_TYPES } from '../../../config';
-import { MAX_IMAGE_SIZE } from '../../../config';
+// import { VALID_IMAGE_TYPES } from '../../../config';
+// import { MAX_IMAGE_SIZE } from '../../../config';
 
 export const SubmitValidationSchema = yup.object().shape({
     projectName: yup.string().required('A project name is required'),
@@ -27,13 +27,13 @@ export const SubmitValidationSchema = yup.object().shape({
     githubUrl: yup.string().required('A github url is required').url(),
     appDeploymentUrl:yup.string().required('A deployed project URL is required').url(),
     // builtUsing: yup.object().nullable(),
-    appImage:  yup.mixed()
-                    .test('fileExists', 'An image of your application is required',
-                    file => file.length >= 1)
-                    .test('fileSize', "File Size is too large. Max 5mb", 
-                        (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
-                    .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
-                        (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
+    // appImage:  yup.mixed()
+    //                 .test('fileExists', 'An image of your application is required',
+    //                 file => file.length >= 1)
+    //                 .test('fileSize', "File Size is too large. Max 5mb", 
+    //                     (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
+    //                 .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
+    //                     (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
     // additionalAppImage1: yup.lazy(value => {
     //                         if (value &&
     //                         Object.values(value).some(file => !(file === null || file === undefined || file === ""))){

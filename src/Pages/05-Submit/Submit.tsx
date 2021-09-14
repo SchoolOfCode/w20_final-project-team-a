@@ -45,10 +45,10 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
 
   const [contributors, setContributors] = useState<string[]>([]);
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
-  const [appImagePreview, setAppImagePreview] = useState<string>();
-  const [additionalAppImagePreview1, setAdditionalAppImagePreview1] = useState<string>();
-  const [additionalAppImagePreview2, setAdditionalAppImagePreview2] = useState<string>();
-  const [additionalAppImagePreview3, setAdditionalAppImagePreview3] = useState<string>();
+  const [appImage, setAppImage] = useState<string>();
+  const [additionalAppImage1, setAdditionalAppImage1] = useState<string>();
+  const [additionalAppImage2, setAdditionalAppImage2] = useState<string>();
+  const [additionalAppImage3, setAdditionalAppImage3] = useState<string>();
   
   //Returned State:any
   const [projID, setProjID] = useState<string>("");
@@ -61,13 +61,13 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   })
   
   const onSubmit = (formData:ProjectSubmitForm) => {
-    console.log(formData)
     const appImagesArray = [
-      formData.appImage,
-      // additionalAppImage1,
-      // additionalAppImage2,
-      // additionalAppImage3,
+      appImage,
+      additionalAppImage1 || null,
+      additionalAppImage2 || null,
+      additionalAppImage3 || null,
     ];
+    console.log(formData, appImagesArray)
     // appImagesArray.forEach((image) => formData.append("appImages", image!));
 
   }
@@ -133,7 +133,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
       <LeftVerticalTitle title="Submit"></LeftVerticalTitle>
 
       <section className="submit-messages-container">
-        {/* {success && (
+        {success && (
           <div className="submit-messages-container-sucess">
             <h3 className="submit-messages-text">
               Your project has been uploaded
@@ -144,7 +144,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
           <div className="submit-messages-container-failure">
             <h3 className="submit-messages-text">{failureMsg}</h3>
           </div>
-        )} */}
+        )}
       </section>
       <HorizontalCircuit className = "submit-horizontal-line"/>
       <section className="submit-form-container">
@@ -210,47 +210,15 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               <div className="invalid-input-message">{errors.appDeploymentUrl?.message}</div>
           </section>
 
-          <section className="submit-form-group appImage-input">
-              <label>App Image:</label>
-              <input
-                type="file"
-                {...register('appImage')}
-                accept="image/*"
-                className={`${errors.appImage?"-invalid-input" : ""}`}
-                onChange={(e)=>{
-                  if (e.target.files && e.target.files.length !== 0) {
-                    const imageURL:any = URL.createObjectURL(e.target.files[0])
-                    setAppImagePreview(imageURL)}
-                }}
-              ></input>
-              <div className="invalid-input-message">
-                {errors.appImage?.message}
-                {appImagePreview?<img src={appImagePreview} alt="user upload" className="appImage-input-image"/>:null}
-              </div>
-          </section>
-          {/* <section className="submit-form-group additionalAppImage1-input">
-              <label>Additional Image 1:</label>
-              <input
-                type="file"
-                {...register('additionalAppImage1')}
-                accept="image/*"
-                className={`${errors.additionalAppImage1?"-invalid-input" : ""}`}
-                onChange={(e)=>{
-                  if (e.target.files && e.target.files.length !== 0) {
-                    const imageURL:any = URL.createObjectURL(e.target.files[0])
-                    setAdditionalAppImagePreview1(imageURL)
-                    }
-                }}
-              ></input>
-              <div className="invalid-input-message">
-                {errors.appImage?.message}
-                {additionalAppImagePreview1?<img src={additionalAppImagePreview1} alt="user upload" className="additionalAppImage1-input-image"/>:null}
-              </div>
-          </section> */}
-
-
-          
-          {/* 
+          <FormInputImage
+            labelFor="appImage"
+            labelText="Main Project Image: "
+            name="appImage"
+            className="appImage-input"
+            imageClassName="appImage-input-image"
+            setValue={setAppImage}
+            state={appImage}
+          />
           <FormInputImage
             labelFor="additionalAppImage1"
             labelText="Additional Project image 1: "
@@ -277,7 +245,31 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="additionalAppImage3-input-image"
             setValue={setAdditionalAppImage3}
             state={additionalAppImage3}
-          />  */}
+          />
+          {/* <section className="submit-form-group additionalAppImage1-input">
+              <label>Additional Image 1:</label>
+              <input
+                type="file"
+                {...register('additionalAppImage1')}
+                accept="image/*"
+                className={`${errors.additionalAppImage1?"-invalid-input" : ""}`}
+                onChange={(e)=>{
+                  if (e.target.files && e.target.files.length !== 0) {
+                    const imageURL:any = URL.createObjectURL(e.target.files[0])
+                    setAdditionalAppImagePreview1(imageURL)
+                    }
+                }}
+              ></input>
+              <div className="invalid-input-message">
+                {errors.appImage?.message}
+                {additionalAppImagePreview1?<img src={additionalAppImagePreview1} alt="user upload" className="additionalAppImage1-input-image"/>:null}
+              </div>
+          </section> */}
+
+
+          
+          {/* 
+            */}
          {/*
 
           <FormInputContributors
