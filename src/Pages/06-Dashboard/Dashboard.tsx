@@ -49,6 +49,7 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus }) => {
   const history = useHistory();
   const [user, setUser] = useState(initialUser);
   const [role, setRole] = useState("user");
+  const [updatedSuccessfully, setupdatedSuccessfully] = useState(false);
 
   const getUser = async () => {
     try {
@@ -71,9 +72,9 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus }) => {
   });
 
   return role === "admin" ? (
-    <AdminBoard user={user} />
+    <AdminBoard user={user}/>
   ) : (
-    <EditProfile user={user} />
+    <EditProfile user={user} updatedSuccessfully={updatedSuccessfully} setupdatedSuccessfully={setupdatedSuccessfully}/>
   );
 };
 

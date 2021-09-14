@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import validator from "validator"
 
 type Props = {
     labelFor:string, 
@@ -10,7 +11,11 @@ type Props = {
     required?:boolean,
     defaultValue?:string,
     user:any, 
-    setUserDetails:(val:any)=> void}
+    setUserDetails:(val:any)=> void,
+    index:number,
+    formError: boolean[],
+    setformError:(value:any)=>void
+}
 
 const FormInput : React.FC<Props> = ({
     labelFor, 
@@ -22,29 +27,54 @@ const FormInput : React.FC<Props> = ({
     required=true,
     defaultValue="",
     user, 
-    setUserDetails}) => {  
+    setUserDetails,
+    index,
+    formError,
+    setformError
+    }) => {  
 
     const [formValue, setFormValue] = useState(placeholder)
-
+    const [errorMessage, setErrorMessage] = useState<string>("")
 
     const handleChange = (e: string) => {
+        if(type==="url" && e.length > 0){
+            if(!validator.isURL(e)){
+                setErrorMessage("Please enter a valid URL");
+                setformError(formError.map((item,i) => (i === index) ? item = true : item))
+                return;
+            }else{
+                setErrorMessage("");
+                setformError(formError.map((item,i) => (i === index) ? item = false : item))
+            }
+        }
+        if (required && e.length === 0){
+            setErrorMessage("This field is required");
+            setformError(formError.map((item,i) => (i === index) ? item = true : item))
+            return;
+        }else{
+            setErrorMessage("");
+            setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        }
         setFormValue(e)
         const updatedUser = {...user, [labelFor]:formValue}
         setUserDetails(updatedUser)
     }
 
     return (
-        <div className={className}>
-                <label htmlFor={labelFor}>{labelText}</label>
-                <input
-                    defaultValue={defaultValue}
-                    type={type}
-                    placeholder={placeholder}
-                    name={name}
-                    required={required}
-                    onChange={(e)=>handleChange(e.target.value)}
-                ></input>
-        </div>
+        <section className={`edit-profile-form-group ${className}`}>
+            <label htmlFor={labelFor}>{labelText}</label>
+            <input
+                defaultValue={defaultValue}
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                required={required}
+                onChange={(e)=>handleChange(e.target.value)}
+            ></input>
+            <div className="invalid-input-message">
+                {errorMessage}
+            </div>
+        </section>
     )
 }
 

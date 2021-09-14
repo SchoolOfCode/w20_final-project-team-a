@@ -1,46 +1,41 @@
 import React, { useState, useRef } from "react";
+import "./EditProfile.scss";
 import { User } from "../../../Pages/06-Dashboard/Dashboard";
 import LeftVerticalTitle from "../../ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
-import "./EditProfile.scss";
+import HorizontalCircuit from "../../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 import PreviewImage from "./PreviewImage";
 import FormInput from "./FormInput";
 import FormInputTextarea from "./FormInputTextarea";
+import FormInputImage from "./FormInputImage";
 import axios from "axios";
 import { API_URL } from "../../../config";
-import { useHistory } from "react-router-dom";
-
-axios.defaults.withCredentials = true;
 
 interface ProfileProps {
   user: User;
+  updatedSuccessfully: boolean,
+  setupdatedSuccessfully:(value:boolean)=>void
 }
 
-const EditProfile: React.FC<ProfileProps> = ({ user }) => {
+axios.defaults.withCredentials = true;
+
+const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdatedSuccessfully}) => {
+
   const [userDetails, setUserDetails] = useState(user);
+  const [formError, setformError] = useState<boolean[]>(new Array(10).fill(false));
   const [newImage, setNewImage] = useState();
-  const [updatedSuccessfully, setupdatedSuccessfully] = useState(false);
+
   const form = useRef(null);
-  const history = useHistory();
 
-  const handleImage = (e: any) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      return;
-    }
-    setNewImage(e.target.files[0]);
-  };
-
-  const submit = (e: any) => {
+  const submit = async(e: any) => {
     e.preventDefault();
-    // const formData = new FormData(form.current!)
+
     const formData = new FormData();
     formData.append("newProfilePhoto", newImage!);
     formData.append("_id", user._id);
     formData.append("displayName", userDetails.displayName);
     formData.append(
       "photo",
-      user.photo ||
-        "http://localhost:5000/uploads/profiles/defaultProfilePhoto.png"
-    );
+      user.photo!); //default handled on backend
     formData.append("githubUrl", userDetails.githubUrl || user.githubUrl || "");
     formData.append("linkedin", userDetails.linkedin || user.linkedin || "");
     formData.append("twitter", userDetails.twitter || user.twitter || "");
@@ -69,6 +64,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
   return (
     <div className="edit-page-container">
       <LeftVerticalTitle title="Edit Profile" />
+      <HorizontalCircuit className="edit-profile-line" />
       <form
         className="edit-page-profile-container"
         ref={form}
@@ -77,7 +73,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
         <PreviewImage {...user} />
         <FormInput
           labelFor="displayName"
-          labelText="Display Name*"
+          labelText="Display Name"
           placeholder={userDetails.displayName}
           className="edit-form-displayName-input"
           type="text"
@@ -86,6 +82,9 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.displayName}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={0}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="githubUrl"
@@ -98,6 +97,9 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.githubUrl || ""}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={1}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="linkedin"
@@ -110,6 +112,9 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.linkedin || ""}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={2}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="twitter"
@@ -119,9 +124,12 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           type="url"
           name="userDetails[twitter]"
           required={false}
-          defaultValue={user.twitter || ""}
+          defaultValue={user.twitter || ""}  
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={3}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="youtube"
@@ -134,6 +142,9 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.youtube || ""}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={4}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="personalWebsite"
@@ -146,11 +157,14 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.personalWebsite || ""}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={5}
+          formError={formError}
+          setformError={setformError}
         />
         {/* Column 3 */}
         <FormInput
           labelFor="cohort"
-          labelText="Cohort*"
+          labelText="Cohort"
           placeholder={userDetails.cohort || ""}
           className="edit-form-cohort-input"
           type="number"
@@ -159,6 +173,9 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.cohort || ""}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={6}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInput
           labelFor="location"
@@ -171,10 +188,13 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.location || "West Midlands"}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={7}
+          formError={formError}
+          setformError={setformError}
         />
         <FormInputTextarea
           labelFor="statement"
-          labelText="Personal Statement*"
+          labelText="Personal Statement"
           placeholder={userDetails.statement || "I <3 TypeScript"}
           className="edit-form-statement-input"
           name="userDetails[statement]"
@@ -185,20 +205,23 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           defaultValue={user.statement || "I <3 TypeScript"}
           user={userDetails}
           setUserDetails={setUserDetails}
+          index={8}
+          formError={formError}
+          setformError={setformError}
         />
-        <div className="edit-form-image-input">
-          <label htmlFor="changePicture">Upload a new picture</label>
-          <input
-            id="changePicture"
-            type="file"
-            required={false}
-            onChange={(e) => handleImage(e)}
-            accept="image/*"
-          ></input>
-        </div>
-        <input type="submit" className="edit-page-button" name="Save Changes" />
+        <FormInputImage
+            labelFor="photo"
+            labelText="Upload a profile pic: "
+            name="photo"
+            className="photo-input"
+            setValue={setNewImage}
+            state={newImage}
+            index={9}
+            formError={formError}
+            setformError={setformError}
+          />
+        <button className="edit-page-button">Save Changes</button>
       </form>
-      {updatedSuccessfully && history.push("/profiles")}
     </div>
   );
 };
