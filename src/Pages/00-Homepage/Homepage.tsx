@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { API_URL } from "../../config";
 import "./Homepage.scss";
-import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
@@ -11,36 +10,28 @@ import { builtUsingSVG } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 const Homepage = (project: any) => {
 
     const [featuredProject, setFeaturedProject] = useState<any>({});
-    const [loading, setLoading] = useState(false);
+
     const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
     const [imageGalleryIndex, setImageGalleryIndex] = useState(0);
-    const [usersNames, setUsersNames] = useState<any>([])
+    const [usersNames, setUsersNames] = useState<string[]>([])
     
-    const getProjects = async () => {
-      setLoading(true);
-      try {
-        const projectArray = await axios.get(
-          API_URL + "projects/featured"
-          );
-        setFeaturedProject(await projectArray.data);
-        const data = await projectArray.data
-        setImageGalleryArray([data.appDeploymentImage, ...data.additionaAppImageURLs]);
-        data.users.forEach((user:any)=>{
-          usersNames.push(user.displayName)
-    }) 
-
-      } catch (err) {
-        console.error(err)
-      }
-    };
     
     useEffect(() => {
-      getProjects();
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 1250);
-      return () => clearTimeout(timer);
-    }, []);
+      const getProjects = async () => {
+        try {
+          const projectArray = await axios.get(
+            API_URL + "projects/featured"
+            );
+          setFeaturedProject(await projectArray.data);
+          const data = await projectArray.data
+          setImageGalleryArray([await data.appDeploymentImage, ...await data.additionaAppImageURLs]);
+          setUsersNames([...await data.users.map((user:any)=>user.displayName)])
+      }catch (err) {
+          console.error(err)
+        }
+      };
+    getProjects()
+    },[]);
     
     
     const increaseGalleryIndex = () => {
@@ -64,9 +55,6 @@ const Homepage = (project: any) => {
     
 
   return (
-    loading ? (
-      <Loading />
-    ) : (
     <div className="wrapper">
       <img className="circuitT" src={circuitT} alt="circuit-board"/>
       <img className="circuitB" src={circuitB} alt="circuit-board"/>
@@ -121,7 +109,6 @@ const Homepage = (project: any) => {
             
             */}
     </div>
-    )
   );
 };
 
