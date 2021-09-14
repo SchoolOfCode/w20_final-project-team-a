@@ -112,12 +112,16 @@
 }
 
 .edit-form-cohort-input {
+  margin-top: 2em;
   grid-column: 3;
   grid-row: 1/2;
   justify-self: start;
 }
 .edit-form-cohort-input input {
   width: 5vw;
+}
+.edit-form-cohort-input>.invalid-input-message{
+  padding-top: 10px;
 }
 
 .edit-form-location-input {

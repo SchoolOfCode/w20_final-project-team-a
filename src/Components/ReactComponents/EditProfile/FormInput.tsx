@@ -35,6 +35,7 @@ const FormInput : React.FC<Props> = ({
 
     const [formValue, setFormValue] = useState(placeholder)
     const [errorMessage, setErrorMessage] = useState<string>("")
+    const [cohortPadding, setCohortPadding] = useState<boolean>(false)
 
     const handleChange = (e: string) => {
         if(type==="url" && e.length > 0){
@@ -55,6 +56,18 @@ const FormInput : React.FC<Props> = ({
             setErrorMessage("");
             setformError(formError.map((item,i) => (i === index) ? item = false : item))
         }
+        if(type==="number"){
+            if(parseInt(e,10) < 1 || parseInt(e,10) >= 8){
+                setErrorMessage("Please enter a valid cohort number");
+                setformError(formError.map((item,i) => (i === index) ? item = true : item))
+                setCohortPadding(false)
+                return;
+            }else{
+                setErrorMessage("");
+                setformError(formError.map((item,i) => (i === index) ? item = false : item))
+                setCohortPadding(true)
+            }
+        }
         setFormValue(e)
         const updatedUser = {...user, [labelFor]:formValue}
         setUserDetails(updatedUser)
@@ -72,6 +85,7 @@ const FormInput : React.FC<Props> = ({
                 onChange={(e)=>handleChange(e.target.value)}
             ></input>
             <div className="invalid-input-message">
+                {cohortPadding?<span>&nbsp:</span>:""}
                 {errorMessage}
             </div>
         </section>

@@ -41,7 +41,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
     const formData = new FormData();
     formData.append("newProfilePhoto", newImage!);
     formData.append("_id", user._id);
-    formData.append("displayName", userDetails.displayName);
+    formData.append("displayName", userDetails.displayName || user.displayName || "");
     formData.append(
       "photo",
       user.photo!); //default handled on backend
@@ -65,13 +65,16 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
       })
       const data = await response.data
       if (await data.success) {
-            setupdatedSuccessfully(true);
+        setupdatedSuccessfully(true);
+        setFailureMsg("")
+        setFailure(false)
       } else{
+        setFailure(true)
         setFailureMsg(data.msg);
       }
     }catch(err){
       console.error(err);
-  };
+    };
   }
   return (
     <div className="edit-page-container">
