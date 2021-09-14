@@ -34,19 +34,23 @@ export const SubmitValidationSchema = yup.object().shape({
                         (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
                     .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
                         (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
-    additionalAppImage1: yup.mixed().notRequired()
-                    .test('fileSize', "File Size is too large. Max 5mb", 
-                    (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
-                    .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
-                    (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
-    additionalAppImage2: yup.mixed().notRequired()
-                    .test('fileSize', "File Size is too large. Max 5mb", 
-                    (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
-                    .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
-                    (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
-    additionalAppImage3: yup.mixed().notRequired()
-                    .test('fileSize', "File Size is too large. Max 5mb", 
-                    (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
-                    .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
-                    (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
+    // additionalAppImage1: yup.lazy(value => {
+    //                         if (value &&
+    //                         Object.values(value).some(file => !(file === null || file === undefined || file === ""))){
+    //                         return yup
+    //                         .mixed()
+    //                         .test('fileSize', "File Size is too large. Max 5mb", 
+    //                             (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
+    //                         .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
+    //                         (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type)))},
+    // additionalAppImage2: yup.mixed().notRequired()
+    //                 .test('fileSize', "File Size is too large. Max 5mb", 
+    //                 (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
+    //                 .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
+    //                 (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
+    // additionalAppImage3: yup.mixed().notRequired()
+    //                 .test('fileSize', "File Size is too large. Max 5mb", 
+    //                 (file) => file[0] === null || (file[0] && file[0].size <= MAX_IMAGE_SIZE))
+    //                 .test('fileType', "Only .jpg .jpeg .png or .gif are allowed", 
+    //                 (file) => !file[0] || (file[0] && VALID_IMAGE_TYPES.includes(file[0].type))),
 })

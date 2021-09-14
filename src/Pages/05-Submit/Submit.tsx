@@ -228,17 +228,17 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 {appImagePreview?<img src={appImagePreview} alt="user upload" className="appImage-input-image"/>:null}
               </div>
           </section>
-          <section className="submit-form-group additionalAppImage1-input">
+          {/* <section className="submit-form-group additionalAppImage1-input">
               <label>Additional Image 1:</label>
               <input
                 type="file"
-                {...register('appImage')}
+                {...register('additionalAppImage1')}
                 accept="image/*"
                 className={`${errors.additionalAppImage1?"-invalid-input" : ""}`}
                 onChange={(e)=>{
                   if (e.target.files && e.target.files.length !== 0) {
                     const imageURL:any = URL.createObjectURL(e.target.files[0])
-                    setAppImagePreview(imageURL)
+                    setAdditionalAppImagePreview1(imageURL)
                     }
                 }}
               ></input>
@@ -246,7 +246,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 {errors.appImage?.message}
                 {additionalAppImagePreview1?<img src={additionalAppImagePreview1} alt="user upload" className="additionalAppImage1-input-image"/>:null}
               </div>
-          </section>
+          </section> */}
 
 
           
