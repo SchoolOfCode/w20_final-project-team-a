@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Dashboard.scss"
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../config";
@@ -48,19 +49,17 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus }) => {
   const history = useHistory();
   const [user, setUser] = useState(initialUser);
   const [role, setRole] = useState("user");
-  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     try {
-      setLoading(true);
       if (loginStatus === false) {
         history.push("/login");
       } else {
         const res = await axios.get(API_URL + "auth/check", {
           withCredentials: true,
         });
-        setUser(res.data.user);
-        setRole(res.data.user.role);
+        setUser(await res.data.user);
+        setRole(await res.data.user.role);
       }
     } catch (err) {
       console.error(err);
@@ -69,15 +68,9 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus }) => {
 
   useEffect(() => {
     getUser();
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1250);
-    return () => clearTimeout(timer);
-  }, []);
+  });
 
-  return loading ? (
-    <Loading />
-  ) : role === "admin" ? (
+  return role === "admin" ? (
     <AdminBoard user={user} />
   ) : (
     <EditProfile user={user} />

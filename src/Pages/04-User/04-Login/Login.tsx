@@ -27,7 +27,6 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState("");
-  const [submit, setSubmit] = useState(false);
 
   const history = useHistory();
 
@@ -35,60 +34,50 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
     resolver: yupResolver(UserLoginValidationSchema)
   })
 
-  function handleLogin(e : React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    setSubmit(true);
+  const onSubmit = (formData:UserLoginForm) => {
+    axios.post(
+      API_URL + "users/login",
+      {
+        email: formData.email,
+        password: formData.password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    )
+    .then((response) => {
+      if (response.data.sucess) {
+        setSuccess(true);
+        setFailure(false);
+      } else {
+        setFailureMsg(response.data.message);
+        setFailure(true);
+        setLoginStatus(false);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
-  // useEffect(() => {
-  //   if (submit === true) {
-  //     axios
-  //       .post(
-  //         API_URL + "users/login",
-  //         {
-  //           email: email,
-  //           password: password,
-  //         },
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           withCredentials: true,
-  //         }
-  //       )
-  //       .then((response) => {
-  //         // console.log(response.data, response)
-  //         if (response.data.sucess) {
-  //           setSuccess(true);
-  //           setFailure(false);
-  //           setSubmit(false);
-  //         } else {
-  //           setFailureMsg(response.data.message);
-  //           setFailure(true);
-  //           setSubmit(false);
-  //           setLoginStatus(false);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }
-  // });
 
   const [timer, setTimer] = useState(3);
 
-  // useEffect(() => {
-  //   if (success === true && timer <= 0) {
-  //     setLoginStatus(true);
-  //     history.push("/dashboard");
-  //     return;
-  //   }
-  //   if (success) {
-  //     const loginRedirectTimer = setInterval(() => {
-  //       setTimer(timer - 1);
-  //     }, 1000);
-  //     return () => clearInterval(loginRedirectTimer);
-  //   }
-  // }, [success, history, timer, setLoginStatus]);
+  useEffect(() => {
+    if (success === true && timer <= 0) {
+      setLoginStatus(true);
+      history.push("/dashboard");
+      return;
+    }
+    if (success) {
+      const loginRedirectTimer = setInterval(() => {
+        setTimer(timer - 1);
+      }, 1000);
+      return () => clearInterval(loginRedirectTimer);
+    }
+  }, [success, history, timer, setLoginStatus]);
 
   return (
     <div>
@@ -104,29 +93,33 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
               <img src={CircuitHead} alt="circuit head design" className="user-image-circuit-incorrect" />
             }
             {success && !failure &&
-              <Loading className = "logging-in-spinner" loadingText="Logging in"/>
+              <Loading className = "logging-in-spinner" loadingText={`Logging in ${timer} `}/>
             }              
           </section>
         {!success &&
-          <form className="user-form-input">
+          <form className="user-form-input" onSubmit={handleSubmit(onSubmit)}>
             <section className="user-form-group">
-              <label htmlFor="email">email address</label>
+              <label htmlFor="email">Email:</label>
               <input
                 type="email"
-                placeholder="lewis@lewis.ninja"
+                {...register('email')}
+                placeholder="your@email.here"
                 name="email"
                 id="email"
-                // onChange={(e) => setEmail(e.target.value)}
+                className={`user-login ${errors.email?"invalid-input" : ""}`}
               ></input>
+              <div className="invalid-input-message">{errors.email?.message}</div>
             </section>
             <section className="user-form-group">
-              <label htmlFor="password">password</label>
+              <label htmlFor="password">Password:</label>
               <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  // onChange={(e) => setPassword(e.target.value)}
-              ></input>
+                type="password"
+                {...register('password')}
+                name="password"
+                id="password"
+                className={`user-login ${errors.password?"invalid-input" : ""}`}
+                ></input>
+                <div className="invalid-input-message">{errors.password?.message}</div>
             </section>
             <section className="user-registered-link">
               Not registered? Click{" "}
@@ -136,29 +129,25 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
               to register
             </section>
             <section className="user-messages-container">
-            {success && (
+            {/* {success && (
               <div className="user-messages-container-success">
                 <p className="user-messages-text-success">
                   Logging you in, in {timer} seconds
                 </p>
               </div>
-            )}
+            )} */}
             {failure && (
               <div className="user-messages-container-failure">
                 <p className="user-messages-text-failure">{failureMsg}</p>
               </div>
             )}
           </section>
-            <section className="user-submit">
-              <button
-                className="user-submit-button"
-                type="submit"
-                onClick={(e) => handleLogin(e)}
-              >
+          <section className="user-submit">
+              <button type="submit" className="user-submit-button" >
                 Login
               </button>
-            </section>
-          </form>
+          </section>
+        </form>
         }
         </section>
       </div>

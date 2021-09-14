@@ -1,12 +1,14 @@
 import React, { useState,  } from "react";
 import "./Submit.scss";
 import axios from "axios";
-import Form from "../../Components/ReactComponents/SubmitFormInput/Form";
-import FormInput from "../../Components/ReactComponents/SubmitFormInput/FormInput";
+
+// import FormInput from "../../Components/ReactComponents/SubmitFormInput/FormInput";
 import FormInputContributors from "../../Components/ReactComponents/SubmitFormInput/FormInputContributors";
 import FormInputMultiText from "../../Components/ReactComponents/SubmitFormInput/FormInputMultiText";
 import FormInputImage from "../../Components/ReactComponents/SubmitFormInput/FormInputImage";
 import FormInputTech from "../../Components/ReactComponents/SubmitFormInput/FormInputTech";
+import { SubmitValidationSchema } from "../../Components/ReactComponents/SubmitFormInput/SubmitValidationSchema";
+
 import { API_URL } from "../../config.js";
 import { builtUsingSVGObject } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
@@ -21,7 +23,7 @@ type Props = {
   loginStatus: boolean;
 };
 
-type SubmitFormValues = {
+type ProjectSubmitForm = {
   projectName:string,
   weekNumber:string,
   contributors:string[],
@@ -40,61 +42,37 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   // const history = useHistory();
   // if (loginStatus === false) history.push("/login");
 
-  const [projectName, setProjectName] = useState<string>();
-  const [weekNumber, setWeekNumber] = useState<string>();
+
   const [contributors, setContributors] = useState<string[]>([]);
-  const [problemStatement, setProblemStatement] = useState<string>();
-  const [additionalInformation, setAdditionalInformation] = useState<string>();
-  const [githubUrl, setGithubUrl] = useState<string>();
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
-  const [appImage, setAppImage] = useState<File>();
-  const [appDeploymentUrl, setAppDeploymentUrl] = useState<string>();
-  const [additionalAppImage1, setAdditionalAppImage1] = useState<File>();
-  const [additionalAppImage2, setAdditionalAppImage2] = useState<File>();
-  const [additionalAppImage3, setAdditionalAppImage3] = useState<File>();
+  const [appImagePreview, setAppImagePreview] = useState<string>();
+  const [additionalAppImagePreview1, setAdditionalAppImagePreview1] = useState<string>();
+  const [additionalAppImagePreview2, setAdditionalAppImagePreview2] = useState<string>();
+  const [additionalAppImagePreview3, setAdditionalAppImagePreview3] = useState<string>();
   
-
-  const { register, watch, handleSubmit } = useForm<SubmitFormValues>({
-    defaultValues:{
-      projectName:"",
-      weekNumber:"",
-      contributors:[""],
-      problemStatement: "",
-      additionalInformation: "",
-      githubUrl: "",
-      builtUsing: builtUsingSVGObject,
-      appImage: undefined,
-      appDeploymentUrl:"",
-      additionalAppImage1:undefined,
-      additionalAppImage2:undefined,
-      additionalAppImage3:undefined,
-    }
-  })
-  
-  const onSubmit = handleSubmit(({
-    projectName,
-    weekNumber,
-    contributors,
-    problemStatement,
-    additionalInformation,
-    githubUrl,
-    builtUsing,
-    appImage,
-    appDeploymentUrl,
-    additionalAppImage1,
-    additionalAppImage2,
-    additionalAppImage3,
-  }) => {
-    console.log(projectName, weekNumber, contributors)
-  })
-
   //Returned State:any
-  // const [projID, setProjID] = useState<string>("");
-  // const [success, setSuccess] = useState(false);
-  // const [failure, setFailure] = useState(false);
-  // const [failureMsg, setFailureMsg] = useState<string>("");
+  const [projID, setProjID] = useState<string>("");
+  const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState(false);
+  const [failureMsg, setFailureMsg] = useState<string>("");
 
-  // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const {register, handleSubmit, formState: {errors}} = useForm<ProjectSubmitForm>({
+    resolver: yupResolver(SubmitValidationSchema)
+  })
+  
+  const onSubmit = (formData:ProjectSubmitForm) => {
+    console.log(formData)
+    const appImagesArray = [
+      formData.appImage,
+      // additionalAppImage1,
+      // additionalAppImage2,
+      // additionalAppImage3,
+    ];
+    // appImagesArray.forEach((image) => formData.append("appImages", image!));
+
+  }
+
+   // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   //   e.preventDefault();
 
   //   const selectedBuiltUsingFilter = [];
@@ -170,86 +148,109 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
       </section>
       <HorizontalCircuit className = "submit-horizontal-line"/>
       <section className="submit-form-container">
-        <form encType="multipart/form-data" className="submit-form-form" onSubmit={onSubmit}>
-          <FormInput
-            labelFor="projectName"
-            labelText="Project Name: "
-            type="text"
-            className="projectName-input"
-            placeholder="My Project"
-            name="projectName"
-            setValue={setProjectName}
-          />
-          <FormInputMultiText
-            labelFor="problemStatement"
-            labelText="Problem Statement: "
-            placeholder="max 140 characters"
-            className="problemStatement-input"
-            name="problemStatement"
-            setValue={setProblemStatement}
-          />
-          <FormInputMultiText
-            labelFor="additionalInformation"
-            labelText="Additional Information: "
-            placeholder="max 140 characters"
-            className="additionalInformation-input"
-            name="additionalInformation"
-            setValue={setAdditionalInformation}
-          />
-          <FormInput
-            labelFor="githubUrl"
-            labelText="GitHub URL: "
-            type="text"
-            className="githubUrl-input"
-            placeholder="github.com/myproject"
-            name="githubUrl"
-            setValue={setGithubUrl}
-          />
-          <FormInput
-            labelFor="weekNumber"
-            labelText="Week Number: "
-            placeholder=""
-            className="weekNumber-input"
-            type="number"
-            name="weekNumber"
-            setValue={setWeekNumber}
-          />
-          <FormInputContributors
-            labelFor="contributors"
-            labelText="Contributors: "
-            type="text"
-            placeholder="Contributors"
-            className="contributors-input"
-            name="contributors"
-            setContributors={setContributors}
-            contributors={contributors}
-          />
-          <FormInputTech
-            labelFor="builtUsing"
-            labelText="Technologies Used: "
-            name="builtUsing"
-            className="builtUsing-input"
-            setBuiltUsing={setBuiltUsing}
-            builtUsing={builtUsing}
-          />
-          <FormInput
-            labelFor="appDeploymentUrl"
-            labelText="Deployed Project URL: "
-            type="url"
-            className="appDeploymentUrl-input"
-            placeholder="myproject.ninja"
-            name="appDeploymentUrl"
-            setValue={setAppDeploymentUrl}
-          />
-          <FormInputImage
-            labelFor="appImage"
-            labelText="Deployed Project Image: "
-            name="appImage"
-            className="appImage-input"
-            imageClassName="appImage-input-image"
-            setValue={setAppImage}
-            state={appImage}
-          />
+        <form encType="multipart/form-data" className="submit-form-form" onSubmit={handleSubmit(onSubmit)}>
+          <section className="submit-form-group projectName-input">
+              <label>Project Name:</label>
+              <input
+                type="text"
+                {...register('projectName')}
+                placeholder="My project"
+                className={`${errors.projectName?"-invalid-input" : ""}`}
+              ></input>
+              <div className="invalid-input-message">{errors.projectName?.message}</div>
+          </section>
+          <section className="submit-form-group problemStatement-input">
+              <label>Problem Statement:</label>
+              <textarea
+                {...register('problemStatement')}
+                placeholder="My project was designed to solve..."
+                className={`${errors.problemStatement?"-invalid-input" : ""}`}
+              ></textarea>
+              <div className="invalid-input-message">{errors.problemStatement?.message}</div>
+          </section>
+          <section className="submit-form-group additionalInformation-input">
+              <label>Additional Information:</label>
+              <textarea
+                {...register('additionalInformation')}
+                placeholder="Optional additional information..."
+                className={`${errors.additionalInformation?"-invalid-input" : ""}`}
+              ></textarea>
+              <div className="invalid-input-message">{errors.additionalInformation?.message}</div>
+          </section>
+          <section className="submit-form-group githubUrl-input">
+              <label>GitHub Repository:</label>
+              <input
+                type="text"
+                {...register('githubUrl')}
+                placeholder="http://www.github.com/facebook"
+                className={`${errors.githubUrl?"-invalid-input" : ""}`}
+              ></input>
+              <div className="invalid-input-message">{errors.githubUrl?.message}</div>
+          </section>
+          <section className="submit-form-group weekNumber-input">
+              <label>Project Starting Week:</label>
+              <input
+                type="number"
+                {...register('weekNumber')}
+                placeholder="1"
+                defaultValue={1}
+                className={`${errors.weekNumber?"-invalid-input" : ""}`}
+              ></input>
+              <div className="invalid-input-message">{errors.weekNumber?.message}</div>
+          </section>
+
+          <section className="submit-form-group appDeploymentUrl-input">
+              <label>Deployed App URL:</label>
+              <input
+                type="text"
+                {...register('appDeploymentUrl')}
+                placeholder="www.cool-app.com"
+                className={`${errors.appDeploymentUrl?"-invalid-input" : ""}`}
+              ></input>
+              <div className="invalid-input-message">{errors.appDeploymentUrl?.message}</div>
+          </section>
+
+          <section className="submit-form-group appImage-input">
+              <label>App Image:</label>
+              <input
+                type="file"
+                {...register('appImage')}
+                accept="image/*"
+                className={`${errors.appImage?"-invalid-input" : ""}`}
+                onChange={(e)=>{
+                  if (e.target.files && e.target.files.length !== 0) {
+                    const imageURL:any = URL.createObjectURL(e.target.files[0])
+                    setAppImagePreview(imageURL)}
+                }}
+              ></input>
+              <div className="invalid-input-message">
+                {errors.appImage?.message}
+                {appImagePreview?<img src={appImagePreview} alt="user upload" className="appImage-input-image"/>:null}
+              </div>
+          </section>
+          <section className="submit-form-group additionalAppImage1-input">
+              <label>Additional Image 1:</label>
+              <input
+                type="file"
+                {...register('appImage')}
+                accept="image/*"
+                className={`${errors.additionalAppImage1?"-invalid-input" : ""}`}
+                onChange={(e)=>{
+                  if (e.target.files && e.target.files.length !== 0) {
+                    const imageURL:any = URL.createObjectURL(e.target.files[0])
+                    setAppImagePreview(imageURL)
+                    }
+                }}
+              ></input>
+              <div className="invalid-input-message">
+                {errors.appImage?.message}
+                {additionalAppImagePreview1?<img src={additionalAppImagePreview1} alt="user upload" className="additionalAppImage1-input-image"/>:null}
+              </div>
+          </section>
+
+
+          
+          {/* 
           <FormInputImage
             labelFor="additionalAppImage1"
             labelText="Additional Project image 1: "
@@ -276,7 +277,30 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="additionalAppImage3-input-image"
             setValue={setAdditionalAppImage3}
             state={additionalAppImage3}
+          />  */}
+         {/*
+
+          <FormInputContributors
+            labelFor="contributors"
+            labelText="Contributors: "
+            type="text"
+            placeholder="Contributors"
+            className="contributors-input"
+            name="contributors"
+            setContributors={setContributors}
+            contributors={contributors}
           />
+          <FormInputTech
+            labelFor="builtUsing"
+            labelText="Technologies Used: "
+            name="builtUsing"
+            className="builtUsing-input"
+            setBuiltUsing={setBuiltUsing}
+            builtUsing={builtUsing}
+          />
+          
+
+          */}
           <button type="submit" className="button project-submit">
             Submit
           </button>

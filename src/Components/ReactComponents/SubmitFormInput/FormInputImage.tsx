@@ -48,7 +48,6 @@ const FormInputImage : React.FC<Props> = ({
                         id="fileInput"
                         type="file"
                         name={name}
-                        required={true}
                         onChange={(e) => addImageHandler(e)}
                         accept="image/*"        
                     ></input>

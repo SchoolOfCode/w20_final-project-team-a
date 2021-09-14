@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import UserIconLogin from "../../VisualAssets/SVGIcons/PNG/user_login.png";
 import UserIconDashboard from "../../VisualAssets/SVGIcons/PNG/user_dashboard.png"
 import UserIconLogout from "../../VisualAssets/SVGIcons/logout.svg";
@@ -20,12 +20,15 @@ type PageParams = {
 
 const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus }) => {
   const page = useParams<PageParams>().page || "home";
+  const history = useHistory();
   
   const handleLogout = () => {
     setLoginStatus(false);
     axios.get(API_URL + "users/logout",{
       withCredentials: true}
-    );
+    ).then(()=>{
+      history.push("/login");
+    })
   };
 
   return (

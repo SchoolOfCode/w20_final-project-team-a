@@ -38,21 +38,27 @@
   left: calc(50% + 180px);
   transform: translate(calc(-50% - 90px), -50%);
   width: 80vw;
-  z-index: 10;
+  max-height: 95vh;
+  // animation: spin 3s linear infinite;
 }
+// @keyframes spin {
+//   0% { transform: rotate(0deg); }
+//   100% {  transform: rotate(359deg); }
+// }
 .logging-in-spinner{
   position: fixed;
   top: 50%;
   left: calc(50% + 180px);
   transform: translate(calc(-50% - 90px), -50%);
   width: 25vw;
+  max-width: 20%;
   z-index: 10;
 }
 .logging-in-spinner-text{
   text-align: center;
   font-size: calc(2em + 0.2vw);
   position: fixed;
-  top: calc(53% + 7vw);
+  top: calc(53% + 5vw);
   left: calc(50% + 180px);
   transform: translate(calc(-50% - 90px), -50%);
   z-index: 11;
