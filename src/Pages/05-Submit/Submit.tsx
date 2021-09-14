@@ -4,7 +4,7 @@ import axios from "axios";
 
 // import FormInput from "../../Components/ReactComponents/SubmitFormInput/FormInput";
 import FormInputContributors from "../../Components/ReactComponents/SubmitFormInput/FormInputContributors";
-import FormInputMultiText from "../../Components/ReactComponents/SubmitFormInput/FormInputMultiText";
+// import FormInputMultiText from "../../Components/ReactComponents/SubmitFormInput/FormInputMultiText";
 import FormInputImage from "../../Components/ReactComponents/SubmitFormInput/FormInputImage";
 import FormInputTech from "../../Components/ReactComponents/SubmitFormInput/FormInputTech";
 import { SubmitValidationSchema } from "../../Components/ReactComponents/SubmitFormInput/SubmitValidationSchema";
@@ -17,7 +17,6 @@ import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircui
 
 import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 type Props = {
   loginStatus: boolean;
@@ -45,6 +44,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
 
   const [contributors, setContributors] = useState<string[]>([]);
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
+  const [formError, setformError] = useState<boolean[]>([false,false,false,false,false,false]);
   const [appImage, setAppImage] = useState<string>();
   const [additionalAppImage1, setAdditionalAppImage1] = useState<string>();
   const [additionalAppImage2, setAdditionalAppImage2] = useState<string>();
@@ -60,92 +60,92 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
     resolver: yupResolver(SubmitValidationSchema)
   })
   
-  const onSubmit = (formData:ProjectSubmitForm) => {
+  const onSubmit = async(formData:ProjectSubmitForm) => {
+    if (formError.some(item=>item)){
+      setFailure(true)
+      setFailureMsg("Please check all required fields have valid inputs")
+      return;
+    } else{
+      setFailure(false);
+      setFailureMsg("");
+    }
     const appImagesArray = [
-      appImage,
+      appImage || null,
       additionalAppImage1 || null,
       additionalAppImage2 || null,
       additionalAppImage3 || null,
     ];
-    console.log(formData, appImagesArray)
-    // appImagesArray.forEach((image) => formData.append("appImages", image!));
+    
+    const projectFormData = new FormData();
 
+    appImagesArray.forEach((image) => {
+      if (image != null) {
+        projectFormData.append("appImages", image)
+      }
+    });
+    const selectedBuiltUsingFilter = [];
+    for (const value of Object.values(builtUsing)) {
+      selectedBuiltUsingFilter.push(value);
+    }
+    const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
+      (item) => item.used === true
+    );
+    contributors.forEach((contributor) =>
+      projectFormData.append("contributors", contributor)
+    );
+    selectedBuiltUsing.forEach((tech) =>
+      projectFormData.append("techUsed", tech.name)
+    );
+
+    projectFormData.append("projectName", formData.projectName!);
+    projectFormData.append("weekNumber", formData.weekNumber!);
+    contributors.forEach((contributor) =>
+    projectFormData.append("contributors", contributor)
+    );
+    projectFormData.append("problemStatement", formData.problemStatement!);
+    projectFormData.append("additionalInformation", formData.additionalInformation!);
+    projectFormData.append("githubUrl", formData.githubUrl!);
+    projectFormData.append("appDeploymentUrl", formData.appDeploymentUrl!);
+
+    for (var [key, value] of projectFormData.entries()) { 
+      console.log(key, value);
+    }
+  
+  try{
+    const response = await axios.post(API_URL + "projects/submit", projectFormData)
+    const projectSubmission= await response.data
+    if (await projectSubmission.success) {
+      setSuccess(true);
+      setFailure(false);
+      setProjID(projectSubmission.project);
+      try{
+        const populateUsers = await axios.get(API_URL + "projects/update/:" + projectSubmission.project)
+        if (await populateUsers.data.success){
+          setSuccess(true);
+          setFailure(false);
+        } else{
+          setSuccess(false);
+          setFailure(true);
+          setFailureMsg(failureMsg + populateUsers.data.msg);
+        }
+      }catch(err){
+        console.error(err)
+      }
+    } else {
+      setFailure(true);
+      setFailureMsg(projectSubmission.msg);
+    }
+  }catch(err){
+    console.error(err)
   }
 
-   // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   e.preventDefault();
-
-  //   const selectedBuiltUsingFilter = [];
-  //   for (const value of Object.values(builtUsing)) {
-  //     selectedBuiltUsingFilter.push(value);
-  //   }
-
-  //   const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
-  //     (item) => item.used === true
-  //   );
-  //   const appImagesArray = [
-  //     appImage,
-  //     additionalAppImage1,
-  //     additionalAppImage2,
-  //     additionalAppImage3,
-  //   ];
-
-  //   const formData = new FormData();
-  //     formData.append("projectName", projectName!);
-  //     formData.append("weekNumber", weekNumber!);
-  //     contributors.forEach((contributor) =>
-  //       formData.append("contributors", contributor)
-  //     );
-  //     formData.append("problemStatement", problemStatement!);
-  //     formData.append("additionalInformation", additionalInformation!);
-  //     formData.append("githubUrl", githubUrl!);
-  //     formData.append("appDeploymentUrl", appDeploymentUrl!);
-  //     selectedBuiltUsing.forEach((tech) =>
-  //       formData.append("techUsed", tech.name)
-  //     );
-  //     appImagesArray.forEach((image) => formData.append("appImages", image!));
-
-  //   axios
-  //     .post(API_URL + "projects/submit", formData)
-  //     .then((response) => {
-  //       if (response.data.success) {
-  //         setSuccess(true);
-  //         setFailure(false);
-  //         setProjID(response.data.project);
-  //       } else {
-  //         setFailure(true);
-  //         setFailureMsg(response.data.msg);
-  //       }
-  //     })
-  //     .then(() => {
-  //       axios
-  //         .get(API_URL + "projects/update/:" + projID)
-  //         .catch((err) => console.error(err));
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
+};
 
   return (
     <div className="submit-page-container">
 
       <LeftVerticalTitle title="Submit"></LeftVerticalTitle>
 
-      <section className="submit-messages-container">
-        {success && (
-          <div className="submit-messages-container-sucess">
-            <h3 className="submit-messages-text">
-              Your project has been uploaded
-            </h3>
-          </div>
-        )}
-        {failure && (
-          <div className="submit-messages-container-failure">
-            <h3 className="submit-messages-text">{failureMsg}</h3>
-          </div>
-        )}
-      </section>
       <HorizontalCircuit className = "submit-horizontal-line"/>
       <section className="submit-form-container">
         <form encType="multipart/form-data" className="submit-form-form" onSubmit={handleSubmit(onSubmit)}>
@@ -164,7 +164,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               <textarea
                 {...register('problemStatement')}
                 placeholder="My project was designed to solve..."
-                className={`${errors.problemStatement?"-invalid-input" : ""}`}
+                className={`${errors.problemStatement?"-invalid-input invalid-input" : ""}`}
               ></textarea>
               <div className="invalid-input-message">{errors.problemStatement?.message}</div>
           </section>
@@ -173,7 +173,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               <textarea
                 {...register('additionalInformation')}
                 placeholder="Optional additional information..."
-                className={`${errors.additionalInformation?"-invalid-input" : ""}`}
+                className={`${errors.additionalInformation?"-invalid-input invalid-input" : ""}`}
               ></textarea>
               <div className="invalid-input-message">{errors.additionalInformation?.message}</div>
           </section>
@@ -183,7 +183,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 type="text"
                 {...register('githubUrl')}
                 placeholder="http://www.github.com/facebook"
-                className={`${errors.githubUrl?"-invalid-input" : ""}`}
+                className={`${errors.githubUrl?"-invalid-input invalid-input" : ""}`}
               ></input>
               <div className="invalid-input-message">{errors.githubUrl?.message}</div>
           </section>
@@ -194,7 +194,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 {...register('weekNumber')}
                 placeholder="1"
                 defaultValue={1}
-                className={`${errors.weekNumber?"-invalid-input" : ""}`}
+                className={`${errors.weekNumber?"-invalid-input invalid-input" : ""}`}
               ></input>
               <div className="invalid-input-message">{errors.weekNumber?.message}</div>
           </section>
@@ -205,11 +205,51 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 type="text"
                 {...register('appDeploymentUrl')}
                 placeholder="www.cool-app.com"
-                className={`${errors.appDeploymentUrl?"-invalid-input" : ""}`}
+                className={`${errors.appDeploymentUrl?"-invalid-input invalid-input" : ""}`}
               ></input>
               <div className="invalid-input-message">{errors.appDeploymentUrl?.message}</div>
           </section>
-
+          <FormInputContributors
+            labelFor="contributors"
+            labelText="Contributors: "
+            type="text"
+            placeholder="Contributors"
+            className="contributors-input"
+            name="contributors"
+            setContributors={setContributors}
+            contributors={contributors}
+            index={0}
+            formError={formError}
+            setformError={setformError}
+          />
+          <FormInputTech
+            labelFor="builtUsing"
+            labelText="Technologies Used: "
+            name="builtUsing"
+            className="builtUsing-input"
+            setBuiltUsing={setBuiltUsing}
+            builtUsing={builtUsing}
+            index={1}
+            formError={formError}
+            setformError={setformError}
+          />
+        <section className="submit-messages-container">
+          {success && (
+            <div className="submit-messages-success">
+              <h3 className="submit-messages-text">
+                Your project has been uploaded
+              </h3>
+            </div>
+          )}
+          {failure && (
+            <div className="submit-messages-failure">
+              <h3 className="submit-messages-text">{failureMsg}</h3>
+            </div>
+          )}
+          <button type="submit" className="button project-submit">
+            Submit
+          </button>
+        </section>
           <FormInputImage
             labelFor="appImage"
             labelText="Main Project Image: "
@@ -218,6 +258,9 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="appImage-input-image"
             setValue={setAppImage}
             state={appImage}
+            index={2}
+            formError={formError}
+            setformError={setformError}
           />
           <FormInputImage
             labelFor="additionalAppImage1"
@@ -227,6 +270,9 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="additionalAppImage1-input-image"
             setValue={setAdditionalAppImage1}
             state={additionalAppImage1}
+            index={3}
+            formError={formError}
+            setformError={setformError}
           />
           <FormInputImage
             labelFor="additionalAppImage2"
@@ -236,6 +282,9 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="additionalAppImage2-input-image"
             setValue={setAdditionalAppImage2}
             state={additionalAppImage2}
+            index={4}
+            formError={formError}
+            setformError={setformError}
           />
           <FormInputImage
             labelFor="additionalAppImage3"
@@ -245,7 +294,11 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             imageClassName="additionalAppImage3-input-image"
             setValue={setAdditionalAppImage3}
             state={additionalAppImage3}
+            index={5}
+            formError={formError}
+            setformError={setformError}
           />
+
           {/* <section className="submit-form-group additionalAppImage1-input">
               <label>Additional Image 1:</label>
               <input
@@ -267,35 +320,6 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
           </section> */}
 
 
-          
-          {/* 
-            */}
-         {/*
-
-          <FormInputContributors
-            labelFor="contributors"
-            labelText="Contributors: "
-            type="text"
-            placeholder="Contributors"
-            className="contributors-input"
-            name="contributors"
-            setContributors={setContributors}
-            contributors={contributors}
-          />
-          <FormInputTech
-            labelFor="builtUsing"
-            labelText="Technologies Used: "
-            name="builtUsing"
-            className="builtUsing-input"
-            setBuiltUsing={setBuiltUsing}
-            builtUsing={builtUsing}
-          />
-          
-
-          */}
-          <button type="submit" className="button project-submit">
-            Submit
-          </button>
         </form>
       </section>
     </div>

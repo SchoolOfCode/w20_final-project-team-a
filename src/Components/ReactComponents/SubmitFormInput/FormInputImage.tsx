@@ -8,7 +8,10 @@ type Props = {
     className:string,
     imageClassName: string
     setValue:(val:any)=> void,
-    state:any
+    state:any,
+    index:number,
+    formError: boolean[],
+    setformError:(value:any)=>void
 }
 
 const FormInputImage : React.FC<Props> = ({
@@ -18,7 +21,10 @@ const FormInputImage : React.FC<Props> = ({
     className,
     imageClassName,
     setValue,
-    state
+    state,
+    index,
+    formError,
+    setformError
     }) => {
 
     const [preview, setPreview] = useState<string>();
@@ -30,20 +36,23 @@ const FormInputImage : React.FC<Props> = ({
             setValue(null);
             if (name === "appImage"){
                 setErrorMessage("An image of your application is required");
+                setformError(formError.map((item,i) => (i === index) ? item = true : item))
             }
             return;
         }
         if (e.target.files[0].size > MAX_IMAGE_SIZE){
             setErrorMessage("File Size is too large. Max 5mb");
+            setformError(formError.map((item,i) => (i === index) ? item = true : item))
             return;
         }
         if (!VALID_IMAGE_TYPES.includes(e.target.files[0].type)){
             setErrorMessage("Only .jpg .jpeg .png or .gif are allowed");
+            setformError(formError.map((item,i) => (i === index) ? item = true : item))
             return;
         } 
 
         setValue(e.target.files[0]);
-        
+        setformError(formError.map((item,i) => (i === index) ? item = false : item))
     }
 
     useEffect( () => {

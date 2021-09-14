@@ -21,7 +21,7 @@ interface svgIcon {
     image: string,
 }
 export const builtUsingSVGObject :svgObject = {
-    HTML: { name: "HTML", used: true, image: HTML },
+    HTML: { name: "HTML", used: false, image: HTML },
     CSS: { name: "CSS", used: false, image: CSS },
     Javascript: { name: "Javascript", used: false, image: Javascript },
     Typescript: { name: "Typescript", used: false, image: Typescript },
