@@ -9,6 +9,7 @@
   right:0;
   top: 2em;
   left: 0;
+  font-size: calc(0.8em + 0.3vw);
 }
 .submit-page-container label{
   color: white;
@@ -17,7 +18,7 @@
 .submit-page-container input,
 textarea {
   min-height: 1.6em;
-  margin-top: 10px;
+  padding: 5px;
 }
 .submit-page-container button {
   background-color: rgba(0, 0, 0, 0);
@@ -27,7 +28,7 @@ textarea {
   margin-left: 5px;
   font-stretch: ultra-expanded;
   font-size: 1.2em;
-  width: 25px;
+  // width: 25px;
   cursor: pointer;
   /* height: 1.2em; */
 }
@@ -39,63 +40,41 @@ textarea {
   outline: 3px solid rgba(248, 62, 62, 0.9);
   outline-offset: -2px;
 }
+.submit-page-container .invalid-input-message{
+  font-size: 0.8em;
+  margin-top: 2px;
+}
+.submit-page-container .vertical-header-line{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
 .submit-horizontal-line{
   position: absolute;
   top: 100px;
   left: 180px;
   max-width: 300px;
   width: 30vw;
-
-}
-
-.submit-messages-container{
-  align-items: center;
-  margin-bottom: 8vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.submit-messages-text {
-  color: black;
-  font-size: 1em;
-}
-
-.submit-messages-success{
-  align-self: center;
-  margin-bottom: 0.5em;
-  background-color: rgba(152, 251, 152, 0.8);
-
-  width: max-content;
-  border-radius: 8px;
-  padding: 1em 2em;
-  align-self: flex-end;
-}
-
-.submit-messages-failure{
-  align-self: center;
-  margin-bottom: 0.5em;
-  background-color: rgba(255, 0, 0, 0.8);
-  width: max-content;
-  border-radius: 8px;
-  padding: 1em 2em;
 }
 
 .submit-form-container{
-    position: absolute;
-    left: calc(200px + 5vw);
-    top: 150px;
+  position: absolute;
+  left: calc(200px + 5vw);
+  top: 150px;
 }
 
 .submit-form-form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 80vh;
-  row-gap: 2em;
+  height: 90vh;
+  row-gap: calc(0.5em + 1vw);
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
 .submit-form-form label {
   text-transform: uppercase;
+  font-size: calc(0.8em + 0.3vw);
 }
 .submit-form-form label, .submit-form-form input{
   display: block;
@@ -108,7 +87,6 @@ textarea {
 .weekNumber-input input,
 .contributors-input input,
 .githubUrl-input input,
-
 .appDeploymentUrl-input input{
   width: 18vw;
   max-width: 300px;
@@ -196,7 +174,7 @@ textarea {
   flex-wrap: wrap;
   min-width: 200px;
   width: 30vw;
-  height: 60vh;
+  height: 100%;
 
 }
 .builtUsing-input-title {
@@ -212,21 +190,28 @@ textarea {
 .builtUsing-input ul {
   list-style-type: none;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-flow: column wrap;
+  justify-content: start;
+  align-content: center;
+  margin: 0 1em;
+  height: 50%;
+  width: 90%;
 }
+.builtUsing-input li[class*="builtUsing-input"] label{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
+}
 .builtUsing-input input[type="checkbox"][id^="cb"] {
   display: none;
 }
 
-
 .tech-used {
-  /* border: 1px solid #fff; */
   padding: 5px;
   display: block;
   position: relative;
-  margin: 10px;
+  margin: 2px;
   cursor: pointer;
 }
 
@@ -248,8 +233,8 @@ textarea {
 }
 
 .tech-used img {
-  height: 4em;
-  width: 4em;
+  height: 5vh;
+  width: 5vw;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
   filter: invert(1) grayscale(1);
@@ -279,6 +264,7 @@ textarea {
 }
 :checked + .tech-used h6{
   color: white;
+  text-align: center;
 }
 
 .form-input-image {
@@ -286,4 +272,46 @@ textarea {
   width: 10vw;
   object-fit: cover;
 }
+.submit-messages-container{
 
+}
+
+.submit-messages-text {
+  color: black;
+  font-size: 1em;
+  text-align: center;
+}
+
+.submit-messages-success{
+  margin-bottom: 0.5em;
+  background-color: rgba(152, 251, 152, 0.8);
+  width: max-content;
+  border-radius: 8px;
+  padding: 1em 2em;
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 80%;
+  transform: translateX(-37%);
+}
+
+.submit-messages-failure{
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 0, 0, 0.8);
+  width: max-content;
+  border-radius: 8px;
+  padding: 1em 2em;
+  margin-right: 2em;
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 80%;
+  transform: translateX(-32.5%);
+}
+
+.project-submit-button{
+  display: block;
+  position: absolute;
+  top: 90%;
+  left: 100%;
+}

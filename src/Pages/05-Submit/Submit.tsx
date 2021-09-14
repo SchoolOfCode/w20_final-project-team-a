@@ -233,23 +233,6 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             formError={formError}
             setformError={setformError}
           />
-        <section className="submit-messages-container">
-          {success && (
-            <div className="submit-messages-success">
-              <h3 className="submit-messages-text">
-                Your project has been uploaded
-              </h3>
-            </div>
-          )}
-          {failure && (
-            <div className="submit-messages-failure">
-              <h3 className="submit-messages-text">{failureMsg}</h3>
-            </div>
-          )}
-          <button type="submit" className="button project-submit">
-            Submit
-          </button>
-        </section>
           <FormInputImage
             labelFor="appImage"
             labelText="Main Project Image: "
@@ -319,7 +302,23 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               </div>
           </section> */}
 
-
+          <section className="submit-messages-container">
+            {success && (
+              <div className="submit-messages-success">
+                <h3 className="submit-messages-text">
+                  Your project has been uploaded
+                </h3>
+              </div>
+            )}
+            {failure && (
+              <div className="submit-messages-failure">
+                <h3 className="submit-messages-text">{failureMsg}</h3>
+              </div>
+            )}
+          </section>
+            <button type="submit" className="button project-submit-button">
+              Submit
+            </button>
         </form>
       </section>
     </div>
