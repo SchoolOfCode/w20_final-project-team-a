@@ -7,16 +7,16 @@ export const userRouter = express.Router();
 
 //Handle Signup
 userRouter.post("/signup", (req, res) => {
-  const { email, displayName, password, password2 } = req.body;
+  const { email, displayName, password, confirmPassword } = req.body.formData;
   let errors = [];
 
   //Check required fields
-  if (!email || !displayName || !password || !password2) {
+  if (!email || !displayName || !password || !confirmPassword) {
     errors.push({ msg: "Please complete all fields" });
   }
 
   //Check passwords match
-  if (password !== password2) {
+  if (password !== confirmPassword) {
     errors.push({ msg: "Passwords do not match" });
   }
 
@@ -35,7 +35,7 @@ userRouter.post("/signup", (req, res) => {
         //keep the old values to allow editing
         if (user) {
           //user exists already
-          errors.push({ msg: "Email is already registered!" });
+          errors.push({ msg: "That email is already registered!" });
           res.status(200).send({ msg: errors, success: false });
         } else {
           //create a user, encrypt the password
@@ -105,8 +105,7 @@ userRouter.post("/login", (req, res, next) => {
 
 //Handle logout
 userRouter.get("/logout", (req, res) => {
-  req.logout();
-  req.session.destroy();
+  req.logOut();
   res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });
 

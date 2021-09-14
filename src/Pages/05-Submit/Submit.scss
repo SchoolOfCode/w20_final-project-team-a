@@ -6,10 +6,12 @@
 .submit-page-container {
   font-family: "Poppins", sans-serif;
   position: absolute;
-  right: 0;
-  top: 1.5em;
+  right:0;
+  top: 2em;
   left: 0;
-  bottom: 0;
+}
+.submit-page-container label{
+  color: white;
 }
 
 .submit-page-container input,
@@ -33,82 +35,69 @@ textarea {
   background-color: #ffde59;
   color: black;
 }
-/* -----------Submit - Header--------------------------- */
+.submit-page-container .invalid-input{
+  outline: 3px solid rgba(248, 62, 62, 0.9);
+  outline-offset: -2px;
+}
+.submit-horizontal-line{
+  position: absolute;
+  top: 100px;
+  left: 180px;
+  max-width: 300px;
+  width: 30vw;
 
-.submit-header {
-  font-family: "Poppins", sans-serif;
-  width: 10vw;
 }
 
-.submit-header-line {
-  position: fixed;
-  bottom: 0;
-  top: 1.9em;
-  left: 7em;
-}
-
-.submit-header-text {
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  position: fixed;
-  bottom: -1em;
-  left: 0.25em;
-  font-size: calc(3em + 1vw);
-}
-
-/* -----------Submit - Form Messages--------------------------- */
-
-.submit-messages-container {
-  position: fixed;
-  top: 0em;
-  left: 8em;
+.submit-messages-container{
+  align-items: center;
+  margin-bottom: 8vh;
   display: flex;
-  height: 4.5em;
+  flex-direction: column;
 }
 
 .submit-messages-text {
   color: black;
-  font-family: "Poppins", sans-serif;
   font-size: 1em;
 }
 
-.submit-messages-container-sucess {
-  background-color: rgba(251, 249, 152, 0.8);
+.submit-messages-success{
+  align-self: center;
+  margin-bottom: 0.5em;
+  background-color: rgba(152, 251, 152, 0.8);
+
   width: max-content;
-  align-self: flex-end;
-}
-.submit-messages-container-failure {
-  background-color: rgba(251, 152, 152, 0.8);
-  width: max-content;
+  border-radius: 8px;
+  padding: 1em 2em;
   align-self: flex-end;
 }
 
-.submit-messages-line {
-  position: fixed;
-  top: 5em;
-  left: 6.9em;
-  height: 2em;
+.submit-messages-failure{
+  align-self: center;
+  margin-bottom: 0.5em;
+  background-color: rgba(255, 0, 0, 0.8);
+  width: max-content;
+  border-radius: 8px;
+  padding: 1em 2em;
 }
-/* -----------Submit - Form Container--------------------------- */
-.submit-form-container {
-  margin-left: 15em;
-  margin-top: 6em;
-  /* height: 75vh; */
+
+.submit-form-container{
+    position: absolute;
+    left: calc(200px + 5vw);
+    top: 150px;
 }
+
 .submit-form-form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   height: 80vh;
-  justify-content: space-around;
-
+  row-gap: 2em;
   /* grid-template-columns: 1fr 1fr 1fr; */
 }
 .submit-form-form label {
   text-transform: uppercase;
 }
-.submit-form-form label,
-input {
+.submit-form-form label, .submit-form-form input{
   display: block;
 }
 /* -----------Submit - Form Column Details--------------------------- */
@@ -119,23 +108,16 @@ input {
 .weekNumber-input input,
 .contributors-input input,
 .githubUrl-input input,
-.appDeploymentUrl-input input {
-  width: 20vw;
+
+.appDeploymentUrl-input input{
+  width: 18vw;
+  max-width: 300px;
 }
 
-.contributors-input ul {
-  flex-direction: column;
-  width: max-content;
-  padding-top: 0.5em;
-}
-.contributors-input li {
-  padding-top: 0.5em;
-  align-self: flex-end;
-}
-
-.contributors-input {
+.contributors-input{
   display: grid;
-  width: 20vw;
+  grid-template-columns: 1fr 30px;
+  width: calc(max-content + 150px);
 }
 .contributors-input label {
   grid-row: 1;
@@ -143,24 +125,39 @@ input {
 .contributors-input input {
   grid-column: 1;
   grid-row: 2;
-  width: 17vw;
+  width: 15vw;
 }
-.add {
-  grid-column: 1;
+
+.add{
+  grid-column: 2;
   grid-row: 2;
   justify-self: end;
   justify-content: end;
 }
+.contributors-input ul{
+  grid-column: 1;
+  flex-direction: column;
+  width:max-content;
+  justify-self: flex-start;
+  // padding-top: 0.5em;
+}
+.contributors-input li{
+  padding-top: 0.5em;
+  list-style-type: none;
+}
 
-/* .contributors-input .add + input{
-  display: inline-block;
-} */
+.contributors-input button{
+  grid-column: 2;
+  font-size: 1em;
+  font-weight: bold;
+  justify-self: unset;
+  align-self: flex-end;
+}
+.contributors-input>ul>li>button{
+  margin-right: 1em;
+}
 
-/* -----------Submit - Form Column Images--------------------------- */
-/* input[type="file"] {
-  display: none;
-} */
-.fileInput-button {
+.fileInput-button{
   background-color: rgba(0, 0, 0, 0);
   color: white;
   border: 1px solid #ffde59;
@@ -197,37 +194,32 @@ input {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 25vw;
-  height: 80vh;
-  /* height: 600px; */
-  /* grid-gap: 10px;
-  grid-template-columns: 1fr 1fr; */
-  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+  min-width: 200px;
+  width: 30vw;
+  height: 60vh;
+
 }
 .builtUsing-input-title {
   text-align: center;
-  /* grid-column: 1/3;
-  grid-row: 1; */
 }
-/* .builtUsing-input-1{
-  grid-column: 1;
+.tech-error-message{
+  text-align: center;
 }
-.builtUsing-input-2{
-  grid-column: 2;
-} */
+
 
 /* -----------checkboxes--------------------------- */
 
-.submit-page-container ul {
+.builtUsing-input ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.submit-page-container input[type="checkbox"][id^="cb"] {
+.builtUsing-input input[type="checkbox"][id^="cb"] {
   display: none;
 }
+
 
 .tech-used {
   /* border: 1px solid #fff; */
@@ -240,7 +232,6 @@ input {
 
 .tech-used:before {
   /* background-color: white; */
-  color: white;
   content: " ";
   display: block;
   border-radius: 50%;
@@ -263,6 +254,10 @@ input {
   transform-origin: 50% 50%;
   filter: invert(1) grayscale(1);
 }
+.tech-used h6{
+  color: grey;
+  text-align: center;
+}
 
 :checked + .tech-used {
   border-color: #ddd;
@@ -279,7 +274,11 @@ input {
   transform: scale(0.9);
   box-shadow: 0 0 5px #ffde59;
   z-index: -1;
-  filter: invert(0) grayscale(0);
+  filter:  invert(0) grayscale(0);
+  color: white;
+}
+:checked + .tech-used h6{
+  color: white;
 }
 
 .form-input-image {
@@ -288,11 +287,3 @@ input {
   object-fit: cover;
 }
 
-/* ----------------- Submit Button -------*/
-.submit-page-container .project-submit {
-  width: 5em;
-  height: 1.7em;
-  position: absolute;
-  bottom: 3vh;
-  left: calc(50vw - 2.5em);
-}

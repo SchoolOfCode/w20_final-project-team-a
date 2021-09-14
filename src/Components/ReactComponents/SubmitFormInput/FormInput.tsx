@@ -1,12 +1,12 @@
 import React from 'react'
 
-type Props = {
+interface Props{
     labelFor:string, 
     labelText:string, 
     type:string, 
     placeholder:string,
     className: string, 
-    name:string, 
+    name:string,
     setValue:(val:any)=> void}
 
 const FormInput : React.FC<Props> = ({
@@ -15,7 +15,7 @@ const FormInput : React.FC<Props> = ({
     type, 
     placeholder,
     className,
-    name, 
+    name,
     setValue}) => {  
 
     return (

@@ -111,6 +111,9 @@ authRouter.put("/user/update",upload.array("newProfilePhoto", 1), async(req,res)
         if (req.files.length > 0){
           photo = URL + "/uploads/profiles/" + req.files[0].filename;
         }
+        if(!photo && req.files.length < 1){
+          photo = URL + "uploads/profiles/defaultProfilePhoto.png"
+        }
         User.findByIdAndUpdate(_id, 
           {"$set": {
             displayName,

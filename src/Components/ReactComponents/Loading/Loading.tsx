@@ -1,13 +1,13 @@
 import React from "react";
-import { ReactComponent as LoadingIcon } from "./loading_spinner_2.svg";
+import Spinner from "./loading_spinner_2.svg";
 import "./Loading.scss";
 
-const Loading = () => {
+const Loading = (props:any) => {
   return (
-    <div>
-      <LoadingIcon className="loading-icon" />
-      <h1 className="loading-text">Loading</h1>
-    </div>
+    <>
+      <img src={Spinner} alt="loading icon" className={props.className} />
+      <h1 className={`${props.className}-text`}>{props.loadingText}</h1>
+    </>
   );
 };
 

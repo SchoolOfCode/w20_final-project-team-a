@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import isEmail from 'validator/lib/isEmail'
 
-// const FormInputContributors: React.FC = () => {}
-
 type Props = {
     labelFor:string, 
     labelText:string, 
@@ -11,7 +9,12 @@ type Props = {
     className:string
     name:string, 
     contributors:string[],
-    setContributors:(val:string[])=> void}
+    setContributors:(val:string[])=> void,
+    index:number,
+    formError: boolean[],
+    setformError:(value:any)=>void
+
+}
 
 const FormInputContributors : React.FC<Props> = ({
     labelFor, 
@@ -21,7 +24,11 @@ const FormInputContributors : React.FC<Props> = ({
     className, 
     name, 
     contributors,
-    setContributors}) => {
+    setContributors,
+    index,
+    formError,
+    setformError
+    }) => {
 
     
     const [contributor, setContributor] = useState("")
@@ -59,11 +66,11 @@ const FormInputContributors : React.FC<Props> = ({
                     {contributors[0] && 
                     contributors.map ((item,i) => {
                         return (
-                        <li key={i}>{item}
+                        <li key={i}>
                             <button 
                                 onClick={(e)=>removeContributorEmail(e,i)}
                                 className="contributor-button remove"
-                            >-</button>
+                            >-</button>{item}
                         </li>
                         )
                     })}

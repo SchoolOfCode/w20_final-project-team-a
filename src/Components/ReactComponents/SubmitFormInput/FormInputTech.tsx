@@ -1,12 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 
 type Props = {
-  labelFor: string;
-  labelText: string;
+  labelFor: string,
+  labelText: string,
   name: string;
-  builtUsing: any;
-  className: string;
-  setBuiltUsing: (val: any) => void;
+  builtUsing: any,
+  className: string,
+  setBuiltUsing: (val: any) => void,
+  index:number,
+  formError: boolean[],
+  setformError:(value:any)=>void
 };
 
 const FormInputTech: React.FC<Props> = ({
@@ -16,10 +19,25 @@ const FormInputTech: React.FC<Props> = ({
   className,
   builtUsing,
   setBuiltUsing,
-}) => {
+  index,
+  formError,
+  setformError
+  }) => {
+
+  const [errorMessage, setErrorMessage] = useState<string>("")
+
+  const re = new RegExp(/:(true)\b/,'g')
   const handleIconClick = (key: any) => {
     builtUsing[key].used = !builtUsing[key].used;
     setBuiltUsing(builtUsing);
+    const iconsString = JSON.stringify(builtUsing)
+    if(!iconsString.match(re)){
+      setErrorMessage("Please select at least one technology")
+      setformError(formError.map((item,i) => (i === index) ? item = true : item))
+    } else{
+      setErrorMessage("")
+      setformError(formError.map((item,i) => (i === index) ? item = false : item))
+    }
   };
 
   let i = 0;
@@ -42,6 +60,7 @@ const FormInputTech: React.FC<Props> = ({
             alt={builtUsing[key].name}
             onClick={() => handleIconClick(key)}
           />
+        <h6>{builtUsing[key].name}</h6>
         </label>
       </li>
     );
@@ -58,6 +77,9 @@ const FormInputTech: React.FC<Props> = ({
           return icon;
         })}
       </ul>
+      <div className="invalid-input-message tech-error-message">
+        {formError[index] && errorMessage}
+      </div>
     </div>
   );
 };

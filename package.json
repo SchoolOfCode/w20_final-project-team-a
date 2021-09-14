@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@hookform/resolvers": "^2.8.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -16,7 +17,7 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.14.2",
+    "react-hook-form": "^7.15.3",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -32,6 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-start": "concurrently \"npm start\" \"cd server && npm run dev\"",
+    "dev-chill": "concurrently \"npm start\" \"cd server && npm run dev\"",
     "post-build": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "proxy": "http://localhost:5000/api",
