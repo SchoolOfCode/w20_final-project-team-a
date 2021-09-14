@@ -85,7 +85,7 @@ const FormInput : React.FC<Props> = ({
                 onChange={(e)=>handleChange(e.target.value)}
             ></input>
             <div className="invalid-input-message">
-                {cohortPadding?<span>&nbsp:</span>:""}
+                {cohortPadding && <p style={{visibility: 'hidden'}}> . </p>}
                 {errorMessage}
             </div>
         </section>

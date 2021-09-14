@@ -32,7 +32,7 @@ function App() {
         <Navbar loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>
       </Route>
       <Route exact path="/" component={Homepage} />
-      <Route exact path="/home" component={Homepage} />
+      <Route exact path="/featured" component={Homepage} />
       <Route exact path="/showcase" component={ProjectsShowcase} />
       <Route exact path="/bootcampers" component={Bootcampers} />
       <Route exact path="/bootcamper_profile" component={BootcamperProfile} />

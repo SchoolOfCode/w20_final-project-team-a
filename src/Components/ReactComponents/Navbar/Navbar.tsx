@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus }) => {
       </div>
       <nav className="navbar-links">
         <div className="navbar-item">
-          <NavbarLink page="home" selected={page === "home"} />
+          <NavbarLink page="featured" selected={page === "featured"} />
         </div>
         <div className="navbar-item">
           <NavbarLink page="showcase" selected={page === "showcase"} />
