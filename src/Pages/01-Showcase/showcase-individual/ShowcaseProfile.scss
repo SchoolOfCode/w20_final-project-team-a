@@ -1,0 +1,129 @@
+@import "../../../Variables.scss";
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.wrapper {
+    // top: 55px;
+    position: relative;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 0.25fr 0.75fr 0.8fr 0.2fr 0.8fr 0.2fr 1.6fr 1.2fr 0.2fr 0.2fr 1fr 0.8fr 0.1fr;
+    grid-template-rows: 1fr 0.2fr 1fr 1fr 1fr 2fr 1fr 0.2fr 1fr 1fr;
+    grid-template-areas:
+      ".      .        .       circuitT circuitT .     .        .        .        .     .     .     ."
+      ".      .        .       circuitT circuitT .     .        .        .        lineR lineR lineR lineR"
+      ".      .        .       .        image    image image    image    .        .     desc  desc  ."
+      ".      .        .       .        image    image image    image    .        .     .     tech  ."
+      ".      .        .       larrow   image    image image    image    rarrow   .     .     tech  ."
+      ".      .        .       .        image    image image    image    .        .     .     tech  ."
+      ".      heading  heading heading  heading  .     .        circuitB circuitB .     .     tech  ."
+      "lineL  lineL    lineL   lineL    lineL    lineL .        circuitB circuitB .     .     tech  ."
+      ".      title    title   title    title    .     .        circuitB circuitB .     .     tech  ."
+      ".      users    users   users    users    .     .        circuitB circuitB .     .     .     .";
+}
+
+.arrow-left {
+    grid-area: larrow;
+    font-weight: 900;
+    font-size: 3.5vw;
+    color: $circuit-yellow;
+    text-align: left;
+    cursor: pointer;
+    // margin-top: 0.8vh;
+}
+
+.showcase-project-image{
+    grid-area: image;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.arrow-right {
+    grid-area: rarrow;
+    font-weight: 900;
+    font-size: 3.5vw;
+    color: $circuit-yellow;
+    // margin-top: 0.8vh;
+    text-align: right;
+    cursor: pointer;
+    //fdfd
+}
+
+.line-right {
+    grid-area: lineR;
+    transform: scaleX(-1);
+  
+    .circuit-line {
+      width: 25vw;
+    }
+}
+
+.line-left {
+    grid-area: lineL;
+    .circuit-line {
+      width: 35vw;
+    }
+}
+
+.description {
+    grid-area: desc;
+    margin-top: 0.5vh;
+    margin-bottom: 2vh;
+    text-align: justify;
+    font-size: 1.2vw;
+}
+
+.tech {
+    grid-area: tech;
+    text-align: right;
+    font-size: 1.4vw;
+}
+  .tech li{
+    list-style-type: none;
+}
+
+.heading {
+    grid-area: heading;
+    text-align: right;
+    // margin-bottom: 0.5vh;
+    font-size: 2vw;
+    font-weight: 900;
+    align-self: end;
+}
+
+.problem-statement {
+    grid-area: title;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    text-align: left;
+    font-size: 1.2vw;
+}
+
+.contributors {
+    grid-area: users;
+    text-align: left;
+    font-size: 1vw;
+}
+
+.circuitT {
+    // grid-area: circuitB;
+    grid-column: 4/7;
+    grid-row: 1/5;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.circuitB {
+    // grid-area: circuitB;
+    grid-column: 8/10;
+    grid-row: 6/10;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}

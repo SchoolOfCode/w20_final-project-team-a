@@ -65,10 +65,6 @@ const FormInputImage : React.FC<Props> = ({
     )
     return (
         <section className={`edit-profile-form-group ${className}`}>
-            <div className="invalid-input-message">
-                {errorMessage}
-                {state?<img src={preview} alt="user upload" className={`${className}-preview`}/>:null}
-            </div>
             <label htmlFor={labelFor}>{labelText}</label>
             <input
                 id="fileInput"
@@ -77,7 +73,10 @@ const FormInputImage : React.FC<Props> = ({
                 onChange={(e) => addImageHandler(e)}
                 accept="image/*"        
             ></input>
-
+            {state?<img src={preview} alt="user upload" className={`${className}-preview`}/>:null}
+            <div className="invalid-input-message">
+                {errorMessage}
+            </div>
         </section>
     )
 }

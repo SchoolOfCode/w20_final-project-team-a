@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { API_URL } from "../../config";
 import AdminBoard from "../../Components/ReactComponents/AdminBoard/AdminBoard";
 import EditProfile from "../../Components/ReactComponents/EditProfile/EditProfile";
-import Loading from "../../Components/ReactComponents/Loading/Loading";
+// import Loading from "../../Components/ReactComponents/Loading/Loading";
 
 type DashboardProps = {
   loginStatus: boolean;

@@ -12,7 +12,6 @@ import { SubmitValidationSchema } from "../../Components/ReactComponents/SubmitF
 import { API_URL } from "../../config.js";
 import { builtUsingSVGObject } from "../../Components/VisualAssets/SVGIcons/svgIcons";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
-import { useHistory } from "react-router-dom";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 import { useForm } from "react-hook-form";
@@ -57,7 +56,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
   const [additionalAppImage3, setAdditionalAppImage3] = useState<string>();
 
   //Returned State:any
-  const [projID, setProjID] = useState<string>("");
+  // const [projID, setProjID] = useState<string>("");
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState<string>("");
@@ -120,34 +119,25 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
     projectFormData.append("githubUrl", formData.githubUrl!);
     projectFormData.append("appDeploymentUrl", formData.appDeploymentUrl!);
 
-    for (var [key, value] of projectFormData.entries()) {
-      console.log(key, value);
-    }
 
-    try {
-      const response = await axios.post(
-        API_URL + "projects/submit",
-        projectFormData
-      );
-      const projectSubmission = await response.data;
-      if (await projectSubmission.success) {
-        setSuccess(true);
-        setFailure(false);
-        setProjID(projectSubmission.project);
-        try {
-          const populateUsers = await axios.get(
-            API_URL + "projects/update/:" + projectSubmission.project
-          );
-          if (await populateUsers.data.success) {
-            setSuccess(true);
-            setFailure(false);
-          } else {
-            setSuccess(false);
-            setFailure(true);
-            setFailureMsg(failureMsg + populateUsers.data.msg);
-          }
-        } catch (err) {
-          console.error(err);
+  
+  try{
+    const response = await axios.post(API_URL + "projects/submit", projectFormData)
+    const projectSubmission= await response.data
+    if (await projectSubmission.success) {
+      setSuccess(true);
+      setFailure(false);
+      // setProjID(projectSubmission.project);
+      try{
+        const populateUsers = await axios.get(API_URL + "projects/update/:" + projectSubmission.project)
+        if (await populateUsers.data.success){
+          setSuccess(true);
+          setFailure(false);
+        } else{
+          setSuccess(false);
+          setFailure(true);
+          setFailureMsg(failureMsg + populateUsers.data.msg);
+
         }
       } else {
         setFailure(true);
@@ -277,23 +267,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
             formError={formError}
             setformError={setformError}
           />
-          <section className="submit-messages-container">
-            {success && (
-              <div className="submit-messages-success">
-                <h3 className="submit-messages-text">
-                  Your project has been uploaded
-                </h3>
-              </div>
-            )}
-            {failure && (
-              <div className="submit-messages-failure">
-                <h3 className="submit-messages-text">{failureMsg}</h3>
-              </div>
-            )}
-            <button type="submit" className="button project-submit">
-              Submit
-            </button>
-          </section>
+
           <FormInputImage
             labelFor="appImage"
             labelText="Main Project Image: "
@@ -362,6 +336,26 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
                 {additionalAppImagePreview1?<img src={additionalAppImagePreview1} alt="user upload" className="additionalAppImage1-input-image"/>:null}
               </div>
           </section> */}
+
+
+
+          <section className="submit-messages-container">
+            {success && (
+              <div className="submit-messages-success">
+                <h3 className="submit-messages-text">
+                  Your project has been uploaded
+                </h3>
+              </div>
+            )}
+            {failure && (
+              <div className="submit-messages-failure">
+                <h3 className="submit-messages-text">{failureMsg}</h3>
+              </div>
+            )}
+          </section>
+            <button type="submit" className="button project-submit-button">
+              Submit
+            </button>
         </form>
       </section>
     </div>

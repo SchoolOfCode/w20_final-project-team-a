@@ -5,7 +5,6 @@ import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalT
 import SocialLinks from "../../../Components/ReactComponents/SocialLinks";
 import { API_URL } from "../../../config";
 import axios from "axios";
-import Loading from "../../../Components/ReactComponents/Loading/Loading";
 import Projects from "../../../Components/ReactComponents/Projects";
 import { builtUsingSVG } from "../../../Components/VisualAssets/SVGIcons/svgIcons";
 
@@ -13,25 +12,22 @@ const BootcamperProfile = (data: any) => {
   const user = data.location.state;
 
   const [userProjects, setUserProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
 
-  const getProjects = async () => {
-    setLoading(true);
-    try {
-      const usersProjects = await axios.get(
-        API_URL + "users/individual/:" + user._id
-      );
-      setUserProjects(await usersProjects.data.msg.projects);
-    } catch (err) {
-      console.error(err);
-    }
-    console.log(userProjects);
-  };
+
 
   useEffect(() => {
+    const getProjects = async () => {
+      try {
+        const usersProjects = await axios.get(
+          API_URL + "users/individual/:" + user._id
+        );
+        setUserProjects(await usersProjects.data.msg.projects);
+      } catch (err) {
+        console.error(err);
+      }
+    };
     getProjects();
-    setLoading(false);
-  }, []);
+  });
 
   const techIcons :any = new Set();
   userProjects.forEach((project)=>{
@@ -73,21 +69,17 @@ const BootcamperProfile = (data: any) => {
           src={user.photo}
           alt="The user"
         />
-
       </section>
+      
       <h3 className="individual-profile-projects-title">My Projects</h3>
       <HorizontalCircuit className="individual-profile-line-2" />
 
       <section className="individual-profile-projects-container">
-        {loading ? (
-          <Loading />
-        ) : (
           <div className="individual-profile-projects">
             {userProjects.map((project, i) => {
               return <Projects data={project} key={i} />;
             })}
           </div>
-        )}
       </section>
     </div>
   );

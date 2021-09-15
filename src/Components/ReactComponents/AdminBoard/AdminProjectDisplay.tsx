@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const AdminProjectDisplay = () => {
   const [allProjects, setAllProjects] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const AdminProjectDisplay = () => {
         setAllProjects(res.data.projects);
       })
       .catch((err) => console.log(err));
-  }, [refresh]);
+  }, []);
 
   const projectsArray: any[] = [
     <div className="admin-page-projects-list-item">
@@ -38,7 +38,7 @@ const AdminProjectDisplay = () => {
       data: allProjects,
     })
       .then((res) => {
-        setRefresh(!refresh);
+        // setRefresh(!refresh);
       })
       .catch((err) => console.log(err));
 
@@ -53,7 +53,7 @@ const AdminProjectDisplay = () => {
         data: forDeletionIDs,
       })
         .then((res) => {
-          setRefresh(!refresh);
+          // setRefresh(!refresh);
         })
         .catch((err) => console.log(err));
     }
