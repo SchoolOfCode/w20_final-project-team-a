@@ -4,19 +4,15 @@ import HorizontalCircuit from '../../../Components/ReactComponents/HorizontalCir
 import { API_URL } from '../../../config';
 import axios from 'axios';
 import Loading from '../../../Components/ReactComponents/Loading/Loading';
-import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
-import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 
 
 const ShowcaseProfile = (data: any) => {
 
     return (
         <div className="wrapper">
-            <img className="circuitB" src={circuitB} alt="circuit-board" />
-            <img className="circuitT" src={circuitT} alt="circuit-board" />
             
             <p className="arrow-left">{"<"}</p>{" "}
-            <p>Image here.</p>
+            <p className="showcase-project-image">Image here.</p>
             <p className="arrow-right">{">"}</p>{" "}
 
             <HorizontalCircuit className="line-right"/>
@@ -29,7 +25,7 @@ const ShowcaseProfile = (data: any) => {
 
             <p className="problem-statement">Problem Statement here</p>
             <p className="contributors">Me, Me and Eemilio</p>
-            
+
 
 
         </div>
