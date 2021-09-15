@@ -1,6 +1,6 @@
 @import "../../Variables.scss";
 
-.dashboard-loading-spinner{
+.dashboard-loading-spinner {
   position: fixed;
   top: 50%;
   left: calc(50% + 180px);
@@ -9,8 +9,8 @@
   max-width: 20%;
   z-index: 10;
 }
-.dashboard-loading-spinner-text{
-  color: white;
+.dashboard-loading-spinner-text {
+  color: $text-colour;
   text-align: center;
   font-size: calc(2em + 0.2vw);
   position: fixed;
@@ -19,4 +19,3 @@
   transform: translate(calc(-50% - 90px), -50%);
   z-index: 11;
 }
-

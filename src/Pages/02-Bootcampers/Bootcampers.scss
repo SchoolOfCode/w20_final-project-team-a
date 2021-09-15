@@ -10,7 +10,6 @@
 
 .bootcampers-showcase-container {
   position: relative;
-  // left: calc(50% - 300px);
   left: calc(180px + 5vw);
   top: 200px;
   height: calc(100vh - 300px);
@@ -40,7 +39,7 @@
 }
 
 .bootcamper-title-text {
-  color: white;
+  color: $text-colour;
   font-size: calc(1em + 0.5vw);
   grid-column: 2/3;
   grid-row: 1;
@@ -67,9 +66,6 @@
 .bootcamper-overlay-container {
   position: relative;
 }
-// .showcase-overlay-container:hover{
-//   box-shadow: 0px 0px 10px $circuit-yellow;
-// }
 
 .bootcamper-overlay {
   position: absolute;
@@ -85,7 +81,7 @@
 }
 
 .bootcamper-overlay-text {
-  color: $black;
+  color: black;
   text-align: center;
   font-weight: bolder;
   height: 20vw;
@@ -93,7 +89,6 @@
 }
 .bootcamper-overlay-text p {
   color: black;
-  // font-size: calc(1em + 0.5vw);
 }
 .bootcamper-overlay-text-statement {
   padding: 5px 5px;
@@ -101,155 +96,7 @@
   font-size: 100%;
   margin: 0 auto;
 }
-// .bootcamper-overlay-email{
-//   position: relative;
-//   bottom: 50%;
-//   text-align: center;
-// }
 .bootcamper-overlay-help {
   position: absolute;
   bottom: 1vw;
 }
-
-// .profiles-showcase-header {
-//   width: 10vw;
-//   grid-row: span;
-// }
-
-// .profiles-showcase-header-line {
-//   position: fixed;
-//   bottom: 0;
-//   left: 10vw;
-//   width: 1%;
-//   max-height: 95vh;
-// }
-
-// .profiles-showcase-header-text {
-//   transform: rotate(-90deg);
-//   transform-origin: top left;
-//   position: fixed;
-//   bottom: 0;
-//   left: 0;
-//   font-size: 10vh;
-// }
-
-// .profiles-showcase-wrapper {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
-//   /* grid-template-columns: repeat(2, 200px); */
-//   column-gap: 1em;
-//   row-gap: 1em;
-// }
-
-// .profiles-showcase-wrapper a {
-//   text-decoration: none;
-// }
-
-// .profiles-showcase-sidebar-image {
-//   width: 28%;
-//   top: 10vw;
-//   left: 10vw;
-//   height: 2em;
-//   position: fixed;
-// }
-
-// .profiles-showcase-sidebar-line {
-//   width: 35%;
-//   top: 10vw;
-//   left: 23vh;
-//   height: auto;
-//   position: fixed;
-// }
-
-// .profiles-showcase-display-items {
-//   grid-template-columns: 2em 200px;
-//   /* grid-column: 2/5;
-//   grid-row: 2/5; */
-//   display: grid;
-//   /* flex-direction: row; */
-//   /* flex-wrap: wrap; */
-//   /* column-gap: 20px; */
-//   span {
-//     color: $black;
-//   }
-// }
-
-// .profiles-showcase-image {
-//   width: 200px;
-//   height: 250px;
-//   object-fit: cover;
-//   box-shadow: 0px 0px 10px $circuit-yellow;
-//   grid-column: 2;
-//   grid-row: 2;
-// }
-
-// .profiles-showcase-name-text {
-//   color: $white;
-//   /* padding-left: 2em; */
-//   /* padding-bottom: 0.5em; */
-//   grid-column: 2/3;
-//   grid-row: 1;
-// }
-
-// .profiles-showcase-cohort-text {
-//   grid-column: 1;
-//   grid-row: 1/3;
-//   transform: rotate(180deg);
-//   writing-mode: vertical-rl;
-//   line-height: 2em;
-//   padding-left: 0.5em;
-//   align-content: flex-end;
-//   align-self: flex-end;
-//   align-items: flex-end;
-// }
-
-// .profiles-showcase-statement-text {
-//   color: blue;
-// }
-
-// .profiles-showcase-overlay-container a {
-//   position: relative;
-//   /* width: 50%; */
-//   height: 100%;
-//   z-index: 50;
-// }
-
-// .profiles-showcase-overlay-container {
-//   position: relative;
-//   width: 50%;
-// }
-
-// .profiles-showcase-overlay {
-//   position: absolute;
-//   /* top: 0; */
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   width: 200px;
-//   height: 250px;
-//   opacity: 0.9;
-//   transition: 0.5 ease;
-//   background-color: palegoldenrod;
-// }
-
-// .profiles-showcase-overlay-hide {
-//   display: none;
-// }
-
-// .profiles-showcase-overlay-text {
-//   /* color: hotpink;
-//   position: relative;
-//   top: 0;
-//   left: 0;
-//   text-align: center;
-//   font-weight: bolder;
-//   font-size: large;
-//   width: 15vw; */
-//   color: black;
-//   font-family: "Poppins", sans-serif;
-//   /* text-align: center; */
-//   font-weight: bolder;
-//   /* font-size: large; */
-//   width: 200px;
-//   word-wrap: break-word;
-// }

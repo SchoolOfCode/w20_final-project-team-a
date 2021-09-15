@@ -3,21 +3,21 @@
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  color: $white;
+  color: $text-colour;
 }
 
 html {
-  background-color: $background-color;
+  background-color: $primary-background-color;
 }
 
 a {
   color: $circuit-yellow;
 }
 input {
-  color: $black;
+  color: black;
   font-weight: 600;
 }
 textarea {
-  color: $black;
+  color: black;
   font-weight: 600;
 }
