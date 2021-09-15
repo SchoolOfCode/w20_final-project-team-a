@@ -79,7 +79,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
   return (
     <div className="edit-page-container">
       <LeftVerticalTitle title="Edit Profile" />
-      <HorizontalCircuit className="edit-profile-line" />
+      <HorizontalCircuit className="edit-profile-horizontal-line" />
       <form
         className="edit-page-profile-container"
         ref={form}
@@ -88,7 +88,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         <PreviewImage {...user} />
         <FormInput
           labelFor="displayName"
-          labelText="Display Name"
+          labelText="Display Name:"
           placeholder={userDetails.displayName}
           className="edit-form-displayName-input"
           type="text"
@@ -103,7 +103,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="githubUrl"
-          labelText="GitHub Profile"
+          labelText="GitHub Profile:"
           placeholder={userDetails.githubUrl || ""}
           className="edit-form-githubUrl-input"
           type="url"
@@ -118,7 +118,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="linkedin"
-          labelText="LinkedIn"
+          labelText="LinkedIn:"
           placeholder={userDetails.linkedin || ""}
           className="edit-form-linkedin-input"
           type="url"
@@ -133,7 +133,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="twitter"
-          labelText="Twitter"
+          labelText="Twitter:"
           placeholder={userDetails.twitter || ""}
           className="edit-form-twitter-input"
           type="url"
@@ -148,7 +148,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="youtube"
-          labelText="Youtube"
+          labelText="Youtube:"
           placeholder={userDetails.youtube || ""}
           className="edit-form-youtube-input"
           type="url"
@@ -163,7 +163,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="personalWebsite"
-          labelText="Personal Site"
+          labelText="Personal Site:"
           placeholder={userDetails.personalWebsite || ""}
           className="edit-form-personal-input"
           type="url"
@@ -179,7 +179,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         {/* Column 3 */}
         <FormInput
           labelFor="cohort"
-          labelText="Cohort"
+          labelText="Cohort:"
           placeholder={userDetails.cohort || ""}
           className="edit-form-cohort-input"
           type="number"
@@ -194,7 +194,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInput
           labelFor="location"
-          labelText="Location"
+          labelText="Location:"
           placeholder={userDetails.location || "West Midlands"}
           className="edit-form-location-input"
           type="text"
@@ -209,7 +209,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
         />
         <FormInputTextarea
           labelFor="statement"
-          labelText="Personal Statement"
+          labelText="Personal Statement:"
           placeholder={userDetails.statement || "I <3 TypeScript"}
           className="edit-form-statement-input"
           name="userDetails[statement]"
