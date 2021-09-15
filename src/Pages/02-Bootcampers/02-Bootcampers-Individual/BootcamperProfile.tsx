@@ -7,6 +7,8 @@ import { API_URL } from "../../../config";
 import axios from "axios";
 import Loading from "../../../Components/ReactComponents/Loading/Loading";
 import Projects from "../../../Components/ReactComponents/Projects";
+import { builtUsing } from "../../../Components/VisualAssets/techStack/techIcons";
+
 
 const BootcamperProfile = (data: any) => {
   const user = data.location.state;
@@ -32,6 +34,16 @@ const BootcamperProfile = (data: any) => {
     setLoading(false);
   }, []);
 
+  const techIcons :any = new Set();
+  userProjects.forEach((project)=>{
+    project.techUsed.forEach((tech:string) =>{
+      techIcons.add(
+        tech
+      )
+    })
+  })
+
+
   return (
     <div className="individual-profile-page">
       <LeftVerticalTitle
@@ -45,28 +57,38 @@ const BootcamperProfile = (data: any) => {
         </p>
         <SocialLinks {...user} />
 
+        <section className="individual-tech-used">
+          <ul>
+          {[...techIcons].map((icon,i)=>{
+            return(
+              <li key={i}>
+                <img src={builtUsing[icon]} alt="icon" />
+              </li>
+            )
+          })}
+          </ul>
+        </section>
+
         <img
           className="individual-profile-photo"
           src={user.photo}
           alt="The user"
         />
 
-        <h3 className="individual-profile-projects-title">My Projects</h3>
-        </section>
-        <HorizontalCircuit className="individual-profile-line-2" />
+      </section>
+      <h3 className="individual-profile-projects-title">My Projects</h3>
+      <HorizontalCircuit className="individual-profile-line-2" />
 
-        <section className="individual-profile-projects-container">
-          {loading ? (
-            <Loading />
-          ) : (
-            <div className="individual-profile-projects">
-              {userProjects.map((project, i) => {
-                return (
-                  <Projects data={project} key={i}/>
-                );
-              })}
-            </div>
-          )}
+      <section className="individual-profile-projects-container">
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="individual-profile-projects">
+            {userProjects.map((project, i) => {
+              return <Projects data={project} key={i} />;
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

@@ -21,15 +21,17 @@ const ProfilesShowcase = () => {
 
   return (
     <>
-    <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
-    <HorizontalCircuit className="circuit-line"></HorizontalCircuit>
-      <section className="bootcampers-showcase-container">
-        <section className="bootcampers-items-container">
-          {data.map((user,i) => (
-            <Users data={user} key={i} />
-          ))}
+      <div className="bootcampers-page-container">
+        <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
+        <HorizontalCircuit className="circuit-line-left"></HorizontalCircuit>
+        <section className="bootcampers-showcase-container">
+          <section className="bootcampers-items-container">
+            {data.map((user, i) => (
+              <Users data={user} key={i} />
+            ))}
+          </section>
         </section>
-      </section>
+      </div>
     </>
   );
 };

@@ -1,35 +1,110 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import { API_URL } from "../../config";
 import "./Homepage.scss";
-import featuredImg from "./77b1a6d5-d93_my_space_2.jpg";
+import Loading from "../../Components/ReactComponents/Loading/Loading";
 import circuitT from "../../Components/VisualAssets/BackgroundsPlus/HomeBGTop.png"
 import circuitB from "../../Components/VisualAssets/BackgroundsPlus/HomeBGBottom.png"
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+import { builtUsing } from "../../Components/VisualAssets/techStack/techIcons";
 
-const Homepage = () => {
+const Homepage = (project: any) => {
+
+    const [featuredProject, setFeaturedProject] = useState<any>({});
+    const [loading, setLoading] = useState(false);
+    const [imageGalleryArray, setImageGalleryArray] = useState<any>([]);
+    const [imageGalleryIndex, setImageGalleryIndex] = useState(0);
+    const [usersNames, setUsersNames] = useState<any>([])
+    
+    const getProjects = async () => {
+      setLoading(true);
+      try {
+        const projectArray = await axios.get(
+          API_URL + "projects/featured"
+          );
+        setFeaturedProject(await projectArray.data);
+        const data = await projectArray.data
+        setImageGalleryArray([data.appDeploymentImage, ...data.additionaAppImageURLs]);
+        data.users.forEach((user:any)=>{
+          usersNames.push(user.displayName)
+    }) 
+
+      } catch (err) {
+        console.error(err)
+      }
+    };
+    
+    useEffect(() => {
+      getProjects();
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1250);
+      return () => clearTimeout(timer);
+    }, []);
+    
+    
+    const increaseGalleryIndex = () => {
+      if (imageGalleryIndex>= imageGalleryArray.length-1) {
+        setImageGalleryIndex(0)
+      }
+      else{
+      setImageGalleryIndex(imageGalleryIndex +1)
+      }
+    }
+
+    const decreaseGalleryIndex = () => {
+      if (imageGalleryIndex < 1) {
+        setImageGalleryIndex(imageGalleryArray.length-1)
+      }
+      else{
+      setImageGalleryIndex(imageGalleryIndex -1)
+      }
+    }
+
+    
+
   return (
+    loading ? (
+      <Loading />
+    ) : (
     <div className="wrapper">
-      {/* <img className="circuitT" src={circuit} alt="circuit-board"/> */}
       <img className="circuitT" src={circuitT} alt="circuit-board"/>
       <img className="circuitB" src={circuitB} alt="circuit-board"/>
-      <p className="arrow-left"> {"<"} </p>{" "}
+      <p className="arrow-left"
+      onClick={decreaseGalleryIndex}> {"<"} </p>{" "}
       {/*onClick increase image display index by 1/*/}
       <img
         className="featured-project-image"
-        src={featuredImg}
+        // src={featuredProject.appDeploymentImage}
+        src={imageGalleryArray[imageGalleryIndex]}
         alt="featured-img"
       ></img>
       {/*need to access array of images, display index=0 as default/*/}
-      <p className="arrow-right"> {">"} </p>{" "}
+      <p className="arrow-right"
+      onClick={increaseGalleryIndex}> {">"} </p>{" "}
       {/*onClick decrease image display index by 1/*/}
       <HorizontalCircuit className="line-right" />
-      <p className="description"> Can you guess what it is? Is it an eager beaver or just a squatting otter? 
-A Game created with React Native.</p>
-      <p className="tech"> Built using </p>{" "}
+      <p className="description"> {featuredProject.additionalInformation} </p>
+      <p className="tech"> Built using 
+      {featuredProject.techUsed && featuredProject.techUsed.map((tech:string,i:number) => {
+                  return (
+                  <li key={i}>
+                    <img 
+                    src={builtUsing[tech]} 
+                    alt="icon"
+                    className="showcase-tech-icon"
+                    />
+                  </li>
+                  )
+                })}
+    </p>
       {/*needs list with tech images here/*/}
-      <p className="heading"> Eager Beaver, Squatting OtterX </p>
+      <p className="heading"> {featuredProject.projectName} </p>
       <HorizontalCircuit className="line-left" />
-      <p className="title"> How can we display and promote the work that School of Code bootcampers put into the course?</p>
-      <p className="contributors"> By: Gurmukh, Lewis, Viktor, Becks </p>
+      <p className="title"> {featuredProject.problemStatement}</p>
+      {usersNames && 
+        <p className="contributors">Contributors: {usersNames.join(", ")} </p>
+      }
       {/* 
             background with circuits
             grid of 3 columns 1fr 3fr 1fr
@@ -46,6 +121,7 @@ A Game created with React Native.</p>
             
             */}
     </div>
+    )
   );
 };
 
