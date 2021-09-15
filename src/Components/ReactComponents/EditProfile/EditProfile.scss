@@ -32,7 +32,7 @@
   height: 60vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(7,100px);
+  grid-template-rows: repeat(7, 100px);
   justify-items: center;
   align-items: center;
 }
@@ -79,6 +79,7 @@
   line-height: 2em;
 }
 
+
 .edit-form-photo-input {
   grid-row: 4/7;
   grid-column: 1;
@@ -97,36 +98,25 @@
   max-width: 15vw;
 }
 
+
 /* Edit Profile Save Button & errors*/
-.edit-profile-messages-container{
+.edit-profile-messages-container {
   grid-column: 2;
   grid-row: 7;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.edit-profile-messages-failure{
+.edit-profile-messages-failure {
   padding: 1vh 2em;
   background-color: rgba(252, 22, 22, 0.9);
   border-radius: 5px;
 }
 .edit-page-button {
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  border: 1px solid #ffde59;
-  border-radius: 5px;
-  padding: 0 5px;
-  margin-left: 5px;
-  font-size: 1.2em;
-  width: 10em;
-  height: 2em;
-  cursor: pointer;
-  margin-top: 0.5em;
+  @include button-basic;
 }
 .edit-page-button:hover {
-  background-color: #ffde59;
-  color: black;
-  font-weight: bold;
+  @include button-hover;
 }
 
 /* Input Forms */
@@ -136,7 +126,8 @@
   margin-left: -0.5em;
 }
 
-.edit-profile-form-group label, .edit-profile-form-group input{
+.edit-profile-form-group label,
+.edit-profile-form-group input {
   display: block;
   padding: 0.5em 0.5em;
 }
@@ -160,6 +151,9 @@
   align-self: flex-start;
   padding-top: 0.5em;
 }
+
+
+
 .edit-form-statement-input textarea {
   display: block;
   width: calc(4em + 10vw);
@@ -172,6 +166,7 @@
   justify-self: left;
 
 }
+
 
 .edit-form-location-input {
   grid-column: 3;

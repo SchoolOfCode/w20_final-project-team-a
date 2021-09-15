@@ -1,7 +1,9 @@
+@import "../../Variables.scss";
+
 /* -----------Submit - Page Container & Page Globals--------------------------- */
 .submit-page-container {
   position: absolute;
-  right:0;
+  right: 0;
   top: 2em;
   left: 0;
   font-size: calc(0.8em + 0.3vw);
@@ -11,8 +13,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.submit-page-container label{
-  color: white;
+.submit-page-container label {
+  color: $text-colour;
 }
 
 .submit-page-container input,
@@ -22,8 +24,8 @@ textarea {
 }
 .submit-page-container button {
   background-color: rgba(0, 0, 0, 0);
-  color: white;
-  border: 1px solid #ffde59;
+  color: $text-colour;
+  border: 1px solid $circuit-yellow;
   padding: 0 5px;
   margin-left: 5px;
   font-stretch: ultra-expanded;
@@ -33,13 +35,15 @@ textarea {
   /* height: 1.2em; */
 }
 .submit-page-container button:hover {
-  background-color: #ffde59;
+  background-color: $circuit-yellow;
   color: black;
 }
-.submit-page-container .invalid-input{
+.submit-page-container .invalid-input {
   outline: 3px solid rgba(248, 62, 62, 0.9);
   outline-offset: -2px;
 }
+
+
 .submit-page-container .invalid-input-message{
   font-size: 0.8em;
   margin-top: 2px;
@@ -58,7 +62,42 @@ textarea {
   width: 30vw;
 }
 
+// .submit-messages-container {
+//   align-items: center;
+//   margin-bottom: 8vh;
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .submit-messages-text {
+//   color: black;
+//   font-size: 1em;
+// }
+
+// .submit-messages-success {
+//   align-self: center;
+//   margin-bottom: 0.5em;
+//   background-color: rgba(152, 251, 152, 0.8);
+
+//   width: max-content;
+//   border-radius: 8px;
+//   padding: 1em 2em;
+//   align-self: flex-end;
+// }
+
+// .submit-messages-failure {
+//   align-self: center;
+//   margin-bottom: 0.5em;
+//   background-color: rgba(255, 0, 0, 0.8);
+//   width: max-content;
+//   border-radius: 8px;
+//   padding: 1em 2em;
+// }
+
+
+
 .submit-form-container{
+
   position: absolute;
   left: calc(200px + 5vw);
   top: 150px;
@@ -70,13 +109,13 @@ textarea {
   flex-wrap: wrap;
   height: 90vh;
   row-gap: calc(0.5em + 1vw);
-  /* grid-template-columns: 1fr 1fr 1fr; */
 }
 .submit-form-form label {
   text-transform: uppercase;
   font-size: calc(0.8em + 0.3vw);
 }
-.submit-form-form label, .submit-form-form input{
+.submit-form-form label,
+.submit-form-form input {
   display: block;
 }
 /* -----------Submit - Form Column Details--------------------------- */
@@ -88,11 +127,12 @@ textarea {
 .contributors-input input,
 .githubUrl-input input,
 .appDeploymentUrl-input input{
+
   width: 18vw;
   max-width: 300px;
 }
 
-.contributors-input{
+.contributors-input {
   display: grid;
   grid-template-columns: 1fr 30px;
   width: calc(max-content + 150px);
@@ -106,46 +146,45 @@ textarea {
   width: 15vw;
 }
 
-.add{
+.add {
   grid-column: 2;
   grid-row: 2;
   justify-self: end;
   justify-content: end;
 }
-.contributors-input ul{
+.contributors-input ul {
   grid-column: 1;
   flex-direction: column;
-  width:max-content;
+  width: max-content;
   justify-self: flex-start;
-  // padding-top: 0.5em;
 }
-.contributors-input li{
+.contributors-input li {
   padding-top: 0.5em;
   list-style-type: none;
 }
 
-.contributors-input button{
+.contributors-input button {
   grid-column: 2;
   font-size: 1em;
   font-weight: bold;
   justify-self: unset;
   align-self: flex-end;
 }
-.contributors-input>ul>li>button{
+.contributors-input > ul > li > button {
   margin-right: 1em;
 }
 
-.fileInput-button{
+.fileInput-button {
   background-color: rgba(0, 0, 0, 0);
-  color: white;
-  border: 1px solid #ffde59;
+  color: $text-colour;
+  border: 1px solid $circuit-yellow;
   cursor: pointer;
   width: 8vw;
   text-align: center;
   align-self: center;
 }
 .fileInput-button:hover {
-  background-color: #ffde59;
+  background-color: $circuit-yellow;
   color: black;
 }
 .appImage-input,
@@ -153,8 +192,6 @@ textarea {
 .additionalAppImage2-input,
 .additionalAppImage3-input {
   display: inline;
-  /* display: flex;
-  flex-direction: column ; */
 }
 .appImage-input-image,
 .additionalAppImage1-input-image,
@@ -174,16 +211,17 @@ textarea {
   flex-wrap: wrap;
   min-width: 200px;
   width: 30vw;
+
   height: 100%;
+
 
 }
 .builtUsing-input-title {
   text-align: center;
 }
-.tech-error-message{
+.tech-error-message {
   text-align: center;
 }
-
 
 /* -----------checkboxes--------------------------- */
 
@@ -216,11 +254,10 @@ textarea {
 }
 
 .tech-used:before {
-  /* background-color: white; */
   content: " ";
   display: block;
   border-radius: 50%;
-  border: 1px solid #ffde59;
+  border: 1px solid $circuit-yellow;
   position: absolute;
   top: -5px;
   left: -5px;
@@ -239,7 +276,7 @@ textarea {
   transform-origin: 50% 50%;
   filter: invert(1) grayscale(1);
 }
-.tech-used h6{
+.tech-used h6 {
   color: grey;
   text-align: center;
 }
@@ -250,21 +287,23 @@ textarea {
 
 :checked + .tech-used:before {
   content: "✓";
-  color: #ffde59;
+  color: $circuit-yellow;
   background-color: rgba (0, 0, 0, 0);
   transform: scale(1);
 }
 
 :checked + .tech-used img {
   transform: scale(0.9);
-  box-shadow: 0 0 5px #ffde59;
+  box-shadow: 0 0 5px $circuit-yellow;
   z-index: -1;
-  filter:  invert(0) grayscale(0);
-  color: white;
+  filter: invert(0) grayscale(0);
+  color: $text-colour;
 }
+
 :checked + .tech-used h6{
   color: white;
   text-align: center;
+
 }
 
 .form-input-image {
@@ -272,6 +311,7 @@ textarea {
   width: 10vw;
   object-fit: cover;
 }
+
 .submit-messages-container{
 
 }
@@ -315,3 +355,4 @@ textarea {
   top: 90%;
   left: 100%;
 }
+

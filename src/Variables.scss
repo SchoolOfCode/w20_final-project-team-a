@@ -1,9 +1,9 @@
 // Variables:
 
-$background-color: #000818;
+$primary-background-color: #000818;
+$secondary-background-color: #000000;
 $circuit-yellow: #ffde59;
-$white: #ffffff;
-$black: #000000;
+$text-colour: #ffffff;
 
 // Variables:Fonts
 $large-header: calc(3em + 1vw);
@@ -22,6 +22,26 @@ $large-header: calc(3em + 1vw);
 }
 
 // Mixins Interactive:
+
+@mixin button-basic() {
+  background-color: rgba(0, 0, 0, 0);
+  color: $text-colour;
+  border: 1px solid $circuit-yellow;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin-left: 5px;
+  font-stretch: ultra-expanded;
+  font-size: 1.2em;
+  width: 10em;
+  height: 2em;
+  cursor: pointer;
+  justify-self: center;
+}
+@mixin button-hover() {
+  background-color: $circuit-yellow;
+  color: black;
+  font-weight: bold;
+}
 
 // @mixin arrow() {
 //   font-weight: 900;
