@@ -49,6 +49,7 @@ body {
   color: $circuit-yellow;
   text-align: left;
   // margin-top: 0.8vh;
+  cursor: pointer;
 }
 
 .featured-project-image {
@@ -64,6 +65,7 @@ body {
   color: $circuit-yellow;
   // margin-top: 0.8vh;
   text-align: right;
+  cursor: pointer;
 }
 
 .line-right {
@@ -94,7 +96,7 @@ body {
   text-align: right;
   font-size: 1.4vw;
 }
-.tech li{
+.tech li {
   list-style-type: none;
 }
 
