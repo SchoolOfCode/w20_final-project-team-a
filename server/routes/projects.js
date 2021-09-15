@@ -41,7 +41,10 @@ const upload = multer({
 export const projectRouter = express.Router();
 
 projectRouter.get("/all", async (req, res) => {
-  const allProjects = await Project.find({ approved: true });
+  const allProjects = await Project.find({ approved: true }).populate({
+    path: "users",
+    model: "User",
+  });;
   // .populate({path:"users", model:"User"}); //add this line to convert the user IDs to users
   res.status(200).send(allProjects);
 });
@@ -147,7 +150,7 @@ projectRouter.get("/featured", async (req, res) => {
     path: "users",
     model: "User",
   });
-  res.status(200).send(featuredProject);
+  res.status(200).send(await featuredProject);
 });
 
 //FILTER
