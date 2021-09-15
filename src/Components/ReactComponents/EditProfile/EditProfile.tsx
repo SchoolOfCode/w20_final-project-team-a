@@ -3,6 +3,8 @@ import "./EditProfile.scss";
 import { User } from "../../../Pages/06-Dashboard/Dashboard";
 import LeftVerticalTitle from "../../ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import HorizontalCircuit from "../../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+// import BGImage from "../../VisualAssets/BackgroundsPlus/EditProfile2.png"
+import BGImage from "../../VisualAssets/BackgroundsPlus/ProjectSubmitBG.png"
 import PreviewImage from "./PreviewImage";
 import FormInput from "./FormInput";
 import FormInputTextarea from "./FormInputTextarea";
@@ -78,6 +80,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
   }
   return (
     <div className="edit-page-container">
+      <img src={BGImage} alt="circuit design" className="edit-page-background"/>
       <LeftVerticalTitle title="Edit Profile" />
       <HorizontalCircuit className="edit-profile-horizontal-line" />
       <form

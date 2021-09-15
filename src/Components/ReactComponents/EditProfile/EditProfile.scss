@@ -1,7 +1,17 @@
 @import "../../../Variables.scss";
 
 .edit-page-container {
-  font-family: "Poppins", sans-serif;
+  position: absolute;
+  top: 2em;
+  height: 97%;
+  width: 97%;
+}
+
+.edit-page-background{
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100vw;
 }
 
 .edit-profile-horizontal-line {
@@ -33,7 +43,6 @@
   display: grid;
   grid-template-columns: 2em 1fr;
   padding-right: 2em;
-  
 }
 
 .edit-page-picture-image {
