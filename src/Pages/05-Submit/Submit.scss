@@ -43,18 +43,17 @@ textarea {
   outline-offset: -2px;
 }
 
-
-.submit-page-container .invalid-input-message{
+.submit-page-container .invalid-input-message {
   font-size: 0.8em;
   margin-top: 2px;
 }
-.submit-page-container .vertical-header-line{
+.submit-page-container .vertical-header-line {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
 }
-.submit-horizontal-line{
+.submit-horizontal-line {
   position: absolute;
   top: 100px;
   left: 180px;
@@ -94,10 +93,7 @@ textarea {
 //   padding: 1em 2em;
 // }
 
-
-
-.submit-form-container{
-
+.submit-form-container {
   position: absolute;
   left: calc(200px + 5vw);
   top: 150px;
@@ -126,8 +122,7 @@ textarea {
 .weekNumber-input input,
 .contributors-input input,
 .githubUrl-input input,
-.appDeploymentUrl-input input{
-
+.appDeploymentUrl-input input {
   width: 18vw;
   max-width: 300px;
 }
@@ -213,8 +208,6 @@ textarea {
   width: 30vw;
 
   height: 100%;
-
-
 }
 .builtUsing-input-title {
   text-align: center;
@@ -235,11 +228,10 @@ textarea {
   height: 50%;
   width: 90%;
 }
-.builtUsing-input li[class*="builtUsing-input"] label{
+.builtUsing-input li[class*="builtUsing-input"] label {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-
 }
 .builtUsing-input input[type="checkbox"][id^="cb"] {
   display: none;
@@ -300,10 +292,9 @@ textarea {
   color: $text-colour;
 }
 
-:checked + .tech-used h6{
+:checked + .tech-used h6 {
   color: white;
   text-align: center;
-
 }
 
 .form-input-image {
@@ -312,17 +303,13 @@ textarea {
   object-fit: cover;
 }
 
-.submit-messages-container{
-
-}
-
 .submit-messages-text {
   color: black;
   font-size: 1em;
   text-align: center;
 }
 
-.submit-messages-success{
+.submit-messages-success {
   margin-bottom: 0.5em;
   background-color: rgba(152, 251, 152, 0.8);
   width: max-content;
@@ -335,7 +322,7 @@ textarea {
   transform: translateX(-37%);
 }
 
-.submit-messages-failure{
+.submit-messages-failure {
   margin-bottom: 0.5em;
   background-color: rgba(255, 0, 0, 0.8);
   width: max-content;
@@ -349,10 +336,9 @@ textarea {
   transform: translateX(-32.5%);
 }
 
-.project-submit-button{
+.project-submit-button {
   display: block;
   position: absolute;
   top: 90%;
   left: 100%;
 }
-

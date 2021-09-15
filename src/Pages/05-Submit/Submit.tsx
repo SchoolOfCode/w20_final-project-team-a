@@ -119,29 +119,31 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
     projectFormData.append("githubUrl", formData.githubUrl!);
     projectFormData.append("appDeploymentUrl", formData.appDeploymentUrl!);
 
-
-  
-  try{
-    const response = await axios.post(API_URL + "projects/submit", projectFormData)
-    const projectSubmission= await response.data
-    if (await projectSubmission.success) {
-      setSuccess(true);
-      setFailure(false);
-      // setProjID(projectSubmission.project);
-      try{
-        const populateUsers = await axios.get(API_URL + "projects/update/:" + projectSubmission.project)
-        if (await populateUsers.data.success){
-          setSuccess(true);
-          setFailure(false);
-        } else{
-          setSuccess(false);
-          setFailure(true);
-          setFailureMsg(failureMsg + populateUsers.data.msg);
-
+    try {
+      const response = await axios.post(
+        API_URL + "projects/submit",
+        projectFormData
+      );
+      const projectSubmission = await response.data;
+      if (await projectSubmission.success) {
+        setSuccess(true);
+        setFailure(false);
+        // setProjID(projectSubmission.project);
+        try {
+          const populateUsers = await axios.get(
+            API_URL + "projects/update/:" + projectSubmission.project
+          );
+          if (await populateUsers.data.success) {
+            setSuccess(true);
+            setFailure(false);
+          } else {
+            setSuccess(false);
+            setFailure(true);
+            setFailureMsg(failureMsg + populateUsers.data.msg);
+          }
+        } catch (err) {
+          console.error(err);
         }
-      } else {
-        setFailure(true);
-        setFailureMsg(projectSubmission.msg);
       }
     } catch (err) {
       console.error(err);
@@ -337,8 +339,6 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               </div>
           </section> */}
 
-
-
           <section className="submit-messages-container">
             {success && (
               <div className="submit-messages-success">
@@ -353,9 +353,9 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
               </div>
             )}
           </section>
-            <button type="submit" className="button project-submit-button">
-              Submit
-            </button>
+          <button type="submit" className="button project-submit-button">
+            Submit
+          </button>
         </form>
       </section>
     </div>
