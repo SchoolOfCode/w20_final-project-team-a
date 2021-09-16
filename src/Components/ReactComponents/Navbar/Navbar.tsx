@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 import UserIconLogin from "../../VisualAssets/SVGIcons/PNG/user_login.png";
 import UserIconDashboard from "../../VisualAssets/SVGIcons/PNG/user_dashboard.png"
 import UserIconLogout from "../../VisualAssets/SVGIcons/logout.svg";
@@ -22,6 +22,7 @@ type PageParams = {
 const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus, setCurrentUser}) => {
   const page = useParams<PageParams>().page || "home";
   const history = useHistory();
+  const location = useLocation();
   
   const handleLogout = () => {
     axios.get(API_URL + "users/logout",{
@@ -60,8 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus, setCurrent
                 <img
                   src={UserIconDashboard}
                   alt="user icon"
-                  className="navbar-user-icon-dashboard"
-                  // className={page==="/dashboard"?"navbar-user-icon-dashboard": "navbar-user-icon-dashboard-selected"}
+                  className={location.pathname==="/dashboard"?"navbar-user-icon-dashboard-selected":"navbar-user-icon-dashboard"}
                 />
               </Link>
               {/* <span className="navbar-dashboard-tooltip">User Dashboard</span> */}

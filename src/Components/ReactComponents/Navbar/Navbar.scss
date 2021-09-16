@@ -70,7 +70,13 @@
 }
 .navbar-user-icon-dashboard:hover {
   filter: invert(89%) sepia(84%) saturate(7479%) hue-rotate(315deg)
-    brightness(109%) contrast(104%);
+  brightness(109%) contrast(104%);
+}
+.navbar-user-icon-dashboard-selected{
+  height: 1.5em;
+  overflow: hidden;
+  filter: invert(89%) sepia(84%) saturate(7479%) hue-rotate(315deg)
+  brightness(109%) contrast(104%);
 }
 .navbar-user {
   grid-area: user;
