@@ -19,17 +19,59 @@
   height: calc(100vh - 300px);
   width: 75vw;
   overflow: auto;
-  -ms-overflow-style: none; /* IE*/
-  scrollbar-width: none; /* Firefox */
 }
-.showcase-page-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+.showcase-page-container:-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.showcase-page-container:-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+/* Handle */
+.showcase-page-container:-webkit-scrollbar-thumb {
+  background: rgb(229, 255, 0);
+}
+
+/* Handle on hover */
+.showcase-page-container:-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 119, 255);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 2px solid #ffde5981;
+  background: $primary-background-color;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: $circuit-yellow;
+  border: 5px solid $transparent;
+  height: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
 }
 
 // .showcase-gradient{
 //     position:absolute;
 //     pointer-events: none;
-//     bottom:0; 
+//     bottom:0;
 //     left: calc(10vw + 5vw);
 //     width: 75vw;
 //     height:300px;

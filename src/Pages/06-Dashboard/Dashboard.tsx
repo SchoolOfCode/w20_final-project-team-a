@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Dashboard.scss"
+import "./Dashboard.scss";
 // import axios from "axios";
 // import { useHistory } from "react-router-dom";
 // import { API_URL } from "../../config";
@@ -8,7 +8,7 @@ import EditProfile from "../../Components/ReactComponents/EditProfile/EditProfil
 // import Loading from "../../Components/ReactComponents/Loading/Loading";
 
 type DashboardProps = {
-  currentUser:any,
+  currentUser: any;
 };
 
 export interface User {
@@ -28,8 +28,7 @@ export interface User {
   projects?: string[];
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ currentUser}) => {
-
+const Dashboard: React.FC<DashboardProps> = ({ currentUser }) => {
   // const initialUser = {
   //   _id: "",
   //   email: "",
@@ -70,10 +69,11 @@ const Dashboard: React.FC<DashboardProps> = ({ currentUser}) => {
   //   setLoading(false)
   // },[history]);
 
-  return (
-    currentUser.role === "admin"?<AdminBoard />:
-    currentUser.displayName && <EditProfile user={currentUser}/>
-  )
+  return currentUser.role === "admin" ? (
+    <AdminBoard />
+  ) : (
+    currentUser.displayName && <EditProfile user={currentUser} />
+  );
 };
 
 export default Dashboard;
