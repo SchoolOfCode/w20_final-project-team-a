@@ -51,28 +51,27 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus }) => {
   const [role, setRole] = useState("user");
   const [updatedSuccessfully, setupdatedSuccessfully] = useState(false);
 
-  const getUser = async () => {
-    try {
-      if (loginStatus === false) {
-        history.push("/login");
-      } else {
-        const res = await axios.get(API_URL + "auth/check", {
-          withCredentials: true,
-        });
-        setUser(await res.data.user);
-        setRole(await res.data.user.role);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    getUser();
-  });
+    const getUser = async () => {
+      try {
+        // if (loginStatus === false) {
+        //   history.push("/login");
+        // } else {
+          const res = await axios.get(API_URL + "auth/check", {
+            withCredentials: true,
+          });
+          setUser(await res.data.user);
+          setRole(await res.data.user.role);
+        // }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUser()
+  },[history, loginStatus]);
 
   return role === "admin" ? (
-    <AdminBoard user={user}/>
+    <AdminBoard />
   ) : (
     <EditProfile user={user} updatedSuccessfully={updatedSuccessfully} setupdatedSuccessfully={setupdatedSuccessfully}/>
   );
