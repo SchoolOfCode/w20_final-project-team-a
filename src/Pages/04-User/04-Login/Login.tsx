@@ -19,15 +19,16 @@ type UserLoginForm = {
   password: string;
 };
 type Props = {
-  loginStatus: boolean;
-  setLoginStatus: (val: boolean) => void;
+  loginStatus: boolean,
+  setLoginStatus: (val: boolean) => void,
+  setCurrentUser: (val: any) => void
 };
 
-const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
+const Login: React.FC<Props> = ({ loginStatus, setLoginStatus,setCurrentUser }) => {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState("");
-
+  const [loggedInUser, setLoggedInUser] = useState<any>({});
   const history = useHistory();
 
   const {
@@ -54,7 +55,9 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
         }
       )
       .then((response) => {
-        if (response.data.sucess) {
+        if (response.data.success) {
+          setCurrentUser(response.data.user)
+          setLoggedInUser(response.data.user)
           setSuccess(true);
           setFailure(false);
         } else {
@@ -73,7 +76,10 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
   useEffect(() => {
     if (success === true && timer <= 0) {
       setLoginStatus(true);
-      history.push("/dashboard");
+        history.push({
+          pathname: '/dashboard',
+          state:{currentUser:loggedInUser}
+        })
       return;
     }
     if (success) {
@@ -82,7 +88,7 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
       }, 1000);
       return () => clearInterval(loginRedirectTimer);
     }
-  }, [success, history, timer, setLoginStatus]);
+  }, [success, history, timer, setLoginStatus, loggedInUser]);
 
   return (
     <div>

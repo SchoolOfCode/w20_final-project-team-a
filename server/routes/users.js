@@ -92,12 +92,9 @@ userRouter.post("/login", (req, res, next) => {
       req.session.displayName = user.displayName;
       req.session.role = user.role;
       req.session.isAuth = true;
-      return res.status(200).send({
-        msg:`Logging in as ${user.displayName}`, 
-        sucess:true, 
-        // role: user.role,
-        // id:user._id
-      });
+      let userTemp = {...user._doc}
+      delete userTemp.password
+      res.status(200).send({msg:`Logging in as ${user.displayName}`, success: true, user: userTemp})
       }
     )
   })(req, res, next);

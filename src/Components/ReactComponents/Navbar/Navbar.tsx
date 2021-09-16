@@ -10,14 +10,16 @@ import { NavbarLink } from "./NavbarLink";
 import Logo from "./Logo";
 
 type NavbarProps = {
-  loginStatus: boolean;
+  loginStatus: boolean,
+  setLoginStatus: (val: boolean) => void,
+  setCurrentUser: (val: any) => void,
 };
 
 type PageParams = {
   page: string;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ loginStatus}) => {
+const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus, setCurrentUser}) => {
   const page = useParams<PageParams>().page || "home";
   const history = useHistory();
   
@@ -25,7 +27,9 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus}) => {
     axios.get(API_URL + "users/logout",{
       withCredentials: true}
     ).then(()=>{
-      history.push("/login");
+      setLoginStatus(false)
+      setCurrentUser({})
+      history.push("/");
     })
   };
 
