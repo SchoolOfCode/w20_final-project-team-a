@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./EditProfile.scss";
 import { User } from "../../../Pages/06-Dashboard/Dashboard";
 import LeftVerticalTitle from "../../ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
@@ -11,24 +11,22 @@ import FormInputTextarea from "./FormInputTextarea";
 import FormInputImage from "./FormInputImage";
 import axios from "axios";
 import { API_URL } from "../../../config";
+import {useHistory} from 'react-router-dom'
 
 interface ProfileProps {
   user: User;
-  updatedSuccessfully: boolean,
-  setupdatedSuccessfully:(value:boolean)=>void
 }
 
 axios.defaults.withCredentials = true;
 
-const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdatedSuccessfully}) => {
+const EditProfile: React.FC<ProfileProps> = ({ user}) => {
 
   const [userDetails, setUserDetails] = useState(user);
   const [formError, setformError] = useState<boolean[]>(new Array(10).fill(false));
   const [newImage, setNewImage] = useState();
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState<string>("");
-
-  const form = useRef(null);
+  const history = useHistory();
 
   const submit = async(e: any) => {
     e.preventDefault();
@@ -67,9 +65,12 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
       })
       const data = await response.data
       if (await data.success) {
-        setupdatedSuccessfully(true);
         setFailureMsg("")
         setFailure(false)
+        history.push({
+          pathname: '/dashboard',
+          state:{currentUser:data.user}
+        })
       } else{
         setFailure(true)
         setFailureMsg(data.msg);
@@ -85,8 +86,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
       <HorizontalCircuit className="edit-profile-horizontal-line" />
       <form
         className="edit-page-profile-container"
-        ref={form}
-        onSubmit={(e) => submit(e)}
       >
         <PreviewImage {...user} />
         <FormInput
@@ -244,7 +243,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
               <h3 className="edit-profile-messages-text">{failureMsg}</h3>
             </div>
           )}
-        <button className="edit-page-button">Save Changes</button>
+        <button className="edit-page-button" onClick={(e) => submit(e)}>Save Changes</button>
         </section>
       </form>
     </div>

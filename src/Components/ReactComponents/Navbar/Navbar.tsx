@@ -11,19 +11,17 @@ import Logo from "./Logo";
 
 type NavbarProps = {
   loginStatus: boolean;
-  setLoginStatus: (val: boolean) => void;
 };
 
 type PageParams = {
   page: string;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus }) => {
+const Navbar: React.FC<NavbarProps> = ({ loginStatus}) => {
   const page = useParams<PageParams>().page || "home";
   const history = useHistory();
   
   const handleLogout = () => {
-    setLoginStatus(false);
     axios.get(API_URL + "users/logout",{
       withCredentials: true}
     ).then(()=>{
@@ -59,6 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus, setLoginStatus }) => {
                   src={UserIconDashboard}
                   alt="user icon"
                   className="navbar-user-icon-dashboard"
+                  // className={page==="/dashboard"?"navbar-user-icon-dashboard": "navbar-user-icon-dashboard-selected"}
                 />
               </Link>
               {/* <span className="navbar-dashboard-tooltip">User Dashboard</span> */}

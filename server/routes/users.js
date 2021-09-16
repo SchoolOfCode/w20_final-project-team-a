@@ -88,10 +88,10 @@ userRouter.post("/login", (req, res, next) => {
     }
     req.logIn(user, (err)=>{
       if (err) return next(err);
-      // req.session.email = user.email;
-      // req.session.displayName = user.displayName;
-      // req.session.role = user.role;
-      // req.session.isAuth = true;
+      req.session.email = user.email;
+      req.session.displayName = user.displayName;
+      req.session.role = user.role;
+      req.session.isAuth = true;
       return res.status(200).send({
         msg:`Logging in as ${user.displayName}`, 
         sucess:true, 
@@ -106,20 +106,23 @@ userRouter.post("/login", (req, res, next) => {
 //Handle logout
 userRouter.get("/logout", (req, res) => {
   req.logOut();
-  res.status(200).send({msg:"You have sucessfully logged out", success: true});
+  res.clearCookie('connect.sid');
+  req.session.destroy((err)=>{
+    res.status(200).send({msg:"You have been sucessfully logged out", success: true});
+  });
 });
 
 //Get user data
 
 userRouter.get("/all", async (req, res) => {
-  const allUsers = await User.find({ role: "user"});
+  const allUsers = await User.find({ role: "user"},{password: 0, updated_at:0, __v: 0});
   res.status(200).send(allUsers);
 });
 
 
 userRouter.get("/individual/:id", async(req,res) => {
   const userID =req.params.id.replace(":","")
-  const user = await User.findById(userID)
+  const user = await User.findById(userID,{password: 0, updated_at:0, __v: 0})
                       .populate({path:"projects", model:"Project"})
   if (user) {
     res.status(200).send({

@@ -8,6 +8,7 @@ import { API_URL } from "../../config";
 
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+// import ScrollingFog from "../../Components/VisualAssets/BackgroundsPlus/FogOverlay2.png"
 
 const Showcase = () => {
   const [data, setData] = useState([{}]);

@@ -15,7 +15,8 @@ import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitl
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 import { useForm } from "react-hook-form";
-// import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {useHistory} from 'react-router-dom'
 
 type Props = {
   loginStatus: boolean;
@@ -37,8 +38,8 @@ type ProjectSubmitForm = {
 };
 
 const Submit: React.FC<Props> = ({ loginStatus }) => {
-  // const history = useHistory();
-  // if (loginStatus === false) history.push("/login");
+  const history = useHistory();
+  if (loginStatus === false) history.push("/login");
 
   const [contributors, setContributors] = useState<string[]>([]);
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
@@ -66,7 +67,7 @@ const Submit: React.FC<Props> = ({ loginStatus }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<ProjectSubmitForm>({
-    // resolver: yupResolver(SubmitValidationSchema)
+    resolver: yupResolver(SubmitValidationSchema)
   });
 
   const onSubmit = async (formData: ProjectSubmitForm) => {

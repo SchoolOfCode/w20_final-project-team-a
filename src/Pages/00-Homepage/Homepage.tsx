@@ -108,22 +108,9 @@ const Homepage = (project: any) => {
       {/* projectName here instead {featuredProject.problemStatement}</p> */}
       {usersNames && (
         <p className="contributors">Contributors: {usersNames.join(", ")} </p>
-      )}
-      {/* 
-            background with circuits
-            grid of 3 columns 1fr 3fr 1fr
-                    3 rows
-            
-            image display from list, show current item
-            arrows to iterate through image list
-            github image with link to repo
-            "featured project"
-            dividing line
-            project title
-            list of contributors display names
 
-            
-            */}
+      )}
+
     </div>
   );
 };

@@ -68,7 +68,6 @@ app.use(passport.session());
 //Routes
 //make uploads folder available publically/to react
 app.use("/uploads", express.static("uploads"));
-
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);

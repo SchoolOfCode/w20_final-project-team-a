@@ -75,7 +75,7 @@ const FormInput : React.FC<Props> = ({
             <label htmlFor={labelFor}>{labelText}</label>
             <input
                 defaultValue={defaultValue}
-                type={type}
+                // type={type}
                 placeholder={placeholder}
                 name={name}
                 required={required}

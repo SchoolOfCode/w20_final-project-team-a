@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
 import { useForm } from "react-hook-form";
-// import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { UserLoginValidationSchema } from "../../../Components/ReactComponents/Signup/UserLoginValidationSchema";
 
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
@@ -35,7 +35,7 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<UserLoginForm>({
-    // resolver: yupResolver(UserLoginValidationSchema),
+    resolver: yupResolver(UserLoginValidationSchema),
   });
 
   const onSubmit = (formData: UserLoginForm) => {

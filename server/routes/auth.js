@@ -41,11 +41,11 @@ export const authRouter = express.Router();
 
 authRouter.get("/check", (req, res, next) => {
   if (req.isAuthenticated()){
-    User.findOne({_id: req.session.passport.user}, {password: 0, updated_at:0, __v: 0})
+    User.findById(req.session.passport.user, {password: 0, updated_at:0, __v: 0})
     .then(user=> res.status(200).send({msg:"logged In", success: true, user:user}))
     .catch(err=>res.status(400).send({msg:err, success: false}))
   } else{
-    res.status(400).send({msg:"Not logged In", success: false})
+    res.status(200).send({msg:"Not logged In", success: false})
   }
 });
 
@@ -130,7 +130,11 @@ authRouter.put("/user/update",upload.array("newProfilePhoto", 1), async(req,res)
           {upsert: true,
           new:true}
           )
-          .then(user => res.status(200).send({msg:"User Updated", success: true, user: user}))
+          .then(user => {
+            let userTemp = {...user._doc}
+            delete userTemp.password
+            res.status(200).send({msg:"User Updated", success: true, user: userTemp})
+          })
           .catch(err =>res.status(400).send({msg:err, success: false}))
     
   } else{
