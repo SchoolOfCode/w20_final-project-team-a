@@ -29,6 +29,7 @@ export interface User {
 
 const Dashboard: React.FC<DashboardProps> = ({ loginStatus, currentUser}) => {
 
+
   const history = useHistory();
   if (!currentUser || loginStatus === false) history.push("/login");
 
@@ -38,6 +39,7 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus, currentUser}) => {
       {currentUser.displayName && currentUser.role !== "admin" && <EditProfile user={currentUser}/>}
     </>
   )
+
 };
 
 export default Dashboard;

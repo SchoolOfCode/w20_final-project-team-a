@@ -13,36 +13,15 @@
 
 .showcase-page-container {
   position: relative;
-  // left: calc(50% - 300px);
   left: calc(180px + 5vw);
   top: calc(180px + 5vw);
-  height: calc(100vh - 300px);
+  height: calc(100vh - 250px);
   width: 75vw;
-  overflow: auto;
-  -ms-overflow-style: none; /* IE*/
-  scrollbar-width: none; /* Firefox */
-}
-.showcase-page-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-// .showcase-gradient{
-//     position:absolute;
-//     pointer-events: none;
-//     bottom:0; 
-//     left: calc(10vw + 5vw);
-//     width: 75vw;
-//     height:300px;
-//     background: rgb(0,8,24);
-//     background: radial-gradient(circle at bottom, rgba(0,8,24,0.9) 0%, rgba(0,8,24,0) 100%);
-//   }
-
-// .showcase-fog{
-//   position: absolute;
-//   bottom: 0;
-//   left: calc(10vw + 5vw);
-//   pointer-events: none;
-// }
 .showcase-items-container {
   width: calc(100% - 250px);
   display: grid;

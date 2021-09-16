@@ -76,7 +76,7 @@ const Homepage = (project: any) => {
       <p className="description"> {featuredProject.additionalInformation} </p>
       <p className="tech">
         {" "}
-        Built using
+        Built using:
         {featuredProject.techUsed &&
           featuredProject.techUsed.map((tech: string, i: number) => {
             return (
@@ -108,9 +108,7 @@ const Homepage = (project: any) => {
       {/* projectName here instead {featuredProject.problemStatement}</p> */}
       {usersNames && (
         <p className="contributors">Contributors: {usersNames.join(", ")} </p>
-
       )}
-
     </div>
   );
 };
