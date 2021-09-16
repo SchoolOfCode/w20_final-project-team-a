@@ -1,10 +1,12 @@
 // Variables:
 
+// Variables:Colours
+
 $primary-background-color: #000818;
 $secondary-background-color: #000000;
 $circuit-yellow: #ffde59;
 $text-colour: #ffffff;
-
+$transparent: rgba(0, 0, 0, 0);
 // Variables:Fonts
 $large-header: calc(3em + 1vw);
 
@@ -24,7 +26,7 @@ $large-header: calc(3em + 1vw);
 // Mixins Interactive:
 
 @mixin button-basic() {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: $transparent;
   color: $text-colour;
   border: 1px solid $circuit-yellow;
   border-radius: 5px;
@@ -43,32 +45,6 @@ $large-header: calc(3em + 1vw);
   font-weight: bold;
 }
 
-// @mixin arrow() {
-//   font-weight: 900;
-//   font-size: 60px;
-//   grid-row: 4 / 4;
-//   color: $circuit-yellow;
-//   margin-top: 2vh;
-// }
-
-// Mixins:Images
-
-// @mixin main-project-image() {
-//   grid-row-start: 2;
-//   grid-row-end: 6;
-//   grid-column-start: 3;
-//   grid-column-end: 6;
-//   max-height: 70vh;
-//   max-width: 70vw;
-// }
-
-// Mixins:Circuit-Containers
-
-// @mixin circuit-container-right() {
-//   grid-row: 2;
-//   grid-column: 7 / 9;
-// }
-
 @mixin circuit-container-left() {
   position: relative;
   top: 175px;
@@ -76,7 +52,11 @@ $large-header: calc(3em + 1vw);
   left: 175px;
 }
 
-// @mixin circuit-container-left-bottom() {
-//   grid-row: 10;
-//   grid-column: 1 / 4;
-// }
+// Global styling:Button
+
+.button-variable {
+  @include button-basic;
+  :hover {
+    @include button-hover;
+  }
+}

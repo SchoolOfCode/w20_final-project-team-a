@@ -22,7 +22,7 @@ const Showcase = () => {
   }, []);
 
   return (
-    <>
+    <div className="showcase-page">
       <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
       <HorizontalCircuit className="circuit-line-left"></HorizontalCircuit>
       <div className="showcase-page-container">
@@ -32,7 +32,7 @@ const Showcase = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
