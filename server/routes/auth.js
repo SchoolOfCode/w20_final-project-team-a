@@ -45,7 +45,7 @@ authRouter.get("/check", (req, res, next) => {
     .then(user=> res.status(200).send({msg:"logged In", success: true, user:user}))
     .catch(err=>res.status(400).send({msg:err, success: false}))
   } else{
-    res.status(400).send({msg:"Not logged In", success: false})
+    res.status(200).send({msg:"Not logged In", success: false})
   }
 });
 

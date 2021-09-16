@@ -107,10 +107,9 @@ userRouter.post("/login", (req, res, next) => {
 userRouter.get("/logout", (req, res) => {
   req.logOut();
   res.clearCookie('connect.sid');
-  req.session.destroy(function (err) {
+  req.session.destroy((err)=>{
     res.status(200).send({msg:"You have been sucessfully logged out", success: true});
   });
-  // res.status(200).send({msg:"You have sucessfully logged out", success: true});
 });
 
 //Get user data

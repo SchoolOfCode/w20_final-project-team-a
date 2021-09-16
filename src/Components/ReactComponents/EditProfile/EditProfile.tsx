@@ -86,7 +86,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
       <form
         className="edit-page-profile-container"
         ref={form}
-        onSubmit={(e) => submit(e)}
       >
         <PreviewImage {...user} />
         <FormInput
@@ -244,7 +243,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user,updatedSuccessfully,setupdat
               <h3 className="edit-profile-messages-text">{failureMsg}</h3>
             </div>
           )}
-        <button className="edit-page-button">Save Changes</button>
+        <button className="edit-page-button" onClick={(e) => submit(e)}>Save Changes</button>
         </section>
       </form>
     </div>
