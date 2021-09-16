@@ -76,7 +76,7 @@ const AdminProjectDisplay = () => {
             />
           </label>
         </div>
-        <a className="admin-page-projects-list-2" href={project.githubUrl}>
+        <a className="admin-page-projects-list-2" href={`${project.githubUrl}`} key={i} rel="noreferrer" target="_blank">
           <img src={Github} alt="github icon" />
         </a>
         <span className="admin-page-projects-list-3">

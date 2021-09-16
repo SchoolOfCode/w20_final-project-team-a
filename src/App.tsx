@@ -18,7 +18,7 @@ import { API_URL } from "./config";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
-  // const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
     const checkAuth = async() =>{
@@ -28,7 +28,7 @@ function App() {
         const isLoggedIn = await authCheck.data.success
         if (await isLoggedIn){
           setLoginStatus(true)
-          // setCurrentUser(authCheck.data.user)
+          setCurrentUser(authCheck.data.user)
         }else{
           setLoginStatus(false)
         }
@@ -70,7 +70,7 @@ function App() {
       </Route>
 
       <Route exact path="/dashboard">
-        <Dashboard loginStatus={loginStatus} />
+        <Dashboard currentUser={currentUser}/>
       </Route>
 
       <Route exact path="/submit">

@@ -130,7 +130,11 @@ authRouter.put("/user/update",upload.array("newProfilePhoto", 1), async(req,res)
           {upsert: true,
           new:true}
           )
-          .then(user => res.status(200).send({msg:"User Updated", success: true, user: user}))
+          .then(user => {
+            let userTemp = {...user._doc}
+            delete userTemp.password
+            res.status(200).send({msg:"User Updated", success: true, user: userTemp})
+          })
           .catch(err =>res.status(400).send({msg:err, success: false}))
     
   } else{
