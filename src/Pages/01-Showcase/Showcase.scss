@@ -13,78 +13,15 @@
 
 .showcase-page-container {
   position: relative;
-  // left: calc(50% - 300px);
   left: calc(180px + 5vw);
   top: calc(180px + 5vw);
-  height: calc(100vh - 300px);
+  height: calc(100vh - 250px);
   width: 75vw;
-  overflow: auto;
-}
-.showcase-page-container:-webkit-scrollbar {
-  width: 10px;
-}
 
-/* Track */
-.showcase-page-container:-webkit-scrollbar-track {
-  background: #ff0000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* Handle */
-.showcase-page-container:-webkit-scrollbar-thumb {
-  background: rgb(229, 255, 0);
-}
-
-/* Handle on hover */
-.showcase-page-container:-webkit-scrollbar-thumb:hover {
-  background: rgb(0, 119, 255);
-}
-
-::-webkit-scrollbar {
-  width: 20px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  border: 2px solid #ffde5981;
-  background: $primary-background-color;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  background-color: $circuit-yellow;
-  border: 5px solid $transparent;
-  height: 20px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
-}
-
-/* Corner */
-::-webkit-scrollbar-corner {
-  background: rgba(0, 0, 0, 0);
-}
-
-// .showcase-gradient{
-//     position:absolute;
-//     pointer-events: none;
-//     bottom:0;
-//     left: calc(10vw + 5vw);
-//     width: 75vw;
-//     height:300px;
-//     background: rgb(0,8,24);
-//     background: radial-gradient(circle at bottom, rgba(0,8,24,0.9) 0%, rgba(0,8,24,0) 100%);
-//   }
-
-// .showcase-fog{
-//   position: absolute;
-//   bottom: 0;
-//   left: calc(10vw + 5vw);
-//   pointer-events: none;
-// }
 .showcase-items-container {
   width: calc(100% - 250px);
   display: grid;
