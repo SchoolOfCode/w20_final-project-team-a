@@ -70,11 +70,11 @@ function App() {
       </Route>
 
       <Route exact path="/dashboard">
-        <Dashboard currentUser={currentUser}/>
+        <Dashboard currentUser={currentUser} loginStatus={loginStatus}/>
       </Route>
 
       <Route exact path="/submit">
-        <Submit loginStatus={loginStatus} />
+        <Submit currentUser={currentUser} loginStatus={loginStatus} />
       </Route>
     </Router>
   );

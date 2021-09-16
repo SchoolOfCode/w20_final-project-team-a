@@ -20,6 +20,7 @@ import {useHistory} from 'react-router-dom'
 
 type Props = {
   loginStatus: boolean;
+  currentUser:any
 };
 
 type ProjectSubmitForm = {
@@ -37,9 +38,9 @@ type ProjectSubmitForm = {
   additionalAppImage3?: File;
 };
 
-const Submit: React.FC<Props> = ({ loginStatus }) => {
+const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
   const history = useHistory();
-  if (loginStatus === false) history.push("/login");
+  if (!currentUser || loginStatus === false) history.push("/login");
 
   const [contributors, setContributors] = useState<string[]>([]);
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
