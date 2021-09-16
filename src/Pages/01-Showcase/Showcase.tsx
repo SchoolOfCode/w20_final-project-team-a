@@ -8,6 +8,7 @@ import { API_URL } from "../../config";
 
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+// import ScrollingFog from "../../Components/VisualAssets/BackgroundsPlus/FogOverlay2.png"
 
 const Showcase = () => {
   const [data, setData] = useState([{}]);
@@ -32,6 +33,9 @@ const Showcase = () => {
           ))}
         </div>
       </div>
+      {/* <img src={ScrollingFog} alt="overlay style element" className="showcase-fog" /> */}
+      {/* <div className="showcase-gradient">
+      </div> */}
     </>
   );
 };
