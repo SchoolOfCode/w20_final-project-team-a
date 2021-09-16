@@ -1,7 +1,6 @@
 @import "../../../Variables.scss";
 
 .admin-page-container {
-  font-family: "Poppins", sans-serif;
   position: absolute;
   right: 0;
   top: 1.5em;
@@ -21,8 +20,9 @@
 
 .admin-horizontal-line {
   position: absolute;
-  top: 15vh;
-  left: 6.5em;
+  top: 180px;
+  left: 180px;
+  width: 30vw;
 }
 /* -----------Admin - Project List--------------------------- */
 
@@ -30,14 +30,14 @@
   display: grid;
   row-gap: 2em;
   position: relative;
-  left: 10vw;
+  left: 185px;
   top: 20vh;
-  width: 80vw;
+  width: 90vw;
 }
 
 .admin-page-projects-list-item {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr 0.5fr;
+  grid-template-columns: 0.8fr 0.2fr 0.7fr 0.4fr 0.4fr 0.4fr;
 }
 .admin-page-projects-list-item:first-child {
   text-align: center;
@@ -75,6 +75,9 @@
   grid-column: 2;
   justify-self: center;
   align-self: center;
+  img{
+    filter: invert(1);
+  }
 }
 .admin-page-projects-list-3 {
   grid-column: 3;

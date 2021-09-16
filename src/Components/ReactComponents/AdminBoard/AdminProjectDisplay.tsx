@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../../config";
 import { Approved, Featured, Remove } from "./AdminOptions";
+import Github from "../../VisualAssets/SVGIcons/github.svg"
 import { v4 as uuidv4 } from "uuid";
 
 const AdminProjectDisplay = () => {
@@ -23,7 +24,7 @@ const AdminProjectDisplay = () => {
   const projectsArray: any[] = [
     <div className="admin-page-projects-list-item">
       <span className="admin-page-projects-list-1">Project Name</span>
-      <span className="admin-page-projects-list-2">GitHub URL</span>
+      <span className="admin-page-projects-list-2">GitHub</span>
       <span className="admin-page-projects-list-3">Contributors</span>
       <span className="admin-page-projects-list-4">Approved</span>
       <span className="admin-page-projects-list-5">Featured</span>
@@ -75,7 +76,9 @@ const AdminProjectDisplay = () => {
             />
           </label>
         </div>
-        <span className="admin-page-projects-list-2">{project.githubUrl}</span>
+        <a className="admin-page-projects-list-2" href={project.githubUrl}>
+          <img src={Github} alt="github icon" />
+        </a>
         <span className="admin-page-projects-list-3">
           {project.contributors.join(", ")}
         </span>
