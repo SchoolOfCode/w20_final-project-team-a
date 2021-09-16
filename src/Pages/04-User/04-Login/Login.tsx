@@ -174,7 +174,7 @@ const Login: React.FC<Props> = ({ loginStatus, setLoginStatus }) => {
                 )}
               </section>
               <section className="user-submit">
-                <button type="submit" className="user-submit-button">
+                <button type="submit" className="button-variable">
                   Login
                 </button>
               </section>
