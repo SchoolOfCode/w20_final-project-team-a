@@ -4,6 +4,13 @@
   @include circuit-container-left;
 }
 
+.showcase-page {
+  background-image: url("../../Components/VisualAssets/BackgroundsPlus/ShowcaseBG.png");
+  background-size: 106%;
+  width: 100%;
+  height: 100%;
+}
+
 .showcase-page-container {
   position: relative;
   // left: calc(50% - 300px);

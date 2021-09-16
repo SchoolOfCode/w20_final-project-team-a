@@ -23,7 +23,7 @@ const Showcase = () => {
   }, []);
 
   return (
-    <>
+    <div className="showcase-page">
       <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
       <HorizontalCircuit className="circuit-line-left"></HorizontalCircuit>
       <div className="showcase-page-container">
@@ -33,10 +33,7 @@ const Showcase = () => {
           ))}
         </div>
       </div>
-      {/* <img src={ScrollingFog} alt="overlay style element" className="showcase-fog" /> */}
-      {/* <div className="showcase-gradient">
-      </div> */}
-    </>
+    </div>
   );
 };
 
