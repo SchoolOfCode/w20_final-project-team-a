@@ -1,4 +1,3 @@
-import React from "react";
 import githubIcon from "../VisualAssets/SVGIcons/github.svg";
 import linkedinIcon from "../VisualAssets/SVGIcons/linkedin.svg";
 import personalWebsiteIcon from "../VisualAssets/SVGIcons/link.svg";

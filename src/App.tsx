@@ -18,7 +18,7 @@ import { API_URL } from "./config";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(false);
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState<any>({})
 
   useEffect(() => {
     const checkAuth = async() =>{
@@ -51,10 +51,10 @@ function App() {
       </style>
 
       <Route path="/:page">
-        <Navbar loginStatus={loginStatus} />
+        <Navbar loginStatus={loginStatus} setLoginStatus={setLoginStatus} setCurrentUser={setCurrentUser}/>
       </Route>
       <Route exact path="/">
-        <Navbar loginStatus={loginStatus} />
+        <Navbar loginStatus={loginStatus} setLoginStatus={setLoginStatus} setCurrentUser={setCurrentUser} />
       </Route>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/featured" component={Homepage} />
@@ -66,7 +66,7 @@ function App() {
 
       {/* Authentication/Authenticated routes */}
       <Route exact path="/login">
-        <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+        <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} setCurrentUser={setCurrentUser}/>
       </Route>
 
       <Route exact path="/dashboard">

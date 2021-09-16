@@ -4,7 +4,7 @@ import Javascript from "./Javascript.svg";
 import Typescript from "./Typescript.svg";
 import React from "./React.svg";
 import ReactNative from "./ReactNative.svg";
-import Nodejs from "./node-dot-js.svg";
+import Nodejs from "./Nodejs.svg";
 import Expressjs from "./Expressjs.svg";
 import MongoDB from "./MongoDB.svg";
 import PostgreSQL from "./PostgreSQL.svg";
