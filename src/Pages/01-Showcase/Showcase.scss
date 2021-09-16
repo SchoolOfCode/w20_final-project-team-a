@@ -43,15 +43,15 @@
   gap: 5vw;
 }
 
-.showcase-items-container::after{
-  content: "";
-  position: fixed;
-  left: calc(180px + 5vw);
-  bottom: 0;
-  height: 10%;
-  width: 75vw;
-  background: linear-gradient(transparent, rgba(63, 62, 2, 0.3));
-}
+// .showcase-items-container::after{
+//   content: "";
+//   position: fixed;
+//   left: calc(180px + 5vw);
+//   bottom: 0;
+//   height: 10%;
+//   width: 75vw;
+//   background: linear-gradient(transparent, rgba(255, 0, 0, 0.9));
+// }
 .showcase-items-container a {
   text-decoration: none;
 }

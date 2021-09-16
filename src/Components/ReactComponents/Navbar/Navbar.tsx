@@ -57,6 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ loginStatus}) => {
                   src={UserIconDashboard}
                   alt="user icon"
                   className="navbar-user-icon-dashboard"
+                  // className={page==="/dashboard"?"navbar-user-icon-dashboard": "navbar-user-icon-dashboard-selected"}
                 />
               </Link>
               {/* <span className="navbar-dashboard-tooltip">User Dashboard</span> */}
