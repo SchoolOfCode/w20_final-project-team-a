@@ -8,10 +8,10 @@ type Props = {
     placeholder:string,
     className: string, 
     name:string,
+    value:string,
     required?:boolean,
     defaultValue?:string,
-    user:any, 
-    setUserDetails:(val:any)=> void,
+    setState:(value:any)=>void,
     index:number,
     formError: boolean[],
     setformError:(value:any)=>void
@@ -24,21 +24,21 @@ const FormInput : React.FC<Props> = ({
     placeholder,
     className,
     name,
+    value,
     required=true,
     defaultValue="",
-    user, 
-    setUserDetails,
+    setState,
     index,
     formError,
     setformError
     }) => {  
 
-    const [formValue, setFormValue] = useState(placeholder)
     const [errorMessage, setErrorMessage] = useState<string>("")
 
-    const handleChange = (e: string) => {
-        if(type==="url" && e.length > 0){
-            if(!validator.isURL(e)){
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        if(type==="url" && val.length > 0){
+            if(!validator.isURL(val)){
                 setErrorMessage("Please enter a valid URL");
                 setformError(formError.map((item,i) => (i === index) ? item = true : item))
                 return;
@@ -47,7 +47,7 @@ const FormInput : React.FC<Props> = ({
                 setformError(formError.map((item,i) => (i === index) ? item = false : item))
             }
         }
-        if (required && e.length === 0){
+        if (required && name !== "cohort" && val.length === 0){
             setErrorMessage("This field is required");
             setformError(formError.map((item,i) => (i === index) ? item = true : item))
             return;
@@ -55,8 +55,8 @@ const FormInput : React.FC<Props> = ({
             setErrorMessage("");
             setformError(formError.map((item,i) => (i === index) ? item = false : item))
         }
-        if(type==="number"){
-            if(parseInt(e,10) < 1 || parseInt(e,10) >= 8){
+        if(name==="cohort"){
+            if(parseInt(val,10) < 1 || parseInt(val,10) > 8){
                 setErrorMessage("Please enter a valid cohort number");
                 setformError(formError.map((item,i) => (i === index) ? item = true : item))
                 return;
@@ -65,9 +65,7 @@ const FormInput : React.FC<Props> = ({
                 setformError(formError.map((item,i) => (i === index) ? item = false : item))
             }
         }
-        setFormValue(e)
-        const updatedUser = {...user, [labelFor]:formValue}
-        setUserDetails(updatedUser)
+        setState(e)
     }
 
     return (
@@ -75,11 +73,12 @@ const FormInput : React.FC<Props> = ({
             <label htmlFor={labelFor}>{labelText}</label>
             <input
                 defaultValue={defaultValue}
-                // type={type}
+                type={type}
                 placeholder={placeholder}
                 name={name}
+                value={value}
                 required={required}
-                onChange={(e)=>handleChange(e.target.value)}
+                onChange={(e)=>handleChange(e)}
             ></input>
             <div className="invalid-input-message">
                 {errorMessage}
