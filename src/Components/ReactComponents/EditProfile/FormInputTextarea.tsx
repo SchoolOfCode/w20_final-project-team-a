@@ -6,16 +6,14 @@ type Props = {
     placeholder:string,
     className: string, 
     name:string,
+    value:string,
     required?:boolean,
     maxlength:number,
-    rows:number,
-    cols:number,
     defaultValue:string,
-    user:any, 
-    setUserDetails:(val:any)=> void,
+    setState:(val:any)=> void,
     index:number,
-    formError: boolean[],
-    setformError:(value:any)=>void
+    // formError: boolean[],
+    // setformError:(value:any)=>void
 }
 
 const FormInputTextarea : React.FC<Props> = ({
@@ -24,32 +22,29 @@ const FormInputTextarea : React.FC<Props> = ({
     placeholder,
     className,
     name,
+    value,
     required=true,
-    maxlength,rows,cols,
+    maxlength,
     defaultValue,
-    user, 
-    setUserDetails,
+    setState,
     index,
-    formError,
-    setformError
+    // formError,
+    // setformError
 }) => {  
 
-    const [formValue, setFormValue] = useState(placeholder)
-    const [errorMessage, setErrorMessage] = useState<string>("")
+    // const [errorMessage, setErrorMessage] = useState<string>("")
 
 
-    const handleChange = (e: string) => {
-        if (required && e.length === 0){
-            setErrorMessage("This field is required");
-            setformError(formError.map((item,i) => (i === index) ? item = true : item))
-            return;
-        } else{
-            setErrorMessage("");
-            setformError(formError.map((item,i) => (i === index) ? item = false : item))
-        }
-        setFormValue(e)
-        const updatedUser = {...user, [labelFor]:formValue}
-        setUserDetails(updatedUser)
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        // if (required && e.target.value.length === 0){
+        //     setErrorMessage("This field is required");
+        //     setformError(formError.map((item,i) => (i === index) ? item = true : item))
+        //     return;
+        // } else{
+        //     setErrorMessage("");
+        //     setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        // }
+        setState(e)
     }
 
     return (
@@ -59,14 +54,13 @@ const FormInputTextarea : React.FC<Props> = ({
                 defaultValue={defaultValue}
                 placeholder={placeholder}
                 name={name}
+                value={value}
                 required={required}
                 maxLength={maxlength}
-                rows={rows}
-                cols={cols}
-                onChange={(e)=>handleChange(e.target.value)}
+                onChange={(e)=>handleChange(e)}
             ></textarea>
             <div className="invalid-input-message">
-                {errorMessage}
+                {/* {errorMessage} */}
             </div>
         </section>
     )

@@ -32,10 +32,6 @@ const FormInputImage : React.FC<Props> = ({
         setErrorMessage("");
         if (!e.target.files || e.target.files.length === 0) {
             setValue(null);
-            if (name === "appImage"){
-                setErrorMessage("An image of your application is required");
-                setformError(formError.map((item,i) => (i === index) ? item = true : item))
-            }
             return;
         }
         if (e.target.files[0].size > MAX_IMAGE_SIZE){
