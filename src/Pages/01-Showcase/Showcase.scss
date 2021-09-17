@@ -45,6 +45,7 @@
 .showcase-item {
   display: grid;
   grid-template-columns: 2em 30vw;
+  height: max-content;
 }
 
 .showcase-title-text {
