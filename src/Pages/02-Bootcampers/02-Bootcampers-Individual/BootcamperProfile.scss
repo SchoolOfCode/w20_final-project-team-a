@@ -105,7 +105,7 @@
   justify-self: center;
   align-self: center;
 }
-// --------------------------------------- 
+// ---------------------------------------
 
 .individual-profile-line-2 {
   position: absolute;
@@ -115,7 +115,7 @@
   display: grid;
   grid-template-columns: 90% 10%;
   grid-template-rows: 80% 8px;
-  .individual-profile-projects-title  {
+  .individual-profile-projects-title {
     align-self: center;
     justify-self: flex-end;
     padding-right: 1em;
@@ -147,12 +147,13 @@
   display: grid;
   grid-template-columns: repeat(2, 35vw);
   gap: 5vw;
-  overflow: auto;
-  -ms-overflow-style: none; /* IE*/
-  scrollbar-width: none; /* Firefox */
+  overflow-y: auto;
+  overflow-x: hidden;
+  // -ms-overflow-style: none; /* IE*/
+  // scrollbar-width: none; /* Firefox */
 }
 .individual-profile-projects-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  // display: none; /* Safari and Chrome */
 }
 
 .individual-profile-projects {
