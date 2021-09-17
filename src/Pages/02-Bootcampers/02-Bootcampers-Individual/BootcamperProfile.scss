@@ -60,12 +60,12 @@
   display: flex;
   justify-content: space-evenly;
   align-self: center;
-  padding-top: 0.5em;
-  // margin-bottom: calc(0px + 3vw);
+  // padding-top: 0.5em;
+  margin-bottom: calc(0px + 1vh + 0.5vw);
 }
 
 .social-icons {
-  width: 2.5vw;
+  width: calc(0.5em + 0.5vw + 2vh);
   filter: invert(1) grayscale(1) brightness(2);
 }
 .social-icons:hover {
