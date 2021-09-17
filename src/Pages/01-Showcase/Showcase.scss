@@ -13,11 +13,12 @@
   position: relative;
   left: calc(180px + 5vw);
   top: calc(180px + 5vw);
-  height: calc(100vh - 250px);
+  height: calc(100vh - 310px);
   width: 75vw;
 
   overflow-y: scroll;
   overflow-x: hidden;
+  font-weight: 600;
 }
 
 .showcase-items-container {
@@ -48,8 +49,7 @@
 
 .showcase-title-text {
   color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: calc(1em + 0.5vw);
+  font-size: calc(1em + 0.7vw);
   grid-column: 2/3;
   grid-row: 1;
   width: max-content;
@@ -135,8 +135,9 @@
 
 .circuit-right {
   right: 0;
-  width: 102.7%;
-  max-width: 102.7%;
+  width: calc(100% - 180px);
+  // max-width: 100%;
+  filter: opacity(0.5);
   object-fit: cover;
   position: absolute;
   bottom: 0;
