@@ -8,6 +8,8 @@
 
 html {
   background-color: $primary-background-color;
+  background-image: url("./Components/VisualAssets/BackgroundsSVG/MainBG.svg");
+  background-size: cover;
 }
 
 a {
