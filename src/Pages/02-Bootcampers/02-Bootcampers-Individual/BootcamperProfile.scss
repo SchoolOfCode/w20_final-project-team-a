@@ -10,16 +10,39 @@
   height: 35vh;
 }
 
-.individual-profile-name {
-  grid-row: 1;
-  grid-column: 1;
-  // justify-self: flex-end;
-  text-align: right;
-  font-size: 2em;
-  padding-top: 0.5em;
-  // padding-right: calc(1vw);
+.individual-profile-line-1 {
+  position: absolute;
+  top: 180px;
+  width: 30%;
+  left: 180px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 80% 8px;
+  .individual-profile-name {
+    align-self: center;
+    justify-self: flex-end;
+    padding-right: 1em;
+    font-size: 2em;
+  }
+  .circuit-line {
+    grid-column: 1/2;
+    grid-row: 2;
+    // height: 8px;
+    background-color: $circuit-yellow;
+    // align-self: flex-end;
+  }
+  .circuit-end {
+    grid-column: 2;
+    grid-row: 2;
+    background: $circuit-yellow;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    justify-self: flex-start;
+    align-self: center;
+    transform: translateX(-5px);
+  }
 }
-
 .individual-profile-statement {
   grid-row: 2/3;
   padding-left: 1em;
@@ -79,26 +102,47 @@
   justify-self: center;
 }
 
-.individual-profile-projects-title {
-  position: absolute;
-  top: calc(180px - 2.9em + 40%);
-  left: calc(100vw - (100vw - 328px));
-  font-size: 2em;
-  width: 200px;
-  text-align: right;
-}
+// .individual-profile-projects-title {
+//   position: absolute;
+//   top: calc(180px - 2.9em + 40%);
+//   left: calc(100vw - (100vw - 328px));
+//   font-size: 2em;
+//   width: 200px;
+//   text-align: right;
+// }
 
-.individual-profile-line-1 {
-  position: absolute;
-  top: 180px;
-  width: 40%;
-  left: 180px;
-}
 .individual-profile-line-2 {
   position: absolute;
   top: calc(180px - 3.2em + 38%);
-  width: 40%;
+  width: 30%;
   left: 180px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 80% 8px;
+  .individual-profile-projects-title  {
+    align-self: center;
+    justify-self: flex-end;
+    padding-right: 1em;
+    font-size: 2em;
+  }
+  .circuit-line {
+    grid-column: 1/2;
+    grid-row: 2;
+    // height: 8px;
+    background-color: $circuit-yellow;
+    // align-self: flex-end;
+  }
+  .circuit-end {
+    grid-column: 2;
+    grid-row: 2;
+    background: $circuit-yellow;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    justify-self: flex-start;
+    align-self: center;
+    transform: translateX(-5px);
+  }
 }
 
 .individual-profile-projects-container {

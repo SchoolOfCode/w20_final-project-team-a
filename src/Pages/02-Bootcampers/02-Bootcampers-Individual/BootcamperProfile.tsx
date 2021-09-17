@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./BootcamperProfile.scss";
-import HorizontalCircuit from "../../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
+// import HorizontalCircuit from "../../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import SocialLinks from "../../../Components/ReactComponents/SocialLinks";
 import { API_URL } from "../../../config";
@@ -39,9 +39,12 @@ const BootcamperProfile = (data: any) => {
       <LeftVerticalTitle
         title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
       />
-      <HorizontalCircuit className="individual-profile-line-1" />
-      <section className="individual-profile-container">
+      <div className="individual-profile-line-1">
         <h2 className="individual-profile-name">{user.displayName}</h2>
+        <div className="circuit-line"></div>
+        <div className="circuit-end"></div>
+      </div>
+      <section className="individual-profile-container">
         <p className="individual-profile-statement">
           {user.statement || "Test"}
         </p>
@@ -67,9 +70,11 @@ const BootcamperProfile = (data: any) => {
         />
       </section>
 
-      <h3 className="individual-profile-projects-title">My Projects</h3>
-      <HorizontalCircuit className="individual-profile-line-2" />
-
+      <div className="individual-profile-line-2">
+        <h3 className="individual-profile-projects-title">My Projects</h3>
+        <div className="circuit-line"></div>
+        <div className="circuit-end"></div>
+      </div>
       <section className="individual-profile-projects-container">
         <div className="individual-profile-projects">
           {userProjects.map((project, i) => {
