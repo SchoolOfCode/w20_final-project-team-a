@@ -36,7 +36,9 @@ const BootcamperProfile = (data: any) => {
 
   return (
     <div className="individual-profile-page">
-      <LeftVerticalTitle title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}/>
+      <LeftVerticalTitle
+        title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
+      />
 
       <div className="individual-profile-line-1">
         <h2 className="individual-profile-name">{user.displayName}</h2>
