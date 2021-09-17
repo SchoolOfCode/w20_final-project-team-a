@@ -5,7 +5,7 @@ import Projects from "../../Components/ReactComponents/Projects";
 
 import axios from "axios";
 import { API_URL } from "../../config";
-
+import circuitRight from "../../Components/VisualAssets/BackgroundsSVG/ShowcaseBG.svg";
 import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 // import ScrollingFog from "../../Components/VisualAssets/BackgroundsPlus/FogOverlay2.png"
@@ -24,6 +24,7 @@ const Showcase = () => {
 
   return (
     <div className="showcase-page">
+      <img className="circuit-right" src={circuitRight} alt="circuit-board" />
       <LeftVerticalTitle title="Showcase"></LeftVerticalTitle>
       <HorizontalCircuit className="circuit-line-left"></HorizontalCircuit>
       <div className="showcase-page-container">
