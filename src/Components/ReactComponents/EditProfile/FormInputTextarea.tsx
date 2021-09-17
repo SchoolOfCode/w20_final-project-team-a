@@ -12,8 +12,8 @@ type Props = {
     defaultValue:string,
     setState:(val:any)=> void,
     index:number,
-    formError: boolean[],
-    setformError:(value:any)=>void
+    // formError: boolean[],
+    // setformError:(value:any)=>void
 }
 
 const FormInputTextarea : React.FC<Props> = ({
@@ -28,11 +28,11 @@ const FormInputTextarea : React.FC<Props> = ({
     defaultValue,
     setState,
     index,
-    formError,
-    setformError
+    // formError,
+    // setformError
 }) => {  
 
-    const [errorMessage, setErrorMessage] = useState<string>("")
+    // const [errorMessage, setErrorMessage] = useState<string>("")
 
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -60,7 +60,7 @@ const FormInputTextarea : React.FC<Props> = ({
                 onChange={(e)=>handleChange(e)}
             ></textarea>
             <div className="invalid-input-message">
-                {errorMessage}
+                {/* {errorMessage} */}
             </div>
         </section>
     )

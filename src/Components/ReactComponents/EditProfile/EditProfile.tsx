@@ -27,6 +27,8 @@ export interface User {
   location?: string;
   role: string;
   projects?: string[];
+  hasError?:boolean;
+  isFormValid?:boolean;
 }
 
 interface ProfileProps {
@@ -38,12 +40,24 @@ axios.defaults.withCredentials = true;
 
 const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
 
-  const initialState:User = user;
+  const [formError, setformError] = useState<boolean[]>(new Array(10).fill(false));
+  const [newImage, setNewImage] = useState();
+  const [failure, setFailure] = useState(false);
+  const [failureMsg, setFailureMsg] = useState<string>("");
+  const history = useHistory();
 
-  type Action = {
+  const initialState:User = {...user, hasError:false, isFormValid:true};
+
+  type Action = 
+  | {
     type: "editing"; 
     field: string; 
     payload: string;
+  }
+  | {
+    type: "error";
+    index: number,
+    errorState: boolean
   }
 
   const userReducer = (state: User, action: Action) =>{
@@ -52,36 +66,58 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           ...state,
           [action.field]: action.payload
         }
-    } else{
-      return state
     }
+    // if(action.type === "error"){
+    //   let i = action.index;
+    //   let errors = [...formError.slice(0,i), action.errorState,...formError.slice(i+1)]
+    //   setformError(errors)
+    //   if (formError.some(item=>item)){
+    //     return {
+    //       ...state,
+    //       isFormValid: false
+    //     }
+    //   }
+    //   else{
+    //     return {
+    //       ...state,
+    //       isFormValid: true
+    //     }
+    //   }
+    // }
+    return state
   }
 
   const [formState, dispatch] = useReducer(userReducer, initialState);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>{
-    dispatch({
+    dispatch(
+      {
       type: "editing",
       field: e.target.name,
       payload: e.target.value
     })
   }
-  const [formError, setformError] = useState<boolean[]>(new Array(10).fill(false));
-  const [newImage, setNewImage] = useState();
-  const [failure, setFailure] = useState(false);
-  const [failureMsg, setFailureMsg] = useState<string>("");
-  const history = useHistory();
+
+  // const handleError = (index:number, errorState:boolean) =>{
+  //   dispatch(
+  //     {
+  //     type: "error",
+  //     index: index,
+  //     errorState: errorState
+  //   })
+  // }
+
 
   const submit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    // if (formError.some(item=>item)){
-    //   setFailure(true)
-    //   setFailureMsg("Please check all required fields have valid inputs")
-    //   return;
-    // } else{
-    //   setFailure(false);
-    //   setFailureMsg("");
-    // }
+    if (formError.some(item=>item)){
+      setFailure(true)
+      setFailureMsg("Please check all required fields have valid inputs")
+      return;
+    } else{
+      setFailure(false);
+      setFailureMsg("");
+    }
     const formData = new FormData();
     formData.append("newProfilePhoto", newImage!);
     formData.append("_id", user._id);
@@ -112,8 +148,10 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
         setFailureMsg("")
         setFailure(false)
         setLoginStatus(true) //being used to force update to app level user details
+        console.log(data, setLoginStatus)
         history.push({
-          pathname: '/dashboard',
+          pathname: '/bootcamper_profile',
+          state: data.user 
         })
       } else{
         setFailure(true)
@@ -144,8 +182,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.displayName}
           setState={handleInput}
           index={0}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="githubUrl"
@@ -159,8 +197,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.githubUrl || ""}
           setState={handleInput}
           index={1}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="linkedin"
@@ -174,8 +212,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.linkedin || ""}
           setState={handleInput}
           index={2}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="twitter"
@@ -189,8 +227,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.twitter || ""}  
           setState={handleInput}
           index={3}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="youtube"
@@ -204,8 +242,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.youtube || ""}
           setState={handleInput}
           index={4}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="personalWebsite"
@@ -219,8 +257,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.personalWebsite || ""}
           setState={handleInput}
           index={5}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         {/* Column 3 */}
         <FormInput
@@ -235,8 +273,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.cohort || ""}
           setState={handleInput}
           index={6}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInput
           labelFor="location"
@@ -250,8 +288,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.location || "West Midlands"}
           setState={handleInput}
           index={7}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInputTextarea
           labelFor="statement"
@@ -265,8 +303,8 @@ const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
           defaultValue={user.statement || "I <3 TypeScript"}
           setState={handleInput}
           index={8}
-          formError={formError}
-          setformError={setformError}
+          // formError={formError}
+          // setformError={handleError}
         />
         <FormInputImage
             labelFor="photo"

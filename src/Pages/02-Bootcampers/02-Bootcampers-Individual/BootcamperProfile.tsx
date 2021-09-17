@@ -13,8 +13,6 @@ const BootcamperProfile = (data: any) => {
 
   const [userProjects, setUserProjects] = useState<any[]>([]);
 
-
-
   useEffect(() => {
     const getProjects = async () => {
       try {

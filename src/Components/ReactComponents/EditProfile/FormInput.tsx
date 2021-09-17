@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import validator from "validator"
+// import validator from "validator"
 
 type Props = {
     labelFor:string, 
@@ -13,8 +13,8 @@ type Props = {
     defaultValue?:string,
     setState:(value:any)=>void,
     index:number,
-    formError: boolean[],
-    setformError:(value:any)=>void
+    // formError: boolean[],
+    // setformError:(value:any)=>void
 }
 
 const FormInput : React.FC<Props> = ({
@@ -29,39 +29,39 @@ const FormInput : React.FC<Props> = ({
     defaultValue="",
     setState,
     index,
-    formError,
-    setformError
+    // formError,
+    // setformError
     }) => {  
 
-    const [errorMessage, setErrorMessage] = useState<string>("")
+    // const [errorMessage, setErrorMessage] = useState<string>("")
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-        if(type==="url" && val.length > 0){
-            if(validator.isURL(val)){
-                setErrorMessage("");
-                setformError(formError.map((item,i) => (i === index) ? item = false : item))
-            }else{
-                setErrorMessage("Please enter a valid URL");
-                setformError(formError.map((item,i) => (i === index) ? item = true : item))
-            }
-        }
-        if (required && val.length === 0){
-            setErrorMessage("This field is required");
-            setformError(formError.map((item,i) => (i === index) ? item = true : item))
-        }else{
-            setErrorMessage("");
-            setformError(formError.map((item,i) => (i === index) ? item = false : item))
-        }
-        if(name==="cohort"){
-            if(parseInt(val,10) < 1 || parseInt(val,10) > 8){
-                setErrorMessage("Please enter a valid cohort number");
-                setformError(formError.map((item,i) => (i === index) ? item = true : item))
-            }else{
-                setErrorMessage("");
-                setformError(formError.map((item,i) => (i === index) ? item = false : item))
-            }
-        }
+        // const val = e.target.value;
+        // if(type==="url" && val.length > 0){
+        //     if(validator.isURL(val)){
+        //         setErrorMessage("");
+        //         setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        //     }else{
+        //         setErrorMessage("Please enter a valid URL");
+        //         setformError(formError.map((item,i) => (i === index) ? item = true : item))
+        //     }
+        // }
+        // if (required && val.length === 0){
+        //     setErrorMessage("This field is required");
+        //     setformError(formError.map((item,i) => (i === index) ? item = true : item))
+        // }else{
+        //     setErrorMessage("");
+        //     setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        // }
+        // if(name==="cohort"){
+        //     if(parseInt(val,10) < 1 || parseInt(val,10) > 8){
+        //         setErrorMessage("Please enter a valid cohort number");
+        //         setformError(formError.map((item,i) => (i === index) ? item = true : item))
+        //     }else{
+        //         setErrorMessage("");
+        //         setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        //     }
+        // }
         setState(e)
     }
 
@@ -78,7 +78,7 @@ const FormInput : React.FC<Props> = ({
                 onChange={(e)=>handleChange(e)}
             ></input>
             <div className="invalid-input-message">
-                {errorMessage}
+                {/* {errorMessage} */}
             </div>
         </section>
     )
