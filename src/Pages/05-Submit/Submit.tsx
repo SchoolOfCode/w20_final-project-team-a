@@ -15,12 +15,13 @@ import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitl
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import {useHistory} from 'react-router-dom'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router-dom";
+import circuitOther from "../../Components/VisualAssets/BackgroundsSVG/SubmitBG.svg";
 
 type Props = {
   loginStatus: boolean;
-  currentUser:any
+  currentUser: any;
 };
 
 type ProjectSubmitForm = {
@@ -38,7 +39,7 @@ type ProjectSubmitForm = {
   additionalAppImage3?: File;
 };
 
-const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
+const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
   const history = useHistory();
   if (!currentUser || loginStatus === false) history.push("/login");
 
@@ -68,7 +69,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<ProjectSubmitForm>({
-    resolver: yupResolver(SubmitValidationSchema)
+    resolver: yupResolver(SubmitValidationSchema),
   });
 
   const onSubmit = async (formData: ProjectSubmitForm) => {
@@ -154,6 +155,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
 
   return (
     <div className="submit-page-container">
+      <img className="circuit-right" src={circuitOther} alt="circuit-board" />
       <LeftVerticalTitle title="Submit"></LeftVerticalTitle>
 
       <HorizontalCircuit className="submit-horizontal-line" />

@@ -7,13 +7,12 @@
   width: 97%;
 }
 
-.edit-page-background{
-  position:absolute;
-  top:0;
-  left:0;
+.edit-page-background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
 }
-
 
 .edit-profile-horizontal-line {
   position: absolute;
@@ -37,13 +36,13 @@
   align-items: center;
 }
 
-.edit-page-microchip{
+.edit-page-microchip {
   z-index: -1;
   grid-column: 1/2;
   grid-row: 1/4;
   width: 425px;
   max-width: 25vw;
-  max-height:400px;
+  max-height: 400px;
   transform: scale(-1, -1);
   opacity: 0.7;
 }
@@ -58,10 +57,12 @@
 .edit-page-picture-image {
   width: 250px;
   max-width: 25vw;
-  max-height: 400px;
+  height: 300px;
+  max-width: 30vh;
   grid-row: 2;
   grid-column: 2;
-  border: 2px solid $circuit-yellow;
+  border: 2px solid #ffde59;
+  object-fit: cover;
 }
 
 .edit-page-picture-greeting {
@@ -79,25 +80,23 @@
   line-height: 2em;
 }
 
-
 .edit-form-photo-input {
   grid-row: 4/7;
   grid-column: 1;
   display: grid;
 }
-.edit-form-photo-input > *{
+.edit-form-photo-input > * {
   justify-self: center;
 }
-.edit-form-photo-input #fileInput{
+.edit-form-photo-input #fileInput {
   justify-self: flex-end;
   margin-left: 100px;
   overflow: hidden;
 }
-.edit-form-photo-input-preview{
+.edit-form-photo-input-preview {
   width: 200px;
   max-width: 15vw;
 }
-
 
 /* Edit Profile Save Button & errors*/
 .edit-profile-messages-container {
@@ -131,7 +130,7 @@
   display: block;
   padding: 0.5em 0.5em;
 }
-.edit-profile-form-group input{
+.edit-profile-form-group input {
   font-size: 0.8em;
   width: calc(5em + 10vw);
 }
@@ -139,7 +138,7 @@
 .edit-form-githubUrl-input,
 .edit-form-linkedin-input,
 .edit-form-twitter-input,
-.edit-form-youtube-input{
+.edit-form-youtube-input {
   grid-column: 2;
   align-self: center;
 }
@@ -152,21 +151,17 @@
   padding-top: 0.5em;
 }
 
-
-
 .edit-form-statement-input textarea {
   display: block;
   width: calc(4em + 10vw);
   padding: 1em 1em;
 }
 
-.edit-form-personal-input{
+.edit-form-personal-input {
   grid-column: 3;
   grid-row: 3;
   justify-self: left;
-
 }
-
 
 .edit-form-location-input {
   grid-column: 3;
@@ -189,4 +184,3 @@
 // .edit-form-cohort-input>.invalid-input-message{
 //   padding-top: 10px;
 // }
-
