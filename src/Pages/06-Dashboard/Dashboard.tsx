@@ -7,9 +7,10 @@ import EditProfile from "../../Components/ReactComponents/EditProfile/EditProfil
 type DashboardProps = {
   loginStatus:boolean,
   currentUser:any,
+  setLoginStatus:(value:boolean)=>void
 };
 
-const Dashboard: React.FC<DashboardProps> = ({ loginStatus, currentUser}) => {
+const Dashboard: React.FC<DashboardProps> = ({ loginStatus, currentUser, setLoginStatus}) => {
 
 
   const history = useHistory();
@@ -18,7 +19,11 @@ const Dashboard: React.FC<DashboardProps> = ({ loginStatus, currentUser}) => {
   return (
     <>
       {currentUser.role === "admin" && <AdminBoard />}
-      {currentUser.displayName && currentUser.role !== "admin" && <EditProfile user={currentUser}/>}
+      {currentUser.displayName && currentUser.role !== "admin" && 
+        <EditProfile 
+          user={currentUser}
+          setLoginStatus={ setLoginStatus}
+        />}
     </>
   )
 

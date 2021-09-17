@@ -31,11 +31,12 @@ export interface User {
 
 interface ProfileProps {
   user: User;
+  setLoginStatus:(value:boolean)=>void
 }
 
 axios.defaults.withCredentials = true;
 
-const EditProfile: React.FC<ProfileProps> = ({ user }) => {
+const EditProfile: React.FC<ProfileProps> = ({ user,setLoginStatus }) => {
 
   const initialState:User = user;
 
@@ -69,59 +70,59 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
   const [newImage, setNewImage] = useState();
   const [failure, setFailure] = useState(false);
   const [failureMsg, setFailureMsg] = useState<string>("");
-  // const history = useHistory();
+  const history = useHistory();
 
-  // const submit = async(e: any) => {
-  //   e.preventDefault();
-  //   if (formError.some(item=>item)){
-  //     setFailure(true)
-  //     setFailureMsg("Please check all required fields have valid inputs")
-  //     return;
-  //   } else{
-  //     setFailure(false);
-  //     setFailureMsg("");
-  //   }
-  //   const formData = new FormData();
-  //   formData.append("newProfilePhoto", newImage!);
-  //   formData.append("_id", user._id);
-  //   formData.append("displayName", userDetails.displayName || user.displayName || "");
-  //   formData.append(
-  //     "photo",
-  //     user.photo!); //default handled on backend
-  //   formData.append("githubUrl", userDetails.githubUrl || user.githubUrl || "");
-  //   formData.append("linkedin", userDetails.linkedin || user.linkedin || "");
-  //   formData.append("twitter", userDetails.twitter || user.twitter || "");
-  //   formData.append("youtube", userDetails.youtube || user.youtube || "");
-  //   formData.append(
-  //     "personalWebsite",
-  //     userDetails.personalWebsite || user.personalWebsite || ""
-  //   );
-  //   formData.append("cohort", userDetails.cohort || user.cohort || "");
-  //   formData.append("location", userDetails.location || user.location || "");
-  //   formData.append("statement", userDetails.statement || user.statement || "");
+  const submit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    // if (formError.some(item=>item)){
+    //   setFailure(true)
+    //   setFailureMsg("Please check all required fields have valid inputs")
+    //   return;
+    // } else{
+    //   setFailure(false);
+    //   setFailureMsg("");
+    // }
+    const formData = new FormData();
+    formData.append("newProfilePhoto", newImage!);
+    formData.append("_id", user._id);
+    formData.append("displayName", formState.displayName || user.displayName);
+    formData.append(
+      "photo",
+      user.photo!); //default handled on backend
+    formData.append("githubUrl", formState.githubUrl || user.githubUrl || "");
+    formData.append("linkedin", formState.linkedin || user.linkedin || "");
+    formData.append("twitter", formState.twitter || user.twitter || "");
+    formData.append("youtube", formState.youtube || user.youtube || "");
+    formData.append(
+      "personalWebsite",
+      formState.personalWebsite || user.personalWebsite || ""
+    );
+    formData.append("cohort", formState.cohort || user.cohort || "");
+    formData.append("location", formState.location || user.location || "");
+    formData.append("statement", formState.statement || user.statement || "");
     
-  //   try{
-  //     const response = await axios({
-  //       url: API_URL + "auth/user/update",
-  //       method: "put",
-  //       data: formData,
-  //     })
-  //     const data = await response.data
-  //     if (await data.success) {
-  //       setFailureMsg("")
-  //       setFailure(false)
-  //       history.push({
-  //         pathname: '/dashboard',
-  //         state:{currentUser:data.user}
-  //       })
-  //     } else{
-  //       setFailure(true)
-  //       setFailureMsg(data.msg);
-  //     }
-  //   }catch(err){
-  //     console.error(err);
-  //   };
-  // }
+    try{
+      const response = await axios({
+        url: API_URL + "auth/user/update",
+        method: "put",
+        data: formData,
+      })
+      const data = await response.data
+      if (await data.success) {
+        setFailureMsg("")
+        setFailure(false)
+        setLoginStatus(true) //being used to force update to app level user details
+        history.push({
+          pathname: '/dashboard',
+        })
+      } else{
+        setFailure(true)
+        setFailureMsg(data.msg);
+      }
+    }catch(err){
+      console.error(err);
+    };
+  }
   return (
     <div className="edit-page-container">
       <img src={BGImage} alt="circuit design" className="edit-page-background"/>
@@ -252,19 +253,17 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
           formError={formError}
           setformError={setformError}
         />
-        {/* <FormInputTextarea
+        <FormInputTextarea
           labelFor="statement"
           labelText="Personal Statement:"
-          placeholder={userDetails.statement || "I <3 TypeScript"}
+          placeholder="A personal quote or aspiration"
           className="edit-form-statement-input"
-          name="userDetails[statement]"
+          name="statement"
+          value={formState.statement || ""}
           required={true}
           maxlength={140}
-          rows={5}
-          cols={4}
           defaultValue={user.statement || "I <3 TypeScript"}
-          user={userDetails}
-          setUserDetails={setUserDetails}
+          setState={handleInput}
           index={8}
           formError={formError}
           setformError={setformError}
@@ -279,14 +278,14 @@ const EditProfile: React.FC<ProfileProps> = ({ user }) => {
             index={9}
             formError={formError}
             setformError={setformError}
-          /> */}
+          />
         <section className="edit-profile-messages-container">
           {failure && (
             <div className="edit-profile-messages-failure">
               <h3 className="edit-profile-messages-text">{failureMsg}</h3>
             </div>
           )}
-        {/* <button className="edit-page-button" onClick={(e) => submit(e)}>Save Changes</button> */}
+        <button className="edit-page-button" onClick={(e) => submit(e)}>Save Changes</button>
         </section>
       </form>
     </div>

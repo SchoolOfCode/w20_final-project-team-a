@@ -38,19 +38,17 @@ const FormInput : React.FC<Props> = ({
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
         if(type==="url" && val.length > 0){
-            if(!validator.isURL(val)){
-                setErrorMessage("Please enter a valid URL");
-                setformError(formError.map((item,i) => (i === index) ? item = true : item))
-                return;
-            }else{
+            if(validator.isURL(val)){
                 setErrorMessage("");
                 setformError(formError.map((item,i) => (i === index) ? item = false : item))
+            }else{
+                setErrorMessage("Please enter a valid URL");
+                setformError(formError.map((item,i) => (i === index) ? item = true : item))
             }
         }
-        if (required && name !== "cohort" && val.length === 0){
+        if (required && val.length === 0){
             setErrorMessage("This field is required");
             setformError(formError.map((item,i) => (i === index) ? item = true : item))
-            return;
         }else{
             setErrorMessage("");
             setformError(formError.map((item,i) => (i === index) ? item = false : item))
@@ -59,7 +57,6 @@ const FormInput : React.FC<Props> = ({
             if(parseInt(val,10) < 1 || parseInt(val,10) > 8){
                 setErrorMessage("Please enter a valid cohort number");
                 setformError(formError.map((item,i) => (i === index) ? item = true : item))
-                return;
             }else{
                 setErrorMessage("");
                 setformError(formError.map((item,i) => (i === index) ? item = false : item))
