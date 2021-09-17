@@ -36,22 +36,21 @@ const BootcamperProfile = (data: any) => {
 
   return (
     <div className="individual-profile-page">
-      <LeftVerticalTitle
-        title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
-      />
+      <LeftVerticalTitle title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}/>
+
       <div className="individual-profile-line-1">
         <h2 className="individual-profile-name">{user.displayName}</h2>
         <div className="circuit-line"></div>
         <div className="circuit-end"></div>
       </div>
+
       <section className="individual-profile-container">
         <p className="individual-profile-statement">
           {user.statement || "Test"}
         </p>
         <SocialLinks className="social-icons" {...user} />
-
         <section className="individual-tech-used">
-          <h3 className="individual-tech-used-title">My projects use:</h3>
+          <h3 className="individual-tech-used-title">I use:</h3>
           <ul>
             {[...techIcons].map((icon, i) => {
               return (
@@ -62,7 +61,6 @@ const BootcamperProfile = (data: any) => {
             })}
           </ul>
         </section>
-
         <img
           className="individual-profile-photo"
           src={user.photo}
@@ -75,6 +73,7 @@ const BootcamperProfile = (data: any) => {
         <div className="circuit-line"></div>
         <div className="circuit-end"></div>
       </div>
+
       <section className="individual-profile-projects-container">
         <div className="individual-profile-projects">
           {userProjects.map((project, i) => {
