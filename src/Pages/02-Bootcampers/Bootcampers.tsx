@@ -5,6 +5,7 @@ import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitl
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 import axios from "axios";
 import { API_URL } from "../../config";
+import circuitRight from "../../Components/VisualAssets/BackgroundsSVG/ShowcaseBG.svg";
 
 const ProfilesShowcase = () => {
   const [data, setData] = useState([{}]);
@@ -21,6 +22,7 @@ const ProfilesShowcase = () => {
 
   return (
     <>
+      <img className="circuit-right" src={circuitRight} alt="circuit-board" />
       <div className="bootcampers-page-container">
         <LeftVerticalTitle title="Bootcampers"></LeftVerticalTitle>
         <HorizontalCircuit className="circuit-line-left"></HorizontalCircuit>

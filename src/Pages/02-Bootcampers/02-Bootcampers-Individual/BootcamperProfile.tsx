@@ -7,6 +7,7 @@ import { API_URL } from "../../../config";
 import axios from "axios";
 import Projects from "../../../Components/ReactComponents/Projects";
 import { builtUsingSVG } from "../../../Components/VisualAssets/SVGIcons/svgIcons";
+import circuitOther from "../../../Components/VisualAssets/BackgroundsSVG/SubmitBG.svg";
 
 const BootcamperProfile = (data: any) => {
   const user = data.location.state;
@@ -36,6 +37,7 @@ const BootcamperProfile = (data: any) => {
 
   return (
     <div className="individual-profile-page">
+      <img className="circuit-right" src={circuitOther} alt="circuit-board" />
       <LeftVerticalTitle
         title={`Bootcamp${user.cohort ? " " + user.cohort : "er"}`}
       />
