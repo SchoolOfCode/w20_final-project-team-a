@@ -4,7 +4,7 @@ import { API_URL } from "../../../config";
 import "../04-User-Base.scss";
 import LeftVerticalTitle from "../../../Components/ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { UserSignupValidationSchema } from "../../../Components/ReactComponents/Signup/UserSignupValidationSchema";
 import CircleCircuit from "../../../Components/VisualAssets/BackgroundsPlus/CircleCircuit.svg";
 import CircuitHead from "../../../Components/VisualAssets/BackgroundsPlus/CircuitHead.svg";
@@ -28,7 +28,7 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<UserSignupForm>({
-    resolver: yupResolver(UserSignupValidationSchema)
+    resolver: yupResolver(UserSignupValidationSchema),
   });
 
   const onSubmit = (formData: UserSignupForm) => {
@@ -156,7 +156,7 @@ const Signup = () => {
             {success && (
               <div className="user-messages-container-success">
                 <h3 className="user-messages-text-success">
-                  Your account has been sucessfully registered. Click{" "}
+                  Your account has been successfully registered. Click{" "}
                   <a href="/login">here</a> to login
                 </h3>
               </div>

@@ -1,4 +1,4 @@
-describe("Login Tests", () => {
+describe("Login Success", () => {
   it("tests if user is registered", () => {
     cy.visit("http://localhost:3000/login");
     cy.get("#email")
