@@ -15,12 +15,12 @@ import LeftVerticalTitle from "../../Components/ReactComponents/LeftVerticalTitl
 import HorizontalCircuit from "../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
 
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import {useHistory} from 'react-router-dom'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router-dom";
 
 type Props = {
   loginStatus: boolean;
-  currentUser:any
+  currentUser: any;
 };
 
 type ProjectSubmitForm = {
@@ -38,7 +38,7 @@ type ProjectSubmitForm = {
   additionalAppImage3?: File;
 };
 
-const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
+const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
   const history = useHistory();
   if (!currentUser || loginStatus === false) history.push("/login");
 
@@ -68,7 +68,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<ProjectSubmitForm>({
-    resolver: yupResolver(SubmitValidationSchema)
+    resolver: yupResolver(SubmitValidationSchema),
   });
 
   const onSubmit = async (formData: ProjectSubmitForm) => {
@@ -169,6 +169,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
               type="text"
               {...register("projectName")}
               placeholder="My project"
+              id="projectName"
               className={`${errors.projectName ? "-invalid-input" : ""}`}
             ></input>
             <div className="invalid-input-message">
@@ -180,6 +181,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
             <textarea
               {...register("problemStatement")}
               placeholder="My project was designed to solve..."
+              id="problemStatement"
               className={`${
                 errors.problemStatement ? "-invalid-input invalid-input" : ""
               }`}
@@ -192,7 +194,8 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
             <label>Additional Information:</label>
             <textarea
               {...register("additionalInformation")}
-              placeholder="Optional additional information..."
+              placeholder="Optional additional information about your project..."
+              id="additionalInformation"
               className={`${
                 errors.additionalInformation
                   ? "-invalid-input invalid-input"
@@ -209,6 +212,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
               type="text"
               {...register("githubUrl")}
               placeholder="http://www.github.com/facebook"
+              id="GithubRepo"
               className={`${
                 errors.githubUrl ? "-invalid-input invalid-input" : ""
               }`}
@@ -223,6 +227,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
               type="number"
               {...register("weekNumber")}
               placeholder="1"
+              id="WeekNumber"
               defaultValue={1}
               className={`${
                 errors.weekNumber ? "-invalid-input invalid-input" : ""
@@ -239,6 +244,7 @@ const Submit: React.FC<Props> = ({ loginStatus,currentUser }) => {
               type="text"
               {...register("appDeploymentUrl")}
               placeholder="www.cool-app.com"
+              id="deployedAppUrl"
               className={`${
                 errors.appDeploymentUrl ? "-invalid-input invalid-input" : ""
               }`}

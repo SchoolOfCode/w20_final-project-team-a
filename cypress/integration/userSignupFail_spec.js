@@ -1,10 +1,10 @@
 describe("Signup Tests", () => {
-  it("user registration", () => {
+  it("user already registered", () => {
     cy.visit("http://localhost:3000/signup");
     cy.get("#email")
-      .type("newuser@fakemail.com")
-      .should("have.value", "newuser@fakemail.com");
-    cy.get("#displayName").type("Demo User").should("have.value", "Demo User");
+      .type("admin@gmail.com")
+      .should("have.value", "admin@gmail.com");
+    cy.get("#displayName").type("Admin").should("have.value", "Admin");
     cy.get("#password").type("123456").should("have.value", "123456");
     cy.get("#confirmPassword").type("123456").should("have.value", "123456");
     cy.get(".user-submit").click();
