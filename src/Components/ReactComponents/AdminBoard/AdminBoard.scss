@@ -2,10 +2,8 @@
 
 .admin-page-container {
   position: absolute;
-  right: 0;
-  top: 1.5em;
+  top: 0;
   left: 0;
-  bottom: 0;
 }
 /* Page global styles here */
 .admin-page-container input[type="checkbox"] {
@@ -32,7 +30,7 @@
   position: relative;
   left: 185px;
   top: 20vh;
-  width: 90vw;
+  width: 85%;
 }
 
 .admin-page-projects-list-item {
