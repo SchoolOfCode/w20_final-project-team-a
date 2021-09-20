@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import defaultProfilePic from "../VisualAssets/defaultProfilePhoto.png"
 
 type Props = {
   data: any;
@@ -7,6 +8,10 @@ type Props = {
 
 const Users: React.FC<Props> = ({ data }) => {
   const [isShown, setIsShown] = useState(false);
+
+  if (!data.photo){
+    data.photo = defaultProfilePic
+  }
 
   return (
       <Link to={{ pathname: "/bootcamper_profile", state: data }} className="bootcamper-item">

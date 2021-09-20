@@ -361,8 +361,12 @@ textarea {
   transform: translateX(-32.5%);
 }
 
-.project-submit-button {
+.submit-page-container .project-submit-button {
   width: 100px;
-  align-self: center;
-  margin-left:calc(50% - 2vw);
+  // align-self: center;
+  // margin-left:calc(50% - 2vw);
+  // margin-bottom: 20vh;
+  position: absolute;
+  bottom: 20%;
+  left: 30vw;
 }
