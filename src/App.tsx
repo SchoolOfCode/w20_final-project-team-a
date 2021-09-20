@@ -85,6 +85,7 @@ function App() {
 
       <Route exact path="/dashboard">
         <Dashboard
+          setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           loginStatus={loginStatus}
           setLoginStatus={setLoginStatus}

@@ -6,7 +6,7 @@ type Props = {
     placeholder:string,
     className: string, 
     name:string,
-    value:string,
+    // value:string,
     required?:boolean,
     maxlength:number,
     defaultValue:string,
@@ -22,7 +22,7 @@ const FormInputTextarea : React.FC<Props> = ({
     placeholder,
     className,
     name,
-    value,
+    // value,
     required=true,
     maxlength,
     defaultValue,
@@ -54,7 +54,7 @@ const FormInputTextarea : React.FC<Props> = ({
                 defaultValue={defaultValue}
                 placeholder={placeholder}
                 name={name}
-                value={value}
+                // value={value}
                 required={required}
                 maxLength={maxlength}
                 onChange={(e)=>handleChange(e)}

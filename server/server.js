@@ -20,6 +20,7 @@ import { authRouter } from "./routes/auth.js";
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 3001;
+const HOST = process.env.NODE_ENV==="dev"?process.env.DEV_HOST:process.env.PROD_HOST
 
 const db = await mongoose.connect(MongoDB.MongoURI, { 
   useNewUrlParser: true, 
@@ -29,13 +30,11 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
 })
 // db.connection.on('connected',()=> console.log("Connected to the DB") )
 
-//Midlewares
-
 
 //CORS
 app.use(
   cors({
-    origin: process.env.HOST, //or hosted location of the react app
+    origin: HOST, //or hosted location of the react app
     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
     credentials: true,
   })
@@ -81,6 +80,7 @@ if (process.env.NODE_ENV === 'prod'){
     res.sendFile(path.resolve(buildFolder, 'index.html'))
   })
 }
+
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

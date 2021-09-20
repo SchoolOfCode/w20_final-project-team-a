@@ -8,7 +8,7 @@ type Props = {
     placeholder:string,
     className: string, 
     name:string,
-    value:string,
+    // value:string,
     required?:boolean,
     defaultValue?:string,
     setState:(value:any)=>void,
@@ -24,7 +24,7 @@ const FormInput : React.FC<Props> = ({
     placeholder,
     className,
     name,
-    value,
+    // value,
     required=true,
     defaultValue="",
     setState,
@@ -73,7 +73,7 @@ const FormInput : React.FC<Props> = ({
                 type={type}
                 placeholder={placeholder}
                 name={name}
-                value={value}
+                // value={value}
                 required={required}
                 onChange={(e)=>handleChange(e)}
             ></input>

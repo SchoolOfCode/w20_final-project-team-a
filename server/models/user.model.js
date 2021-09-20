@@ -16,7 +16,7 @@ const user = new mongoose.Schema(
       required: true,
     },
     cohort: {
-      type: Number,
+      type: String,
       required: false,
     },
     githubUrl: {

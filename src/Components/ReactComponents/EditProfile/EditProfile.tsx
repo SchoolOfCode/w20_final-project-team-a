@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import "./EditProfile.scss";
 import LeftVerticalTitle from "../../ReactComponents/LeftVerticalTitle/LeftVerticalTitle";
 import HorizontalCircuit from "../../../Components/ReactComponents/HorizontalCircuit/HorizontalCircuit";
@@ -33,16 +33,18 @@ export interface User {
 interface ProfileProps {
   user: User;
   setLoginStatus: (value: boolean) => void;
+  setCurrentUser: (value:any)=>void;
 }
 
 axios.defaults.withCredentials = true;
 
-const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
+const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus, setCurrentUser }) => {
   const [formError, setformError] = useState<boolean[]>(
     new Array(10).fill(false)
   );
   const [newImage, setNewImage] = useState();
   const [failure, setFailure] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [failureMsg, setFailureMsg] = useState<string>("");
   const history = useHistory();
 
@@ -142,13 +144,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
       const data = await response.data;
       if (await data.success) {
         setFailureMsg("");
-        setFailure(false);
-        setLoginStatus(true); //being used to force update to app level user details
-        console.log(data, setLoginStatus);
-        history.push({
-          pathname: "/bootcamper_profile",
-          state: data.user,
-        });
+        setSuccess(true)
       } else {
         setFailure(true);
         setFailureMsg(data.msg);
@@ -157,6 +153,32 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const authCheck = await axios.get(API_URL + "auth/check", {
+          withCredentials: true,
+        });
+        const isLoggedIn = await authCheck.data.success;
+        if (await isLoggedIn) {
+          setCurrentUser(authCheck.data.user);
+          history.push({
+            pathname: "/dashboard",
+          });
+        }
+      } catch (err) {
+        let errorMessage =
+          "An error occurred. Please refresh the page and try again.";
+        if (err instanceof Error) {
+          errorMessage = err.message;
+        }
+        console.log(errorMessage);
+      }
+    };
+    checkAuth();
+  }, [success, history, setCurrentUser]);
+
   return (
     <div>
       <img className="circuit-right" src={circuitProfile} alt="circuit-board" />
@@ -172,7 +194,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-displayName-input"
             type="text"
             name="displayName"
-            value={formState.displayName}
             required={true}
             defaultValue={user.displayName}
             setState={handleInput}
@@ -187,7 +208,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-githubUrl-input"
             type="url"
             name="githubUrl"
-            value={formState.githubUrl || ""}
             required={false}
             defaultValue={user.githubUrl || ""}
             setState={handleInput}
@@ -202,7 +222,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-linkedin-input"
             type="url"
             name="linkedin"
-            value={formState.linkedin || ""}
             required={false}
             defaultValue={user.linkedin || ""}
             setState={handleInput}
@@ -217,7 +236,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-twitter-input"
             type="url"
             name="twitter"
-            value={formState.twitter || ""}
             required={false}
             defaultValue={user.twitter || ""}
             setState={handleInput}
@@ -232,7 +250,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-youtube-input"
             type="url"
             name="youtube"
-            value={formState.youtube || ""}
             required={false}
             defaultValue={user.youtube || ""}
             setState={handleInput}
@@ -247,7 +264,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-personal-input"
             type="url"
             name="personalWebsite"
-            value={formState.personalWebsite || ""}
             required={false}
             defaultValue={user.personalWebsite || ""}
             setState={handleInput}
@@ -263,7 +279,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-cohort-input"
             type="string"
             name="cohort"
-            value={formState.cohort || ""}
             required={true}
             defaultValue={user.cohort || ""}
             setState={handleInput}
@@ -278,7 +293,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             className="edit-form-location-input"
             type="text"
             name="location"
-            value={formState.location || ""}
             required={false}
             defaultValue={user.location || "West Midlands"}
             setState={handleInput}
@@ -292,7 +306,6 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus }) => {
             placeholder="A personal quote or aspiration"
             className="edit-form-statement-input"
             name="statement"
-            value={formState.statement || ""}
             required={true}
             maxlength={140}
             defaultValue={user.statement || "I <3 TypeScript"}
