@@ -105,7 +105,7 @@ const Signup = () => {
               <input
                 type="text"
                 {...register("displayName")}
-                placeholder="password"
+                placeholder="Andrew Bernard"
                 name="displayName"
                 id="displayName"
                 className={`user-signup ${

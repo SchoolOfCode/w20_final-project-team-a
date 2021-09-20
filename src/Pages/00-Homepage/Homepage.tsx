@@ -63,12 +63,12 @@ const Homepage = (project: any) => {
           {"<"}{" "}
         </p>{" "}
         {/*onClick increase image display index by 1/*/}
-        <img
+        <a href={featuredProject.appDeploymentUrl} rel="noreferrer" target="_blank" ><img
           className="featured-project-image"
           // src={featuredProject.appDeploymentImage}
           src={imageGalleryArray[imageGalleryIndex]}
           alt="featured-img"
-        ></img>
+        /></a>
         {/*need to access array of images, display index=0 as default/*/}
         <p className="arrow-right" onClick={increaseGalleryIndex}>
           {" "}

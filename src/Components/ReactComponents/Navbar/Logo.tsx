@@ -10,7 +10,7 @@ const Logo = () => {
         <Link to="/" 
         // onMouseEnter={()=> setHovered(true)}
         // onMouseLeave={()=> setHovered(false)}
-        >[ SCHOOL_OF_CODE ]</Link>
+        >[ SoC_Expo ]</Link>
     </>
     )
 }

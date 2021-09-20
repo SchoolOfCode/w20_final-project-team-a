@@ -39,11 +39,12 @@ const ShowcaseProfile = (data: any) => {
           {" "}
           {"<"}{" "}
         </p>{" "}
-        <img
-          className="showcase-project-image"
+        <a href={project.appDeploymentUrl} rel="noreferrer" target="_blank" ><img
+          className="featured-project-image"
+          // src={featuredProject.appDeploymentImage}
           src={imageGalleryArray[imageGalleryIndex]}
-          alt="project-img"
-        ></img>
+          alt="featured-img"
+        /></a>
         <p className="arrow-right" onClick={increaseGalleryIndex}>
           {" "}
           {">"}{" "}
