@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "aztech backend",
   "main": "server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "type": "module",
   "scripts": {
     "start": "node server.js",
