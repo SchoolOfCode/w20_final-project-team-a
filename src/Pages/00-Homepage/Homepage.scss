@@ -45,17 +45,25 @@
   cursor: pointer;
 }
 
-.line-right {
+.wrapper .line-right {
   grid-area: lineR;
-  transform: scaleX(-1);
   .circuit-line {
-    width: 25vw;
+  }
+  .circuit-end{
+    height: 20px;
+    width: 20px;
+    transform: translateY(12px) translateX(-5px);
   }
 }
-.line-left {
+.wrapper .line-left {
   grid-area: lineL;
   .circuit-line {
     width: 35vw;
+  }
+  .circuit-end{
+    height: 20px;
+    width: 20px;
+    transform: translateY(12px) translateX(-5px);
   }
 }
 
