@@ -4,11 +4,11 @@
 .submit-page-container {
   position: absolute;
   right: 0;
-  top: 2em;
+  top: 0;
   left: 0;
   font-size: calc(0.8em + 0.3vw);
   width: 100%;
-  height: 100%;
+  height: 95%;
 }
 
 .submit-page-container label {
@@ -53,7 +53,7 @@ textarea {
 }
 .submit-horizontal-line {
   position: absolute;
-  top: 100px;
+  top: 180px;
   left: 180px;
   max-width: 300px;
   width: 30vw;
@@ -94,14 +94,14 @@ textarea {
 .submit-form-container {
   position: absolute;
   left: calc(200px + 5vw);
-  top: 150px;
+  top: 250px;
 }
 
 .submit-form-form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 90vh;
+  height: 80vh;
   row-gap: calc(0.5em + 1vw);
 }
 .submit-form-form label {
@@ -174,38 +174,64 @@ textarea {
   cursor: pointer;
   width: 8vw;
   text-align: center;
-  align-self: center;
 }
 .fileInput-button:hover {
   background-color: $circuit-yellow;
   color: black;
 }
+.submit-page-container #fileInput{
+  align-content: flex-end;
+  align-self: flex-end;
+}
+
 .appImage-input,
 .additionalAppImage1-input,
 .additionalAppImage2-input,
 .additionalAppImage3-input {
-  display: inline;
+  // margin-left: 8vw;
+  display: flex;
+  flex-direction: column;
+  padding-left:calc(30%);
+  // align-items: center;
 }
 .appImage-input-image,
 .additionalAppImage1-input-image,
 .additionalAppImage2-input-image,
 .additionalAppImage3-input-image {
-  max-width: 7vw;
-  max-height: 7vw;
+  width: calc(5em + 24w);
+  max-height: 100px;
   object-fit: cover;
-  display: block;
 }
+.appImage-input {
+  margin-bottom:600px;
+}
+.appImage-input + *{
+  margin-top: -600px;
+}
+.appImage-input #fileInput,
+.additionalAppImage1-input #fileInput,
+.additionalAppImage2-input #fileInput,
+.additionalAppImage3-input #fileInput{
+  align-self: center;
 
+} 
 /* -----------Submit - Form Column Tech Used--------------------------- */
 
 .builtUsing-input {
-  display: flex;
+  display: grid;
   flex-direction: column;
   flex-wrap: wrap;
-  min-width: 200px;
-  width: 30vw;
-
-  height: 100%;
+  width: 20vw;
+  min-width: 0;
+  margin-bottom: 300px;
+  padding-left: 8vw;
+  height: 30vw;
+  // overflow-y: auto;
+  // flex-grow:0;
+  // flex-basis:30%;
+}
+.builtUsing-input + *{
+  margin-top: -300px;
 }
 .builtUsing-input-title {
   text-align: center;
@@ -223,8 +249,9 @@ textarea {
   justify-content: flex-start;
   align-content: center;
   margin: 0 1em;
-  height: 50%;
-  width: 90%;
+  height: 40%;
+  width: 80%;
+
 }
 .builtUsing-input li[class*="builtUsing-input"] label {
   display: flex;
@@ -334,9 +361,12 @@ textarea {
   transform: translateX(-32.5%);
 }
 
-.project-submit-button {
-  display: block;
+.submit-page-container .project-submit-button {
+  width: 100px;
+  // align-self: center;
+  // margin-left:calc(50% - 2vw);
+  // margin-bottom: 20vh;
   position: absolute;
-  top: 90%;
-  left: 100%;
+  bottom: 20%;
+  left: 30vw;
 }

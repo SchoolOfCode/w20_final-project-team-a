@@ -262,17 +262,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
             formError={formError}
             setformError={setformError}
           />
-          <FormInputTech
-            labelFor="builtUsing"
-            labelText="Technologies Used: "
-            name="builtUsing"
-            className="builtUsing-input"
-            setBuiltUsing={setBuiltUsing}
-            builtUsing={builtUsing}
-            index={1}
-            formError={formError}
-            setformError={setformError}
-          />
+
 
           <FormInputImage
             labelFor="appImage"
@@ -323,6 +313,21 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
             setformError={setformError}
           />
 
+          <button type="submit" className="button project-submit-button">
+            Submit
+          </button>
+
+          <FormInputTech
+            labelFor="builtUsing"
+            labelText="Technologies Used: "
+            name="builtUsing"
+            className="builtUsing-input"
+            setBuiltUsing={setBuiltUsing}
+            builtUsing={builtUsing}
+            index={1}
+            formError={formError}
+            setformError={setformError}
+          />
           {/* <section className="submit-form-group additionalAppImage1-input">
               <label>Additional Image 1:</label>
               <input
@@ -357,9 +362,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
               </div>
             )}
           </section>
-          <button type="submit" className="button project-submit-button">
-            Submit
-          </button>
+
         </form>
       </section>
     </div>
