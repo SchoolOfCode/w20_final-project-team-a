@@ -75,10 +75,10 @@ app.use("/api/projects", projectRouter);
 
 if (process.env.NODE_ENV === 'prod'){
   //set static react folder
-  console.log(path.join(__dirname,'../../build'))
-  app.use(express.static(path.join(__dirname,'../../build')))
+  const buildFolder = path.join(__dirname,'../../build')
+  app.use(express.static(buildFolder))
   app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+    res.sendFile(path.resolve(buildFolder, 'index.html'))
   })
 }
 
