@@ -17,7 +17,6 @@ import { userRouter } from "./routes/users.js";
 import { projectRouter } from "./routes/projects.js";
 import { authRouter } from "./routes/auth.js";
 
-
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 3001;
@@ -31,6 +30,7 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
 // db.connection.on('connected',()=> console.log("Connected to the DB") )
 
 //Midlewares
+
 
 //CORS
 app.use(

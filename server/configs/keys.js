@@ -1,10 +1,10 @@
 import dotenv from 'dotenv'    
 dotenv.config();
 
-let dbName = "aztechUsers" //default to dev db
+let dbName = process.env.DEV_DB_NAME
 
 if (process.env.NODE_ENV === "prod"){
-    dbName = "aztechProd"
+    dbName = process.env.PROD_DB_NAME
 }
 
 export const MongoDB = {
