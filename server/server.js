@@ -65,6 +65,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //Routes
 //make uploads folder available publically/to react
 app.use("/uploads", express.static("uploads"));
@@ -72,14 +73,14 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/projects", projectRouter);
 
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'prod'){
   //set static react folder
-  app.use(express.static('/build'))
+  console.log(path.join(__dirname,'../../build'))
+  app.use(express.static(path.join(__dirname,'../../build')))
   app.get('*', (req,res) => {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
   })
 }
-
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

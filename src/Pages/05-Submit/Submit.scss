@@ -128,7 +128,7 @@ textarea {
 .contributors-input {
   display: grid;
   grid-template-columns: 1fr 30px;
-  width: calc(max-content + 150px);
+  // width: calc(8vw + 150px);
 }
 .contributors-input label {
   grid-row: 1;
