@@ -225,7 +225,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
           <section className="submit-form-group weekNumber-input">
             <label>Project Starting Week:</label>
             <input
-              type="number"
+              type="string"
               {...register("weekNumber")}
               placeholder="1"
               defaultValue={1}

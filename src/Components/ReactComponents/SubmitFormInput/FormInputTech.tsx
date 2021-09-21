@@ -25,12 +25,18 @@ const FormInputTech: React.FC<Props> = ({
   }) => {
 
   const [errorMessage, setErrorMessage] = useState<string>("")
+  
 
   const re = new RegExp(/:(true)\b/,'g')
+
   const handleIconClick = (key: any) => {
     builtUsing[key].used = !builtUsing[key].used;
     setBuiltUsing(builtUsing);
     const iconsString = JSON.stringify(builtUsing)
+    console.log(iconsString.match(re))
+    // for (const [k,v] of Object.entries(builtUsing)){
+    //   console.log(k,v)
+    // }
     if(!iconsString.match(re)){
       setErrorMessage("Please select at least one technology")
       setformError(formError.map((item,i) => (i === index) ? item = true : item))
@@ -53,12 +59,13 @@ const FormInputTech: React.FC<Props> = ({
           type="checkbox"
           id={builtUsing[key].name}
           style={{ display: "none" }}
+          onChange={()=>handleIconClick(key)}
         />
         <label htmlFor={builtUsing[key].name} className="tech-used">
           <img
             src={builtUsing[key].image}
             alt={builtUsing[key].name}
-            onClick={() => handleIconClick(key)}
+            // onClick={() => handleIconClick(key)}
           />
         <h6>{builtUsing[key].name}</h6>
         </label>
