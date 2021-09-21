@@ -175,7 +175,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
               {...register("projectName")}
               placeholder="My project"
               className={`${errors.projectName ? "-invalid-input" : ""}`}
-            ></input>
+            ></input>1
             <div className="invalid-input-message">
               {errors.projectName?.message}
             </div>

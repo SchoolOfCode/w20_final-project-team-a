@@ -54,14 +54,11 @@ projectRouter.get("/update/:id", async (req, res) => {
   if (mongoose.isValidObjectId(projID)) {
     const proj = await Project.findById(projID);
     const contributors = await proj.contributors;
-
     for (const contributor of contributors) {
       const user = await User.findOne({ email: contributor });
       if (user) {
-        await user.projects.push(projID);
-        await user.save();
-        await proj.users.push(user._id);
-        await proj.save();
+        await user.projects.push(projID).save();
+        await proj.users.push(user._id).save();
       }
     }
     res.status(200).send({
