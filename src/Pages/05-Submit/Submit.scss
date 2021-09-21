@@ -242,6 +242,8 @@ textarea {
 }
 .tech-error-message {
   text-align: center;
+  // justify-content: flex-start;
+  grid-row: 2;
 }
 
 /* -----------checkboxes--------------------------- */

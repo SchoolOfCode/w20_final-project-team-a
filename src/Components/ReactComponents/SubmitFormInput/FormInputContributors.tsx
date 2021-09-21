@@ -40,6 +40,7 @@ const FormInputContributors : React.FC<Props> = ({
         setContributors([...contributors, contributor.toLowerCase()])
         setErrorMessage("");
         setformError(formError.map((item,i) => (i === index) ? item = false : item))
+        setContributor("")
         }
         else {
             setErrorMessage("A valid contributor email address is required");

@@ -303,7 +303,7 @@ const EditProfile: React.FC<ProfileProps> = ({ user, setLoginStatus, setCurrentU
           <FormInputTextarea
             labelFor="statement"
             labelText="Personal Statement:"
-            placeholder="A personal quote or aspiration"
+            placeholder="A personal quote or aspiration (max 140chars)"
             className="edit-form-statement-input"
             name="statement"
             required={true}
