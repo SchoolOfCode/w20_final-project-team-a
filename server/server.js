@@ -31,7 +31,6 @@ const db = await mongoose.connect(MongoDB.MongoURI, {
 })
 // db.connection.on('connected',()=> console.log("Connected to the DB") )
 
-
 //CORS
 app.use(
   cors({

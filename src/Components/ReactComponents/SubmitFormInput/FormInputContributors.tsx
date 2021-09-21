@@ -32,13 +32,19 @@ const FormInputContributors : React.FC<Props> = ({
 
     
     const [contributor, setContributor] = useState("")
+    const [errorMessage, setErrorMessage] = useState<string>("")
 
     const addContributorEmail = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         if (isEmail(contributor)) {
         setContributors([...contributors, contributor.toLowerCase()])
+        setErrorMessage("");
+        setformError(formError.map((item,i) => (i === index) ? item = false : item))
         }
-        else setContributor("invalid email address")
+        else {
+            setErrorMessage("A valid contributor email address is required");
+            setformError(formError.map((item,i) => (i === index) ? item = true : item))
+        }
     }
 
     const removeContributorEmail = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, i:any) => {
@@ -54,8 +60,8 @@ const FormInputContributors : React.FC<Props> = ({
                     type={type}
                     placeholder={placeholder}
                     name={name}
-                    required={true}
-                    onChange={(e) => setContributor(e.target.value)}
+                    required={false}
+                    onBlur={(e) => setContributor(e.target.value)}
                     onFocus={(e)=>e.target.value=""}
                 ></input>
                 <button 
@@ -74,7 +80,10 @@ const FormInputContributors : React.FC<Props> = ({
                         </li>
                         )
                     })}
-                </ul>                
+                </ul>    
+                <div className="invalid-input-message">
+                {errorMessage}
+                </div>            
         </div>
     )
 }

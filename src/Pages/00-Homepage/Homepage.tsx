@@ -63,7 +63,7 @@ const Homepage = (project: any) => {
           {"<"}{" "}
         </p>{" "}
         {/*onClick increase image display index by 1/*/}
-        <a href={featuredProject.appDeploymentUrl} rel="noreferrer" target="_blank" ><img
+        <a href={featuredProject.appDeploymentUrl} rel="noreferrer" target="_blank" className="featured-project-image"><img
           className="featured-project-image"
           // src={featuredProject.appDeploymentImage}
           src={imageGalleryArray[imageGalleryIndex]}

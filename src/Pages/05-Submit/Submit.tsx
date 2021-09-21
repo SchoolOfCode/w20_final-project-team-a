@@ -81,6 +81,9 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
       setFailure(false);
       setFailureMsg("");
     }
+    if (contributors.length < 1){
+      setContributors([currentUser.email])
+    }
     const appImagesArray = [
       appImage || null,
       additionalAppImage1 || null,

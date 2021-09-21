@@ -26,7 +26,7 @@ const BootcamperProfile = (data: any) => {
       }
     };
     getProjects();
-  });
+  },[]);
 
   const techIcons: any = new Set();
   userProjects.forEach((project) => {

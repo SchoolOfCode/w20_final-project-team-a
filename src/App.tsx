@@ -45,6 +45,7 @@ function App() {
     checkAuth();
   }, [loginStatus]);
 
+  
   return (
     <Router>
       <style>
