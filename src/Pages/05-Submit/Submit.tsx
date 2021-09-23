@@ -105,6 +105,9 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
     selectedBuiltUsing.forEach((tech) =>
       projectFormData.append("techUsed", tech.name)
     );
+    contributors.forEach((contributor) =>
+      projectFormData.append("contributors", contributor)
+    );
 
     projectFormData.append("projectName", formData.projectName!);
     projectFormData.append("weekNumber", formData.weekNumber!);

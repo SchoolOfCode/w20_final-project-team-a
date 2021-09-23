@@ -68,7 +68,7 @@ const ShowcaseProfile = (data: any) => {
         <p className="heading">{project.projectName}</p>
         <HorizontalCircuit className="line-left" />
         <p className="problem-statement">{project.problemStatement}</p>
-        <p className="contributors">{usersNames.join(", ")}</p>
+        <p className="contributors">Created by {usersNames.join(", ")}</p>
       </div>
     </div>
   );
