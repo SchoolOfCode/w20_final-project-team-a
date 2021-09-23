@@ -57,8 +57,10 @@ projectRouter.get("/update/:id", async (req, res) => {
     for (const contributor of contributors) {
       const user = await User.findOne({ email: contributor });
       if (user) {
-        await user.projects.push(projID).save();
-        await proj.users.push(user._id).save();
+        await user.projects.push(projID)
+        await user.save();
+        await proj.users.push(user._id)
+        await proj.save();
       }
     }
     res.status(200).send({
