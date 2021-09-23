@@ -102,9 +102,6 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
     const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
       (item) => item.used === true
     );
-    contributors.forEach((contributor) =>
-      projectFormData.append("contributors", contributor)
-    );
     selectedBuiltUsing.forEach((tech) =>
       projectFormData.append("techUsed", tech.name)
     );
@@ -170,7 +167,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
               {...register("projectName")}
               placeholder="My project"
               className={`${errors.projectName ? "-invalid-input" : ""}`}
-            ></input>1
+            ></input>
             <div className="invalid-input-message">
               {errors.projectName?.message}
             </div>
