@@ -43,7 +43,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
   const history = useHistory();
   if (!currentUser || loginStatus === false) history.push("/login");
 
-  const [contributors, setContributors] = useState<string[]>([]);
+  const [contributors, setContributors] = useState<string[]>([currentUser.email]);
   const [builtUsing, setBuiltUsing] = useState(builtUsingSVGObject);
   const [formError, setformError] = useState<boolean[]>([
     false,
@@ -81,9 +81,6 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
       setFailure(false);
       setFailureMsg("");
     }
-    if (contributors.length < 1){
-      setContributors([currentUser.email])
-    }
     const appImagesArray = [
       appImage || null,
       additionalAppImage1 || null,
@@ -104,9 +101,6 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
     }
     const selectedBuiltUsing = selectedBuiltUsingFilter.filter(
       (item) => item.used === true
-    );
-    contributors.forEach((contributor) =>
-      projectFormData.append("contributors", contributor)
     );
     selectedBuiltUsing.forEach((tech) =>
       projectFormData.append("techUsed", tech.name)
