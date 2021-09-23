@@ -108,9 +108,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
 
     projectFormData.append("projectName", formData.projectName!);
     projectFormData.append("weekNumber", formData.weekNumber!);
-    contributors.forEach((contributor) =>
-      projectFormData.append("contributors", contributor)
-    );
+
     projectFormData.append("problemStatement", formData.problemStatement!);
     projectFormData.append(
       "additionalInformation",
@@ -169,7 +167,7 @@ const Submit: React.FC<Props> = ({ loginStatus, currentUser }) => {
               {...register("projectName")}
               placeholder="My project"
               className={`${errors.projectName ? "-invalid-input" : ""}`}
-            ></input>1
+            ></input>
             <div className="invalid-input-message">
               {errors.projectName?.message}
             </div>
