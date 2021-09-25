@@ -29,7 +29,28 @@ We created a showcase where:
 
 
 ---
+## Screenshots
 
+<img  src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/image%20(8).png?raw=true"
+src="Featured page" 
+width="250px" height="200px"
+/>    <img  src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/image%20(7).png?raw=true" 
+alt="Showcase Page"
+width="250px" height="200px" 
+/>
+
+<img  src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/image%20(6).png?raw=true" 
+alt="Bootcamper Page"
+width="250px" height="200px" 
+/>    <img  src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/image%20(5).png?raw=true" 
+alt="Submit Page"
+width="250px" height="200px" 
+/>
+
+<img src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/image%20(4).png?raw=true"
+alt="Admin Page"
+width="250px" height="200px" 
+/>
 
 ## API Reference
 
