@@ -30,6 +30,134 @@ We created a showcase where:
 
 ---
 
+
+## API Reference
+
+Where something is returned, the standard format is usually a return object with:  
+```{msg:${ string | object }, success:${ boolean }}```  
+Optionally a User object may be attached.
+
+### Users
+
+#### Register a New User
+
+```http
+  POST /api/users/signup
+```
+
+#### User Login
+
+```http
+  GET /api/users/login
+```
+Sets a session cookie with authentication information for use with further authentication checks.
+Stores a session in MongoDB for verification against the locally stored session ID.
+
+#### User Logout
+```http
+  GET /api/users/logout
+```
+Request needs to be sent with credentials. Logs the user out and clears the session cookie, and removes the session from the database.
+
+#### Get all Users
+
+```http
+  GET /api/users/all
+```
+Returns a list of all the users (without hashed passwords)
+
+#### Get a User by ID
+
+```http
+  GET /api/users/individual/:${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `String` | **Required**. MongoDB ObjectID of user to fetch |
+
+
+### Projects
+#### Submit a Project
+
+```http
+  POST /api/projects/submit
+```
+
+Expects multipart/form data with at least one image (Less than 5mb and .png, jpg, .jpeg or .gif).
+Images will be stored locally at ```${host}/uploads/projects/```, with a randomly generated uuid prefixing the file name to avoid clashes.
+
+#### Get the Featured Project
+
+```http
+  GET /api/projects/featured
+```
+Returns the currently featured project.
+
+#### Get all the Projects
+
+```http
+  GET /api/projects/all
+```
+Returns all the projects, cross-populating the users field with the data for all the contributors.
+
+#### Get the Featured Project
+
+```http
+  GET /api/projects/update/:${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. MongoDB ObjectID of project to fetch |
+
+Populates the projects field on the users document, and populates the users field on the projects.
+Typically called during project submission, could also potentially be modified to populate during user signup.
+
+### Authenticated Routes
+#### Check if the Current User is Authenticated
+
+```http
+  GET /api/auth/check
+```
+Returns the currently authenticated user or an error.
+
+#### Get all the Projects for Administration
+
+```http
+  GET /api/auth/admin/list
+```
+Returns all the projects, cross-populating the users field with the data for all the contributors.
+
+#### Update the Projects for Administration
+
+```http
+  PUT /api/auth/admin/update
+```
+Updates the approved and featured fields in the database.
+
+#### Delete a Project
+
+```http
+  DELETE /api/auth/admin/delete
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. MongoDB ObjectID of project to delete |
+
+Removes the selected project(s) from the database and application.
+The ID will need to be sent as part of the request body.
+
+#### Update the User Profile
+
+```http
+  PUT /api/auth/user/update
+```
+Updates the user with the supplied data.
+Expects a multipart/form with optional image data.
+If no image is supplied, a default profile picture will be applied.
+  
+---
+
 ## Tech Stack
 
 **Client:** React(TypeScript), Sass
