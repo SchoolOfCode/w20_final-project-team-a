@@ -3,10 +3,9 @@
   <img src="https://github.com/SchoolOfCode/w20_final-project-team-a/blob/main/readme/Presentation%20(2).png?raw=true" alt="logo" width=400px />
 </p>
 
-## Cohort 6 Final Project
 
 ### Problem Statement  
-Our Problem was to see how can we display and promote the work that School of Code bootcampers put into the course
+Our task was to see how can we display and promote the work that School of Code bootcampers put into the course
 
 ###  Solution  
 We created a showcase where: 
